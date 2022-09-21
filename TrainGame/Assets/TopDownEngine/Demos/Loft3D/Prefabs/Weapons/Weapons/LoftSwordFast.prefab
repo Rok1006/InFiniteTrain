@@ -54,9 +54,13 @@ MonoBehaviour:
   DelayBeforeUseReleaseInterruption: 0
   TimeBetweenUses: 0.5
   TimeBetweenUsesReleaseInterruption: 0
+  UseBurstMode: 0
+  BurstLength: 3
+  BurstTimeBetweenShots: 0.1
   MagazineBased: 0
   MagazineSize: 30
   AutoReload: 0
+  NoInputReload: 0
   ReloadTime: 2
   AmmoConsumedPerShot: 1
   AutoDestroyWhenEmpty: 0
@@ -75,6 +79,7 @@ MonoBehaviour:
   PreventAllAimWhileInUse: 1
   RecoilForce: 0
   Animators: []
+  PerformAnimatorSanityChecks: 0
   WeaponAnimationID: 10
   IdleAnimationParameter: 
   StartAnimationParameter: Slash1Fast
@@ -90,23 +95,27 @@ MonoBehaviour:
   WeaponAngleRelativeAnimationParameter: 
   WeaponStartMMFeedback: {fileID: 0}
   WeaponUsedMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedbackAlt: {fileID: 0}
   WeaponStopMMFeedback: {fileID: 0}
   WeaponReloadMMFeedback: {fileID: 0}
   WeaponReloadNeededMMFeedback: {fileID: 0}
   InitializeOnStart: 0
   Interruptable: 0
   Flipped: 0
-  DamageAreaShape: 2
+  MeleeDamageAreaMode: 0
+  DamageAreaShape: 1
   AreaSize: {x: 4, y: 2, z: 4}
   AreaOffset: {x: 0, y: 0, z: 0}
   HitDamageableFeedback: {fileID: 0}
   HitNonDamageableFeedback: {fileID: 0}
+  ExistingDamageArea: {fileID: 0}
   InitialDelay: 0.33
   ActiveDuration: 0.1
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 8448
-  DamageCaused: 2
+  MinDamageCaused: 2
+  MaxDamageCaused: 2
   Knockback: 1
   KnockbackForce: {x: 30, y: 0, z: 0}
   InvincibilityDuration: 0.5
@@ -130,9 +139,13 @@ MonoBehaviour:
   DelayBeforeUseReleaseInterruption: 0
   TimeBetweenUses: 0.5
   TimeBetweenUsesReleaseInterruption: 0
+  UseBurstMode: 0
+  BurstLength: 3
+  BurstTimeBetweenShots: 0.1
   MagazineBased: 0
   MagazineSize: 30
   AutoReload: 0
+  NoInputReload: 0
   ReloadTime: 2
   AmmoConsumedPerShot: 1
   AutoDestroyWhenEmpty: 0
@@ -151,6 +164,7 @@ MonoBehaviour:
   PreventAllAimWhileInUse: 1
   RecoilForce: 0
   Animators: []
+  PerformAnimatorSanityChecks: 0
   WeaponAnimationID: 10
   IdleAnimationParameter: 
   StartAnimationParameter: Slash2Fast
@@ -166,23 +180,27 @@ MonoBehaviour:
   WeaponAngleRelativeAnimationParameter: 
   WeaponStartMMFeedback: {fileID: 0}
   WeaponUsedMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedbackAlt: {fileID: 0}
   WeaponStopMMFeedback: {fileID: 0}
   WeaponReloadMMFeedback: {fileID: 0}
   WeaponReloadNeededMMFeedback: {fileID: 0}
   InitializeOnStart: 0
   Interruptable: 0
   Flipped: 0
+  MeleeDamageAreaMode: 0
   DamageAreaShape: 2
   AreaSize: {x: 3, y: 3, z: 4}
   AreaOffset: {x: 0, y: 0.2, z: 0}
   HitDamageableFeedback: {fileID: 0}
   HitNonDamageableFeedback: {fileID: 0}
+  ExistingDamageArea: {fileID: 0}
   InitialDelay: 0.16
   ActiveDuration: 0.066
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 8448
-  DamageCaused: 2
+  MinDamageCaused: 2
+  MaxDamageCaused: 2
   Knockback: 1
   KnockbackForce: {x: 30, y: 0, z: 0}
   InvincibilityDuration: 0.5
@@ -206,9 +224,13 @@ MonoBehaviour:
   DelayBeforeUseReleaseInterruption: 0
   TimeBetweenUses: 0.8
   TimeBetweenUsesReleaseInterruption: 0
+  UseBurstMode: 0
+  BurstLength: 3
+  BurstTimeBetweenShots: 0.1
   MagazineBased: 0
   MagazineSize: 30
   AutoReload: 0
+  NoInputReload: 0
   ReloadTime: 2
   AmmoConsumedPerShot: 1
   AutoDestroyWhenEmpty: 0
@@ -227,6 +249,7 @@ MonoBehaviour:
   PreventAllAimWhileInUse: 1
   RecoilForce: 0
   Animators: []
+  PerformAnimatorSanityChecks: 0
   WeaponAnimationID: 10
   IdleAnimationParameter: 
   StartAnimationParameter: Slash3Fast
@@ -242,23 +265,27 @@ MonoBehaviour:
   WeaponAngleRelativeAnimationParameter: 
   WeaponStartMMFeedback: {fileID: 0}
   WeaponUsedMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedbackAlt: {fileID: 0}
   WeaponStopMMFeedback: {fileID: 0}
   WeaponReloadMMFeedback: {fileID: 0}
   WeaponReloadNeededMMFeedback: {fileID: 0}
   InitializeOnStart: 0
   Interruptable: 0
   Flipped: 0
+  MeleeDamageAreaMode: 0
   DamageAreaShape: 2
   AreaSize: {x: 4, y: 3, z: 4}
   AreaOffset: {x: 0, y: 0.5, z: 0}
   HitDamageableFeedback: {fileID: 0}
   HitNonDamageableFeedback: {fileID: 0}
+  ExistingDamageArea: {fileID: 0}
   InitialDelay: 0.3
   ActiveDuration: 0.15
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 8448
-  DamageCaused: 10
+  MinDamageCaused: 10
+  MaxDamageCaused: 10
   Knockback: 1
   KnockbackForce: {x: 100, y: 0, z: 0}
   InvincibilityDuration: 0.5
@@ -318,3 +345,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 9
   MaximumSlopeElevation: 50
+  AvoidNullAim: 1
