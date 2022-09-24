@@ -229,10 +229,10 @@ namespace MoreMountains.TopDownEngine
 				if (_currentDirection != Vector3.zero)
 				{
 					Debug.Log(_currentDirection);
-					if (_currentDirection != new Vector3(0.0f, 0.0f, -1.0f) && _currentDirection != new Vector3(0.0f, 0.0f, 1.0f))
-					{
+				//	if (_currentDirection != new Vector3(0.0f, 0.0f, -1.0f) && _currentDirection != new Vector3(0.0f, 0.0f, 1.0f))
+				//	{
 						_newMovementQuaternion = Quaternion.LookRotation(_currentDirection);
-					}
+					//}
 				}
 			}
 
@@ -260,8 +260,8 @@ namespace MoreMountains.TopDownEngine
 				}
 			}
             
-			//ModelDirection = MovementRotatingModel.transform.forward.normalized;
-			//ModelAngles = MovementRotatingModel.transform.eulerAngles;
+			ModelDirection = MovementRotatingModel.transform.forward.normalized;
+			ModelAngles = MovementRotatingModel.transform.eulerAngles;
 		}
 
 		/// <summary>
