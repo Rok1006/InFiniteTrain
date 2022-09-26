@@ -2122,7 +2122,7 @@ MonoBehaviour:
   AbilityPermitted: 1
   BlockingMovementStates: 
   BlockingConditionStates: 
-  Movement: 1
+  Movement: 4
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
@@ -2426,6 +2426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7e77ba202f78943ade3e40c1748276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinspeed: 1
+  isMoving: 0
 --- !u!1 &1918232350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,7 +2621,7 @@ PrefabInstance:
     - target: {fileID: 224233206223061686, guid: 9edcf7e494cf3e640b18cb7495fb179a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -430.00003
+      value: -430
       objectReference: {fileID: 0}
     - target: {fileID: 224429692818469760, guid: 9edcf7e494cf3e640b18cb7495fb179a,
         type: 3}
@@ -2629,7 +2631,7 @@ PrefabInstance:
     - target: {fileID: 224537438941658282, guid: 9edcf7e494cf3e640b18cb7495fb179a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -429.00003
+      value: -429
       objectReference: {fileID: 0}
     - target: {fileID: 759855279148308545, guid: 9edcf7e494cf3e640b18cb7495fb179a,
         type: 3}
