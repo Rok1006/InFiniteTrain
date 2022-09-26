@@ -116,6 +116,7 @@ namespace MoreMountains.TopDownEngine
 		/// </summary>
 		protected virtual void CreateDamageArea()
 		{
+			Debug.Log("creating damage area");
 			if ((MeleeDamageAreaMode == MeleeDamageAreaModes.Existing) && (ExistingDamageArea != null))
 			{
 				_damageArea = ExistingDamageArea.gameObject;
