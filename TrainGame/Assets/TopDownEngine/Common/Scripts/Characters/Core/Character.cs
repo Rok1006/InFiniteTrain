@@ -21,7 +21,7 @@ namespace MoreMountains.TopDownEngine
 	{
 		/// the possible initial facing direction for your character
 		public enum FacingDirections { West, East, North, South }
-
+		public Transform back;
 		public enum CharacterDimensions { Type2D, Type3D }
 		[MMReadOnly]
 		public CharacterDimensions CharacterDimension;
