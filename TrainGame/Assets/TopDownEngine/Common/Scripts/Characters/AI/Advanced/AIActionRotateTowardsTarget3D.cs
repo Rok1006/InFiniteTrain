@@ -53,7 +53,7 @@ namespace MoreMountains.TopDownEngine
 				_targetPosition.y = this.transform.position.y;
 			}
 			_characterOrientation3D.ForcedRotationDirection = (_targetPosition - this.transform.position).normalized;
-			Debug.Log("rotating");
+			
 		}
 
 		/// <summary>
