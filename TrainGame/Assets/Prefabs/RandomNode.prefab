@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4564835827097886293}
   - component: {fileID: 6149381898640873239}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: RandomNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,6 +55,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   nearbyNodesList: []
+  material: {fileID: 0}
+  isPlayer: 0
+  player: {fileID: 11400000, guid: ed92646796276844cabfbd42dd670518, type: 2}
 --- !u!212 &4240082729152928923
 SpriteRenderer:
   m_ObjectHideFlags: 0
