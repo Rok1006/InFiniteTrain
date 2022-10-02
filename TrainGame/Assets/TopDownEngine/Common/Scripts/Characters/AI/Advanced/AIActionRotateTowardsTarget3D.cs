@@ -15,7 +15,7 @@ namespace MoreMountains.TopDownEngine
 		public bool LockRotationX = false;
 
 		protected CharacterOrientation3D _characterOrientation3D;
-		protected Vector3 _targetPosition;
+		public Vector3 _targetPosition;
 		protected bool _originalForcedRotation;
 
 		/// <summary>
@@ -23,6 +23,7 @@ namespace MoreMountains.TopDownEngine
 		/// </summary>
 		public override void Initialization()
 		{
+			
 			if(!ShouldInitialize) return;
 			base.Initialization();
 			_characterOrientation3D = this.gameObject.GetComponentInParent<Character>()?.FindAbility<CharacterOrientation3D>();
@@ -43,6 +44,7 @@ namespace MoreMountains.TopDownEngine
 		{
 			if (_brain.Target == null)
 			{
+				
 				return;
 			}
 			_targetPosition = _brain.Target.transform.position;
@@ -51,6 +53,7 @@ namespace MoreMountains.TopDownEngine
 				_targetPosition.y = this.transform.position.y;
 			}
 			_characterOrientation3D.ForcedRotationDirection = (_targetPosition - this.transform.position).normalized;
+			
 		}
 
 		/// <summary>

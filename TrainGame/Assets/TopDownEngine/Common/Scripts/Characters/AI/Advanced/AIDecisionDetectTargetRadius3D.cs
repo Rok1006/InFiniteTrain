@@ -47,7 +47,7 @@ namespace MoreMountains.TopDownEngine
 
 		/// <summary>
 		/// On init we grab our Character component
-		/// </summary>
+		/// </summary>	
 		public override void Initialization()
 		{
 			_lastTargetCheckTimestamp = 0f;
