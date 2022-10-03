@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e80b4aa3003daeb418ac8098823fe039, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028496, g: 0.2257161, b: 0.30692422, a: 1}
+  m_IndirectSpecularColor: {r: 0.25827777, g: 0.56240064, b: 0.55596, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -244,11 +244,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4195150596186120, guid: 9edcf7e494cf3e640b18cb7495fb179a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.142727
+      value: 25.322906
       objectReference: {fileID: 0}
     - target: {fileID: 4195150596186120, guid: 9edcf7e494cf3e640b18cb7495fb179a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -41.17915
+      value: -43.37176
       objectReference: {fileID: 0}
     - target: {fileID: 4195150596186120, guid: 9edcf7e494cf3e640b18cb7495fb179a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -503,7 +503,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193057729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 18.100002, z: -20.7}
+  m_LocalPosition: {x: 0, y: 18.100002, z: -24.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 558829197}
@@ -520,7 +520,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 57.39, y: 19.4, z: 24}
+  m_Size: {x: 57.39, y: 19.4, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &240747516
 GameObject:
@@ -990,6 +990,7 @@ GameObject:
   - component: {fileID: 513671493}
   - component: {fileID: 513671495}
   - component: {fileID: 513671494}
+  - component: {fileID: 513671496}
   m_Layer: 0
   m_Name: Train Cart Room
   m_TagString: Untagged
@@ -1038,7 +1039,19 @@ MonoBehaviour:
   RoomVisited: 0
   OnPlayerEntersRoomForTheFirstTime:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 513671496}
+        m_TargetAssemblyTypeName: Cart, Assembly-CSharp
+        m_MethodName: EnterRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnPlayerEntersRoom:
     m_PersistentCalls:
       m_Calls: []
@@ -1059,6 +1072,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 84.8, y: 26.1, z: 26.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &513671496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513671492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a2038dabc152247bb6cce4ca99c1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &558829196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe81ad80cb743b408fa90b048ad597f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  back: {fileID: 0}
   CharacterDimension: 0
   CharacterType: 1
   PlayerID: 
@@ -1796,6 +1822,7 @@ GameObject:
   - component: {fileID: 740734130}
   - component: {fileID: 740734132}
   - component: {fileID: 740734131}
+  - component: {fileID: 740734133}
   m_Layer: 0
   m_Name: Train Cart Room (1)
   m_TagString: Untagged
@@ -1844,7 +1871,19 @@ MonoBehaviour:
   RoomVisited: 0
   OnPlayerEntersRoomForTheFirstTime:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 740734133}
+        m_TargetAssemblyTypeName: Cart, Assembly-CSharp
+        m_MethodName: EnterRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnPlayerEntersRoom:
     m_PersistentCalls:
       m_Calls: []
@@ -1865,6 +1904,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 84.8, y: 26.1, z: 26.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &740734133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740734129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a2038dabc152247bb6cce4ca99c1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &741262497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,7 +2665,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074767857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 18.100002, z: -20.7}
+  m_LocalPosition: {x: 0, y: 18.100002, z: -24.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 740734130}
@@ -2631,7 +2682,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 57.39, y: 19.4, z: 24}
+  m_Size: {x: 57.39, y: 19.4, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1076198776 stripped
 GameObject:
@@ -2875,7 +2926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127821444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 18.1, z: -20.7}
+  m_LocalPosition: {x: 0, y: 18.1, z: -24.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 513671493}
@@ -2892,7 +2943,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 57.39, y: 19.4, z: 24}
+  m_Size: {x: 57.39, y: 19.4, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1144241978 stripped
 GameObject:
