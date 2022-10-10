@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.TopDownEngine;
+using MoreMountains.InventoryEngine;
 
 public class FoodCart : Cart
 {
-    private int foodCount = 0;
-    [SerializeField] private GameObject foodUI;
+    private List<FoodItem> foods = new List<FoodItem>();
+    [SerializeField] private FoodCartUI foodUI;
 
     //getters & setters
-    public int FoodCount {get=>foodCount; set=>foodCount = value;}
+    public List<FoodItem> Foods {get=>foods; set=>foods = value;}
 
     void Start()
     {
@@ -30,12 +31,24 @@ public class FoodCart : Cart
     public override void EnterRoom()
     {
         base.EnterRoom();
-        foodUI.SetActive(true);
+        foodUI.gameObject.SetActive(true);
+        foodUI.FoodCart = this;
     }
 
     public override void ExitRoom()
     {
         base.ExitRoom();
-        foodUI.SetActive(false);
+        foodUI.gameObject.SetActive(false);
+    }
+
+    /*move all stored items into backpack*/
+    public void MoveToBackpack() {
+        Inventory foodCartInven = GameObject.Find("FoodCartInventory").GetComponent<Inventory>();
+        if (foodCartInven != null) {
+            foreach(FoodItem food in Foods) {
+                MMInventoryEvent.Trigger(MMInventoryEventType.Pick, null, food.TargetInventoryName, food, food.Quantity, 0, "Player1");
+            }
+            Foods.Clear();
+        }
     }
 }
