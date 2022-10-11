@@ -37,7 +37,7 @@ public class SpawnNodes : MonoBehaviour
             go.GetComponent<NodeManager>().DrawLinesNodes();
         }
 
-        
+        player.GetComponent<NodeManager>().ConnectPlayer();
     }
 
     // Update is called once per frame
