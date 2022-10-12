@@ -42,12 +42,15 @@ public class NodeManager : MonoBehaviour
         var nearbyNodes = Physics.SphereCastAll(this.transform.position, 5, Vector3.forward, layermask);
         foreach (RaycastHit hit in nearbyNodes)
         {
-            Debug.Log("hit");
-            nearbyNodesList.Add(hit.collider.gameObject);
+            if (hit.collider.gameObject.tag != "Player" || hit.collider.gameObject.name != this.name)
+            {
+                nearbyNodesList.Add(hit.collider.gameObject);
+            }
         }
     }
     public void DrawLinesNodes()
     {
+
         GameObject myLine = new GameObject();
         myLine.transform.position = this.transform.position;
         myLine.AddComponent<LineRenderer>();
@@ -60,8 +63,19 @@ public class NodeManager : MonoBehaviour
     }
 
 
-    public void ConnectPlayer()
+    public void ConnectPlayer(List<GameObject> playerNearbyList)
     {
-
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject myLine = new GameObject();
+            myLine.transform.position = this.transform.position;
+            myLine.AddComponent<LineRenderer>();
+            LineRenderer lr = myLine.GetComponent<LineRenderer>();
+            lr.material = material;
+            lr.SetColors(Color.white, Color.white);
+            lr.SetWidth(0.042f, 0.042f);
+            lr.SetPosition(0, this.transform.position);
+            lr.SetPosition(1, playerNearbyList[i].transform.position);
+        }
     }
 }
