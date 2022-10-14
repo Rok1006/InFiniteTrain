@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnNodes : MonoBehaviour
 
 {
+    public static int id = 0;
     public List<GameObject> nodes = new List<GameObject>();
     public GameObject nodePrefab;
     private Vector3 offset;
@@ -24,16 +25,31 @@ public class SpawnNodes : MonoBehaviour
 
             for (int i = 0; i < 4; i++)
             {
-                var randomX = Random.Range(-4, 4);
-                var randomY = Random.Range(-4, 4);
-                offset = new Vector3(randomX, randomY, 0);
+                for (int n = 0; n < 100; n++)
+                {
+                    var randomX = Random.Range(-4, 4);
+                    var randomY = Random.Range(-4, 4);
+                    offset = new Vector3(randomX, randomY, 0);
+                    bool isTooClose = false;
+                    foreach (GameObject point in nodes)
+                    {
+                        if (Vector3.Distance(point.transform.position, spawnPoints[j].transform.position + offset) < 4.0f)
+                        {
+                            Debug.Log(point.transform.position + " is too close");
+                            isTooClose = true;
+                            break;
+                        }
+                    }
+                    if (!isTooClose)
+                        break;
+                }
                 var node = Instantiate(nodePrefab, spawnPoints[j].transform.position + offset, transform.rotation);
                 nodes.Add(node);
 
 
             }
         }
-        foreach(GameObject go in nodes)
+        foreach (GameObject go in nodes)
         {
             go.GetComponent<NodeManager>().ConnectNodes();
             go.GetComponent<NodeManager>().DrawLinesNodes();
@@ -46,27 +62,27 @@ public class SpawnNodes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void CalculateDistance(List<GameObject> nodes , GameObject player)
+    public void CalculateDistance(List<GameObject> nodes, GameObject player)
     {
-        float distance = 100 , distance2 = 100, distance3 = 100, distance4 = 100;
+        float distance = 100, distance2 = 100, distance3 = 100, distance4 = 100;
         var index = 0;
-        float temp , temp2, temp3, temp4;
+        float temp, temp2, temp3, temp4;
         var list = nodes;
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             temp = Vector3.Distance(nodes[i].transform.position, player.transform.position);
-            if(temp < distance)
+            if (temp < distance)
             {
                 distance = temp;
                 index = i;
             }
-            
+
         }
         shortestNodes.Add(nodes[index]);
         index = 0;
-        for(int i = 4; i < 8; i++)
+        for (int i = 4; i < 8; i++)
         {
             temp2 = Vector3.Distance(nodes[i].transform.position, player.transform.position);
             if (temp2 < distance2)
@@ -101,6 +117,7 @@ public class SpawnNodes : MonoBehaviour
         index = 0;
 
     }
+
 
 
 }

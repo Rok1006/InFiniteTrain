@@ -8,10 +8,14 @@ public class NodeManager : MonoBehaviour
     public Sprite sprite;
     public NodeTypes[] nodeType;
     public LayerMask layermask;
+    [SerializeField]
     public List<GameObject> nearbyNodesList = new List<GameObject>();
+
+    public List<GameObject> connectedNodeList = new List<GameObject>();
     public Material material;
     public bool isPlayer;
     public NodeTypes player;
+    public 
     // Start is called before the first frame update
     void Start()
     {
@@ -39,11 +43,12 @@ public class NodeManager : MonoBehaviour
 
     public void ConnectNodes()
     {
-        var nearbyNodes = Physics.SphereCastAll(this.transform.position, 5, Vector3.forward, layermask);
+        var nearbyNodes = Physics.SphereCastAll(this.transform.position, 7, Vector3.forward, layermask);
         foreach (RaycastHit hit in nearbyNodes)
         {
-            if (hit.collider.gameObject.tag != "Player" || hit.collider.gameObject.name != this.name)
+            if (hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.name != this.gameObject.name)
             {
+                Debug.Log(hit.collider.gameObject.name);
                 nearbyNodesList.Add(hit.collider.gameObject);
             }
         }
@@ -60,6 +65,8 @@ public class NodeManager : MonoBehaviour
         lr.SetWidth(0.042f, 0.042f);
         lr.SetPosition(0, this.transform.position);
         lr.SetPosition(1, nearbyNodesList[0].transform.position);
+        connectedNodeList.Add(nearbyNodesList[0]);
+        nearbyNodesList[0].GetComponent<NodeManager>().connectedNodeList.Add(this.gameObject);
     }
 
 
