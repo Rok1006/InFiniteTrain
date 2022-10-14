@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class PlayerMC : MonoBehaviour
 {
+    public enum PlayerState{NORMAL, USINGGUN, USINGSWORD};
+    public PlayerState currentState = PlayerState.NORMAL;
+    private int directionFacing = 0; //0 = front, 1 = back;
+
     [Header("Assignment")]
     [SerializeField] private GameObject FrontMC;
+    [SerializeField] private GameObject BackMC;
     public float moveSpeed;
     public bool facingFront = true;   //or side
-    [Header("Keys")]
-    public KeyCode leftKey;
-    public KeyCode rightKey;
-    public KeyCode upKey;
-    public KeyCode downKey;
 
+    // [Header("Keys")]
+    // public KeyCode leftKey;
+    // public KeyCode rightKey;
+    // public KeyCode upKey;
+    // public KeyCode downKey;
 //---------
     Animator frontAnim;
+    Animator backAnim;
     private Rigidbody rb;
     private Vector2 moveInput;
     Camera myCam;
@@ -29,6 +35,7 @@ public class PlayerMC : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody>();
         frontAnim = FrontMC.GetComponent<Animator>();
+        backAnim = BackMC.GetComponent<Animator>();
         myCam = Camera.main;
         x = this.transform.localScale.x;
         y = this.transform.localScale.y;
@@ -39,18 +46,8 @@ public class PlayerMC : MonoBehaviour
     }
 
     void FixedUpdate() {
-        moveInput.x = Input.GetAxisRaw("Horizontal");
+        moveInput.x = Input.GetAxisRaw("Horizontal"); //set up change key at runtime
         moveInput.y = Input.GetAxisRaw("Vertical");
-       // moveInput = Vector2.zero;
-        // if(Input.GetKeyDown(KeyCode.A)){
-        //     moveInput += Vector2.left;
-        // }else if(Input.GetKeyDown(KeyCode.D)){
-        //     moveInput += Vector2.right;
-        // }else if(Input.GetKeyDown(KeyCode.W)){
-        //     moveInput += Vector2.up;
-        // }else if(Input.GetKeyDown(KeyCode.S)){
-        //     moveInput += Vector2.down;
-        // }else{moveInput = Vector2.zero;}
 
         moveInput.Normalize();
         rb.velocity = new Vector3(-moveInput.x*moveSpeed, rb.velocity.y, -moveInput.y*moveSpeed); //rb.velocity.y
@@ -58,17 +55,42 @@ public class PlayerMC : MonoBehaviour
 
     void Update()
     {
-
         if (transform.position.x > oldPositionX) //Rotate the anim object instead of main
         {
             FrontMC.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-        else if (transform.position.x < oldPositionX)
+        }else if (transform.position.x < oldPositionX)
         {
             FrontMC.transform.eulerAngles = new Vector3(0, 180, 0);
         }
-        
-//Mpvenment--------
+        if (transform.position.z > oldPositionZ) //Change player gameObject
+        {
+            FrontMC.SetActive(true);
+            BackMC.SetActive(false);
+        }else if (transform.position.z < oldPositionZ)
+        {
+            FrontMC.SetActive(false);
+            BackMC.SetActive(true);
+        }
+//Movenment--------
+        switch(directionFacing){  //wrap it with a larger switch case
+            case 0:  //face front
+                MCFrontAnim();
+            break;
+            case 1:  //face back
+
+            break;
+        }
+        oldPositionX = transform.position.x;
+        oldPositionZ = transform.position.z;
+    }
+    public void DisableAllAnim(){
+        frontAnim.SetBool("front_walk", false);
+        frontAnim.SetBool("front_idle", false);  
+        frontAnim.SetBool("side_walk", false);
+        frontAnim.SetBool("side_idle", false); 
+
+    }
+    public void MCFrontAnim(){
         if(transform.position.z > oldPositionZ || transform.position.z < oldPositionZ) //up and down
         {
             facingFront = true;
@@ -94,14 +116,8 @@ public class PlayerMC : MonoBehaviour
             frontAnim.SetBool("side_idle", false);  
             frontAnim.SetBool("front_idle", false); 
         }
-        oldPositionX = transform.position.x;
-        oldPositionZ = transform.position.z;
     }
-    public void DisableAllAnim(){
-        frontAnim.SetBool("front_walk", false);
-        frontAnim.SetBool("front_idle", false);  
-        frontAnim.SetBool("side_walk", false);
-        frontAnim.SetBool("side_idle", false); 
+    public void MCBackAnim(){
 
     }
 }
