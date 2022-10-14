@@ -18,6 +18,7 @@ public class SpawnNodes : MonoBehaviour
     void Start()
     {
         var playerNode = Instantiate(player, transform.position, transform.rotation);
+        playerNode.tag = "Player";
 
         for (int j = 0; j < spawnPoints.Length; j++)
         {
@@ -44,6 +45,8 @@ public class SpawnNodes : MonoBehaviour
                         break;
                 }
                 var node = Instantiate(nodePrefab, spawnPoints[j].transform.position + offset, transform.rotation);
+                node.name = id.ToString();
+                id++;
                 nodes.Add(node);
 
 
