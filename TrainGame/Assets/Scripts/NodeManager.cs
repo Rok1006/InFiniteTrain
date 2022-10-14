@@ -46,6 +46,7 @@ public class NodeManager : MonoBehaviour
         var nearbyNodes = Physics.SphereCastAll(this.transform.position, 7, Vector3.forward, layermask);
         foreach (RaycastHit hit in nearbyNodes)
         {
+            Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.name != this.gameObject.name)
             {
                 Debug.Log(hit.collider.gameObject.name);
@@ -64,9 +65,11 @@ public class NodeManager : MonoBehaviour
         lr.SetColors(Color.white, Color.white);
         lr.SetWidth(0.042f, 0.042f);
         lr.SetPosition(0, this.transform.position);
-        lr.SetPosition(1, nearbyNodesList[0].transform.position);
-        connectedNodeList.Add(nearbyNodesList[0]);
-        nearbyNodesList[0].GetComponent<NodeManager>().connectedNodeList.Add(this.gameObject);
+        if (nearbyNodesList.Count > 0) {
+            lr.SetPosition(1, nearbyNodesList[0].transform.position);
+            connectedNodeList.Add(nearbyNodesList[0]);
+            nearbyNodesList[0].GetComponent<NodeManager>().connectedNodeList.Add(this.gameObject);
+        }
     }
 
 
