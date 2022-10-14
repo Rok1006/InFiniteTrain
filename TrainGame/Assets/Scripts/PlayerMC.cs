@@ -43,6 +43,9 @@ public class PlayerMC : MonoBehaviour
         oldPositionX = transform.position.x;
         oldPositionZ = transform.position.z;
 
+        FrontMC.SetActive(true);
+        BackMC.SetActive(false);
+
     }
 
     void FixedUpdate() {
@@ -58,9 +61,11 @@ public class PlayerMC : MonoBehaviour
         if (transform.position.x > oldPositionX) //Rotate the anim object instead of main
         {
             FrontMC.transform.eulerAngles = new Vector3(0, 0, 0);
+            BackMC.transform.eulerAngles = new Vector3(0, 0, 0);
         }else if (transform.position.x < oldPositionX)
         {
             FrontMC.transform.eulerAngles = new Vector3(0, 180, 0);
+            BackMC.transform.eulerAngles = new Vector3(0, 180, 0);
         }
         if (transform.position.z > oldPositionZ) //Change player gameObject
         {
@@ -88,6 +93,10 @@ public class PlayerMC : MonoBehaviour
         frontAnim.SetBool("front_idle", false);  
         frontAnim.SetBool("side_walk", false);
         frontAnim.SetBool("side_idle", false); 
+        backAnim.SetBool("back_walk", false);
+        backAnim.SetBool("back_idle", false);  
+        backAnim.SetBool("side_walk", false);
+        backAnim.SetBool("side_idle", false); 
 
     }
     public void MCFrontAnim(){
@@ -97,24 +106,32 @@ public class PlayerMC : MonoBehaviour
             DisableAllAnim();
             frontAnim.SetBool("front_walk", true);
             frontAnim.SetBool("front_idle", false);  
-            Debug.Log(oldPositionX + "-"+ transform.position.x);
+            backAnim.SetBool("back_walk", true);
+            backAnim.SetBool("back_idle", false); 
+            // Debug.Log(oldPositionX + "-"+ transform.position.x);
         }else if(transform.position.x > oldPositionX || transform.position.x < oldPositionX){ //left and right
             facingFront = false;
             DisableAllAnim();
             frontAnim.SetBool("side_walk", true);
             frontAnim.SetBool("side_idle", false); 
+            backAnim.SetBool("side_walk", true);
+            backAnim.SetBool("side_idle", false); 
         }  
         if(moveInput.x == 0 && moveInput.y == 0){ //player stop
             if(facingFront){
                 DisableAllAnim();
                 frontAnim.SetBool("front_idle", true);  
+                backAnim.SetBool("back_idle", true);  
             }else{
                 DisableAllAnim();
                 frontAnim.SetBool("side_idle", true);  
+                backAnim.SetBool("side_idle", true);  
             }
         }else{
             frontAnim.SetBool("side_idle", false);  
             frontAnim.SetBool("front_idle", false); 
+            backAnim.SetBool("side_idle", false);  
+            backAnim.SetBool("back_idle", false); 
         }
     }
     public void MCBackAnim(){
