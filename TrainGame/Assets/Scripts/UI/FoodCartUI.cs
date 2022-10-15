@@ -13,7 +13,7 @@ public class FoodCartUI : MonoBehaviour
     public FoodCart FoodCart{get=>foodCart;set=>foodCart=value;}
     void Start()
     {
-
+        
     }
 
     
