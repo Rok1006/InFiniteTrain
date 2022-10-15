@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8026553785167854294
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
+  m_Name: Grain
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  colored:
+    overrideState: 0
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0.377
+  size:
+    overrideState: 1
+    value: 1
+  lumContrib:
+    overrideState: 0
+    value: 0.8
 --- !u!114 &-7693968847916261082
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1329,25 +1357,25 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 2.88
+    value: 3.49
   threshold:
     overrideState: 1
-    value: 1
+    value: 2.47
   softKnee:
-    overrideState: 0
-    value: 0.5
+    overrideState: 1
+    value: 0.274
   clamp:
     overrideState: 0
-    value: 65472
+    value: 65468.61
   diffusion:
-    overrideState: 0
-    value: 7
+    overrideState: 1
+    value: 5.16
   anamorphicRatio:
-    overrideState: 0
+    overrideState: 1
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.7075472, g: 0, b: 0, a: 1}
+    value: {r: 12.125731, g: 11.84042, b: 11.84042, a: 1}
   fastMode:
     overrideState: 0
     value: 0
@@ -1373,3 +1401,39 @@ MonoBehaviour:
   settings:
   - {fileID: -2671352437672928079}
   - {fileID: -7693968847916261082}
+  - {fileID: -8026553785167854294}
+  - {fileID: 8199138239621803096}
+--- !u!114 &8199138239621803096
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
+  m_Name: LensDistortion
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: -2
+  intensityX:
+    overrideState: 1
+    value: 1
+  intensityY:
+    overrideState: 1
+    value: 1
+  centerX:
+    overrideState: 0
+    value: 0
+  centerY:
+    overrideState: 0
+    value: 0
+  scale:
+    overrideState: 0
+    value: 1

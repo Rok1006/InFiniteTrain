@@ -79,7 +79,7 @@ public class PlayerMC : MonoBehaviour
 //Movenment--------
         switch(directionFacing){  //wrap it with a larger switch case
             case 0:  //face front
-                MCFrontAnim();
+                MCBasicAction();
             break;
             case 1:  //face back
 
@@ -99,7 +99,7 @@ public class PlayerMC : MonoBehaviour
         backAnim.SetBool("side_idle", false); 
 
     }
-    public void MCFrontAnim(){
+    public void MCBasicAction(){
         if(transform.position.z > oldPositionZ || transform.position.z < oldPositionZ) //up and down
         {
             facingFront = true;
