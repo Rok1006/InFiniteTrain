@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         if(Time.frameCount%10 == 0 && emitPt!=null){
             GameObject d = Instantiate(dustPrefab, emitPt.transform.position, Quaternion.identity) as GameObject;
             dust.Add(d);
-            Invoke("DestroyDust", 1f);
+            Invoke("DestroyDust", .9f);
         }
     }
     private void DestroyDust(){
