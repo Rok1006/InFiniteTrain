@@ -14,13 +14,14 @@ GameObject:
   - component: {fileID: 927299119}
   - component: {fileID: 927299118}
   - component: {fileID: 927299117}
+  - component: {fileID: 5532440362036005148}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &927299116
 Transform:
   m_ObjectHideFlags: 0
@@ -158,6 +159,20 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!114 &5532440362036005148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927299115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e881f15aa64a19742a2dadb82e1f53f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backAnimator: {fileID: 927299120}
+  frontAnimator: {fileID: 8915643822054043792}
 --- !u!1 &5870292736762538542
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,15 +643,15 @@ MonoBehaviour:
   AbilityPermitted: 1
   BlockingMovementStates: 
   BlockingConditionStates: 
-  Movement: 0
+  Movement: 4
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
   WalkSpeed: 20
   ShouldSetMovement: 1
   IdleThreshold: 0.05
-  Acceleration: 10
-  Deceleration: 10
+  Acceleration: 0
+  Deceleration: 0
   InterpolateMovementSpeed: 0
   WalkParticles: []
   TouchTheGroundParticles: []

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 //This script handle wtever related to Player that is not related to topdown engine
 public class PlayerManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject dustPrefab; //the particle system: prefab
     [SerializeField] private GameObject emitPt; //the particle system: prefab
     public List<GameObject> dust = new List<GameObject>();
+
     //public Character CharacterSc;
 
     float x;
@@ -21,25 +23,27 @@ public class PlayerManager : MonoBehaviour
     {
         //CharacterSc = this.GameObject.GetComponent<Character>();
         if(FrontMC!=null){
-            FrontMC.SetActive(true);
-            BackMC.SetActive(false);
+            FrontMC.transform.localScale = new Vector3(1,1,1);
+            BackMC.transform.localScale = new Vector3(0,0,0);
         }
     }
     void Update()
     {
         if (transform.position.z < oldPositionZ && FrontMC!=null) //Change player gameObject
         {
-            FrontMC.SetActive(true);
-            BackMC.SetActive(false);
+            FrontMC.transform.localScale = new Vector3(1,1,1);
+            BackMC.transform.localScale = new Vector3(0,0,0);
             DustEmit();
             DustLayerSort(-1);
+
             //this.GetComponent<Character>().CharacterAnimator = FrontMC.GetComponent<Animator>();
         }else if (transform.position.z > oldPositionZ && FrontMC!=null)
         {
-            FrontMC.SetActive(false);
-            BackMC.SetActive(true);
+            FrontMC.transform.localScale = new Vector3(0,0,0);
+            BackMC.transform.localScale = new Vector3(1,1,1);
             DustEmit();
             DustLayerSort(1);
+
             //CharacterSc.CharacterAnimator = BackMC.GetComponent<Animator>();
         }
         if (transform.position.x > oldPositionX) //Rotate the anim object instead of main
