@@ -19,7 +19,8 @@ public class FoodCartUI : MonoBehaviour
     
     void Update()
     {
-        foodCountText.text = "Food Count : " + FoodCart.Foods.Count;
+        if (foodCart != null)
+            foodCountText.text = "Food Count : " + FoodCart.Foods.Count;
     }
 
     public void MoveToBackpack() {
