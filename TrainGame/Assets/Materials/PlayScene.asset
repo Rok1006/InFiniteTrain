@@ -139,6 +139,36 @@ MonoBehaviour:
     m_Value: -2
     min: -100
     max: 100
+--- !u!114 &-4255415841989629311
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fa0085f50d5e54f8144f766051a691, type: 3}
+  m_Name: FilmGrain
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  type:
+    m_OverrideState: 1
+    m_Value: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.567
+    min: 0
+    max: 1
+  response:
+    m_OverrideState: 0
+    m_Value: 0.8
+    min: 0
+    max: 1
+  texture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
 --- !u!114 &-3218335133298831892
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -155,13 +185,108 @@ MonoBehaviour:
   m_AdvancedMode: 0
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.8891707, y: 0.99359345, z: 1, w: 0}
+    m_Value: {x: 0.95754033, y: 1, z: 0.9637523, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.8479951, z: 0.97105896, w: 0}
+    m_Value: {x: 1, y: 0.91805345, z: 0.89145255, w: 0}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.8510946, z: 0.92848814, w: 0}
+    m_Value: {x: 0.9827942, y: 1, z: 0.8632955, w: 0}
+--- !u!114 &-2867113735718832424
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfbdbb87d3286943a057f7791b43141, type: 3}
+  m_Name: ChannelMixer
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  redOutRedIn:
+    m_OverrideState: 1
+    m_Value: 83
+    min: -200
+    max: 200
+  redOutGreenIn:
+    m_OverrideState: 1
+    m_Value: 11
+    min: -200
+    max: 200
+  redOutBlueIn:
+    m_OverrideState: 1
+    m_Value: -140
+    min: -200
+    max: 200
+  greenOutRedIn:
+    m_OverrideState: 0
+    m_Value: 0
+    min: -200
+    max: 200
+  greenOutGreenIn:
+    m_OverrideState: 0
+    m_Value: 100
+    min: -200
+    max: 200
+  greenOutBlueIn:
+    m_OverrideState: 0
+    m_Value: 0
+    min: -200
+    max: 200
+  blueOutRedIn:
+    m_OverrideState: 0
+    m_Value: 0
+    min: -200
+    max: 200
+  blueOutGreenIn:
+    m_OverrideState: 0
+    m_Value: 0
+    min: -200
+    max: 200
+  blueOutBlueIn:
+    m_OverrideState: 0
+    m_Value: 100
+    min: -200
+    max: 200
+--- !u!114 &-1191204411798958226
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  color:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    hdr: 0
+    showAlpha: 0
+    showEyeDropper: 1
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.782
+    min: 0
+    max: 1
+  smoothness:
+    m_OverrideState: 0
+    m_Value: 0.2
+    min: 0.01
+    max: 1
+  rounded:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +307,9 @@ MonoBehaviour:
   - {fileID: 8000788691324273480}
   - {fileID: -3218335133298831892}
   - {fileID: 3564967153432962685}
+  - {fileID: -2867113735718832424}
+  - {fileID: -4255415841989629311}
+  - {fileID: -1191204411798958226}
 --- !u!114 &3564967153432962685
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -194,14 +322,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 2
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 8.01
+    m_Value: 16.8
     min: 0
   gaussianEnd:
     m_OverrideState: 1
@@ -217,21 +345,21 @@ MonoBehaviour:
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 16.7
+    m_Value: 16.32
     min: 0.1
   aperture:
-    m_OverrideState: 0
-    m_Value: 5.6
+    m_OverrideState: 1
+    m_Value: 5.9
     min: 1
     max: 32
   focalLength:
     m_OverrideState: 1
-    m_Value: 146
+    m_Value: 154
     min: 1
     max: 300
   bladeCount:
     m_OverrideState: 0
-    m_Value: 5
+    m_Value: 3
     min: 3
     max: 9
   bladeCurvature:
@@ -241,7 +369,7 @@ MonoBehaviour:
     max: 1
   bladeRotation:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: -133
     min: -180
     max: 180
 --- !u!114 &8000788691324273480
@@ -260,7 +388,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.53
   contrast:
     m_OverrideState: 1
     m_Value: 2
