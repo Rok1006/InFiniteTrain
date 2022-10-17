@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 //This script handle wtever related to Player that is not related to topdown engine
 public class PlayerManager : MonoBehaviour
@@ -10,9 +11,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject BackMC;
     [SerializeField] private GameObject dustPrefab; //the particle system: prefab
     [SerializeField] private GameObject emitPt; //the particle system: prefab
+    [SerializeField] private  GameObject playerCam;
+    public bool facingFront = true;   //or side
     public List<GameObject> dust = new List<GameObject>();
-
-    //public Character CharacterSc;
 
     float x;
     float y;
@@ -21,38 +22,43 @@ public class PlayerManager : MonoBehaviour
     private float oldPositionZ = 0.0f;
     void Start()
     {
-        //CharacterSc = this.GameObject.GetComponent<Character>();
         if(FrontMC!=null){
             FrontMC.transform.localScale = new Vector3(1,1,1);
             BackMC.transform.localScale = new Vector3(0,0,0);
+        }
+        facingFront = true;
+        playerCam = GameObject.FindGameObjectWithTag("PlayerCam");
+        if(playerCam!=null){
+            var sc = SceneManage.Instance;
+            var confiner = playerCam.GetComponent<CinemachineConfiner>();
+            confiner.InvalidatePathCache();
+            confiner.m_BoundingVolume = sc.MCTrainConfiner[0].GetComponent<Collider>();
         }
     }
     void Update()
     {
         if (transform.position.z < oldPositionZ && FrontMC!=null) //Change player gameObject
         {
+            facingFront = true;
             FrontMC.transform.localScale = new Vector3(1,1,1);
             BackMC.transform.localScale = new Vector3(0,0,0);
             DustEmit();
             DustLayerSort(-1);
-
-            //this.GetComponent<Character>().CharacterAnimator = FrontMC.GetComponent<Animator>();
         }else if (transform.position.z > oldPositionZ && FrontMC!=null)
         {
+            facingFront = false;
             FrontMC.transform.localScale = new Vector3(0,0,0);
             BackMC.transform.localScale = new Vector3(1,1,1);
             DustEmit();
             DustLayerSort(1);
-
-            //CharacterSc.CharacterAnimator = BackMC.GetComponent<Animator>();
         }
         if (transform.position.x > oldPositionX) //Rotate the anim object instead of main
         {
-            DustLayerSort(-1);
+            if(facingFront){DustLayerSort(-1);}else{DustLayerSort(1);};
             DustEmit();
         }else if (transform.position.x < oldPositionX)
         {
-            DustLayerSort(-1);
+            if(facingFront){DustLayerSort(-1);}else{DustLayerSort(1);};
             DustEmit();
         }
         oldPositionX = transform.position.x;
@@ -72,6 +78,23 @@ public class PlayerManager : MonoBehaviour
     private void DustLayerSort(int order){
         for(int i = 0; i < dust.Count; i++){
                 dust[i].GetComponent<ParticleSystemRenderer>().sortingOrder = order;
+        }
+    }
+
+    IEnumerator TraverseBetweenTrain(){
+        yield return new WaitForSeconds(0);
+
+
+    }
+
+    void OnTriggerEnter(Collider col) {
+        var sc = SceneManage.Instance;
+        for(int i = 0; i<sc.MCTrainConfiner.Count;i++){
+           if(col.gameObject.name == "TrainCar"+i && playerCam!=null){ 
+            var confiner = playerCam.GetComponent<CinemachineConfiner>();
+            confiner.InvalidatePathCache();
+            confiner.m_BoundingVolume = sc.MCTrainConfiner[i].GetComponent<Collider>();
+           }
         }
     }
 
