@@ -157,8 +157,8 @@ MonoBehaviour:
   translator:
     autoReset: 1
     useCustomMixMode: 1
-    layerMixModes: 01000000
-    layerBlendModes: 01000000
+    layerMixModes: 0100000001000000
+    layerBlendModes: 0100000002000000
 --- !u!114 &5532440362036005148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8827246564645167332}
   - component: {fileID: 4876651205989252440}
+  - component: {fileID: 3828768669280532560}
   - component: {fileID: 9103019682771447263}
   - component: {fileID: 1255284449977796871}
   - component: {fileID: 2997011991923901375}
@@ -324,7 +325,6 @@ GameObject:
   - component: {fileID: 6685295338685079691}
   - component: {fileID: 3274716646378375429}
   - component: {fileID: 7230858142235667795}
-  - component: {fileID: 4423049666913357662}
   m_Layer: 10
   m_Name: PlayerMC
   m_TagString: Player
@@ -365,8 +365,23 @@ MonoBehaviour:
   dustPrefab: {fileID: 5685760529391821944, guid: b12e481aa2f93446eb0354b953cd57c1,
     type: 3}
   emitPt: {fileID: 6723869825704681724}
+  playerCam: {fileID: 0}
   facingFront: 1
   dust: []
+--- !u!114 &3828768669280532560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894699376349878751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9fb90ecbed54f9e9ba315496dcde0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FrontPlayer: {fileID: 7607012245217199172}
+  BackPlayer: {fileID: 927299115}
 --- !u!114 &9103019682771447263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,24 +849,6 @@ MonoBehaviour:
   AbsoluteThresholdWeapon: 0.5
   CurrentFacingDirection: 1
   IsFacingRight: 1
---- !u!114 &4423049666913357662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6894699376349878751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac6aec45c08344618a6de08ed64a70d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FrontMC: {fileID: 0}
-  BackMC: {fileID: 0}
-  dustPrefab: {fileID: 0}
-  emitPt: {fileID: 0}
-  facingFront: 1
-  dust: []
 --- !u!1 &7607012245217199172
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,7 +981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 047988506ea5d4ad3864f6e4908c2535, type: 2}
-  initialSkinName: 
+  initialSkinName: Weapons/Template
   initialFlipX: 0
   initialFlipY: 0
   updateWhenInvisible: 3
@@ -1008,5 +1005,5 @@ MonoBehaviour:
   translator:
     autoReset: 1
     useCustomMixMode: 1
-    layerMixModes: 01000000
-    layerBlendModes: 01000000
+    layerMixModes: 01000000010000000100000001000000
+    layerBlendModes: 01000000020000000200000002000000
