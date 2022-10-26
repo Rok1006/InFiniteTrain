@@ -37,6 +37,12 @@ public class MC_CombatRelated : MonoBehaviour
             MCFrontAnim.SetBool("Switch_bigSword", true);
             MCBackAnim.SetBool("Switch_bigSword", true);
         }
+
+        // if(Input.GetKeyDown(KeyCode.M)){ //
+        //     DisableAllAnimation();
+        //     MCFrontAnim.SetTrigger("Reload_bigGun");
+        // }
+
     }
     public void DisableAllAnimation(){
         MCFrontAnim.SetBool("Switch_smallGun", false);
