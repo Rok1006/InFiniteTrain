@@ -12,6 +12,7 @@ public class SpawnNodes : MonoBehaviour
     public GameObject[] spawnPoints;
     public GameObject player;
     public List<GameObject> shortestNodes = new List<GameObject>();
+    public float timer = 3f;
 
 
     // Start is called before the first frame update
@@ -65,6 +66,12 @@ public class SpawnNodes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer -= Time.deltaTime;
+        if(timer < 0)
+        {
+            NextTurn();
+            timer = 10;
+        }
 
     }
     public void CalculateDistance(List<GameObject> nodes, GameObject player)
@@ -119,6 +126,14 @@ public class SpawnNodes : MonoBehaviour
         shortestNodes.Add(nodes[index]);
         index = 0;
 
+    }
+
+    public void NextTurn()
+    {
+        for(int i = 0; i < nodes.Count; i++)
+        {
+            nodes[i].GetComponent<NodeManager>().node.UpdateNode(nodes[i].GetComponent<NodeManager>().nearbyNodesList[0].GetComponent<NodeManager>().node);
+        }
     }
 
 

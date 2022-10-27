@@ -35,9 +35,21 @@ public class Node
 
     }
 
-    public void UpdateNode()
+    public void UpdateNode(Node node)
     {
-
+        this.sprite = node.sprite;
+        this.isUsed = node.isUsed;
+        this.isEnemy = node.isEnemy;
+        this.isEvent = node.isEvent;
     }
+
+    public void RefreshNode()
+    {
+        this.sprite = null;
+        this.isUsed = false;
+        this.isEnemy = false;
+        this.isEvent = false;
+    }
+
 
 }

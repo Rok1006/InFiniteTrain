@@ -38,7 +38,9 @@ public class NodeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        sprite = node.sprite;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+
     }
 
     public void ConnectNodes()
