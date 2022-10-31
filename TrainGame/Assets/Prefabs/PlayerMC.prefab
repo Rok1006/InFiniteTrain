@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 6685295338685079691}
   - component: {fileID: 3274716646378375429}
   - component: {fileID: 7230858142235667795}
+  - component: {fileID: 5788186036348056180}
   m_Layer: 10
   m_Name: PlayerMC
   m_TagString: Player
@@ -849,6 +850,43 @@ MonoBehaviour:
   AbsoluteThresholdWeapon: 0.5
   CurrentFacingDirection: 1
   IsFacingRight: 1
+--- !u!114 &5788186036348056180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894699376349878751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a07c6668aa55403790d27b575279549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityStartSfx: {fileID: 0}
+  AbilityInProgressSfx: {fileID: 0}
+  AbilityStopSfx: {fileID: 0}
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
+  AbilityPermitted: 1
+  BlockingMovementStates: 
+  BlockingConditionStates: 
+  InitialWeapon: {fileID: 8456352021317322882, guid: 73cea887eff36f2448a702fa1b486d44,
+    type: 3}
+  CanPickupWeapons: 1
+  WeaponUseFeedback: {fileID: 0}
+  WeaponAttachment: {fileID: 0}
+  ProjectileSpawn: {fileID: 0}
+  AutomaticallyBindAnimator: 1
+  AmmoDisplayID: 0
+  AutoIK: 1
+  ContinuousPress: 0
+  GettingHitInterruptsAttack: 0
+  UseSecondaryAxisThresholdToShoot: 0
+  BufferInput: 0
+  NewInputExtendsBuffer: 0
+  MaximumBufferDuration: 0.25
+  RequiresPerfectTile: 0
+  CurrentWeapon: {fileID: 0}
 --- !u!1 &7607012245217199172
 GameObject:
   m_ObjectHideFlags: 0
