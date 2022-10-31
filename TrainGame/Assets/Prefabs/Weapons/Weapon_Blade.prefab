@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8456352021317322883}
+  - component: {fileID: -7032947390295864032}
   - component: {fileID: 8456352021317322882}
+  - component: {fileID: -4767319798688770991}
   m_Layer: 0
   m_Name: Weapon_Blade
   m_TagString: Untagged
@@ -31,7 +33,110 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7032947390295864032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456352021317322892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72343fc0e13ec114196ab09ea808900e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DroppableCombo: 1
+  DropComboDelay: 0.5
+  ComboInProgressAnimationParameter: ComboInProgress
+  Weapons: []
+  OwnerCharacterHandleWeapon: {fileID: 0}
+  TimeSinceLastWeaponStopped: 0
 --- !u!114 &8456352021317322882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456352021317322892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a557e2b93323f4831a62221b200348c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponName: Blade
+  WeaponCurrentlyActive: 1
+  TriggerMode: 0
+  DelayBeforeUse: 0
+  DelayBeforeUseReleaseInterruption: 0
+  TimeBetweenUses: 0.5
+  TimeBetweenUsesReleaseInterruption: 0
+  UseBurstMode: 0
+  BurstLength: 3
+  BurstTimeBetweenShots: 0.1
+  MagazineBased: 0
+  MagazineSize: 30
+  AutoReload: 0
+  NoInputReload: 0
+  ReloadTime: 2
+  AmmoConsumedPerShot: 1
+  AutoDestroyWhenEmpty: 0
+  AutoDestroyWhenEmptyDelay: 1
+  CurrentAmmoLoaded: 0
+  WeaponAttachmentOffset: {x: 0, y: 0, z: 0}
+  FlipWeaponOnCharacterFlip: 1
+  RightFacingFlipValue: {x: 1, y: 1, z: 1}
+  LeftFacingFlipValue: {x: -1, y: 1, z: 1}
+  WeaponUseTransform: {fileID: 0}
+  LeftHandHandle: {fileID: 0}
+  RightHandHandle: {fileID: 0}
+  ModifyMovementWhileAttacking: 0
+  MovementMultiplier: 0
+  PreventAllMovementWhileInUse: 1
+  PreventAllAimWhileInUse: 0
+  RecoilForce: 0
+  Animators: []
+  PerformAnimatorSanityChecks: 0
+  WeaponAnimationID: 1
+  IdleAnimationParameter: 
+  StartAnimationParameter: MeleeAttackStart
+  DelayBeforeUseAnimationParameter: 
+  SingleUseAnimationParameter: 
+  UseAnimationParameter: 
+  DelayBetweenUsesAnimationParameter: 
+  StopAnimationParameter: 
+  ReloadStartAnimationParameter: 
+  ReloadAnimationParameter: 
+  ReloadStopAnimationParameter: 
+  WeaponAngleAnimationParameter: 
+  WeaponAngleRelativeAnimationParameter: 
+  WeaponStartMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedbackAlt: {fileID: 0}
+  WeaponStopMMFeedback: {fileID: 0}
+  WeaponReloadMMFeedback: {fileID: 0}
+  WeaponReloadNeededMMFeedback: {fileID: 0}
+  InitializeOnStart: 0
+  Interruptable: 0
+  Flipped: 0
+  MeleeDamageAreaMode: 0
+  DamageAreaShape: 0
+  AreaSize: {x: 1, y: 1, z: 0}
+  AreaOffset: {x: 2, y: 0, z: 0}
+  HitDamageableFeedback: {fileID: 0}
+  HitNonDamageableFeedback: {fileID: 0}
+  ExistingDamageArea: {fileID: 0}
+  InitialDelay: 0
+  ActiveDuration: 0.2
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8192
+  MinDamageCaused: 10
+  MaxDamageCaused: 10
+  Knockback: 0
+  KnockbackForce: {x: 10, y: 2, z: 0}
+  InvincibilityDuration: 0.5
+  CanDamageOwner: 0
+--- !u!114 &-4767319798688770991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,7 +183,7 @@ MonoBehaviour:
   PerformAnimatorSanityChecks: 0
   WeaponAnimationID: 0
   IdleAnimationParameter: 
-  StartAnimationParameter: MeleeAttackStart
+  StartAnimationParameter: MeleeAttackV2
   DelayBeforeUseAnimationParameter: 
   SingleUseAnimationParameter: 
   UseAnimationParameter: 
@@ -101,15 +206,15 @@ MonoBehaviour:
   MeleeDamageAreaMode: 0
   DamageAreaShape: 0
   AreaSize: {x: 1, y: 1, z: 0}
-  AreaOffset: {x: 2, y: 0, z: 0}
+  AreaOffset: {x: 1, y: 0, z: 0}
   HitDamageableFeedback: {fileID: 0}
   HitNonDamageableFeedback: {fileID: 0}
   ExistingDamageArea: {fileID: 0}
   InitialDelay: 0
-  ActiveDuration: 0.2
+  ActiveDuration: 1
   TargetLayerMask:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 0
   MinDamageCaused: 10
   MaxDamageCaused: 10
   Knockback: 0
