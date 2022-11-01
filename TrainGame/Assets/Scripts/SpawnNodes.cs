@@ -132,7 +132,12 @@ public class SpawnNodes : MonoBehaviour
     {
         for(int i = 0; i < nodes.Count; i++)
         {
-            nodes[i].GetComponent<NodeManager>().node.UpdateNode(nodes[i].GetComponent<NodeManager>().nearbyNodesList[0].GetComponent<NodeManager>().node);
+            if (nodes[i].GetComponent<NodeManager>().node.isEnemy == true)
+            {
+                nodes[i].GetComponent<NodeManager>().connectedNodeList[0].GetComponent<NodeManager>().node.UpdateNode(nodes[i].GetComponent<NodeManager>().node);
+                nodes[i].GetComponent<NodeManager>().node.RefreshNode();
+            }
+            
         }
     }
 
