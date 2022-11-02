@@ -18,6 +18,14 @@ public class Cart : MonoBehaviour
     public List<Teleporter> Doors {get=>doors; set=>doors = value;}
     public Vector2Int[,] Grid {get=>grid; set=>grid = value;}
 
+    /*search for reference that every train cart need*/
+    public virtual void Start() {
+        CartRoom = GetComponent<Room>();
+        Doors.AddRange(CartRoom.GetComponentsInChildren<Teleporter>());
+        foreach (Teleporter teleporter in Doors)
+            ConnectedRooms.Add(teleporter.TargetRoom);
+    }
+
     /*triggers when player enter the room*/
     public virtual void EnterRoom() {
         Debug.Log("entered " + name);
@@ -29,6 +37,6 @@ public class Cart : MonoBehaviour
     }
 
     public void SplitIntoGrid() {
-        
+
     }
 }

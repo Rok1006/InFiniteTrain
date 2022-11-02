@@ -53,7 +53,7 @@ public class NodeManager : MonoBehaviour
         foreach (RaycastHit hit in nearbyNodes)
         {
             Debug.Log(hit.collider.gameObject.name);
-            if ( hit.collider.gameObject.name != this.gameObject.name)
+            if (hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.name != this.gameObject.name)
             {
                 Debug.Log(hit.collider.gameObject.name);
                 nearbyNodesList.Add(hit.collider.gameObject);

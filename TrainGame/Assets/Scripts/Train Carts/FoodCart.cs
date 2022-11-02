@@ -12,14 +12,13 @@ public class FoodCart : Cart
     //getters & setters
     public List<FoodItem> Foods {get=>foods; set=>foods = value;}
 
-    void Start()
+    public override void Start()
     {
-        CartRoom = GetComponent<Room>();
-        Doors.AddRange(CartRoom.GetComponentsInChildren<Teleporter>());
-        foreach (Teleporter teleporter in Doors)
-            ConnectedRooms.Add(teleporter.TargetRoom);
-
-        
+        base.Start();
+        // CartRoom = GetComponent<Room>();
+        // Doors.AddRange(CartRoom.GetComponentsInChildren<Teleporter>());
+        // foreach (Teleporter teleporter in Doors)
+        //     ConnectedRooms.Add(teleporter.TargetRoom);
     }
 
     
