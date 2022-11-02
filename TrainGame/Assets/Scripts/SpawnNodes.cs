@@ -14,10 +14,13 @@ public class SpawnNodes : MonoBehaviour
     public List<GameObject> shortestNodes = new List<GameObject>();
     public float timer = 3f;
 
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
+        
         var playerNode = Instantiate(player, transform.position, transform.rotation);
         playerNode.tag = "Player";
 
@@ -128,16 +131,27 @@ public class SpawnNodes : MonoBehaviour
 
     }
 
-    public void NextTurn()
+    public async void NextTurn()
     {
         for(int i = 0; i < nodes.Count; i++)
         {
-            if (nodes[i].GetComponent<NodeManager>().node.isEnemy == true)
+            var nodeManager = nodes[i].GetComponent<NodeManager>();
+            var randomNeighbor = Random.Range(0 , nodeManager.connectedNodeList.Count);
+            if (nodes[i].GetComponent<NodeManager>().node.isEnemy == true && nodes[i].GetComponent<NodeManager>().isMoved == false &&  nodeManager.connectedNodeList[randomNeighbor].GetComponent<NodeManager>().isMoved == false )
             {
-                nodes[i].GetComponent<NodeManager>().connectedNodeList[0].GetComponent<NodeManager>().node.UpdateNode(nodes[i].GetComponent<NodeManager>().node);
+                
+                
+                nodeManager.connectedNodeList[randomNeighbor].GetComponent<NodeManager>().node.UpdateNode(nodes[i].GetComponent<NodeManager>().node);
+                nodeManager.connectedNodeList[randomNeighbor].GetComponent<NodeManager>().isMoved = true;
                 nodes[i].GetComponent<NodeManager>().node.RefreshNode();
+                nodes[i].GetComponent<NodeManager>().node.UpdateNode(nodes[i].GetComponent<NodeManager>().nullNode);
+                
             }
             
+        }
+
+        for(int i = 0; i < nodes.Count; i++){
+            nodes[i].GetComponent<NodeManager>().isMoved = false;
         }
     }
 

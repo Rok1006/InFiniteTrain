@@ -11,6 +11,7 @@ public class Node
     public bool isEnemy;
     public bool isEmpty;
     public Sprite sprite;
+    
 
     public Node(NodeTypes nodeType)
     {

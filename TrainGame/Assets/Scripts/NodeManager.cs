@@ -15,10 +15,14 @@ public class NodeManager : MonoBehaviour
     public Material material;
     public bool isPlayer;
     public NodeTypes player;
-    public 
+    public NodeTypes nullNodeType;
+    public Node nullNode;
+
+    public bool isMoved;
     // Start is called before the first frame update
     void Start()
     {
+        nullNode = new Node(nullNodeType);
         if (isPlayer == false)
         {
 
@@ -49,7 +53,7 @@ public class NodeManager : MonoBehaviour
         foreach (RaycastHit hit in nearbyNodes)
         {
             Debug.Log(hit.collider.gameObject.name);
-            if (hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.name != this.gameObject.name)
+            if ( hit.collider.gameObject.name != this.gameObject.name)
             {
                 Debug.Log(hit.collider.gameObject.name);
                 nearbyNodesList.Add(hit.collider.gameObject);
