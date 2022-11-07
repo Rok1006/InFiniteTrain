@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 21734914}
   - component: {fileID: 21734913}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: HeartHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &56684525
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1621,7 +1621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1663800712547734, guid: 9edcf7e494cf3e640b18cb7495fb179a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1737468962540040, guid: 9edcf7e494cf3e640b18cb7495fb179a, type: 3}
       propertyPath: m_IsActive
@@ -2536,7 +2536,7 @@ GameObject:
   - component: {fileID: 187030251}
   - component: {fileID: 187030250}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: FrontHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3614,7 +3614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &308471641
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4511,6 +4511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 432352027}
+  - component: {fileID: 432352028}
   m_Layer: 5
   m_Name: Wheels
   m_TagString: Untagged
@@ -4554,6 +4555,25 @@ RectTransform:
   m_AnchoredPosition: {x: -8.4, y: 1.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &432352028
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432352026}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 890131327463b44b3ba0dde55c0f19f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &433228764
 GameObject:
   m_ObjectHideFlags: 0
@@ -4659,7 +4679,7 @@ GameObject:
   - component: {fileID: 448270333}
   - component: {fileID: 448270332}
   m_Layer: 5
-  m_Name: Image (12)
+  m_Name: Decor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5327,7 +5347,7 @@ GameObject:
   - component: {fileID: 518298167}
   - component: {fileID: 518298166}
   m_Layer: 5
-  m_Name: Image (7)
+  m_Name: HHHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5943,7 +5963,7 @@ GameObject:
   - component: {fileID: 569035708}
   - component: {fileID: 569035707}
   m_Layer: 5
-  m_Name: Image (9)
+  m_Name: GoldHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7883,7 +7903,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7754011, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7983,7 +8003,7 @@ GameObject:
   - component: {fileID: 709546153}
   - component: {fileID: 709546152}
   m_Layer: 5
-  m_Name: Image
+  m_Name: OuterWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9298,7 +9318,7 @@ GameObject:
   - component: {fileID: 778724727}
   - component: {fileID: 778724726}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: BackMoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10406,7 +10426,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7754011, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10864,7 +10884,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7754011, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12494,7 +12514,7 @@ GameObject:
   - component: {fileID: 1116236476}
   - component: {fileID: 1116236475}
   m_Layer: 5
-  m_Name: Image (11)
+  m_Name: Decor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13719,7 +13739,7 @@ GameObject:
   - component: {fileID: 1274001980}
   - component: {fileID: 1274001979}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: InnerWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14246,7 +14266,7 @@ GameObject:
   - component: {fileID: 1333132054}
   - component: {fileID: 1333132053}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: FrontMoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15139,7 +15159,7 @@ GameObject:
   - component: {fileID: 1427869396}
   - component: {fileID: 1427869395}
   m_Layer: 5
-  m_Name: Wheel
+  m_Name: GoodWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15215,7 +15235,7 @@ GameObject:
   - component: {fileID: 1435110042}
   - component: {fileID: 1435110041}
   m_Layer: 5
-  m_Name: Image (10)
+  m_Name: GoldCurve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16004,7 +16024,7 @@ GameObject:
   - component: {fileID: 1533096946}
   - component: {fileID: 1533096945}
   m_Layer: 5
-  m_Name: Wheel (1)
+  m_Name: BadWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18083,7 +18103,7 @@ GameObject:
   - component: {fileID: 1782697516}
   - component: {fileID: 1782697515}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: Thing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19252,7 +19272,7 @@ GameObject:
   - component: {fileID: 1947120389}
   - component: {fileID: 1947120388}
   m_Layer: 5
-  m_Name: Image (13)
+  m_Name: Icon#
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19440,7 +19460,7 @@ GameObject:
   - component: {fileID: 1967596949}
   - component: {fileID: 1967596948}
   m_Layer: 5
-  m_Name: Image (8)
+  m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20426,6 +20446,11 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8554023297173526471, guid: 304ce7f6da8a6884bad8b40d0f41a6b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 304ce7f6da8a6884bad8b40d0f41a6b5, type: 3}
 --- !u!1 &2049428899
@@ -20634,7 +20659,7 @@ GameObject:
   - component: {fileID: 2066613125}
   - component: {fileID: 2066613124}
   m_Layer: 5
-  m_Name: Image (14)
+  m_Name: Icon#
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

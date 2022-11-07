@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Not using this script
 public class PlayerMC : MonoBehaviour
 {
     public enum PlayerState{NORMAL, USINGGUN, USINGSWORD};

@@ -15,6 +15,8 @@ public class PlayerManager : MonoBehaviour
     public bool facingFront = true;   //or side
     public List<GameObject> dust = new List<GameObject>();
 
+    Animator MCFrontAnim;
+    Animator MCBackAnim;
     float x;
     float y;
     float z;
@@ -22,6 +24,8 @@ public class PlayerManager : MonoBehaviour
     private float oldPositionZ = 0.0f;
     void Start()
     {
+        MCFrontAnim = FrontMC.GetComponent<Animator>();
+        MCBackAnim = BackMC.GetComponent<Animator>();
         if(FrontMC!=null){
             FrontMC.transform.localScale = new Vector3(1,1,1);
             BackMC.transform.localScale = new Vector3(0,0,0);
@@ -63,6 +67,23 @@ public class PlayerManager : MonoBehaviour
         }
         oldPositionX = transform.position.x;
         oldPositionZ = transform.position.z;
+//Combat Related
+        if(Input.GetKeyDown(KeyCode.J)){ //
+            DisableAllWeaponAnimation();
+            MCFrontAnim.SetBool("Switch_smallGun", true);
+            MCBackAnim.SetBool("Switch_smallGun", true);
+        }
+        if(Input.GetKeyDown(KeyCode.K)){ //
+            DisableAllWeaponAnimation();
+            MCFrontAnim.SetBool("Switch_bigGun", true);
+            MCBackAnim.SetBool("Switch_bigGun", true);
+        }
+        if(Input.GetKeyDown(KeyCode.L)){ //
+            DisableAllWeaponAnimation();
+            MCFrontAnim.SetBool("Switch_bigSword", true);
+            MCBackAnim.SetBool("Switch_bigSword", true);
+        }
+
     }
     public void DustEmit(){
         if(Time.frameCount%10 == 0 && emitPt!=null){
@@ -86,7 +107,6 @@ public class PlayerManager : MonoBehaviour
 
 
     }
-
     void OnTriggerEnter(Collider col) {
         var sc = SceneManage.Instance;
         for(int i = 0; i<sc.MCTrainConfiner.Count;i++){
@@ -96,6 +116,15 @@ public class PlayerManager : MonoBehaviour
             confiner.m_BoundingVolume = sc.MCTrainConfiner[i].GetComponent<Collider>();
            }
         }
+    }
+
+    public void DisableAllWeaponAnimation(){
+        MCFrontAnim.SetBool("Switch_smallGun", false);
+        MCFrontAnim.SetBool("Switch_bigGun", false);
+        MCFrontAnim.SetBool("Switch_bigSword", false);
+        MCBackAnim.SetBool("Switch_smallGun", false);
+        MCBackAnim.SetBool("Switch_bigGun", false);
+        MCBackAnim.SetBool("Switch_bigSword", false);
     }
 
 }
