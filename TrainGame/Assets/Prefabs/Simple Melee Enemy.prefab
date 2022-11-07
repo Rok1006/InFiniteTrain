@@ -50,10 +50,14 @@ GameObject:
   - component: {fileID: 4281818918424238801}
   - component: {fileID: 4281818918424238800}
   - component: {fileID: 4281818918424238807}
+  - component: {fileID: 6692589500742780631}
   - component: {fileID: 4281818918424238634}
   - component: {fileID: 4281818918424238805}
   - component: {fileID: 4281818918424238635}
   - component: {fileID: 4281818918424238637}
+  - component: {fileID: 8760424105965163262}
+  - component: {fileID: 5383551581881435166}
+  - component: {fileID: 4076036824828219330}
   m_Layer: 13
   m_Name: Simple Melee Enemy
   m_TagString: Untagged
@@ -370,6 +374,18 @@ MonoBehaviour:
       - Decision: {fileID: 4281818918424238807}
         TrueState: 
         FalseState: Detecting
+      - Decision: {fileID: 6692589500742780631}
+        TrueState: Attack
+        FalseState: 
+  - StateName: Attack
+    Actions:
+      array:
+      - {fileID: 5383551581881435166}
+    Transitions:
+      array:
+      - Decision: {fileID: 6692589500742780631}
+        TrueState: 
+        FalseState: Moving
   TimeInThisState: 0
   Target: {fileID: 0}
   _lastKnownTargetPosition: {x: 0, y: 0, z: 0}
@@ -395,6 +411,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Label: 
   Radius: 13.92
+  DetectionOriginOffset: {x: 0, y: 0, z: 0}
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  ObstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  TargetCheckFrequency: 1
+  CanTargetSelf: 0
+  OverlapMaximum: 10
+--- !u!114 &6692589500742780631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918424238803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210ecb3d02181d244935dc0092d62a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: lkl
+  Radius: 5
   DetectionOriginOffset: {x: 0, y: 0, z: 0}
   TargetLayerMask:
     serializedVersion: 2
@@ -454,7 +494,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4281818918424238803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76891b3b532f84acaaeed44c357bd00c, type: 3}
   m_Name: 
@@ -494,6 +534,77 @@ MonoBehaviour:
   HitAnythingEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8760424105965163262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918424238803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a07c6668aa55403790d27b575279549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityStartSfx: {fileID: 0}
+  AbilityInProgressSfx: {fileID: 0}
+  AbilityStopSfx: {fileID: 0}
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
+  AbilityPermitted: 1
+  BlockingMovementStates: 
+  BlockingConditionStates: 
+  InitialWeapon: {fileID: 8456352021317322882, guid: 26f648cfdd5386d42ad2e2fc300bfebe,
+    type: 3}
+  CanPickupWeapons: 1
+  WeaponUseFeedback: {fileID: 0}
+  WeaponAttachment: {fileID: 0}
+  ProjectileSpawn: {fileID: 0}
+  AutomaticallyBindAnimator: 1
+  AmmoDisplayID: 0
+  AutoIK: 1
+  ContinuousPress: 0
+  GettingHitInterruptsAttack: 0
+  UseSecondaryAxisThresholdToShoot: 0
+  BufferInput: 0
+  NewInputExtendsBuffer: 0
+  MaximumBufferDuration: 0.25
+  RequiresPerfectTile: 0
+  CurrentWeapon: {fileID: 0}
+--- !u!114 &5383551581881435166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918424238803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fec8eb194a523854fa2120af773404e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: 
+  TargetHandleWeaponAbility: {fileID: 0}
+  AimAtTarget: 1
+  AimOrigin: 0
+  ShootOffset: {x: 0, y: 0, z: 0}
+  LockVerticalAim: 0
+--- !u!114 &4076036824828219330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918424238803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21818f4def5bf646bec3d25770336cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: 
+  AfterTimeMin: 1
+  AfterTimeMax: 1.5
 --- !u!1 &5360388444094790623
 GameObject:
   m_ObjectHideFlags: 0

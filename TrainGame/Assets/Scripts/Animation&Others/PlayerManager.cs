@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using MoreMountains.TopDownEngine;
 
 //This script handle wtever related to Player that is not related to topdown engine
 public class PlayerManager : MonoBehaviour
