@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
             confiner.m_BoundingVolume = sc.MCTrainConfiner[0].GetComponent<Collider>();
         }
     }
-    void Update()
+    void FixedUpdate()
     {
         if (transform.position.z < oldPositionZ && FrontMC!=null) //Change player gameObject
         {
@@ -80,6 +80,7 @@ public class PlayerManager : MonoBehaviour
             MCBackAnim.SetBool("Switch_bigGun", true);
         }
         if(Input.GetKeyDown(KeyCode.L)){ //
+            Debug.Log("play"); //for some reason the animation is trigger many time even after just click once
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("Switch_bigSword", true);
             MCBackAnim.SetBool("Switch_bigSword", true);
