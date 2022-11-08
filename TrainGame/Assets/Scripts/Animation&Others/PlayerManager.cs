@@ -82,8 +82,10 @@ public class PlayerManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.L)){ //
             Debug.Log("play"); //for some reason the animation is trigger many time even after just click once
             DisableAllWeaponAnimation();
-            MCFrontAnim.SetBool("Switch_bigSword", true);
-            MCBackAnim.SetBool("Switch_bigSword", true);
+            //MCFrontAnim.SetBool("Switch_bigSword", true);//its always playing this so it wont go out of it
+            MCFrontAnim.SetTrigger("UseBigSword");
+            MCBackAnim.SetTrigger("UseBigSword");
+            //MCBackAnim.SetBool("Switch_bigSword", true);
         }
 
     }
