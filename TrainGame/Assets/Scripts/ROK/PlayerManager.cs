@@ -12,7 +12,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject BackMC;
     [SerializeField] private GameObject dustPrefab; //the particle system: prefab
     [SerializeField] private GameObject emitPt; //the particle system: prefab
-    [SerializeField] private  GameObject playerCam;
+    [SerializeField] private GameObject playerCam;
+    [SerializeField] private GameObject depthDetect;
     public bool facingFront = true;   //or side
     public List<GameObject> dust = new List<GameObject>();
 
@@ -106,20 +107,18 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    IEnumerator TraverseBetweenTrain(){
-        yield return new WaitForSeconds(0);
-
-
-    }
+    // IEnumerator TraverseBetweenTrain(){
+    //     yield return new WaitForSeconds(0);
+    // }
     void OnTriggerEnter(Collider col) {
-        var sc = SceneManage.Instance;
-        for(int i = 0; i<sc.MCTrainConfiner.Count;i++){
-           if(col.gameObject.name == "TrainCar"+i && playerCam!=null){ 
-            var confiner = playerCam.GetComponent<CinemachineConfiner>();
-            confiner.InvalidatePathCache();
-            confiner.m_BoundingVolume = sc.MCTrainConfiner[i].GetComponent<Collider>();
-           }
-        }
+        // var sc = SceneManage.Instance;
+        // for(int i = 0; i<sc.MCTrainConfiner.Count;i++){
+        //    if(col.gameObject.name == "TrainCar"+i && playerCam!=null){ 
+        //     var confiner = playerCam.GetComponent<CinemachineConfiner>();
+        //     confiner.InvalidatePathCache();
+        //     confiner.m_BoundingVolume = sc.MCTrainConfiner[i].GetComponent<Collider>();
+        //    }
+        // }
     }
 
     public void DisableAllWeaponAnimation(){
