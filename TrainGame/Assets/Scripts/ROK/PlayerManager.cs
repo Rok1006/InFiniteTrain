@@ -24,6 +24,10 @@ public class PlayerManager : MonoBehaviour
     float z;
     private float oldPositionX = 0.0f;
     private float oldPositionZ = 0.0f;
+
+    //references
+    private TopDownController3D controller;
+
     void Start()
     {
         MCFrontAnim = FrontMC.GetComponent<Animator>();
@@ -40,17 +44,23 @@ public class PlayerManager : MonoBehaviour
             confiner.InvalidatePathCache();
             confiner.m_BoundingVolume = sc.MCTrainConfiner[0].GetComponent<Collider>();
         }
+
+        //setting references up
+        if (GetComponent<TopDownController3D>() != null)
+            controller = GetComponent<TopDownController3D>();
+        else    
+            Debug.Log("Can't find top down controller 3d in " + name);
     }
     void FixedUpdate()
     {
-        if (transform.position.z < oldPositionZ && FrontMC!=null) //Change player gameObject
+        if (controller.InputMoveDirection.z <= 0 && FrontMC!=null) //Change player gameObject
         {
             facingFront = true;
             FrontMC.transform.localScale = new Vector3(1,1,1);
             BackMC.transform.localScale = new Vector3(0,0,0);
             DustEmit();
             DustLayerSort(-1);
-        }else if (transform.position.z > oldPositionZ && FrontMC!=null)
+        }else if (controller.InputMoveDirection.z > 0 && FrontMC!=null)
         {
             facingFront = false;
             FrontMC.transform.localScale = new Vector3(0,0,0);
