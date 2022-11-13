@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     float z;
     private float oldPositionX = 0.0f;
     private float oldPositionZ = 0.0f;
+    private bool isAttacking = false;
 
     //references
     private TopDownController3D controller;
@@ -138,6 +139,10 @@ public class PlayerManager : MonoBehaviour
         MCBackAnim.SetBool("Switch_smallGun", false);
         MCBackAnim.SetBool("Switch_bigGun", false);
         MCBackAnim.SetBool("Switch_bigSword", false);
+    }
+
+    public void test() {
+        Debug.Log("testing");
     }
 
 }
