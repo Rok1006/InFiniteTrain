@@ -482,7 +482,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7907307933399108362}
-  - component: {fileID: 6801473274973926906}
   - component: {fileID: 2110326097229849378}
   m_Layer: 10
   m_Name: DepthDetect
@@ -505,19 +504,6 @@ Transform:
   m_Father: {fileID: 8827246564645167332}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6801473274973926906
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6849658187175968005}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 5.706153, z: 16.999996}
-  m_Center: {x: 0, y: 2.728866, z: 0.11267662}
 --- !u!114 &2110326097229849378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,6 +519,7 @@ MonoBehaviour:
   Main: {fileID: 6894699376349878751}
   FrontMC: {fileID: 7607012245217199172}
   BackMC: {fileID: 927299115}
+  rayLength: 15
 --- !u!1 &6894699376349878751
 GameObject:
   m_ObjectHideFlags: 0

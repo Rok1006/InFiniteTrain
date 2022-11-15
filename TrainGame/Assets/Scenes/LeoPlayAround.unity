@@ -5852,6 +5852,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doors: []
+  leftDoors: []
+  rightDoors: []
+  leftDoorName: Teleporter Left
+  rightDoorName: Teleporter Right
   ground: {fileID: 0}
   foodUI: {fileID: 589767389}
 --- !u!1 &518298164
@@ -8641,7 +8645,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7779098, y: 1}
+    m_SensorSize: {x: 1.7790263, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11166,7 +11170,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7779098, y: 1}
+    m_SensorSize: {x: 1.7790263, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11624,7 +11628,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7779098, y: 1}
+    m_SensorSize: {x: 1.7790263, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -18113,8 +18117,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662438716}
-  m_LocalRotation: {x: 0.19120301, y: 0, z: 0, w: 0.9815506}
-  m_LocalPosition: {x: 63.855003, y: 26.45, z: -33.8}
+  m_LocalRotation: {x: 0.19120668, y: 0, z: 0, w: 0.98154986}
+  m_LocalPosition: {x: -95.6, y: 26.45, z: -33.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20151,6 +20155,11 @@ PrefabInstance:
     - target: {fileID: 927299119, guid: 22a35bf57902eff4db7304f66222a5f6, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344269135325281431, guid: 22a35bf57902eff4db7304f66222a5f6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5522988942919552690, guid: 22a35bf57902eff4db7304f66222a5f6,
         type: 3}
@@ -23534,22 +23543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac6aec45c08344618a6de08ed64a70d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FrontMC: {fileID: 7356050573352885351}
-  BackMC: {fileID: 1118150896244715016}
-  dustPrefab: {fileID: 5685760529391821944, guid: b12e481aa2f93446eb0354b953cd57c1,
-    type: 3}
-  emitPt: {fileID: 5966006904893110495}
-  playerCam: {fileID: 0}
-  depthDetect: {fileID: 0}
-  facingFront: 1
-  dust: []
-  MCFrontAnim: {fileID: 0}
-  MCBackAnim: {fileID: 0}
-  x: 0
-  y: 0
-  z: 0
-  oldPositionX: 0
-  oldPositionZ: 0
 --- !u!4 &5548503593913225519
 Transform:
   m_ObjectHideFlags: 0
