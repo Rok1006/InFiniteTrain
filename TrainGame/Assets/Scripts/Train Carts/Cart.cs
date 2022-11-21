@@ -14,6 +14,7 @@ public class Cart : MonoBehaviour
     [SerializeField] private string leftDoorName = "Teleporter Left", rightDoorName = "Teleporter Right";
     private Vector2Int[,] grid = new Vector2Int[10,3];
     [SerializeField] private Transform ground;
+    protected ProGenManager proGenManager;
 
     //getters & setters
     public Room CartRoom {get=>cartRoom; protected set=>cartRoom = value;}
@@ -22,24 +23,26 @@ public class Cart : MonoBehaviour
     public List<Teleporter> LeftDoors {get=>leftDoors; set=>leftDoors = value;}
     public List<Teleporter> RightDoors {get=>rightDoors; set=>rightDoors = value;}
     public Vector2Int[,] Grid {get=>grid; set=>grid = value;}
+    public Transform Ground {get=>ground;set=>ground = value;}
 
     public virtual void Awake() {
         CartRoom = GetComponent<Room>();
         Doors.AddRange(CartRoom.GetComponentsInChildren<Teleporter>());
-        foreach (Transform leftDoor in FindChildren(this.transform, leftDoorName)) {
+        foreach (Transform leftDoor in GeneralFunctions.FindChildren(this.transform, leftDoorName)) {
             LeftDoors.Add(leftDoor.GetComponent<Teleporter>());
         }
-        foreach (Transform rightDoor in FindChildren(this.transform, rightDoorName)) {
+        foreach (Transform rightDoor in GeneralFunctions.FindChildren(this.transform, rightDoorName)) {
             RightDoors.Add(rightDoor.GetComponent<Teleporter>());
             Debug.Log("setting right doors");
         }
 
+        proGenManager = FindObjectOfType<ProGenManager>();
         
     }
 
     /*search for reference that every train cart need*/
     public virtual void Start() {
-        
+        setConnectedRooms();
     }
 
     /*triggers when player enter the room*/
@@ -69,12 +72,12 @@ public class Cart : MonoBehaviour
             ConnectedRooms.RemoveAt(deletingIndex);
     }
 
-    public void SplitIntoGrid() {
-
+    public void setGround() {
+        // Ground = GeneralFunctions.FindChildWithTag(transform.parent.gameObject, "Ground").transform;
+        Ground = GeneralFunctions.FindChildren(transform.parent,"Trains_Ground")[0].transform;
     }
 
-    public Transform[] FindChildren(Transform transform, string name)
-    {
-        return transform.GetComponentsInChildren<Transform>().Where(t => t.name == name).ToArray();
+    public void SplitIntoGrid() {
+
     }
 }

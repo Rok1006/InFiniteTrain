@@ -142,7 +142,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void test() {
-        Debug.Log("testing");
+        Debug.Log("testing for feedback");
     }
 
 }
