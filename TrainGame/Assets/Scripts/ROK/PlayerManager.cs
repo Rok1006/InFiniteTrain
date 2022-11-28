@@ -28,7 +28,10 @@ public class PlayerManager : MonoBehaviour
 
     //references
     private TopDownController3D controller;
+    private CharacterHandleWeapon handleWeapon, secondaryHandleWeapon;
 
+    //weapons
+    [SerializeField] private WeaponCollection weaponCollection;
     private Weapon secondaryWeapon;
 
     void Start()
@@ -54,9 +57,13 @@ public class PlayerManager : MonoBehaviour
         else    
             Debug.Log("Can't find top down controller 3d in " + name);
 
+        //weapons
         secondaryWeapon = GetComponent<CharacterHandleSecondaryWeapon>().CurrentWeapon;
         if (secondaryWeapon == null)
             Debug.Log("cant find secondary weapon in " + gameObject.name);
+
+        handleWeapon = GetComponent<CharacterHandleWeapon>();
+        secondaryHandleWeapon = GetComponent<CharacterHandleSecondaryWeapon>();
     }
 
     void FixedUpdate()
@@ -87,7 +94,8 @@ public class PlayerManager : MonoBehaviour
         }
         oldPositionX = transform.position.x;
         oldPositionZ = transform.position.z;
-//Combat Related
+
+        //Combat Related
         if(Input.GetKeyDown(KeyCode.J)){ //
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("Switch_smallGun", true);
@@ -100,6 +108,9 @@ public class PlayerManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.L)){ //
             Debug.Log("play"); //for some reason the animation is trigger many time even after just click once
+            handleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[0], weaponCollection.MeleeWeapons[0].WeaponName, false);
+            secondaryHandleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[1], weaponCollection.MeleeWeapons[1].WeaponName, false);
+            MCFrontAnim.SetBool("IsUsingWeapon", true);
             DisableAllWeaponAnimation();
             //MCFrontAnim.SetBool("Switch_bigSword", true);//its always playing this so it wont go out of it
             MCFrontAnim.SetTrigger("UseBigSword");
@@ -149,9 +160,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void test() {
-        ComboWeapon secondaryCombo = secondaryWeapon.GetComponent<ComboWeapon>();
-        secondaryCombo.WeaponStarted(secondaryWeapon);
-        secondaryCombo.FlipUnusedWeapons();
+        // ComboWeapon secondaryCombo = secondaryWeapon.GetComponent<ComboWeapon>();
+        // secondaryCombo.WeaponStarted(secondaryWeapon);
+        // secondaryCombo.FlipUnusedWeapons();
     }
 
 }
