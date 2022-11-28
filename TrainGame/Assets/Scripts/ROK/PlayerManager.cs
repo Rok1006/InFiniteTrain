@@ -29,6 +29,8 @@ public class PlayerManager : MonoBehaviour
     //references
     private TopDownController3D controller;
 
+    private Weapon secondaryWeapon;
+
     void Start()
     {
         MCFrontAnim = FrontMC.GetComponent<Animator>();
@@ -51,10 +53,10 @@ public class PlayerManager : MonoBehaviour
             controller = GetComponent<TopDownController3D>();
         else    
             Debug.Log("Can't find top down controller 3d in " + name);
-    }
 
-    void Update() {
-        Debug.Log(GetComponent<CharacterHandleWeapon>().CurrentWeapon.WeaponName);
+        secondaryWeapon = GetComponent<CharacterHandleSecondaryWeapon>().CurrentWeapon;
+        if (secondaryWeapon == null)
+            Debug.Log("cant find secondary weapon in " + gameObject.name);
     }
 
     void FixedUpdate()
@@ -147,7 +149,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void test() {
-        Debug.Log("testing for feedback");
+        ComboWeapon secondaryCombo = secondaryWeapon.GetComponent<ComboWeapon>();
+        secondaryCombo.WeaponStarted(secondaryWeapon);
+        secondaryCombo.FlipUnusedWeapons();
     }
 
 }

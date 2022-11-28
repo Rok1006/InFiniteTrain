@@ -14,6 +14,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+            handleWeapon.ChangeWeapon(smallBlade, smallBlade.WeaponName, false);
     }
 }
