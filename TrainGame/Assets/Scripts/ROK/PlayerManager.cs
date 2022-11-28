@@ -52,6 +52,11 @@ public class PlayerManager : MonoBehaviour
         else    
             Debug.Log("Can't find top down controller 3d in " + name);
     }
+
+    void Update() {
+        Debug.Log(GetComponent<CharacterHandleWeapon>().CurrentWeapon.WeaponName);
+    }
+
     void FixedUpdate()
     {
         if (controller.InputMoveDirection.z <= 0 && FrontMC!=null) //Change player gameObject
