@@ -2577,7 +2577,7 @@ MonoBehaviour:
   OnlyOneActivationAtOnce: 1
   UnlimitedActivations: 1
   MaxNumberOfActivations: 0
-  DelayBetweenUses: 0
+  DelayBetweenUses: 1
   DisableAfterUse: 0
   InputType: 0
   InputButton: Interact
@@ -2614,7 +2614,7 @@ MonoBehaviour:
   MaintainYEntryPositionOnExit: 1
   MaintainZEntryPositionOnExit: 1
   Destination: {fileID: 9152521495550595182}
-  AddToDestinationIgnoreList: 1
+  AddToDestinationIgnoreList: 0
   CameraMode: 2
   CurrentRoom: {fileID: 9152521496072533089}
   TargetRoom: {fileID: 9152521496072533089}
@@ -2622,7 +2622,7 @@ MonoBehaviour:
   FaderID: 0
   FadeTween:
     MMTweenDefinitionType: 0
-    MMTweenCurve: 4
+    MMTweenCurve: 1
     Curve:
       serializedVersion: 2
       m_Curve:
@@ -2653,13 +2653,13 @@ MonoBehaviour:
   MoveMaskMethod: 1
   MoveMaskDuration: 0.2
   FreezeTime: 0
-  FreezeCharacter: 0
+  FreezeCharacter: 1
   TimeMode: 0
-  InitialDelay: 0.1
-  FadeOutDuration: 1
-  DelayBetweenFades: 1.2
-  FadeInDuration: 1
-  FinalDelay: 0.1
+  InitialDelay: 0
+  FadeOutDuration: 0.5
+  DelayBetweenFades: 0.8
+  FadeInDuration: 0.5
+  FinalDelay: 0
 --- !u!1 &9152521494655039211
 GameObject:
   m_ObjectHideFlags: 0
@@ -3282,7 +3282,7 @@ MonoBehaviour:
   OnlyOneActivationAtOnce: 1
   UnlimitedActivations: 1
   MaxNumberOfActivations: 0
-  DelayBetweenUses: 0
+  DelayBetweenUses: 1
   DisableAfterUse: 0
   InputType: 0
   InputButton: Interact
@@ -3319,7 +3319,7 @@ MonoBehaviour:
   MaintainYEntryPositionOnExit: 1
   MaintainZEntryPositionOnExit: 1
   Destination: {fileID: 9152521494368013391}
-  AddToDestinationIgnoreList: 1
+  AddToDestinationIgnoreList: 0
   CameraMode: 2
   CurrentRoom: {fileID: 0}
   TargetRoom: {fileID: 9152521496072533089}
@@ -3327,7 +3327,7 @@ MonoBehaviour:
   FaderID: 0
   FadeTween:
     MMTweenDefinitionType: 0
-    MMTweenCurve: 4
+    MMTweenCurve: 1
     Curve:
       serializedVersion: 2
       m_Curve:
@@ -3369,11 +3369,11 @@ MonoBehaviour:
   FreezeTime: 0
   FreezeCharacter: 1
   TimeMode: 0
-  InitialDelay: 0.1
-  FadeOutDuration: 1
-  DelayBetweenFades: 1.2
-  FadeInDuration: 1
-  FinalDelay: 0.1
+  InitialDelay: 0
+  FadeOutDuration: 0.5
+  DelayBetweenFades: 0.8
+  FadeInDuration: 0.5
+  FinalDelay: 0
 --- !u!1 &9152521495739072831
 GameObject:
   m_ObjectHideFlags: 0
