@@ -163,6 +163,7 @@ public class PlayerManager : MonoBehaviour
         // ComboWeapon secondaryCombo = secondaryWeapon.GetComponent<ComboWeapon>();
         // secondaryCombo.WeaponStarted(secondaryWeapon);
         // secondaryCombo.FlipUnusedWeapons();
+        Debug.Log("Testing");
     }
 
 }
