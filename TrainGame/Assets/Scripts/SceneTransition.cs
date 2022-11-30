@@ -8,15 +8,14 @@ using MoreMountains.Feedbacks;
 public class SceneTransition : MonoBehaviour
 {
 
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            SceneManager.LoadScene("Map Test");
-        }
+    // public void OnTriggerEnter(Collider other)
+    // {
+    //     if(other.tag == "Player")
+    //     {
+    //         SceneManager.LoadScene("Map Test");
+    //     }
         
-    }
+    // }
     public void ToBattleScene()
     {
         SceneManager.LoadScene("Map Test");
