@@ -41,7 +41,7 @@ public class ProGenManager : MonoBehaviour
     public void setDoors(List<Cart> carts) {
         for (int i = 0; i < carts.Count; i++) {
             Cart cart = carts[i];
-            //left doors
+            //left doors & target room
             if (i > 0) {
                 for (int j = 0; j < cart.LeftDoors.Count; j++) {
                     Teleporter leftDoor = cart.LeftDoors[j].GetComponent<Teleporter>();
@@ -50,7 +50,7 @@ public class ProGenManager : MonoBehaviour
                 }
             }
 
-            //right doors
+            //right doors & target room
             if (i < carts.Count-1) {
                 for (int j = 0; j < cart.RightDoors.Count; j++) {
                     Teleporter rightDoor = cart.RightDoors[j].GetComponent<Teleporter>();
