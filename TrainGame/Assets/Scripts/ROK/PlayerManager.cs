@@ -22,17 +22,18 @@ public class PlayerManager : MonoBehaviour
     float x;
     float y;
     float z;
-    private float oldPositionX = 0.0f;
-    private float oldPositionZ = 0.0f;
+    [HideInInspector]public float oldPositionX = 0.0f;
+    [HideInInspector]public float oldPositionZ = 0.0f;
     private bool isAttacking = false;
 
-    //references
+//references------
     private TopDownController3D controller;
     private CharacterHandleWeapon handleWeapon, secondaryHandleWeapon;
 
-    //weapons
+//weapons----
     [SerializeField] private WeaponCollection weaponCollection;
     private Weapon secondaryWeapon;
+
 
     void Start()
     {
@@ -51,19 +52,20 @@ public class PlayerManager : MonoBehaviour
             confiner.m_BoundingVolume = sc.MCTrainConfiner[0].GetComponent<Collider>();
         }
 
-        //setting references up
+    //setting references up
         if (GetComponent<TopDownController3D>() != null)
             controller = GetComponent<TopDownController3D>();
         else    
             Debug.Log("Can't find top down controller 3d in " + name);
 
-        //weapons
+    //weapons
         secondaryWeapon = GetComponent<CharacterHandleSecondaryWeapon>().CurrentWeapon;
         if (secondaryWeapon == null)
             Debug.Log("cant find secondary weapon in " + gameObject.name);
 
         handleWeapon = GetComponent<CharacterHandleWeapon>();
         secondaryHandleWeapon = GetComponent<CharacterHandleSecondaryWeapon>();
+    
     }
 
     void FixedUpdate()
@@ -95,16 +97,16 @@ public class PlayerManager : MonoBehaviour
         oldPositionX = transform.position.x;
         oldPositionZ = transform.position.z;
 
-        //Combat Related
+     //Combat Related----------
         if(Input.GetKeyDown(KeyCode.J)){ //
             DisableAllWeaponAnimation();
-            MCFrontAnim.SetBool("Switch_smallGun", true);
-            MCBackAnim.SetBool("Switch_smallGun", true);
+            MCFrontAnim.SetBool("UseSmallGun", true);
+            MCBackAnim.SetBool("UseSmallGun", true);
         }
         if(Input.GetKeyDown(KeyCode.K)){ //
             DisableAllWeaponAnimation();
-            MCFrontAnim.SetBool("Switch_bigGun", true);
-            MCBackAnim.SetBool("Switch_bigGun", true);
+            MCFrontAnim.SetBool("UseBigGun", true);
+            MCBackAnim.SetBool("UseBigGun", true);
         }
         if(Input.GetKeyDown(KeyCode.L)){ //
             Debug.Log("play"); //for some reason the animation is trigger many time even after just click once
@@ -136,9 +138,6 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    // IEnumerator TraverseBetweenTrain(){
-    //     yield return new WaitForSeconds(0);
-    // }
     void OnTriggerEnter(Collider col) {
         // var sc = SceneManage.Instance;
         // for(int i = 0; i<sc.MCTrainConfiner.Count;i++){
@@ -165,5 +164,6 @@ public class PlayerManager : MonoBehaviour
         // secondaryCombo.FlipUnusedWeapons();
         Debug.Log("Testing");
     }
+
 
 }
