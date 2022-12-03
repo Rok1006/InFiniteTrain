@@ -31,7 +31,7 @@ public class ProGenManager : MonoBehaviour
 
     public void SpawnTrainCarts(int length) {
         for (int i = 0; i < length; i++) {
-            GameObject cart = Instantiate(trainCart, new Vector3(0,i*100,0), Quaternion.Euler(0, 90, 0));
+            GameObject cart = Instantiate(trainCart, new Vector3(i*100,0,0), Quaternion.Euler(0, 90, 0));
             trainRooms.Add(cart.GetComponentInChildren<Room>());
             trainRooms[trainRooms.Count-1].gameObject.AddComponent<EnemyCart>();
             trainCarts.Add(cart.GetComponentInChildren<EnemyCart>());
@@ -47,6 +47,9 @@ public class ProGenManager : MonoBehaviour
                     Teleporter leftDoor = cart.LeftDoors[j].GetComponent<Teleporter>();
                     leftDoor.Destination = carts[i-1].RightDoors[j].GetComponent<Teleporter>();
                     leftDoor.TargetRoom = carts[i-1].RightDoors[j].GetComponentInParent<Room>();
+
+                    //set up fader ID
+                    leftDoor.FaderID = 1;
                 }
             }
 
@@ -56,6 +59,9 @@ public class ProGenManager : MonoBehaviour
                     Teleporter rightDoor = cart.RightDoors[j].GetComponent<Teleporter>();
                     rightDoor.Destination = carts[i+1].LeftDoors[j].GetComponent<Teleporter>();
                     rightDoor.TargetRoom = carts[i+1].LeftDoors[j].GetComponentInParent<Room>();
+
+                    //set up fader ID
+                    rightDoor.FaderID = 1;
                 }
             }
         }
