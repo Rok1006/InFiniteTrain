@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
 //references------
     private TopDownController3D controller;
     private CharacterHandleWeapon handleWeapon, secondaryHandleWeapon;
+    private PlayerWeaponController PWC;
 
 //weapons----
     [SerializeField] private WeaponCollection weaponCollection;
@@ -51,6 +52,8 @@ public class PlayerManager : MonoBehaviour
             confiner.InvalidatePathCache();
             confiner.m_BoundingVolume = sc.MCTrainConfiner[0].GetComponent<Collider>();
         }
+
+        PWC = this.gameObject.GetComponent<PlayerWeaponController>();
 
     //setting references up
         if (GetComponent<TopDownController3D>() != null)
@@ -99,25 +102,26 @@ public class PlayerManager : MonoBehaviour
 
      //Combat Related----------
         if(Input.GetKeyDown(KeyCode.J)){ //
+            PWC.currentGunType = PlayerWeaponController.GunType.SMALLGUN;
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("UseSmallGun", true);
             MCBackAnim.SetBool("UseSmallGun", true);
         }
         if(Input.GetKeyDown(KeyCode.K)){ //
+            PWC.currentGunType = PlayerWeaponController.GunType.BIGGUN;
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("UseBigGun", true);
             MCBackAnim.SetBool("UseBigGun", true);
         }
-        if(Input.GetKeyDown(KeyCode.L)){ //
+        if(Input.GetKeyDown(KeyCode.L)){ //need to release bone constrains
+            // PWC.ResetBones();
             Debug.Log("play"); //for some reason the animation is trigger many time even after just click once
             handleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[0], weaponCollection.MeleeWeapons[0].WeaponName, false);
             secondaryHandleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[1], weaponCollection.MeleeWeapons[1].WeaponName, false);
             MCFrontAnim.SetBool("IsUsingWeapon", true);
             DisableAllWeaponAnimation();
-            //MCFrontAnim.SetBool("Switch_bigSword", true);//its always playing this so it wont go out of it
             MCFrontAnim.SetTrigger("UseBigSword");
             MCBackAnim.SetTrigger("UseBigSword");
-            //MCBackAnim.SetBool("Switch_bigSword", true);
         }
 
     }

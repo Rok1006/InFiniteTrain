@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.TopDownEngine;
+using Spine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
@@ -15,16 +16,22 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Weapons")]
     [SerializeField] private Transform bigGunArm;
     [SerializeField] private Transform smallGunArm;
-    public enum GunType { NONE, SMALLGUN, BIGGUN};
+    public enum GunType { NONE, SMALLGUN, BIGGUN, SWORDS};
     public GunType currentGunType = GunType.NONE;
 
     Vector3 mousePreviousWorld, mouseDeltaWorld;
 	Camera mainCamera;
+    private bool left, right;
 
     [Header("Values")]
     public bool canRotate = false;  
-    public float UpperRotationBound_R = -80.0f;
-    public float LowerRotationBound_R = -120.0f;
+    [SerializeField] private float UpperRotationBound_B_R, LowerRotationBound_B_R;
+    [SerializeField] private float UpperRotationBound_B_L, LowerRotationBound_B_L;
+    [SerializeField] private float UpperRotationBound_S_R, LowerRotationBound_S_R;
+    [SerializeField] private float UpperRotationBound_S_L, LowerRotationBound_S_L;
+
+    [SerializeField] private Quaternion reset_LeftBone;
+    [SerializeField] private Quaternion reset_RightBone;
 
     void Start()
     {
@@ -38,6 +45,21 @@ public class PlayerWeaponController : MonoBehaviour
         PM = this.gameObject.GetComponent<PlayerManager>();
         mainCamera = Camera.main;
         canRotate = true;
+        //-----
+        left = false;
+        right = false;
+
+        UpperRotationBound_B_R = -80.0f;
+        LowerRotationBound_B_R = -120.0f;
+        UpperRotationBound_B_L = 70.0f;
+        LowerRotationBound_B_L = 130.0f;
+
+        UpperRotationBound_S_R = -100.0f;
+        LowerRotationBound_S_R = 50.0f;
+        UpperRotationBound_S_L = -20.0f;
+        LowerRotationBound_S_L = 90.0f;
+        reset_LeftBone = bigGunArm.rotation;
+        reset_RightBone = smallGunArm.rotation;
     }
 
     void Update()
@@ -46,6 +68,18 @@ public class PlayerWeaponController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
             handleWeapon.ChangeWeapon(smallBlade, smallBlade.WeaponName, false);
+
+        if(Input.GetKeyDown(KeyCode.A)){
+            left = true;
+            right = false;
+        }else if(Input.GetKeyDown(KeyCode.D)){
+            right = true;
+            left = false;
+        }
+    }
+    public void ResetBones(){
+        bigGunArm.rotation = reset_LeftBone;
+        smallGunArm.rotation = reset_RightBone;
     }
 
     public void GunArrangement(){
@@ -62,21 +96,32 @@ public class PlayerWeaponController : MonoBehaviour
 
         switch(currentGunType){
             case GunType.NONE:
-                //do things
+            break;
+            case GunType.SWORDS: //No rotation
+                ResetBones();
+                //bigGunArm.gameObject.GetComponent<SkeletonUtilityBone>().mode = follow;
+                //release clamp, cus its overrided in scene turn override to follow
+
             break;
             case GunType.SMALLGUN:
-                //do things
+                Vector3 r_s = mouseCurrentWorld - smallGunArm.transform.position;
+                r_s.Normalize();
+                float rotationZ_S = Mathf.Atan2(r_s.y, r_s.x) * Mathf.Rad2Deg;
+                if(canRotate && right){ //when player face Right, PM.transform.position.x >= PM.oldPositionX
+                    smallGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ_S, LowerRotationBound_S_R, UpperRotationBound_S_R));
+                }else if(canRotate && left){ //Left, PM.transform.position.x <= PM.oldPositionX
+                    smallGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ_S, LowerRotationBound_S_L, UpperRotationBound_S_L));
+                }
+                Debug.Log(smallGunArm.rotation);
             break;
             case GunType.BIGGUN:
                 Vector3 r = mouseCurrentWorld - bigGunArm.transform.position;
                 r.Normalize();
-                //Debug.Log(diff);
                 float rotationZ = Mathf.Atan2(r.y, r.x) * Mathf.Rad2Deg;
-                if(canRotate && PM.transform.position.x >= PM.oldPositionX){ //when player face Right
-                        //    bendArm.rotation = Quaternion.Euler(0f,0f, rotationZ); 
-                    bigGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ, LowerRotationBound_R, UpperRotationBound_R));
-                }else if(canRotate && PM.transform.position.x <= PM.oldPositionX){ //Left
-                    bigGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ, 130.0f, 70.0f));
+                if(canRotate && right){ //when player face Right, PM.transform.position.x >= PM.oldPositionX
+                    bigGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ, LowerRotationBound_B_R, UpperRotationBound_B_R));
+                }else if(canRotate && left){ //Left, PM.transform.position.x <= PM.oldPositionX
+                    bigGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ, LowerRotationBound_B_L, UpperRotationBound_B_L));
                 }
             break;
         }
