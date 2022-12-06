@@ -46,12 +46,12 @@ public class PlayerManager : MonoBehaviour
         }
         facingFront = true;
         playerCam = GameObject.FindGameObjectWithTag("PlayerCam");
-        if(playerCam!=null){
-            var sc = SceneManage.Instance;
-            var confiner = playerCam.GetComponent<CinemachineConfiner>();
-            confiner.InvalidatePathCache();
-            confiner.m_BoundingVolume = sc.MCTrainConfiner[0].GetComponent<Collider>();
-        }
+        // if(playerCam!=null){
+        //     var sc = SceneManage.Instance;
+        //     var confiner = playerCam.GetComponent<CinemachineConfiner>();
+        //     confiner.InvalidatePathCache();
+        //     confiner.m_BoundingVolume = sc.MCTrainConfiner[0].GetComponent<Collider>();
+        // }
 
         PWC = this.gameObject.GetComponent<PlayerWeaponController>();
 
@@ -73,7 +73,7 @@ public class PlayerManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (controller.InputMoveDirection.z <= 0 && FrontMC!=null) //Change player gameObject
+        if (controller.InputMoveDirection.z < 0 && FrontMC!=null) //Change player gameObject
         {
             facingFront = true;
             FrontMC.transform.localScale = new Vector3(1,1,1);
