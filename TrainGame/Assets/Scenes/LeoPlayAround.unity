@@ -4170,6 +4170,12 @@ MonoBehaviour:
   player: {fileID: 580144291164999437, guid: d750fb4631f186f40b8fb190e99c6073, type: 3}
   shortestNodes: []
   timer: 3
+--- !u!1 &294468689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4609958774417777796, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+    type: 3}
+  m_PrefabInstance: {fileID: 2085926956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &297150363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5139,6 +5145,7 @@ GameObject:
   - component: {fileID: 410523696}
   - component: {fileID: 410523698}
   - component: {fileID: 410523697}
+  - component: {fileID: 410523699}
   m_Layer: 0
   m_Name: The Engine Room
   m_TagString: Untagged
@@ -5210,6 +5217,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 84.8, y: 26.1, z: 26.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &410523699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410523695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4696c9377c300c469aff25f020d0953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doors: []
+  leftDoors: []
+  rightDoors: []
+  leftDoorName: Teleporter Left
+  rightDoorName: Teleporter Right
+  ground: {fileID: 0}
+  SceneMD: {fileID: 1135883012}
 --- !u!1 &412960456
 GameObject:
   m_ObjectHideFlags: 0
@@ -9513,6 +9539,7 @@ GameObject:
   - component: {fileID: 740734130}
   - component: {fileID: 740734132}
   - component: {fileID: 740734131}
+  - component: {fileID: 740734133}
   m_Layer: 0
   m_Name: The Storage Room
   m_TagString: Untagged
@@ -9584,6 +9611,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 84.8, y: 26.1, z: 26.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &740734133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740734129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4696c9377c300c469aff25f020d0953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doors: []
+  leftDoors: []
+  rightDoors: []
+  leftDoorName: Teleporter Left
+  rightDoorName: Teleporter Right
+  ground: {fileID: 0}
+  SceneMD: {fileID: 1135883012}
 --- !u!1 &741262497
 GameObject:
   m_ObjectHideFlags: 0
@@ -12464,6 +12510,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950946552}
   m_CullTransparentMesh: 0
+--- !u!114 &957917637 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9152521495550595182, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+    type: 3}
+  m_PrefabInstance: {fileID: 2085926956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67c8b1f0cc0f1c46901ec3b398875b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &985732303
 GameObject:
   m_ObjectHideFlags: 0
@@ -12838,6 +12896,18 @@ RectTransform:
   m_AnchoredPosition: {x: -10.550659, y: -4}
   m_SizeDelta: {x: 112, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1020406099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9152521494368013391, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+    type: 3}
+  m_PrefabInstance: {fileID: 2085926956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67c8b1f0cc0f1c46901ec3b398875b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1022969554
 GameObject:
   m_ObjectHideFlags: 0
@@ -13235,6 +13305,7 @@ Transform:
   - {fileID: 1235398197}
   - {fileID: 1088772792}
   - {fileID: 663325950}
+  - {fileID: 1775162960}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19893,8 +19964,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662438716}
-  m_LocalRotation: {x: 0.19120666, y: 0, z: 0, w: 0.9815498}
-  m_LocalPosition: {x: -8.960006, y: 23.34999, z: -31.798058}
+  m_LocalRotation: {x: 0.19120301, y: 0, z: 0, w: 0.9815506}
+  m_LocalPosition: {x: 146.84981, y: 26.45, z: -33.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -21832,6 +21903,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773040507}
   m_CullTransparentMesh: 1
+--- !u!1 &1775162959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1775162960}
+  - component: {fileID: 1775162961}
+  m_Layer: 0
+  m_Name: Fake Cart Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1775162960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775162959}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1053706293}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1775162961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775162959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c498900b878e24ca2ed6de73b67711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutomaticallyUnparentOnAwake: 1
+  bioCart: {fileID: 294468689}
+  leftTel: {fileID: 1922389065}
+  rightTel: {fileID: 957917637}
+  targetRoom: {fileID: 1953945682}
 --- !u!1 &1777239028
 GameObject:
   m_ObjectHideFlags: 0
@@ -23610,7 +23729,7 @@ GameObject:
   - component: {fileID: 1922389066}
   - component: {fileID: 1922389065}
   m_Layer: 0
-  m_Name: Teleporter Left
+  m_Name: Left Tel
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -24291,6 +24410,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2b2b899e7537814d98bc8b583be4196, type: 3}
+--- !u!114 &1953945682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9152521496072533089, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+    type: 3}
+  m_PrefabInstance: {fileID: 2085926956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae51a15a2f3b284e88ab7b9e26296e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1957173743
 GameObject:
   m_ObjectHideFlags: 0
@@ -26702,7 +26833,37 @@ PrefabInstance:
     - target: {fileID: 4609958774417777796, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
         type: 3}
       propertyPath: m_Name
-      value: Train_Cart_Empty
+      value: Fake Bio Cart
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609958774417777796, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152521494368013391, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+        type: 3}
+      propertyPath: Destination
+      value: 
+      objectReference: {fileID: 1020406099}
+    - target: {fileID: 9152521495550595180, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+        type: 3}
+      propertyPath: m_Name
+      value: Right Tel
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152521495550595182, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+        type: 3}
+      propertyPath: TargetRoom
+      value: 
+      objectReference: {fileID: 740734131}
+    - target: {fileID: 9152521495550595182, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+        type: 3}
+      propertyPath: Destination
+      value: 
+      objectReference: {fileID: 1922389065}
+    - target: {fileID: 9152521496072533095, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+        type: 3}
+      propertyPath: m_Name
+      value: Target Room
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d01901bfd8a8f8a4cb43f3e972ff6899, type: 3}
