@@ -26,7 +26,7 @@ public class FakeCartManager : MMPersistentSingleton<FakeCartManager>
                 leftTel = GameObject.Find("Left Tel").GetComponent<Teleporter>();
                 rightTel = GameObject.Find("Right Tel").GetComponent<Teleporter>();
                 targetRoom = GameObject.Find("Target Room").GetComponent<Room>();
-                bioCart.SetActive(false);
+                bioCart.SetActive(true);
                 if (gotBioCart && !bioCart.activeSelf)
                     bioCart.SetActive(true);
                     leftTel.Destination = rightTel;

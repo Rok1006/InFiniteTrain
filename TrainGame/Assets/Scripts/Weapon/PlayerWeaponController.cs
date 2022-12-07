@@ -13,9 +13,9 @@ public class PlayerWeaponController : MonoBehaviour
     private PlayerManager PM;
 
     //GunRelated-------
-    [Header("Weapons")]
-    [SerializeField] private Transform bigGunArm;
-    [SerializeField] private Transform smallGunArm;
+    //[Header("Weapons")]
+    // [SerializeField] private Transform bigGunArm;
+    // [SerializeField] private Transform smallGunArm;
     public enum GunType { NONE, SMALLGUN, BIGGUN, SWORDS};
     public GunType currentGunType = GunType.NONE;
 
@@ -58,8 +58,8 @@ public class PlayerWeaponController : MonoBehaviour
         LowerRotationBound_S_R = 50.0f;
         UpperRotationBound_S_L = -20.0f;
         LowerRotationBound_S_L = 90.0f;
-        reset_LeftBone = bigGunArm.rotation;
-        reset_RightBone = smallGunArm.rotation;
+        // reset_LeftBone = bigGunArm.rotation;
+        // reset_RightBone = smallGunArm.rotation;
     }
 
     void Update()
@@ -78,53 +78,53 @@ public class PlayerWeaponController : MonoBehaviour
         }
     }
     public void ResetBones(){
-        bigGunArm.rotation = reset_LeftBone;
-        smallGunArm.rotation = reset_RightBone;
+        // bigGunArm.rotation = reset_LeftBone;
+        // smallGunArm.rotation = reset_RightBone;
     }
 
     public void GunArrangement(){
-        Vector3 mouseCurrent = Input.mousePosition;
-		Vector3 mouseCurrentWorld = mainCamera.ScreenToWorldPoint(new Vector3(mouseCurrent.x, mouseCurrent.y, -mainCamera.transform.position.z));
+        // Vector3 mouseCurrent = Input.mousePosition;
+		// Vector3 mouseCurrentWorld = mainCamera.ScreenToWorldPoint(new Vector3(mouseCurrent.x, mouseCurrent.y, -mainCamera.transform.position.z));
 
-		mouseDeltaWorld = mouseCurrentWorld - mousePreviousWorld;
-		mousePreviousWorld = mouseCurrentWorld;
-        Debug.Log(mouseCurrentWorld);
+		// mouseDeltaWorld = mouseCurrentWorld - mousePreviousWorld;
+		// mousePreviousWorld = mouseCurrentWorld;
+        // Debug.Log(mouseCurrentWorld);
 
-        if(Input.GetKeyDown(KeyCode.G)){
-            canRotate = true;
-        }
+        // if(Input.GetKeyDown(KeyCode.G)){
+        //     canRotate = true;
+        // }
 
-        switch(currentGunType){
-            case GunType.NONE:
-            break;
-            case GunType.SWORDS: //No rotation
-                ResetBones();
-                //bigGunArm.gameObject.GetComponent<SkeletonUtilityBone>().mode = follow;
-                //release clamp, cus its overrided in scene turn override to follow
+        // switch(currentGunType){
+        //     case GunType.NONE:
+        //     break;
+        //     case GunType.SWORDS: //No rotation
+        //         ResetBones();
+        //         //bigGunArm.gameObject.GetComponent<SkeletonUtilityBone>().mode = follow;
+        //         //release clamp, cus its overrided in scene turn override to follow
 
-            break;
-            case GunType.SMALLGUN:
-                Vector3 r_s = mouseCurrentWorld - smallGunArm.transform.position;
-                r_s.Normalize();
-                float rotationZ_S = Mathf.Atan2(r_s.y, r_s.x) * Mathf.Rad2Deg;
-                if(canRotate && right){ //when player face Right, PM.transform.position.x >= PM.oldPositionX
-                    smallGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ_S, LowerRotationBound_S_R, UpperRotationBound_S_R));
-                }else if(canRotate && left){ //Left, PM.transform.position.x <= PM.oldPositionX
-                    smallGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ_S, LowerRotationBound_S_L, UpperRotationBound_S_L));
-                }
-                Debug.Log(smallGunArm.rotation);
-            break;
-            case GunType.BIGGUN:
-                Vector3 r = mouseCurrentWorld - bigGunArm.transform.position;
-                r.Normalize();
-                float rotationZ = Mathf.Atan2(r.y, r.x) * Mathf.Rad2Deg;
-                if(canRotate && right){ //when player face Right, PM.transform.position.x >= PM.oldPositionX
-                    bigGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ, LowerRotationBound_B_R, UpperRotationBound_B_R));
-                }else if(canRotate && left){ //Left, PM.transform.position.x <= PM.oldPositionX
-                    bigGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ, LowerRotationBound_B_L, UpperRotationBound_B_L));
-                }
-            break;
-        }
+        //     break;
+        //     case GunType.SMALLGUN:
+        //         Vector3 r_s = mouseCurrentWorld - smallGunArm.transform.position;
+        //         r_s.Normalize();
+        //         float rotationZ_S = Mathf.Atan2(r_s.y, r_s.x) * Mathf.Rad2Deg;
+        //         if(canRotate && right){ //when player face Right, PM.transform.position.x >= PM.oldPositionX
+        //             smallGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ_S, LowerRotationBound_S_R, UpperRotationBound_S_R));
+        //         }else if(canRotate && left){ //Left, PM.transform.position.x <= PM.oldPositionX
+        //             smallGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ_S, LowerRotationBound_S_L, UpperRotationBound_S_L));
+        //         }
+        //         Debug.Log(smallGunArm.rotation);
+        //     break;
+        //     case GunType.BIGGUN:
+        //         Vector3 r = mouseCurrentWorld - bigGunArm.transform.position;
+        //         r.Normalize();
+        //         float rotationZ = Mathf.Atan2(r.y, r.x) * Mathf.Rad2Deg;
+        //         if(canRotate && right){ //when player face Right, PM.transform.position.x >= PM.oldPositionX
+        //             bigGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ, LowerRotationBound_B_R, UpperRotationBound_B_R));
+        //         }else if(canRotate && left){ //Left, PM.transform.position.x <= PM.oldPositionX
+        //             bigGunArm.rotation = Quaternion.Euler(0f,0f,Mathf.Clamp(rotationZ, LowerRotationBound_B_L, UpperRotationBound_B_L));
+        //         }
+        //     break;
+        // }
 
 
     }
