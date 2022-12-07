@@ -45,13 +45,15 @@ public class Cart : MonoBehaviour
     /*search for reference that every train cart need*/
     public virtual void Start() {
         setConnectedRooms();
-        DisplayCartName();
+        if (SceneMD != null)
+            DisplayCartName();
     }
 
     /*triggers when player enter the room*/
     public virtual void EnterRoom() {
         Debug.Log("entered " + name);
-        DisplayCartName();
+        if (SceneMD != null)
+            DisplayCartName();
     }
 
     /*triggers when player exit the room*/
