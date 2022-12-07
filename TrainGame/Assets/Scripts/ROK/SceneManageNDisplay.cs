@@ -12,6 +12,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField] private GameObject InfoDisplay;
 
     [Header("InteractableMap")]
+    [SerializeField] private GameObject mapCam;
     [SerializeField] private GameObject mapIcon;
     [SerializeField] private GameObject theMap;
 
@@ -21,6 +22,7 @@ public class SceneManageNDisplay : MonoBehaviour
         InfoDisplay.SetActive(false);
         mapIcon.SetActive(false);
         theMap.SetActive(false);
+        mapCam.SetActive(false);
     }
     void Update()
     {
@@ -37,8 +39,13 @@ public class SceneManageNDisplay : MonoBehaviour
     public void DisplayMap(){
         mapIcon.SetActive(false);
         theMap.SetActive(true);
+        Invoke("MapCamSwitch",1f);
+    }
+    void MapCamSwitch(){
+        mapCam.SetActive(true);
     }
     public void CloseMap(){
         theMap.SetActive(false);
+        mapCam.SetActive(false);
     }
 }
