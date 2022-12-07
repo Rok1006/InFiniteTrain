@@ -73,7 +73,7 @@ public class PlayerManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (controller.InputMoveDirection.z < 0 && FrontMC!=null) //Change player gameObject
+        if (controller.InputMoveDirection.z <= 0 && FrontMC!=null) //Change player gameObject
         {
             facingFront = true;
             FrontMC.transform.localScale = new Vector3(1,1,1);
