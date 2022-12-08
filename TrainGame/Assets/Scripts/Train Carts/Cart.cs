@@ -15,6 +15,7 @@ public class Cart : MonoBehaviour
     private Vector2Int[,] grid = new Vector2Int[10,3];
     [SerializeField] private Transform ground;
     protected ProGenManager proGenManager;
+    [SerializeField] private GameObject SceneMD;
 
     //getters & setters
     public Room CartRoom {get=>cartRoom; protected set=>cartRoom = value;}
@@ -37,17 +38,22 @@ public class Cart : MonoBehaviour
         }
 
         proGenManager = FindObjectOfType<ProGenManager>();
+
         
     }
 
     /*search for reference that every train cart need*/
     public virtual void Start() {
         setConnectedRooms();
+        if (SceneMD != null)
+            DisplayCartName();
     }
 
     /*triggers when player enter the room*/
     public virtual void EnterRoom() {
         Debug.Log("entered " + name);
+        if (SceneMD != null)
+            DisplayCartName();
     }
 
     /*triggers when player exit the room*/
@@ -79,5 +85,11 @@ public class Cart : MonoBehaviour
 
     public void SplitIntoGrid() {
 
+    }
+    public void DisplayCartName(){
+        //Debug.Log("roomname");
+        var sc = SceneMD.GetComponent<SceneManageNDisplay>();
+        sc.currentCartName = name;
+        sc.DisplayCartName();
     }
 }
