@@ -880,6 +880,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: UseSmallSword
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsUsingWeapon
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7605811778825270284}
   m_Solo: 0
@@ -1895,15 +1898,18 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: UseBigSword
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsUsingWeapon
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 798404030636770438}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.122395754
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0.84527856
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2986,12 +2992,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Shoot_smallGun
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: Reload_bigGun
     m_Type: 9
     m_DefaultFloat: 0
@@ -3072,6 +3072,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: Injured
     m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Shoot_SmallGun
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -4309,7 +4315,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Shoot_smallGun
+    m_ConditionEvent: Shoot_SmallGun
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsUsingWeapon
@@ -5364,7 +5370,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsUsingWeapon
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Shoot_smallGun
+    m_ConditionEvent: Shoot_SmallGun
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8054832158838406665}
@@ -5391,15 +5397,18 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: UseSmallGun
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsUsingWeapon
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4393275673397393175}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.050086826
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0.9334111
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

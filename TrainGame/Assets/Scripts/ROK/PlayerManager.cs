@@ -132,6 +132,11 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
+
+    private void Update() {
+        Cursor.visible = true;
+    }
+
     public void DustEmit(){
         if(Time.frameCount%10 == 0 && emitPt!=null){
             GameObject d = Instantiate(dustPrefab, emitPt.transform.position, Quaternion.identity) as GameObject;
