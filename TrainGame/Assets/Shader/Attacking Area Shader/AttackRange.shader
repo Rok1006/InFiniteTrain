@@ -213,7 +213,8 @@ Shader "Custom/AttackRange"
 	{
 		Tags { "RenderType"="Transparent" "Queue"="Transparent"}
 		ZWrite Off
-		Blend SrcAlpha OneMinusSrcAlpha
+		// Blend SrcAlpha OneMinusSrcAlpha
+		Blend One One
 		Offset -1, -1
 		
 		Pass
