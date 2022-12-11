@@ -13,25 +13,27 @@ public class PlayerWeaponController : MonoBehaviour
     private PlayerManager PM;
 
     //GunRelated-------
-    //[Header("Weapons")]
+    [Header("Weapons")]
+    [SerializeField] private Transform aim; //clamp it certain area
     // [SerializeField] private Transform bigGunArm;
     // [SerializeField] private Transform smallGunArm;
     public enum GunType { NONE, SMALLGUN, BIGGUN, SWORDS};
     public GunType currentGunType = GunType.NONE;
 
     Vector3 mousePreviousWorld, mouseDeltaWorld;
+    Vector3 mouseCurrentWorld;
 	Camera mainCamera;
     private bool left, right;
 
     [Header("Values")]
     public bool canRotate = false;  
-    [SerializeField] private float UpperRotationBound_B_R, LowerRotationBound_B_R;
-    [SerializeField] private float UpperRotationBound_B_L, LowerRotationBound_B_L;
-    [SerializeField] private float UpperRotationBound_S_R, LowerRotationBound_S_R;
-    [SerializeField] private float UpperRotationBound_S_L, LowerRotationBound_S_L;
+    // [SerializeField] private float UpperRotationBound_B_R, LowerRotationBound_B_R;
+    // [SerializeField] private float UpperRotationBound_B_L, LowerRotationBound_B_L;
+    // [SerializeField] private float UpperRotationBound_S_R, LowerRotationBound_S_R;
+    // [SerializeField] private float UpperRotationBound_S_L, LowerRotationBound_S_L;
 
-    [SerializeField] private Quaternion reset_LeftBone;
-    [SerializeField] private Quaternion reset_RightBone;
+    // [SerializeField] private Quaternion reset_LeftBone;
+    // [SerializeField] private Quaternion reset_RightBone;
 
     void Start()
     {
@@ -44,20 +46,20 @@ public class PlayerWeaponController : MonoBehaviour
 
         PM = this.gameObject.GetComponent<PlayerManager>();
         mainCamera = Camera.main;
-        canRotate = true;
+        canRotate = false;
         //-----
         left = false;
         right = false;
 
-        UpperRotationBound_B_R = -80.0f;
-        LowerRotationBound_B_R = -120.0f;
-        UpperRotationBound_B_L = 70.0f;
-        LowerRotationBound_B_L = 130.0f;
+        // UpperRotationBound_B_R = -80.0f;
+        // LowerRotationBound_B_R = -120.0f;
+        // UpperRotationBound_B_L = 70.0f;
+        // LowerRotationBound_B_L = 130.0f;
 
-        UpperRotationBound_S_R = -100.0f;
-        LowerRotationBound_S_R = 50.0f;
-        UpperRotationBound_S_L = -20.0f;
-        LowerRotationBound_S_L = 90.0f;
+        // UpperRotationBound_S_R = -100.0f;
+        // LowerRotationBound_S_R = 50.0f;
+        // UpperRotationBound_S_L = -20.0f;
+        // LowerRotationBound_S_L = 90.0f;
         // reset_LeftBone = bigGunArm.rotation;
         // reset_RightBone = smallGunArm.rotation;
     }
@@ -65,6 +67,9 @@ public class PlayerWeaponController : MonoBehaviour
     void Update()
     {
         GunArrangement();
+        if(canRotate){
+            aim.position = mouseCurrentWorld;
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
             handleWeapon.ChangeWeapon(smallBlade, smallBlade.WeaponName, false);
@@ -83,16 +88,16 @@ public class PlayerWeaponController : MonoBehaviour
     }
 
     public void GunArrangement(){
-        // Vector3 mouseCurrent = Input.mousePosition;
-		// Vector3 mouseCurrentWorld = mainCamera.ScreenToWorldPoint(new Vector3(mouseCurrent.x, mouseCurrent.y, -mainCamera.transform.position.z));
+        Vector3 mouseCurrent = Input.mousePosition;
+		mouseCurrentWorld = mainCamera.ScreenToWorldPoint(new Vector3(mouseCurrent.x, mouseCurrent.y, -mainCamera.transform.position.z));
 
-		// mouseDeltaWorld = mouseCurrentWorld - mousePreviousWorld;
-		// mousePreviousWorld = mouseCurrentWorld;
-        // Debug.Log(mouseCurrentWorld);
+		mouseDeltaWorld = mouseCurrentWorld - mousePreviousWorld;
+		mousePreviousWorld = mouseCurrentWorld;
+        Debug.Log(mouseCurrentWorld);
 
-        // if(Input.GetKeyDown(KeyCode.G)){
-        //     canRotate = true;
-        // }
+        if(Input.GetKeyDown(KeyCode.J)|| Input.GetKeyDown(KeyCode.K)){
+            canRotate = true;
+        }
 
         // switch(currentGunType){
         //     case GunType.NONE:

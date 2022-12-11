@@ -78,8 +78,6 @@ public class PlayerManager : MonoBehaviour
             facingFront = true;
             FrontMC.transform.localScale = new Vector3(1,1,1);
             BackMC.transform.localScale = new Vector3(0,0,0);
-            DustEmit();
-            DustLayerSort(-1);
         }else if (controller.InputMoveDirection.z > 0 && FrontMC!=null)
         {
             facingFront = false;
@@ -87,6 +85,10 @@ public class PlayerManager : MonoBehaviour
             BackMC.transform.localScale = new Vector3(1,1,1);
             DustEmit();
             DustLayerSort(1);
+        }
+        if (controller.InputMoveDirection.z < 0 && FrontMC!=null){
+            DustEmit();
+            DustLayerSort(-1);
         }
         if (transform.position.x > oldPositionX) //Rotate the anim object instead of main
         {
