@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
     private TopDownController3D controller;
     private CharacterHandleWeapon handleWeapon, secondaryHandleWeapon;
     private PlayerWeaponController PWC;
+    private CharacterOrientation2D ChOri_2D;
 
 //weapons----
     [SerializeField] private WeaponCollection weaponCollection;
@@ -54,6 +55,7 @@ public class PlayerManager : MonoBehaviour
         // }
 
         PWC = this.gameObject.GetComponent<PlayerWeaponController>();
+        ChOri_2D = this.gameObject.GetComponent<CharacterOrientation2D>();
 
     //setting references up
         if (GetComponent<TopDownController3D>() != null)
@@ -104,12 +106,14 @@ public class PlayerManager : MonoBehaviour
 
      //Combat Related----------
         if(Input.GetKeyDown(KeyCode.J)){ //
+            //ChOri_2D.enabled = false;
             PWC.currentGunType = PlayerWeaponController.GunType.SMALLGUN;
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("UseSmallGun", true);
             MCBackAnim.SetBool("UseSmallGun", true);
         }
         if(Input.GetKeyDown(KeyCode.K)){ //
+            //ChOri_2D.enabled = false;
             PWC.currentGunType = PlayerWeaponController.GunType.BIGGUN;
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("UseBigGun", true);
@@ -117,6 +121,7 @@ public class PlayerManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.L)){ //need to release bone constrains
             // PWC.ResetBones();
+            //ChOri_2D.enabled = true;
             Debug.Log("play"); //for some reason the animation is trigger many time even after just click once
             handleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[0], weaponCollection.MeleeWeapons[0].WeaponName, false);
             secondaryHandleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[1], weaponCollection.MeleeWeapons[1].WeaponName, false);

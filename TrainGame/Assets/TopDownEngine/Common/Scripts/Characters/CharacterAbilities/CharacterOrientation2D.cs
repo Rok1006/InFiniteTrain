@@ -14,6 +14,7 @@ namespace MoreMountains.TopDownEngine
 	[AddComponentMenu("TopDown Engine/Character/Abilities/Character Orientation 2D")]
 	public class CharacterOrientation2D : CharacterAbility
 	{
+		public bool IsRight = true;
 		/// the possible facing modes
 		public enum FacingModes { None, MovementDirection, WeaponDirection, Both }
 		public enum FacingBases { WeaponAngle, MousePositionX, SceneReticlePositionX }
@@ -126,11 +127,13 @@ namespace MoreMountains.TopDownEngine
 			_initialized = true;
 			if (InitialFacingDirection == Character.FacingDirections.West)
 			{
+				//Debug.Log("left");
 				IsFacingRight = false;
 				_direction = -1;
 			}
 			else
 			{
+				//Debug.Log("right");
 				IsFacingRight = true;
 				_direction = 1;
 			}
@@ -192,6 +195,12 @@ namespace MoreMountains.TopDownEngine
 		protected virtual void FixedUpdate()
 		{
 			ComputeRelativeSpeeds();
+			if(CurrentFacingDirection == Character.FacingDirections.East ){
+				IsRight = true;
+			}else{
+				IsRight = false;
+			}
+			//Debug.Log(CurrentFacingDirection);
 		}
 
 		protected virtual void DetermineFacingDirection()
@@ -254,9 +263,11 @@ namespace MoreMountains.TopDownEngine
 			{
 				case Character.FacingDirections.East:
 					_controller.CurrentDirection = Vector3.right;
+					//Debug.Log("right");
 					break;
 				case Character.FacingDirections.West:
 					_controller.CurrentDirection = Vector3.left;
+					//Debug.Log("left");
 					break;
 				case Character.FacingDirections.North:
 					_controller.CurrentDirection = Vector3.up;

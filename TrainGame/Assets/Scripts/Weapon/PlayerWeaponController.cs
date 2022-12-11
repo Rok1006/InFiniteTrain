@@ -7,6 +7,7 @@ using Spine;
 public class PlayerWeaponController : MonoBehaviour
 {
     private CharacterHandleWeapon handleWeapon;
+    private CharacterOrientation2D ChOri_2D;
     [SerializeField] private Weapon smallBlade;
 
     private TopDownController3D controller;
@@ -27,13 +28,6 @@ public class PlayerWeaponController : MonoBehaviour
 
     [Header("Values")]
     public bool canRotate = false;  
-    // [SerializeField] private float UpperRotationBound_B_R, LowerRotationBound_B_R;
-    // [SerializeField] private float UpperRotationBound_B_L, LowerRotationBound_B_L;
-    // [SerializeField] private float UpperRotationBound_S_R, LowerRotationBound_S_R;
-    // [SerializeField] private float UpperRotationBound_S_L, LowerRotationBound_S_L;
-
-    // [SerializeField] private Quaternion reset_LeftBone;
-    // [SerializeField] private Quaternion reset_RightBone;
 
     void Start()
     {
@@ -45,22 +39,12 @@ public class PlayerWeaponController : MonoBehaviour
             Debug.Log("Can't find top down controller 3d in " + name);
 
         PM = this.gameObject.GetComponent<PlayerManager>();
+        ChOri_2D = this.gameObject.GetComponent<CharacterOrientation2D>();
         mainCamera = Camera.main;
         canRotate = false;
         //-----
         left = false;
         right = false;
-
-        // UpperRotationBound_B_R = -80.0f;
-        // LowerRotationBound_B_R = -120.0f;
-        // UpperRotationBound_B_L = 70.0f;
-        // LowerRotationBound_B_L = 130.0f;
-
-        // UpperRotationBound_S_R = -100.0f;
-        // LowerRotationBound_S_R = 50.0f;
-        // UpperRotationBound_S_L = -20.0f;
-        // LowerRotationBound_S_L = 90.0f;
-        // reset_LeftBone = bigGunArm.rotation;
         // reset_RightBone = smallGunArm.rotation;
     }
 
@@ -93,12 +77,38 @@ public class PlayerWeaponController : MonoBehaviour
 
 		mouseDeltaWorld = mouseCurrentWorld - mousePreviousWorld;
 		mousePreviousWorld = mouseCurrentWorld;
-        Debug.Log(mouseCurrentWorld);
+
+        Vector3 pT = this.transform.position;
+       // mouseCurrentWorld.Normalize();
+        switch(currentGunType){
+            case GunType.SMALLGUN:
+            if(ChOri_2D.IsRight){
+                mouseCurrentWorld.x = Mathf.Clamp(mouseCurrentWorld.x, pT.x, pT.x+5.0f); //Mathf.Clamp(mouseCurrentWorld.x, minX_S, maxX_S);
+                mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, pT.y-4.0f, pT.y+7.0f); //Mathf.Clamp(mouseCurrentWorld.y, minY_S, maxY_S);
+            }else{
+                //Debug.Log("left");
+                mouseCurrentWorld.x = Mathf.Clamp(mouseCurrentWorld.x, pT.x, pT.x); //Mathf.Clamp(mouseCurrentWorld.x, minX_S, maxX_S);
+                mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, pT.y, pT.y); //Mathf.Clamp(mouseCurrentWorld.y, minY_S, maxY_S);
+            }
+            break;
+            case GunType.BIGGUN:
+            if(ChOri_2D.IsRight){
+                mouseCurrentWorld.x = Mathf.Clamp(mouseCurrentWorld.x, pT.x+5.5f, pT.x+8.0f);
+                mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, pT.y+1.5f, pT.y+6.0f);
+            }else{ //make it so that when gun mode it wont flip
+                //Debug.Log("left");
+                mouseCurrentWorld.x = Mathf.Clamp(mouseCurrentWorld.x, pT.x-8.0f, pT.x-5.5f); //Mathf.Clamp(mouseCurrentWorld.x, minX_S, maxX_S);
+                mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, pT.y+1.5f, pT.y+6.0f); //Mathf.Clamp(mouseCurrentWorld.y, minY_S, maxY_S);
+            }
+            break;
+        }
+        
+        //Debug.Log(mouseCurrentWorld);
 
         if(Input.GetKeyDown(KeyCode.J)|| Input.GetKeyDown(KeyCode.K)){
             canRotate = true;
         }
-
+//Dump
         // switch(currentGunType){
         //     case GunType.NONE:
         //     break;
@@ -130,7 +140,7 @@ public class PlayerWeaponController : MonoBehaviour
         //         }
         //     break;
         // }
-
+//
 
     }
 }
