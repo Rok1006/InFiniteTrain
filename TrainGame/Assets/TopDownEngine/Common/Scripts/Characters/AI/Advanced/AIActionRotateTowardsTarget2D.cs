@@ -52,6 +52,9 @@ namespace MoreMountains.TopDownEngine
 			{
 				_targetPosition.y = this.transform.position.y;
 			}
+			if (_characterRotation2D == null) Debug.Log("_character Rotation 2f is null");
+			if (_characterRotation2D.ForcedRotation == null) Debug.Log("_character forced Rotation 2f is null");
+			if (_targetPosition == null) Debug.Log("_targetposition is null");
 			_characterRotation2D.ForcedRotationDirection = (_targetPosition - this.transform.position).normalized;
 		}
 	}

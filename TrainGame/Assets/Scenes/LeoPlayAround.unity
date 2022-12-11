@@ -9516,7 +9516,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4425611, y: 1}
+    m_SensorSize: {x: 0.71939737, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -20142,7 +20142,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4425611, y: 1}
+    m_SensorSize: {x: 0.71939737, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -20407,7 +20407,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4425611, y: 1}
+    m_SensorSize: {x: 0.71939737, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -29836,21 +29836,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5710748817593325460}
   m_Mesh: {fileID: -9138428077962325122, guid: ce25ca7437197274ea2247d2294ff1bb, type: 3}
---- !u!114 &4076036822770102346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4281818918049998171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21818f4def5bf646bec3d25770336cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: 
-  AfterTimeMin: 1
-  AfterTimeMax: 1.5
 --- !u!4 &4131034399521787523
 Transform:
   m_ObjectHideFlags: 0
@@ -29913,29 +29898,36 @@ MonoBehaviour:
     Transitions:
       array:
       - Decision: {fileID: 4281818918049998175}
-        TrueState: Moving
+        TrueState: Moving Away
         FalseState: 
-  - StateName: Moving
+  - StateName: Moving Away
+    Actions:
+      array:
+      - {fileID: 4281818918049998178}
+    Transitions:
+      array:
+      - Decision: {fileID: 4281818918049998177}
+        TrueState: Teleporting
+        FalseState: 
+  - StateName: Teleporting
     Actions:
       array:
       - {fileID: 4281818918049998176}
     Transitions:
       array:
-      - Decision: {fileID: 4281818918049998175}
-        TrueState: 
-        FalseState: Detecting
-      - Decision: {fileID: 4281818918049998177}
+      - Decision: {fileID: 6692589501369022815}
         TrueState: Attack
-        FalseState: 
+        FalseState: Detecting
   - StateName: Attack
     Actions:
       array:
+      - {fileID: 4281818918049998179}
       - {fileID: 5383551580200680342}
     Transitions:
       array:
       - Decision: {fileID: 6692589501369022815}
         TrueState: 
-        FalseState: Moving
+        FalseState: Detecting
   TimeInThisState: 0
   Target: {fileID: 0}
   _lastKnownTargetPosition: {x: 0, y: 0, z: 0}
@@ -30003,13 +29995,14 @@ GameObject:
   - component: {fileID: 6692589501369022815}
   - component: {fileID: 4281818918049998242}
   - component: {fileID: 4281818918049998173}
-  - component: {fileID: 4281818918049998243}
   - component: {fileID: 4281818918049998245}
   - component: {fileID: 8760424105833999734}
   - component: {fileID: 5383551580200680342}
-  - component: {fileID: 4076036822770102346}
   - component: {fileID: 4281818918049998176}
   - component: {fileID: 4281818918049998177}
+  - component: {fileID: 4281818918049998178}
+  - component: {fileID: 4281818918049998179}
+  - component: {fileID: 4281818918049998180}
   m_Layer: 13
   m_Name: A tiny bit complex Melee Enemy
   m_TagString: Untagged
@@ -30160,8 +30153,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: attackWait
-  AfterTimeMin: 1
-  AfterTimeMax: 1
+  AfterTimeMin: 2
+  AfterTimeMax: 2.5
+--- !u!114 &4281818918049998178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918049998171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545fcf0ef69f2264c9856f2aecc83418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: 
+  MaximumDistance: 20
+--- !u!114 &4281818918049998179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918049998171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010f9641519864147805d7b4f5edb2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: 
+  LockRotationX: 0
+--- !u!114 &4281818918049998180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918049998171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713a7621405152840b50c815ea8e6a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityStartSfx: {fileID: 0}
+  AbilityInProgressSfx: {fileID: 0}
+  AbilityStopSfx: {fileID: 0}
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
+  AbilityPermitted: 1
+  BlockingMovementStates: 
+  BlockingConditionStates: 
+  RotationMode: 0
+  ForcedRotation: 0
+  ForcedRotationDirection: {x: 0, y: 0, z: 0}
+  ShouldRotateToFaceMovementDirection: 1
+  MovementRotationSpeed: 0
+  MovementRotatingModel: {fileID: 0}
+  RotateToFaceMovementDirectionSpeed: 10
+  AbsoluteThresholdMovement: 0.5
+  ModelDirection: {x: 0, y: 0, z: 0}
+  ModelAngles: {x: 0, y: 0, z: 0}
+  ShouldRotateToFaceWeaponDirection: 1
+  WeaponRotationSpeed: 0
+  WeaponRotatingModel: {fileID: 0}
+  RotateToFaceWeaponDirectionSpeed: 10
+  AbsoluteThresholdWeapon: 0.5
 --- !u!114 &4281818918049998240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30268,21 +30326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: 
---- !u!114 &4281818918049998243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4281818918049998171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97230edd623230e4ea486ef91a6d23e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationMode: 0
-  Label: 
-  MinimumDistance: 0.1
 --- !u!4 &4281818918049998244
 Transform:
   m_ObjectHideFlags: 0
@@ -30425,14 +30468,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4281818918476489026}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5360388444267962074}
   m_Father: {fileID: 4281818918049998244}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!4 &4303143546050928913
 Transform:
   m_ObjectHideFlags: 0
