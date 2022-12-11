@@ -94,4 +94,17 @@ public class NodeManager : MonoBehaviour
             lr.SetPosition(1, playerNearbyList[i].transform.position);
         }
     }
+    public void OnMouseOver()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+    }
+    public void OnMouseExit()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    public void OnMouseDown()
+    {
+        MapState.gameState = 1;
+    }
 }
