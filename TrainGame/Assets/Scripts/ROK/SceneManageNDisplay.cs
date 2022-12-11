@@ -11,18 +11,18 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI roomName;
     [SerializeField] private GameObject InfoDisplay;
 
-    [Header("InteractableMap")]
-    [SerializeField] private GameObject mapCam;
-    [SerializeField] private GameObject mapIcon;
-    [SerializeField] private GameObject theMap;
+    // [Header("InteractableMap")]
+    // [SerializeField] private GameObject mapCam;
+    // [SerializeField] private GameObject mapIcon;
+    // [SerializeField] private GameObject theMap;
 
 
     void Start()
     {
         InfoDisplay.SetActive(false);
-        mapIcon.SetActive(false);
-        theMap.SetActive(false);
-        mapCam.SetActive(false);
+        // mapIcon.SetActive(false);
+        // theMap.SetActive(false);
+        // mapCam.SetActive(false);
     }
     void Update()
     {
@@ -33,19 +33,19 @@ public class SceneManageNDisplay : MonoBehaviour
         InfoDisplay.SetActive(true);
     }
     public void DisplayMapIcons(){
-        mapIcon.SetActive(false);
-        mapIcon.SetActive(true);
+        // mapIcon.SetActive(false);
+        // mapIcon.SetActive(true);
     }
     public void DisplayMap(){
-        mapIcon.SetActive(false);
-        theMap.SetActive(true);
+        // mapIcon.SetActive(false);
+        // theMap.SetActive(true);
         Invoke("MapCamSwitch",1f);
     }
     void MapCamSwitch(){
-        mapCam.SetActive(true);
+        // mapCam.SetActive(true);
     }
     public void CloseMap(){
-        theMap.SetActive(false);
-        mapCam.SetActive(false);
+        // theMap.SetActive(false);
+        // mapCam.SetActive(false);
     }
 }

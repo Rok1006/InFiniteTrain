@@ -3,7 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 23
+  serializedVersion: 22
   productGUID: acbef2d081eaec7449a6e1885ae1ca30
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -70,12 +70,6 @@ PlayerSettings:
   androidRenderOutsideSafeArea: 0
   androidUseSwappy: 0
   androidBlitType: 0
-  androidResizableWindow: 0
-  androidDefaultWindowWidth: 1920
-  androidDefaultWindowHeight: 1080
-  androidMinimumWindowWidth: 400
-  androidMinimumWindowHeight: 300
-  androidFullscreenMode: 1
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 1
@@ -129,7 +123,6 @@ PlayerSettings:
   vulkanEnableSetSRGBWrite: 0
   vulkanEnablePreTransform: 0
   vulkanEnableLateAcquireNextImage: 0
-  vulkanEnableCommandBufferRecycling: 1
   m_SupportedAspectRatios:
     4:3: 0
     5:4: 0
@@ -222,7 +215,6 @@ PlayerSettings:
   iOSLaunchScreeniPadCustomStoryboardPath: 
   iOSDeviceRequirements: []
   iOSURLSchemes: []
-  macOSURLSchemes: []
   iOSBackgroundModes: 0
   iOSMetalForceHardShadows: 0
   metalEditorSupport: 1
@@ -250,7 +242,6 @@ PlayerSettings:
   useCustomGradlePropertiesTemplate: 0
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
-  AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: "F:/Dropbox/Documents \xE0 conserver/Android Keystore/reuno.keystore"
@@ -267,7 +258,6 @@ PlayerSettings:
     height: 180
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
-  chromeosInputEmulation: 1
   AndroidMinifyWithR8: 0
   AndroidMinifyRelease: 0
   AndroidMinifyDebug: 0
@@ -434,7 +424,6 @@ PlayerSettings:
     m_EncodingQuality: 1
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetNormalMapEncoding: []
-  m_BuildTargetDefaultTextureCompressionFormat: []
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -444,7 +433,6 @@ PlayerSettings:
   cameraUsageDescription: 
   locationUsageDescription: 
   microphoneUsageDescription: 
-  bluetoothUsageDescription: 
   switchNMETAOverride: 
   switchNetLibKey: 
   switchSocketMemoryPoolSize: 6144
@@ -453,7 +441,6 @@ PlayerSettings:
   switchScreenResolutionBehavior: 2
   switchUseCPUProfiler: 0
   switchUseGOLDLinker: 0
-  switchLTOSetting: 0
   switchApplicationID: 0x01004b9000490000
   switchNSODependencies: 
   switchTitleNames_0: 
@@ -584,9 +571,7 @@ PlayerSettings:
   switchPlayerConnectionEnabled: 1
   switchUseNewStyleFilepaths: 0
   switchUseMicroSleepForYield: 1
-  switchEnableRamDiskSupport: 0
   switchMicroSleepForYieldTime: 25
-  switchRamDiskSpaceSize: 12
   ps4NPAgeRating: 12
   ps4NPTitleSecret: 
   ps4NPTrophyPackPath: 
@@ -682,22 +667,20 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    : UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED
-    Android: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED;MOREMOUNTAINS_FEEDBACKS;MOREMOUNTAINS_TOOLS;MOREMOUNTAINS_INTERFACE;MOREMOUNTAINS_INVENTORYENGINE;MOREMOUNTAINS_TOPDOWNENGINE;MOREMOUNTAINS_POSTPROCESSING_INSTALLED;MOREMOUNTAINS_CINEMACHINE_INSTALLED;MOREMOUNTAINS_TEXTMESHPRO_INSTALLED;MOREMOUNTAINS_TOOLS_FOR_MMFEEDBACKS
-    CloudRendering: UNITY_POST_PROCESSING_STACK_V2
-    EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2
-    GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2
-    Lumin: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED
-    Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED
-    PS4: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED
-    PS5: UNITY_POST_PROCESSING_STACK_V2
-    Stadia: UNITY_POST_PROCESSING_STACK_V2
-    Standalone: UNITY_POST_PROCESSING_STACK_V2;MOREMOUNTAINS_FEEDBACKS;MOREMOUNTAINS_TOOLS;MOREMOUNTAINS_INTERFACE;MOREMOUNTAINS_INVENTORYENGINE;MOREMOUNTAINS_TOPDOWNENGINE;MOREMOUNTAINS_POSTPROCESSING_INSTALLED;MOREMOUNTAINS_CINEMACHINE_INSTALLED;MOREMOUNTAINS_TEXTMESHPRO_INSTALLED;MOREMOUNTAINS_TOOLS_FOR_MMFEEDBACKS
-    WebGL: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED;MOREMOUNTAINS_FEEDBACKS;MOREMOUNTAINS_TOOLS;MOREMOUNTAINS_INVENTORYENGINE;MOREMOUNTAINS_TOPDOWNENGINE;MOREMOUNTAINS_INTERFACE;MOREMOUNTAINS_POSTPROCESSING_INSTALLED;MOREMOUNTAINS_CINEMACHINE_INSTALLED;MOREMOUNTAINS_TEXTMESHPRO_INSTALLED;MOREMOUNTAINS_TOOLS_FOR_MMFEEDBACKS
-    Windows Store Apps: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED
-    XboxOne: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED
-    iPhone: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED
-    tvOS: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED
+    0: UNITY_POST_PROCESSING_STACK_V2;POSTPROCESSING_INSTALLED;CINEMACHINE_INSTALLED;PIXELPERFECT_INSTALLED
+    1: UNITY_POST_PROCESSING_STACK_V2;MOREMOUNTAINS_INTERFACE;MOREMOUNTAINS_TOPDOWNENGINE;MOREMOUNTAINS_INVENTORYENGINE
+    7: UNITY_POST_PROCESSING_STACK_V2
+    13: UNITY_POST_PROCESSING_STACK_V2
+    14: UNITY_POST_PROCESSING_STACK_V2
+    19: UNITY_POST_PROCESSING_STACK_V2
+    21: UNITY_POST_PROCESSING_STACK_V2
+    25: UNITY_POST_PROCESSING_STACK_V2
+    27: UNITY_POST_PROCESSING_STACK_V2
+    28: UNITY_POST_PROCESSING_STACK_V2
+    29: UNITY_POST_PROCESSING_STACK_V2
+    30: UNITY_POST_PROCESSING_STACK_V2
+    32: UNITY_POST_PROCESSING_STACK_V2
+    33: UNITY_POST_PROCESSING_STACK_V2
   additionalCompilerArguments: {}
   platformArchitecture:
     iPhone: 1
@@ -715,6 +698,7 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
+  useReferenceAssemblies: 1
   enableRoslynAnalyzers: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
@@ -801,6 +785,4 @@ PlayerSettings:
   organizationId: 
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
-  playerDataPath: 
-  forceSRGBBlit: 1
   virtualTexturingSupportEnabled: 0

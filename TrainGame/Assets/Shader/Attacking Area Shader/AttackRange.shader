@@ -36,7 +36,7 @@ Shader "Custom/AttackRange"
 	struct Interpolators 
 	{
 		float4 pos : SV_POSITION;
-		float4 uvShadow : TEXCOORD1;
+		float4 projectionUV : TEXCOORD1;
 	};
 	
 	float4x4 unity_Projector;
@@ -63,7 +63,7 @@ Shader "Custom/AttackRange"
 	{
 		Interpolators o;
 		o.pos = UnityObjectToClipPos(v.vertex);
-		o.uvShadow = mul(unity_Projector, v.vertex);
+		o.projectionUV = mul(unity_Projector, v.vertex);
 		return o;
 	}
 
@@ -102,13 +102,13 @@ Shader "Custom/AttackRange"
 		}
 	}
 
-	float getOutterCircle (float length, float range, float4 uvShadow) {
-		float fullMask = tex2Dproj (_ProjectionTex, UNITY_PROJ_COORD(uvShadow)).r;
+	float getOutterCircle (float length, float range, float4 projectionUV) {
+		float fullMask = tex2Dproj (_ProjectionTex, UNITY_PROJ_COORD(projectionUV)).r;
 		const float BORDER = 0.001;
-		if (uvShadow.x / uvShadow.w < BORDER
-		|| uvShadow.x / uvShadow.w > 1 - BORDER  
-		|| uvShadow.y / uvShadow.w < BORDER
-		|| uvShadow.y / uvShadow.w > 1 - BORDER)
+		if (projectionUV.x / projectionUV.w < BORDER
+		|| projectionUV.x / projectionUV.w > 1 - BORDER  
+		|| projectionUV.y / projectionUV.w < BORDER
+		|| projectionUV.y / projectionUV.w > 1 - BORDER)
 		{
 			fullMask = 0;
 		}
@@ -117,13 +117,13 @@ Shader "Custom/AttackRange"
 		return alpha;
 	}
 
-	float getShape(float4 uvShadow) {
-		float fullMask = tex2Dproj (_ProjectionTex, UNITY_PROJ_COORD(uvShadow)).r;
+	float getShape(float4 projectionUV) {
+		float fullMask = tex2Dproj (_ProjectionTex, UNITY_PROJ_COORD(projectionUV)).r;
 		const float BORDER = 0.001;
-		if (uvShadow.x / uvShadow.w < BORDER
-		|| uvShadow.x / uvShadow.w > 1 - BORDER  
-		|| uvShadow.y / uvShadow.w < BORDER
-		|| uvShadow.y / uvShadow.w > 1 - BORDER)
+		if (projectionUV.x / projectionUV.w < BORDER
+		|| projectionUV.x / projectionUV.w > 1 - BORDER  
+		|| projectionUV.y / projectionUV.w < BORDER
+		|| projectionUV.y / projectionUV.w > 1 - BORDER)
 		{
 			fullMask = 0;
 		}
@@ -132,7 +132,7 @@ Shader "Custom/AttackRange"
 
 	float4 frag1 (Interpolators i) : SV_Target
 	{	
-		float2 uv = (i.uvShadow.xy / i.uvShadow.w) - 0.5f;
+		float2 uv = (i.projectionUV.xy / i.projectionUV.w) - 0.5f;
 		uv = mul(uv, rotate2D(_RotateAngle));
 		float len = length(uv);
 		float len2 = uv.x * uv.x + uv.y * uv.y;
@@ -140,7 +140,7 @@ Shader "Custom/AttackRange"
 
 		if (_isCircle) {
 			float range = getRange(len2, uv);
-			float alpha = getOutterCircle(len, range, i.uvShadow);
+			float alpha = getOutterCircle(len, range, i.projectionUV);
 			
 			float centerWave = 0;
 			if(alpha > 0)
@@ -156,7 +156,7 @@ Shader "Custom/AttackRange"
 			return float4(color, alpha * range);
 		} else {
 			float range = getRange(len2, uv);
-			float alpha = getOutterCircle(len, range, i.uvShadow);
+			float alpha = getOutterCircle(len, range, i.projectionUV);
 			
 			float centerWave = 0;
 			if(alpha > 0)
@@ -192,17 +192,17 @@ Shader "Custom/AttackRange"
 
 	float4 frag2 (Interpolators i) : SV_Target
 	{
-		float2 uv = (i.uvShadow.xy / i.uvShadow.w) - 0.5;
+		float2 uv = (i.projectionUV.xy / i.projectionUV.w) - 0.5;
 		uv = mul(uv, rotate2D(_RotateAngle));
 		float len = length(uv);
 		float len2 = uv.x * uv.x + uv.y * uv.y;
 		float3 color = 0;
 
 		float2 scale = 0.5;
-		float4 scaledUVShadow1 = float4(mul((i.uvShadow.xy / i.uvShadow.w) - 0.01, scale2D(1.02)), i.uvShadow.zw);
-		float4 scaledUVShadow2 = float4(mul((i.uvShadow.xy / i.uvShadow.w), scale2D(1)), i.uvShadow.zw);
+		float4 scaledprojectionUV1 = float4(mul((i.projectionUV.xy / i.projectionUV.w) - 0.01, scale2D(1.02)), i.projectionUV.zw);
+		float4 scaledprojectionUV2 = float4(mul((i.projectionUV.xy / i.projectionUV.w), scale2D(1)), i.projectionUV.zw);
 		float range = getRange(len2, uv);
-		float alpha = getShape(scaledUVShadow2).r - getShape(scaledUVShadow1).r;
+		float alpha = getShape(scaledprojectionUV2).r - getShape(scaledprojectionUV1).r;
 
 		color = _EdgeColor + (_EmissionColor * _Emission);
 		return float4(color, alpha * range);
@@ -214,7 +214,6 @@ Shader "Custom/AttackRange"
 		Tags { "RenderType"="Transparent" "Queue"="Transparent"}
 		ZWrite Off
 		Blend SrcAlpha OneMinusSrcAlpha
-		// Blend One One
 		Offset -1, -1
 		
 		Pass
