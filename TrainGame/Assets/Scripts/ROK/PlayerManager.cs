@@ -108,6 +108,9 @@ public class PlayerManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.J)){ //
             //ChOri_2D.enabled = false;
             PWC.currentGunType = PlayerWeaponController.GunType.SMALLGUN;
+            handleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[0], weaponCollection.MeleeWeapons[0].WeaponName, false);
+            secondaryHandleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[1], weaponCollection.MeleeWeapons[1].WeaponName, false);
+            MCFrontAnim.SetBool("IsUsingWeapon", true);
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("UseSmallGun", true);
             MCBackAnim.SetBool("UseSmallGun", true);
@@ -115,6 +118,9 @@ public class PlayerManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.K)){ //
             //ChOri_2D.enabled = false;
             PWC.currentGunType = PlayerWeaponController.GunType.BIGGUN;
+            handleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[0], weaponCollection.MeleeWeapons[0].WeaponName, false);
+            secondaryHandleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[1], weaponCollection.MeleeWeapons[1].WeaponName, false);
+            MCFrontAnim.SetBool("IsUsingWeapon", true);
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("UseBigGun", true);
             MCBackAnim.SetBool("UseBigGun", true);

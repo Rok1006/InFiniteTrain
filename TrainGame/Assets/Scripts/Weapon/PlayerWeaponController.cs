@@ -12,6 +12,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private TopDownController3D controller;
     private PlayerManager PM;
+    [SerializeField] private Animator playerAnim;
 
     //GunRelated-------
     [Header("Weapons")]
