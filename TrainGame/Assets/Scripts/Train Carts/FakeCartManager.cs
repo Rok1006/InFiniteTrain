@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class FakeCartManager : MMPersistentSingleton<FakeCartManager>
 {
-    [SerializeField] private GameObject bioCart;
+    [SerializeField] private GameObject bioCart, cartDoor;
     [SerializeField] private Teleporter leftTel, rightTel;
     [SerializeField] private Room targetRoom;
     private int enemyCount = 0;
@@ -23,14 +23,17 @@ public class FakeCartManager : MMPersistentSingleton<FakeCartManager>
         switch (SceneManager.GetActiveScene().name) {
             case "LeoPlayAround":
                 bioCart = GameObject.Find("Fake Bio Cart");
+                cartDoor = GameObject.Find("Trains_Train_Mid_window2 (To the Bio Cart)");
                 leftTel = GameObject.Find("Left Tel").GetComponent<Teleporter>();
                 rightTel = GameObject.Find("Right Tel").GetComponent<Teleporter>();
                 targetRoom = GameObject.Find("Target Room").GetComponent<Room>();
                 bioCart.SetActive(true);
-                if (gotBioCart && !bioCart.activeSelf)
+                if (gotBioCart) {
                     bioCart.SetActive(true);
+                    cartDoor.GetComponent<MeshRenderer>().enabled = true;
                     leftTel.Destination = rightTel;
                     leftTel.TargetRoom = targetRoom;
+                }
                 break;
             case "Map Test":
                 enemyCount = FindObjectsOfType<AIBrain>().Length;

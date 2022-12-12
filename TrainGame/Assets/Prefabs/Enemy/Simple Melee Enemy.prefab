@@ -59,6 +59,8 @@ GameObject:
   - component: {fileID: 5383551581881435166}
   - component: {fileID: 4076036824828219330}
   - component: {fileID: -1245203705080394392}
+  - component: {fileID: 365121739387882103}
+  - component: {fileID: 5034371941695172538}
   m_Layer: 13
   m_Name: Simple Melee Enemy
   m_TagString: Untagged
@@ -255,11 +257,11 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 6
+  WalkSpeed: 15
   ShouldSetMovement: 1
   IdleThreshold: 0.05
-  Acceleration: 10
-  Deceleration: 10
+  Acceleration: 0
+  Deceleration: 0
   InterpolateMovementSpeed: 0
   WalkParticles: []
   TouchTheGroundParticles: []
@@ -367,9 +369,13 @@ MonoBehaviour:
       - Decision: {fileID: 4281818918424238807}
         TrueState: Moving
         FalseState: 
+      - Decision: {fileID: 365121739387882103}
+        TrueState: Moving
+        FalseState: 
   - StateName: Moving
     Actions:
       array:
+      - {fileID: 5034371941695172538}
       - {fileID: 4281818918424238635}
     Transitions:
       array:
@@ -690,6 +696,35 @@ MonoBehaviour:
   GizmosColor: {r: 0.827451, g: 0.827451, b: 0.827451, a: 1}
   GimosSize: 1
   SpawnLootButton: 0
+--- !u!114 &365121739387882103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918424238803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cecd41409ea0af54481893fe71065025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: 
+  NumberOfHits: 1
+--- !u!114 &5034371941695172538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918424238803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f11b4fea1cac9d43860e5c5e194c852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: 
+  OnlyRunOnce: 1
 --- !u!1 &5360388444094790623
 GameObject:
   m_ObjectHideFlags: 0
