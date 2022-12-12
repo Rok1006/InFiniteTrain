@@ -13,9 +13,9 @@ public class ProGenManager : MonoBehaviour
 
 
     [SerializeField, BoxGroup("Enemy")]
-    private GameObject enemy;
+    private List<GameObject> enemyList;
 
-    public GameObject Enemy{get=>enemy;set=>enemy=value;}
+    public List<GameObject> EnemyList{get=>enemyList;set=>enemyList=value;}
     void Start()
     {
         SpawnTrainCarts(trainLength);
