@@ -88,8 +88,8 @@ public class PlayerWeaponController : MonoBehaviour
                 mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, pT.y-4.0f, pT.y+7.0f); //Mathf.Clamp(mouseCurrentWorld.y, minY_S, maxY_S);
             }else{
                 //Debug.Log("left");
-                mouseCurrentWorld.x = Mathf.Clamp(mouseCurrentWorld.x, pT.x, pT.x); //Mathf.Clamp(mouseCurrentWorld.x, minX_S, maxX_S);
-                mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, pT.y, pT.y); //Mathf.Clamp(mouseCurrentWorld.y, minY_S, maxY_S);
+                mouseCurrentWorld.x = Mathf.Clamp(mouseCurrentWorld.x, pT.x-5.0f, pT.x); //Mathf.Clamp(mouseCurrentWorld.x, minX_S, maxX_S);
+                mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, pT.y-4.0f, pT.y+7.0f); //Mathf.Clamp(mouseCurrentWorld.y, minY_S, maxY_S);
             }
             break;
             case GunType.BIGGUN:
