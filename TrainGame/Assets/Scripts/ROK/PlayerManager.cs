@@ -105,7 +105,7 @@ public class PlayerManager : MonoBehaviour
         oldPositionZ = transform.position.z;
 
      //Combat Related----------
-        if(Input.GetKeyDown(KeyCode.J)){ //
+        if(Input.GetKeyDown(KeyCode.Z)){ //
             //ChOri_2D.enabled = false;
             PWC.currentGunType = PlayerWeaponController.GunType.SMALLGUN;
             handleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[0], weaponCollection.MeleeWeapons[0].WeaponName, false);
@@ -115,7 +115,7 @@ public class PlayerManager : MonoBehaviour
             MCFrontAnim.SetBool("UseSmallGun", true);
             MCBackAnim.SetBool("UseSmallGun", true);
         }
-        if(Input.GetKeyDown(KeyCode.K)){ //
+        if(Input.GetKeyDown(KeyCode.X)){ //
             //ChOri_2D.enabled = false;
             PWC.currentGunType = PlayerWeaponController.GunType.BIGGUN;
             handleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[0], weaponCollection.MeleeWeapons[0].WeaponName, false);

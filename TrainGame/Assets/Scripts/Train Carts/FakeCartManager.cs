@@ -4,10 +4,11 @@ using UnityEngine;
 using MoreMountains.TopDownEngine;
 using MoreMountains.Tools;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FakeCartManager : MMPersistentSingleton<FakeCartManager>
 {
-    [SerializeField] private GameObject bioCart, cartDoor;
+    [SerializeField] private GameObject bioCart, cartDoor, addCartUI;
     [SerializeField] private Teleporter leftTel, rightTel;
     [SerializeField] private Room targetRoom;
     private int enemyCount = 0;
@@ -16,7 +17,6 @@ public class FakeCartManager : MMPersistentSingleton<FakeCartManager>
     {
         DontDestroyOnLoad(this);
     }
-
     
     void Update()
     {
@@ -36,12 +36,23 @@ public class FakeCartManager : MMPersistentSingleton<FakeCartManager>
                 }
                 break;
             case "Map Test":
+                addCartUI = GameObject.Find("Add Cart UI");
                 enemyCount = FindObjectsOfType<AIBrain>().Length;
-                if (enemyCount <= 0) {
-                    gotBioCart = true;
+                Debug.Log(gotBioCart + " is got bio cart");
+                if (enemyCount <= 0 && !gotBioCart) {
+                    addCartUI.transform.localScale = Vector3.one;
+                    foreach (Button button in addCartUI.GetComponentsInChildren<Button>()) {
+                        button.interactable = true;
+                    }
+                } else if (enemyCount <= 0 && gotBioCart){
+                    Debug.Log("ioqpweriqyweuioy");
                     SceneManager.LoadScene("LeoPlayAround");
                 }
                 break;
         }
+    }
+
+    public void gotBio() {
+        gotBioCart = true;
     }
 }
