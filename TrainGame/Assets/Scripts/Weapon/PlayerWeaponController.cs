@@ -24,8 +24,9 @@ public class PlayerWeaponController : MonoBehaviour
 
     Vector3 mousePreviousWorld, mouseDeltaWorld;
     Vector3 mouseCurrentWorld;
+    Vector3 originalRotation;
 	Camera mainCamera;
-    private bool left, right;
+    private bool left, right, down;
 
     [Header("Values")]
     public bool canRotate = false;  
@@ -46,7 +47,9 @@ public class PlayerWeaponController : MonoBehaviour
         //-----
         left = false;
         right = false;
+        down = true;
         // reset_RightBone = smallGunArm.rotation;
+       //originalRotation = this.transform.rotation;
     }
 
     void Update()
@@ -62,8 +65,14 @@ public class PlayerWeaponController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.A)){
             left = true;
             right = false;
+            down = false;
         }else if(Input.GetKeyDown(KeyCode.D)){
             right = true;
+            left = false;
+            down = false;
+        }else if(Input.GetKeyDown(KeyCode.S)){
+            down = true;
+            right = false;
             left = false;
         }
     }
@@ -96,19 +105,24 @@ public class PlayerWeaponController : MonoBehaviour
             if(ChOri_2D.IsRight){
                 mouseCurrentWorld.x = Mathf.Clamp(mouseCurrentWorld.x, pT.x+5.5f, pT.x+8.0f);
                 mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, pT.y+1.5f, pT.y+6.0f);
-            }else{ //make it so that when gun mode it wont flip
+            }else if(!ChOri_2D.IsRight){ //make it so that when gun mode it wont flip
                 //Debug.Log("left");
                 mouseCurrentWorld.x = Mathf.Clamp(mouseCurrentWorld.x, pT.x-8.0f, pT.x-5.5f); //Mathf.Clamp(mouseCurrentWorld.x, minX_S, maxX_S);
                 mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, pT.y+1.5f, pT.y+6.0f); //Mathf.Clamp(mouseCurrentWorld.y, minY_S, maxY_S);
             }
+            // else if(ChOri_2D.IsRight&&down || !ChOri_2D.IsRight&&down){
+            //     mouseCurrentWorld.x = Mathf.Clamp(mouseCurrentWorld.x, 0, 0); //Mathf.Clamp(mouseCurrentWorld.x, minX_S, maxX_S);
+            //     mouseCurrentWorld.y = Mathf.Clamp(mouseCurrentWorld.y, 0, 0);
+            // }
             break;
         }
         
+ 
         //Debug.Log(mouseCurrentWorld);
 
-        if(Input.GetKeyDown(KeyCode.J)|| Input.GetKeyDown(KeyCode.K)){
-            canRotate = true;
-        }
+        // if(Input.GetKeyDown(KeyCode.J)|| Input.GetKeyDown(KeyCode.K)){
+        //     canRotate = true;
+        // }
 //Dump
         // switch(currentGunType){
         //     case GunType.NONE:

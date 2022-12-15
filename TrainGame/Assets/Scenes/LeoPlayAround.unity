@@ -10106,7 +10106,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7782258, y: 1}
+    m_SensorSize: {x: 1.778481, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -22894,7 +22894,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7782258, y: 1}
+    m_SensorSize: {x: 1.778481, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -24240,6 +24240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1706059876}
   - component: {fileID: 1706059875}
+  - component: {fileID: 1706059877}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -24277,6 +24278,20 @@ Transform:
   m_Father: {fileID: 1053706293}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1706059877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706059874}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ddd36f5086fe43d09600c8a34a472c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundObject: {fileID: 0}
+  footSteps: []
 --- !u!1 &1706819207
 GameObject:
   m_ObjectHideFlags: 0
@@ -27007,10 +27022,25 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 303925719139238564, guid: 22a35bf57902eff4db7304f66222a5f6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1025402337831077950, guid: 22a35bf57902eff4db7304f66222a5f6,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055068940194478404, guid: 22a35bf57902eff4db7304f66222a5f6,
+        type: 3}
+      propertyPath: footSteps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055068940194478404, guid: 22a35bf57902eff4db7304f66222a5f6,
+        type: 3}
+      propertyPath: footSteps.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2142149330983833564, guid: 22a35bf57902eff4db7304f66222a5f6,
         type: 3}

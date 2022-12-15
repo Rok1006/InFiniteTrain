@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]public float oldPositionX = 0.0f;
     [HideInInspector]public float oldPositionZ = 0.0f;
     private bool isAttacking = false;
+    public bool down = true;
 
 //references------
     private TopDownController3D controller;
@@ -103,6 +104,14 @@ public class PlayerManager : MonoBehaviour
         }
         oldPositionX = transform.position.x;
         oldPositionZ = transform.position.z;
+        
+        if(Input.GetKey(KeyCode.S)){
+            down = true;
+            MCFrontAnim.SetBool("DefaultBigGunPos", true);
+        }else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
+            down = false;
+            MCFrontAnim.SetBool("DefaultBigGunPos", false);
+        }
 
      //Combat Related----------
         if(Input.GetKeyDown(KeyCode.Z)){ //
@@ -114,6 +123,7 @@ public class PlayerManager : MonoBehaviour
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("UseSmallGun", true);
             MCBackAnim.SetBool("UseSmallGun", true);
+            PWC.canRotate = true;
         }
         if(Input.GetKeyDown(KeyCode.X)){ //
             //ChOri_2D.enabled = false;
@@ -124,6 +134,7 @@ public class PlayerManager : MonoBehaviour
             DisableAllWeaponAnimation();
             MCFrontAnim.SetBool("UseBigGun", true);
             MCBackAnim.SetBool("UseBigGun", true);
+            PWC.canRotate = true;
         }
         if(Input.GetKeyDown(KeyCode.L)){ //need to release bone constrains
             // PWC.ResetBones();
