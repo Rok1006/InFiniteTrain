@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 927299118}
   - component: {fileID: 927299117}
   - component: {fileID: 5532440362036005148}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Back Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8967258701842729122}
   - component: {fileID: 5966311990731738744}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftArmJoint
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: de1a4f5ad4bdf1a4ea072c4d59ba87d8, type: 3}
@@ -621,6 +621,99 @@ Transform:
   m_Father: {fileID: 8891253277606572469}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3161007082132082648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777279040560813358}
+  - component: {fileID: 1533075791323389424}
+  m_Layer: 0
+  m_Name: Point Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &777279040560813358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161007082132082648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22, y: 3.53, z: -0.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8827246564645167332}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &1533075791323389424
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161007082132082648}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.8589609, b: 0.6839622, a: 1}
+  m_Intensity: 4.3
+  m_Range: 4.33
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &3578304888809167753
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5071031026920332888}
   - component: {fileID: 631667909335498719}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: de1a4f5ad4bdf1a4ea072c4d59ba87d8, type: 3}
@@ -716,7 +809,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7283682246295942359}
   - component: {fileID: 1664409023641693456}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FaceConstraints
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -768,7 +861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4974943627574869372}
   - component: {fileID: 1068013629758660587}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -899,7 +992,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1997672488690083428}
   - component: {fileID: 7172535290494323241}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ArmContraint
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: d1de1604dfe4cb64c9d31246a8e43c78, type: 3}
@@ -1041,6 +1134,7 @@ Transform:
   - {fileID: 7907307933399108362}
   - {fileID: 5344269135325281431}
   - {fileID: 303925719139238564}
+  - {fileID: 777279040560813358}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1649,7 +1743,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1014645120037477607}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SkeletonUtility-SkeletonRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1681,7 +1775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7128617604250138138}
   - component: {fileID: 7651669165371510169}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightArmJoint
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: de1a4f5ad4bdf1a4ea072c4d59ba87d8, type: 3}
@@ -1739,7 +1833,7 @@ GameObject:
   - component: {fileID: 5522988942919552690}
   - component: {fileID: 324822909296878474}
   - component: {fileID: 2055068940194478404}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Front Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
