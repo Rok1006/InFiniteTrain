@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 15500409}
-  - component: {fileID: 15500410}
   m_Layer: 13
   m_Name: EnemyA0
   m_TagString: Untagged
@@ -157,18 +156,6 @@ Transform:
   m_Father: {fileID: 832391708}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &15500410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15500408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28448b178a187428bb334bb4174add99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &18294234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2b2b899e7537814d98bc8b583be4196,
@@ -3416,7 +3403,7 @@ SpriteRenderer:
   m_Size: {x: 2.76, y: 2.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &192076787
@@ -3431,6 +3418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d76fca214cc462d8e3e68a38f587dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PopUpObj: {fileID: 0}
+  clicked: 0
 --- !u!1 &192465449
 GameObject:
   m_ObjectHideFlags: 0
@@ -5970,7 +5959,7 @@ SpriteRenderer:
   m_Size: {x: 2.76, y: 2.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &357039822 stripped
@@ -6274,6 +6263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d76fca214cc462d8e3e68a38f587dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PopUpObj: {fileID: 0}
+  clicked: 0
 --- !u!212 &389322988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6323,7 +6314,7 @@ SpriteRenderer:
   m_Size: {x: 2.76, y: 2.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &398585790
@@ -9909,6 +9900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d76fca214cc462d8e3e68a38f587dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PopUpObj: {fileID: 0}
+  clicked: 0
 --- !u!212 &631092019
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9958,7 +9951,7 @@ SpriteRenderer:
   m_Size: {x: 2.76, y: 2.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &636824425
@@ -11388,7 +11381,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7771739, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -25302,7 +25295,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7771739, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
