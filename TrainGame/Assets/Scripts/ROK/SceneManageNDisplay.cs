@@ -16,6 +16,8 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField] private GameObject mapIcon;
     [SerializeField] private GameObject theMap;
 
+    public List<GameObject> PopUpPoint = new List<GameObject>();
+//[HideInInspector]
 
     void Start()
     {
