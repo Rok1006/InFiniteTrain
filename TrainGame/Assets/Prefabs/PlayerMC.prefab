@@ -1098,11 +1098,8 @@ GameObject:
   - component: {fileID: 1255284449977796871}
   - component: {fileID: 2997011991923901375}
   - component: {fileID: 5964495633228839363}
-  - component: {fileID: 5750867637027939800}
-  - component: {fileID: 2043376741979753787}
   - component: {fileID: 4177996191700922980}
   - component: {fileID: 4547998760734062667}
-  - component: {fileID: 3181890632337918168}
   - component: {fileID: 2633586836105723836}
   - component: {fileID: 4988325307523474631}
   - component: {fileID: 6685295338685079691}
@@ -1318,66 +1315,6 @@ MonoBehaviour:
   SlidingSpeed: 15
   SlidingSpeedControl: 0.4
   SlidingDirectionControl: 1
---- !u!114 &5750867637027939800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6894699376349878751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80a52f88e226e0c459085cd4e4a38a7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  ForcedCrouch: 0
-  CrawlAuthorized: 1
-  CrawlSpeed: 4
-  ResizeColliderWhenCrouched: 0
-  CrouchedColliderHeight: 1.25
-  ObjectsToOffset: []
-  OffsetCrouch: {x: 0, y: 0, z: 0}
-  OffsetCrawl: {x: 0, y: 0, z: 0}
-  OffsetSpeed: 5
-  InATunnel: 0
---- !u!114 &2043376741979753787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6894699376349878751}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c752f2958a762a144a00333487ac892f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  JumpProportionalToPress: 1
-  MinimumPressTime: 0.4
-  JumpForce: 800
-  JumpHeight: 4
-  CanJumpOnTooSteepSlopes: 1
-  ResetJumpsOnTooSteepSlopes: 0
-  NumberOfJumps: 1
-  NumberOfJumpsLeft: 0
-  JumpStartFeedback: {fileID: 0}
-  JumpStopFeedback: {fileID: 0}
 --- !u!114 &4177996191700922980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,42 +1395,19 @@ MonoBehaviour:
   AbilityPermitted: 1
   BlockingMovementStates: 
   BlockingConditionStates: 
-  Movement: 4
+  Movement: 0
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
   WalkSpeed: 20
   ShouldSetMovement: 1
   IdleThreshold: 0.05
-  Acceleration: 0
-  Deceleration: 0
+  Acceleration: 100
+  Deceleration: 100
   InterpolateMovementSpeed: 0
   WalkParticles: []
   TouchTheGroundParticles: []
   TouchTheGroundSfx: []
---- !u!114 &3181890632337918168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6894699376349878751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d103439fc2940e347937487a70ea01e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  RunSpeed: 16
-  AutoRun: 0
-  AutoRunThreshold: 0.6
 --- !u!114 &2633586836105723836
 MonoBehaviour:
   m_ObjectHideFlags: 0
