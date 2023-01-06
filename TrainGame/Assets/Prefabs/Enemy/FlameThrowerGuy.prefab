@@ -386,23 +386,23 @@ MonoBehaviour:
   - StateName: Attack
     Actions:
       array:
-      - {fileID: 5383551581881435166}
       - {fileID: 5034371941695172538}
       - {fileID: 4281818918424238635}
+      - {fileID: 5383551581881435166}
     Transitions:
       array:
       - Decision: {fileID: -7970446094876931934}
-        TrueState: Nothing
+        TrueState: Reload
         FalseState: 
-  - StateName: Nothing
+  - StateName: Reload
     Actions:
       array:
-      - {fileID: 0}
+      - {fileID: 4281818918424238805}
     Transitions:
       array:
-      - Decision: {fileID: 0}
-        TrueState: 
-        FalseState: Moving
+      - Decision: {fileID: -7970446094876931934}
+        TrueState: Moving
+        FalseState: 
   TimeInThisState: 0
   Target: {fileID: 0}
   _lastKnownTargetPosition: {x: 0, y: 0, z: 0}
@@ -747,8 +747,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: 
-  AfterTimeMin: 10
-  AfterTimeMax: 10
+  AfterTimeMin: 3
+  AfterTimeMax: 3
 --- !u!1 &5360388444094790623
 GameObject:
   m_ObjectHideFlags: 0

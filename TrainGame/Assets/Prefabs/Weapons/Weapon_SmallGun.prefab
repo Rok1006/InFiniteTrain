@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3547737317078699104}
   - component: {fileID: 3547737317078699111}
   - component: {fileID: 3547737317078699106}
+  - component: {fileID: 133841481344922354}
   m_Layer: 0
   m_Name: Weapon_SmallGun
   m_TagString: Untagged
@@ -200,6 +201,24 @@ MonoBehaviour:
     type: 3}
   PoolSize: 20
   PoolCanExpand: 1
+--- !u!114 &133841481344922354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547737317078699110}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d708b09d7c685aa4596060c0c90f2d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmmoID: RifleBullet
+  AmmoInventoryName: FoodCartInventory
+  MaxAmmo: 10
+  ShouldLoadOnStart: 1
+  ShouldEmptyOnSave: 1
+  CurrentAmmoAvailable: 0
 --- !u!1 &6120561414136601625
 GameObject:
   m_ObjectHideFlags: 0
