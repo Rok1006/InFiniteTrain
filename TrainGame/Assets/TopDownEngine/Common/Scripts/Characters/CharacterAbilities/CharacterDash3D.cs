@@ -155,6 +155,7 @@ namespace MoreMountains.TopDownEngine
 					_dashDestination = this.transform.position + DashDirection.normalized * DashDistance;
 					_dashAngle.y = angle;
 					_dashDestination = MMMaths.RotatePointAroundPivot(_dashDestination, this.transform.position, _dashAngle);
+					
 					break;
 
 				case DashModes.Fixed:
