@@ -19,6 +19,7 @@ namespace MoreMountains.TopDownEngine
 	[AddComponentMenu("TopDown Engine/Character/Core/Character")] 
 	public class Character : MonoBehaviour
 	{
+		
 		/// the possible initial facing direction for your character
 		public enum FacingDirections { West, East, North, South }
 		public Transform back;
