@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7ce0b8cf4b34859b9e359283b2e7f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponName: 
+  WeaponName: Weapon_SmallGun
   WeaponCurrentlyActive: 1
   TriggerMode: 0
   DelayBeforeUse: 0
@@ -88,9 +88,9 @@ MonoBehaviour:
   UseBurstMode: 0
   BurstLength: 3
   BurstTimeBetweenShots: 0.1
-  MagazineBased: 0
-  MagazineSize: 30
-  AutoReload: 0
+  MagazineBased: 1
+  MagazineSize: 10
+  AutoReload: 1
   NoInputReload: 0
   ReloadTime: 2
   AmmoConsumedPerShot: 1
@@ -208,14 +208,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3547737317078699110}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d708b09d7c685aa4596060c0c90f2d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmmoID: RifleBullet
+  AmmoID: RifleAmmo
   AmmoInventoryName: FoodCartInventory
-  MaxAmmo: 10
+  MaxAmmo: 5
   ShouldLoadOnStart: 1
   ShouldEmptyOnSave: 1
   CurrentAmmoAvailable: 0
