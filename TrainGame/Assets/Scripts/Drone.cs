@@ -11,12 +11,29 @@ public class Drone : MonoBehaviour
     public float acceleration = 10f;
     public float startRotating = 0;
     private Rigidbody rb;
-    public Transform movePoint;
+    public Vector3 movePoint;
+    public GameObject thisTrain;
+    public bool isMoving = false;
+    public bool arrived = false;
+    
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        
         rb = this.GetComponent<Rigidbody>();
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 100);
+        for(int i = 0; i < hitColliders.Length; i++)
+        {
+            Debug.Log(hitColliders[i].name);
+            if(hitColliders[i].CompareTag("center"))
+            {
+                thisTrain = hitColliders[i].gameObject;
+            }
+            
+        
+        }
+        movePoint = PickSpotToMove();
     }
 
     // Update is called once per frame
@@ -26,7 +43,8 @@ public class Drone : MonoBehaviour
         transform.LookAt(player.transform);
         //transform.Translate(Vector3.forward * speed, Space.World);
         var step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, step);
+        transform.position = Vector3.Lerp(transform.position, movePoint, step);
+      
 
 
     }
@@ -37,5 +55,14 @@ public class Drone : MonoBehaviour
         {
             transform.Rotate(0, 0, 30);
         }
+    }
+
+    public Vector3 PickSpotToMove()
+    {
+        var xOffset = Random.Range(-3, 3);
+        var zOffset = Random.Range(-10, 10);
+        movePoint = thisTrain.transform.position + new Vector3(xOffset, 0, zOffset);
+
+        return movePoint;
     }
 }
