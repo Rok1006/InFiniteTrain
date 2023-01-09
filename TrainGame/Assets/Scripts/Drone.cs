@@ -42,10 +42,25 @@ public class Drone : MonoBehaviour
 
         transform.LookAt(player.transform);
         //transform.Translate(Vector3.forward * speed, Space.World);
+        if(isMoving == true)
+        {
         var step = speed * Time.deltaTime;
         transform.position = Vector3.Lerp(transform.position, movePoint, step);
-      
 
+        }
+        if(Vector3.Distance(transform.position , movePoint) < 0.1)
+        {
+            isMoving = false;
+            PickSpotToMove();
+        }
+
+        /*
+        Vector3 forward = this.transform.forward;
+        Vector3 moving = (movePoint - this.transform.position).normalized;
+
+        Debug.Log(Vector3.Dot(forward, moving));
+        */
+        
 
     }
 
@@ -62,6 +77,7 @@ public class Drone : MonoBehaviour
         var xOffset = Random.Range(-3, 3);
         var zOffset = Random.Range(-10, 10);
         movePoint = thisTrain.transform.position + new Vector3(xOffset, 0, zOffset);
+        isMoving = true;
 
         return movePoint;
     }
