@@ -1361,6 +1361,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e3cb94f688e5e40b50205f0b177c15, type: 3}
+--- !u!1 &105146773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5761104633520963246, guid: e9e3cb94f688e5e40b50205f0b177c15,
+    type: 3}
+  m_PrefabInstance: {fileID: 105146772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &115653340
 GameObject:
   m_ObjectHideFlags: 0
@@ -5429,6 +5435,7 @@ MonoBehaviour:
   rightDoorName: Teleporter Right
   ground: {fileID: 0}
   SceneMD: {fileID: 0}
+  trainMapIcon: {fileID: 0}
 --- !u!1 &412960456
 GameObject:
   m_ObjectHideFlags: 0
@@ -10025,6 +10032,7 @@ GameObject:
   - component: {fileID: 740734130}
   - component: {fileID: 740734132}
   - component: {fileID: 740734131}
+  - component: {fileID: 740734133}
   m_Layer: 0
   m_Name: The Storage Room
   m_TagString: Untagged
@@ -10108,6 +10116,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 84.8, y: 26.1, z: 26.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &740734133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740734129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7610d1b3d363554d85c14a4a02c7f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doors: []
+  leftDoors:
+  - {fileID: 1922389065}
+  rightDoors:
+  - {fileID: 568217319}
+  leftDoorName: Teleporter Left
+  rightDoorName: Teleporter Right
+  ground: {fileID: 0}
+  SceneMD: {fileID: 0}
+  trainMapIcon: {fileID: 0}
 --- !u!1 &741262497
 GameObject:
   m_ObjectHideFlags: 0
@@ -15661,6 +15691,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1061723946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7030648046613446592, guid: d7aa124224af36241873e834dba2b039,
+    type: 3}
+  m_PrefabInstance: {fileID: 961663993}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e863ef80d26f494daa08d762ebe9208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1065190374
 GameObject:
   m_ObjectHideFlags: 0
@@ -25854,7 +25896,10 @@ MonoBehaviour:
   worldMap: {fileID: 0}
   trainMap: {fileID: 307718199}
   trainIconPanel: {fileID: 927613667}
-  playerIcon: {fileID: 0}
+  playerIcon: {fileID: 105146773}
+  trainMapTrainIcons:
+  - {fileID: 1507972054}
+  - {fileID: 1061723946}
 --- !u!1 &1427869393
 GameObject:
   m_ObjectHideFlags: 0
@@ -27290,6 +27335,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504149233}
   m_CullTransparentMesh: 1
+--- !u!114 &1507972054 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7030648046613446592, guid: d7aa124224af36241873e834dba2b039,
+    type: 3}
+  m_PrefabInstance: {fileID: 1810084500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e863ef80d26f494daa08d762ebe9208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1516992424
 GameObject:
   m_ObjectHideFlags: 0
