@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class MapPopUp : MonoBehaviour
 {
@@ -9,17 +11,22 @@ public class MapPopUp : MonoBehaviour
     Animator PUAnim;
     private SceneManageNDisplay SceneManageNDisplay;
     public bool clicked = false;
+    public Point point;
+    public GameObject icon;
+    public GameObject text;
     //[HideInInspector]public List<GameObject> PopUpPoint = new List<GameObject>();
 
     void Start()
     {
+        point = GetComponent<Point>();
         PUAnim = PopUpObj.GetComponent<Animator>();
         SceneManageNDisplay = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
         //INPAnim = InfoPop.GetComponent<Animator>();
     }
     void Update()
     {
-        
+        icon.GetComponent<Image>().sprite = point.icon;
+        text.GetComponent<TextMeshProUGUI>().text = point.text;
     }
     public void EnterPtIcon(){ //when player hover on green sq; on the Icon
         //if(SceneManageNDisplay.PopUpPoint.Count==0)

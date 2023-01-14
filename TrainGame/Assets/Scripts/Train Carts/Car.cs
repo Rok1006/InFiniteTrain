@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.TopDownEngine;
 using System.Linq;
+using NaughtyAttributes;
 
 /*This is the parent class of train carts*/
-public class Cart : MonoBehaviour
+public class Car : MonoBehaviour
 {
     private Room cartRoom; //the room this script is attached
     private List<Room> connectedRooms = new List<Room>(); //rooms that this room is connecting to
@@ -19,8 +20,7 @@ public class Cart : MonoBehaviour
     private RoomManager roomManager;
 
     //UI Stuff
-    private TrainMapTrainIcon trainMapIcon;
-
+    [SerializeField, ReadOnly] private TrainMapTrainIcon trainMapIcon;
 
     //getters & setters
     public Room CartRoom {get=>cartRoom; protected set=>cartRoom = value;}
@@ -65,6 +65,8 @@ public class Cart : MonoBehaviour
         if (SceneMD != null)
             DisplayCartName();
         
+        //set current room to the room player just entered
+        roomManager.CurrentCar = this;
     }
 
     /*triggers when player exit the room*/
