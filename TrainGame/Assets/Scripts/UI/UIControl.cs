@@ -9,9 +9,6 @@ using NaughtyAttributes;
 public class UIControl : MonoBehaviour
 {
     [SerializeField, BoxGroup("World Map")] private GameObject worldMap;
-<<<<<<< Updated upstream
-    [SerializeField, BoxGroup("Train Map")] private GameObject trainIconPanel, playerIcon;
-=======
     [SerializeField, BoxGroup("Train Map")] private GameObject trainMap, trainIconPanel, playerIcon;
     [SerializeField, BoxGroup("Train Map"), InfoBox("order from far right to far left", EInfoBoxType.Normal)] private List<TrainMapTrainIcon> trainMapTrainIcons;
 
@@ -37,5 +34,4 @@ public class UIControl : MonoBehaviour
     public void moveTrainMapPlayerIcon(Car car) {
 
     }
->>>>>>> Stashed changes
 }
