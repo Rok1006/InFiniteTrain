@@ -10084,8 +10084,8 @@ MonoBehaviour:
   OnPlayerEntersRoomForTheFirstTime:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Cart, Assembly-CSharp
+      - m_Target: {fileID: 740734133}
+        m_TargetAssemblyTypeName: Car, Assembly-CSharp
         m_MethodName: EnterRoom
         m_Mode: 1
         m_Arguments:
@@ -19574,7 +19574,7 @@ MonoBehaviour:
   PrevInvKey: page down
   PrevInvAltKey: joystick button 5
   CloseList: []
-  ManageButtons: 1
+  ManageButtons: 0
   ManageButtonsMode: 0
   EquipUseButton: {fileID: 1680309923}
   MoveButton: {fileID: 1462380074}
@@ -32534,7 +32534,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCar: {fileID: 0}
-  carList: []
+  carList:
+  - {fileID: 410523699}
+  - {fileID: 740734133}
 --- !u!1 &1857804409
 GameObject:
   m_ObjectHideFlags: 0
