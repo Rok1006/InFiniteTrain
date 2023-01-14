@@ -17,7 +17,10 @@ public class Car : MonoBehaviour
     [SerializeField] private Transform ground;
     protected ProGenManager proGenManager;
     [SerializeField] private GameObject SceneMD;
+
+    //Managers
     private RoomManager roomManager;
+    private UIControl uiControl;
 
     //UI Stuff
     [SerializeField, ReadOnly] private TrainMapTrainIcon trainMapIcon;
@@ -57,6 +60,10 @@ public class Car : MonoBehaviour
         roomManager = FindObjectOfType<RoomManager>();
         if (roomManager==null)
             Debug.Log("cant find room manager in this scene");
+        
+        uiControl = FindObjectOfType<UIControl>();
+        if (uiControl==null)
+            Debug.Log("cant find ui control in this scene");
     }
 
     /*triggers when player enter the room*/
@@ -67,6 +74,9 @@ public class Car : MonoBehaviour
         
         //set current room to the room player just entered
         roomManager.CurrentCar = this;
+
+        //set player icon in train map
+        uiControl.MoveTrainMapPlayerIcon(roomManager.CurrentCar);
     }
 
     /*triggers when player exit the room*/
