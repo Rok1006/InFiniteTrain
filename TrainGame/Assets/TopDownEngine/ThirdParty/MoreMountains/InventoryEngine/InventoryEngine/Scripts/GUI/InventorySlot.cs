@@ -207,6 +207,11 @@ namespace MoreMountains.InventoryEngine
 			MMInventoryEvent.Trigger(MMInventoryEventType.UseRequest, this, ParentInventoryDisplay.TargetInventoryName, ParentInventoryDisplay.TargetInventory.Content[Index], 0, Index, ParentInventoryDisplay.PlayerID);
 		}
 
+		public virtual void Combine() {
+			if (!SlotEnabled) {return; }
+			MMInventoryEvent.Trigger(MMInventoryEventType.CombineRequest, this, ParentInventoryDisplay.TargetInventoryName, ParentInventoryDisplay.TargetInventory.Content[Index], 0, Index, ParentInventoryDisplay.PlayerID);
+		}
+
 		/// <summary>
 		/// Equip this item if possible.
 		/// </summary>

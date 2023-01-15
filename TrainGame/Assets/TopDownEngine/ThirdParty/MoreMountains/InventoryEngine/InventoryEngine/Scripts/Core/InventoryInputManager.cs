@@ -515,6 +515,10 @@ namespace MoreMountains.InventoryEngine
 			CurrentlySelectedInventorySlot.Equip();
 		}
 
+		public virtual void Combine() {
+			CurrentlySelectedInventorySlot.Combine();
+		}
+
 		public virtual void Use()
 		{
 			CurrentlySelectedInventorySlot.Use();

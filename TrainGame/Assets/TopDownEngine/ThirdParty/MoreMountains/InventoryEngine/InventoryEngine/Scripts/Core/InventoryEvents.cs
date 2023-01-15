@@ -8,7 +8,7 @@ namespace MoreMountains.InventoryEngine
 	/// <summary>
 	/// The possible inventory related events
 	/// </summary>
-	public enum MMInventoryEventType { Pick, Select, Click, Move, UseRequest, ItemUsed, EquipRequest, ItemEquipped, UnEquipRequest, ItemUnEquipped, Drop, Destroy, Error, Redraw, ContentChanged, InventoryOpens, InventoryCloseRequest, InventoryCloses, InventoryLoaded }
+	public enum MMInventoryEventType { Pick, Select, Click, Move, UseRequest, ItemUsed, CombineRequest, ItemCombined, EquipRequest, ItemEquipped, UnEquipRequest, ItemUnEquipped, Drop, Destroy, Error, Redraw, ContentChanged, InventoryOpens, InventoryCloseRequest, InventoryCloses, InventoryLoaded }
 
 	/// <summary>
 	/// Inventory events are used throughout the Inventory Engine to let other interested classes know that something happened to an inventory.  

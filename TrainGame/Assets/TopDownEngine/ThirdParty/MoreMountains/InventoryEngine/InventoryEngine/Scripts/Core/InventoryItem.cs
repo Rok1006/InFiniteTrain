@@ -13,6 +13,7 @@ namespace MoreMountains.InventoryEngine
 		public bool DisplayEquipButton = true;
 		public bool DisplayUseButton = true;
 		public bool DisplayUnequipButton = true;
+		public bool DisplayCombineButton = true;
 	}
 	
 	[Serializable]
@@ -238,5 +239,10 @@ namespace MoreMountains.InventoryEngine
 		/// What happens when the object is dropped - override this to add your own behaviors
 		/// </summary>
 		public virtual bool Drop(string playerID) { return true; }
+
+		/// <summary>
+		/// What happens when the object is combined - override this to add your own behaviors
+		/// </summary>
+		public virtual bool Combine(string playerID) { return true; }
 	}
 }
