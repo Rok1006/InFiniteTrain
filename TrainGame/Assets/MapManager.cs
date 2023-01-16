@@ -6,7 +6,7 @@ public class MapManager : MonoBehaviour
 {
 
     public GameObject[] points;
-    public int gameState = 0;
+   public static int gameState = 0;
     public GameObject player;
     public List<GameObject> availableDestination = new List<GameObject>();
     private bool playerTurn = false;
@@ -30,9 +30,17 @@ public class MapManager : MonoBehaviour
             enemyTurn = true;
         }
 
-        if(playerTurn = true)
+        if (enemyTurn = true)
         {
+            foreach (GameObject x in points)
+            {
+                if(x.GetComponent<Point>().isEnemy == true)
+                {
+                    x.GetComponent<Point>().MoveEnemy();
+                }
+            }
 
+            gameState = 0;
         }
     }
 

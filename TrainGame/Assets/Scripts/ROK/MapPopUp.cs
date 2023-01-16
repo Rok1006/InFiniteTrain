@@ -42,17 +42,26 @@ public class MapPopUp : MonoBehaviour
         //     ResetPoint();
         //     clicked = false;
         // }
-        if(SceneManageNDisplay.PopUpPoint.Count>0)
-            ResetPoint();
-        if(!clicked){
-            clicked = true;
-            PUAnim.SetTrigger("SetLocation");
-            SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
-            ResetAnim(0);
-            //if(SceneManageNDisplay.PopUpPoint.Count>0)
+        if(MapManager.gameState == 0) {
+            GetComponent<Point>().MovePlayer();
+            if (SceneManageNDisplay.PopUpPoint.Count > 0)
+                ResetPoint();
+            if (!clicked)
+            {
+                clicked = true;
+                PUAnim.SetTrigger("SetLocation");
+                SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
+                ResetAnim(0);
+                MapManager.gameState = 1;
+                //if(SceneManageNDisplay.PopUpPoint.Count>0)
                 //ResetAnim(0);
-            //SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<MapPopUp>().clicked = false;
+                //SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<MapPopUp>().clicked = false;
+            }
+            MapManager.gameState = 1;
+
+
         }
+      
         
         
     }
