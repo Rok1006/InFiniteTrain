@@ -94,6 +94,10 @@ namespace MoreMountains.InventoryEngine
 		public string PrevInvKey = "page up";
 		/// the alt key used to go to the previous inventory
 		public string PrevInvAltKey = "joystick button 5";
+		/// the key used to combine two items
+		public string CombineKey = "";
+		/// the alt key used to combine two items
+		public string CombineAltKey = "";
 		#endif
 
 		[Header("Close Bindings")] 
@@ -126,6 +130,8 @@ namespace MoreMountains.InventoryEngine
 		/// the button used to unequip an item
 		[MMCondition("ManageButtons", true)]
 		public Button UnEquipButton;
+		[MMCondition("ManageButtons", true)]
+		public Button CombineButton;
         
 		/// returns the active slot
 		public InventorySlot CurrentlySelectedInventorySlot { get; set; }
@@ -147,6 +153,7 @@ namespace MoreMountains.InventoryEngine
 		private bool _isUnEquipButtonNotNull;
 		private bool _isMoveButtonNotNull;
 		private bool _isDropButtonNotNull;
+		private bool _isCombineButtonNotNull;
 		
 		protected bool _toggleInventoryKeyPressed;
 		protected bool _cancelKeyPressed;
@@ -157,6 +164,7 @@ namespace MoreMountains.InventoryEngine
 		protected bool _equipKeyPressed;
 		protected bool _useKeyPressed;
 		protected bool _dropKeyPressed;
+		protected bool _combineKeyPressed;
 
 		/// <summary>
 		/// On start, we grab references and prepare our hotbar list
@@ -169,6 +177,7 @@ namespace MoreMountains.InventoryEngine
 			_isUseButtonNotNull = UseButton != null;
 			_isEquipButtonNotNull = EquipButton != null;
 			_isEquipUseButtonNotNull = EquipUseButton != null;
+			_isCombineButtonNotNull = CombineButton != null;
 			_currentInventoryDisplay = TargetInventoryDisplay;
 			InventoryIsOpen = false;
 			_targetInventoryHotbars = new List<InventoryHotbar>();
@@ -259,6 +268,10 @@ namespace MoreMountains.InventoryEngine
 				{
 					SetButtonState(DropButton, CurrentlySelectedInventorySlot.Droppable() && CurrentlySelectedInventorySlot.DropButtonShouldShow());
 				}
+				if (_isCombineButtonNotNull)
+				{
+					SetButtonState(CombineButton, CurrentlySelectedInventorySlot.Combinable() && CurrentlySelectedInventorySlot.CombineButtonShouldShow());
+				}
 			}
 			else
 			{
@@ -268,6 +281,7 @@ namespace MoreMountains.InventoryEngine
 				SetButtonState(DropButton, false);
 				SetButtonState(MoveButton, false);
 				SetButtonState(UnEquipButton, false);
+				SetButtonState(CombineButton, false);
 			}
 		}
 
@@ -383,6 +397,7 @@ namespace MoreMountains.InventoryEngine
 			_equipKeyPressed = Input.GetKeyDown(EquipKey) || Input.GetKeyDown(EquipAltKey);
 			_useKeyPressed = Input.GetKeyDown(UseKey) || Input.GetKeyDown(UseAltKey);
 			_dropKeyPressed = Input.GetKeyDown(DropKey) || Input.GetKeyDown(DropAltKey);
+			_combineKeyPressed = Input.GetKeyDown(CombineKey) || Input.GetKeyDown(CombineAltKey);
 			#endif
 			
 			// if the user presses the 'toggle inventory' key
@@ -471,6 +486,15 @@ namespace MoreMountains.InventoryEngine
 				if (CurrentlySelectedInventorySlot != null)
 				{
 					CurrentlySelectedInventorySlot.Drop();
+				}
+			}
+
+			//combine
+			if (_combineKeyPressed)
+			{
+				if (CurrentlySelectedInventorySlot != null)
+				{
+					CurrentlySelectedInventorySlot.Combine();
 				}
 			}
 		}

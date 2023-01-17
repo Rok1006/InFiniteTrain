@@ -1423,7 +1423,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c57d6e45c20154fb5aa20ccfa70737a9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c57d6e45c20154fb5aa20ccfa70737a9,
         type: 3}
@@ -5389,6 +5389,9 @@ MonoBehaviour:
   RoomVisited: 0
   OnPlayerEntersRoomForTheFirstTime:
     m_PersistentCalls:
+      m_Calls: []
+  OnPlayerEntersRoom:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 410523699}
         m_TargetAssemblyTypeName: Car, Assembly-CSharp
@@ -5402,9 +5405,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPlayerEntersRoom:
-    m_PersistentCalls:
-      m_Calls: []
   OnPlayerExitsRoom:
     m_PersistentCalls:
       m_Calls: []
@@ -7688,7 +7688,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f45dd841e28121a4e8a036b352e9fea5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f45dd841e28121a4e8a036b352e9fea5,
         type: 3}
@@ -8009,7 +8009,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 52555cd385aec4216a669c01d3588e10,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52555cd385aec4216a669c01d3588e10,
         type: 3}
@@ -9747,7 +9747,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7765667, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10107,6 +10107,9 @@ MonoBehaviour:
   RoomVisited: 0
   OnPlayerEntersRoomForTheFirstTime:
     m_PersistentCalls:
+      m_Calls: []
+  OnPlayerEntersRoom:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 740734133}
         m_TargetAssemblyTypeName: Car, Assembly-CSharp
@@ -10120,9 +10123,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPlayerEntersRoom:
-    m_PersistentCalls:
-      m_Calls: []
   OnPlayerExitsRoom:
     m_PersistentCalls:
       m_Calls: []
@@ -10358,7 +10358,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3fb979d3570b444468961a18144d099a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3fb979d3570b444468961a18144d099a,
         type: 3}
@@ -19258,7 +19258,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f45dd841e28121a4e8a036b352e9fea5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f45dd841e28121a4e8a036b352e9fea5,
         type: 3}
@@ -19598,6 +19598,8 @@ MonoBehaviour:
   NextInvAltKey: joystick button 4
   PrevInvKey: page down
   PrevInvAltKey: joystick button 5
+  CombineKey: 0
+  CombineAltKey: 0
   CloseList: []
   ManageButtons: 0
   ManageButtonsMode: 0
@@ -19607,6 +19609,7 @@ MonoBehaviour:
   EquipButton: {fileID: 0}
   UseButton: {fileID: 0}
   UnEquipButton: {fileID: 0}
+  CombineButton: {fileID: 0}
   InventoryIsOpen: 0
 --- !u!225 &1261547947
 CanvasGroup:
@@ -27575,7 +27578,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f45dd841e28121a4e8a036b352e9fea5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f45dd841e28121a4e8a036b352e9fea5,
         type: 3}
@@ -28320,7 +28323,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7765667, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -28884,7 +28887,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7765667, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -36655,6 +36658,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.00311
       objectReference: {fileID: 0}
+    - target: {fileID: 5469959979148236633, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5511652824208775608, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
         type: 3}
       propertyPath: m_RootOrder
@@ -36793,7 +36801,7 @@ PrefabInstance:
     - target: {fileID: 9152521494076634590, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7765957
+      value: 1.7765667
       objectReference: {fileID: 0}
     - target: {fileID: 9152521494368013391, guid: d01901bfd8a8f8a4cb43f3e972ff6899,
         type: 3}

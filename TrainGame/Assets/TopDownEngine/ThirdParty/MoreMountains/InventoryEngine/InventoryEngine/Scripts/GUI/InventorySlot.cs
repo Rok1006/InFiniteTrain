@@ -368,6 +368,25 @@ namespace MoreMountains.InventoryEngine
 			}
 		}
 
+		/// <summary>
+		/// Returns true if the item at this slot can be combined, false otherwise
+		/// </summary>
+		public virtual bool Combinable()
+		{
+			if (InventoryItem.IsNull(ParentInventoryDisplay.TargetInventory.Content[Index]))
+			{
+				return false;
+			}
+			if (!ParentInventoryDisplay.TargetInventory.Content[Index].Combinale)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
 		public virtual bool EquipUseButtonShouldShow()
 		{
 			if (InventoryItem.IsNull(ParentInventoryDisplay.TargetInventory.Content[Index])) { return false; }
@@ -402,6 +421,12 @@ namespace MoreMountains.InventoryEngine
 		{
 			if (InventoryItem.IsNull(ParentInventoryDisplay.TargetInventory.Content[Index])) { return false; }
 			return ParentInventoryDisplay.TargetInventory.Content[Index].DisplayProperties.DisplayUnequipButton;
+		}
+
+		public virtual bool CombineButtonShouldShow()
+		{
+			if (InventoryItem.IsNull(ParentInventoryDisplay.TargetInventory.Content[Index])) { return false; }
+			return ParentInventoryDisplay.TargetInventory.Content[Index].DisplayProperties.DisplayCombineButton;
 		}
 		
 	}

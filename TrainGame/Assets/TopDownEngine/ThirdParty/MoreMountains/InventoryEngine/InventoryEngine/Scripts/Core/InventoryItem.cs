@@ -58,6 +58,8 @@ namespace MoreMountains.InventoryEngine
 		public bool CanMoveObject=true;
 		/// if this is true, objects can be swapped with another object
 		public bool CanSwapObject=true;
+		/// if this is true, objects can be combined with another object
+		public bool Combinale = true;
 		/// a set of properties defining whether or not to show inventory action buttons when that item is selected 
 		public InventoryItemDisplayProperties DisplayProperties;
 		
@@ -65,6 +67,7 @@ namespace MoreMountains.InventoryEngine
 		public virtual bool IsUsable {  get { return Usable;  } }
 		/// whether or not this object can be equipped
 		public virtual bool IsEquippable { get { return Equippable; } }
+		public virtual bool IsCombinable { get { return Combinale; } }
 
 		[HideInInspector]
 		/// the base quantity of this item

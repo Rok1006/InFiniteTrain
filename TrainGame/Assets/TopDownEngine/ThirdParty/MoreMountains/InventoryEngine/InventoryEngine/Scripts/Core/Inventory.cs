@@ -867,6 +867,36 @@ namespace MoreMountains.InventoryEngine
 		}
 
 		/// <summary>
+		/// Triggers the combine and potential destroy of the item passed in parameter. You can also specify the item's slot (optional) and index.
+		/// </summary>
+		/// <param name="item">Item.</param>
+		/// <param name="slot">Slot.</param>
+		/// <param name="index">Index.</param>
+		/*AWAREEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!
+		public virtual bool CombineItem(InventoryItem item, int index, InventorySlot slot = null)
+		{
+			if (InventoryItem.IsNull(item))
+			{
+				MMInventoryEvent.Trigger(MMInventoryEventType.Error, slot, this.name, null, 0, index, PlayerID);
+				return false;
+			}
+			if (!item.IsCombinable)
+			{
+				return false;
+			}
+			if (item.Use(PlayerID))
+			{
+				// remove 1 from quantity
+				MMInventoryEvent.Trigger(MMInventoryEventType.ItemCombined, slot, this.name, item.Copy(), 0, index, PlayerID);
+				if ()
+				{
+					RemoveItem(index, item.ConsumeQuantity);    
+				}
+			}
+			return true;
+		}*/
+
+		/// <summary>
 		/// Catches inventory events and acts on them
 		/// </summary>
 		/// <param name="inventoryEvent">Inventory event.</param>
@@ -913,6 +943,13 @@ namespace MoreMountains.InventoryEngine
 				case MMInventoryEventType.Drop:
 					DropItem(inventoryEvent.EventItem, inventoryEvent.Index, inventoryEvent.Slot);
 					break;
+				
+				/////////////AWAREEEEEEEEEEEEEE!!!!!!!
+
+
+
+				//case MMInventoryEventType.CombineRequest:
+					
 			}
 		}
 
