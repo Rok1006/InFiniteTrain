@@ -179,6 +179,9 @@ namespace MoreMountains.InventoryEngine
 				case MMInventoryEventType.EquipRequest:
 					DisplayDetails (null);
 					break;
+				case MMInventoryEventType.CombineRequest:
+					DisplayDetails (null);
+					break;
 			}
 		}
 

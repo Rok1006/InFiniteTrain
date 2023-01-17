@@ -13,6 +13,7 @@ namespace MoreMountains.InventoryEngine
 		public bool DisplayEquipButton = true;
 		public bool DisplayUseButton = true;
 		public bool DisplayUnequipButton = true;
+		public bool DisplayCombineButton = true;
 	}
 	
 	[Serializable]
@@ -57,6 +58,8 @@ namespace MoreMountains.InventoryEngine
 		public bool CanMoveObject=true;
 		/// if this is true, objects can be swapped with another object
 		public bool CanSwapObject=true;
+		/// if this is true, objects can be combined with another object
+		public bool Combinale = true;
 		/// a set of properties defining whether or not to show inventory action buttons when that item is selected 
 		public InventoryItemDisplayProperties DisplayProperties;
 		
@@ -64,6 +67,7 @@ namespace MoreMountains.InventoryEngine
 		public virtual bool IsUsable {  get { return Usable;  } }
 		/// whether or not this object can be equipped
 		public virtual bool IsEquippable { get { return Equippable; } }
+		public virtual bool IsCombinable { get { return Combinale; } }
 
 		[HideInInspector]
 		/// the base quantity of this item
@@ -238,5 +242,10 @@ namespace MoreMountains.InventoryEngine
 		/// What happens when the object is dropped - override this to add your own behaviors
 		/// </summary>
 		public virtual bool Drop(string playerID) { return true; }
+
+		/// <summary>
+		/// What happens when the object is combined - override this to add your own behaviors
+		/// </summary>
+		public virtual bool Combine(string playerID) { return true; }
 	}
 }

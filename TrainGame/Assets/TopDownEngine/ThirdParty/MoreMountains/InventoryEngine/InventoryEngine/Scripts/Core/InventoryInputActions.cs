@@ -38,7 +38,8 @@ namespace MoreMountains.InventoryEngine
 			Equip,
 			Use,
 			Drop,
-			Unequip
+			Unequip,
+			Combine
 		}
         
 		/// the name of the inventory to pilot with these bindings
@@ -159,6 +160,9 @@ namespace MoreMountains.InventoryEngine
 					break;
 				case Actions.Unequip:
 					MMInventoryEvent.Trigger(MMInventoryEventType.UnEquipRequest, null, _targetInventory.name, _targetInventory.Content[binding.SlotIndex], 0, binding.SlotIndex, _targetInventory.PlayerID);
+					break;
+				case Actions.Combine:
+					MMInventoryEvent.Trigger(MMInventoryEventType.CombineRequest, null, _targetInventory.name, _targetInventory.Content[binding.SlotIndex], 0, binding.SlotIndex, _targetInventory.PlayerID);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();

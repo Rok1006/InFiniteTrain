@@ -17,12 +17,22 @@ public class UIControl : MonoBehaviour
 
     void Start() {
         roomManager = FindObjectOfType<RoomManager>();
-        trainMapSetUp();
+        TrainMapSetUp();
     }
 
-    private void trainMapSetUp() {
+    private void TrainMapSetUp() {
         for (int i = 0; i < roomManager.CarList.Count; i++) {
-            roomManager.CarList[i].TrainMapIcon = trainMapTrainIcons[i];
+            if (trainMapTrainIcons.Count > i)
+                roomManager.CarList[i].TrainMapIcon = trainMapTrainIcons[i];
+            else
+                Debug.Log("there's more car (" + roomManager.CarList.Count + ") than train map train icons (" + trainMapTrainIcons.Count +") ");
         }
+    }
+
+    /*  inside train map
+        move player icon to corresponding car's train map train icon*/
+    public void MoveTrainMapPlayerIcon(Car car) {
+        playerIcon.transform.SetParent(car.TrainMapIcon.Center.transform);
+        playerIcon.transform.localPosition = Vector3.zero;
     }
 }

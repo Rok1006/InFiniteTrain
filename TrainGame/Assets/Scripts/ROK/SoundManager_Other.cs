@@ -26,6 +26,6 @@ public class SoundManager_Other : MonoBehaviour
     public void PlayeFootStep(){
         int num = Random.Range(0,2);
         footSteps[num].Play();
-        Debug.Log("num=" + num);
+        //Debug.Log("num=" + num);
     }
 }
