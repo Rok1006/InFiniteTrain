@@ -7,12 +7,15 @@ using NaughtyAttributes;
 public class RadiationManager : MonoBehaviour
 {
     private int currentRadiationLevel = 0;
+    [HorizontalLine(color: EColor.Red)]
     [Foldout("Level 0"), Label("Enter State")] public UnityEvent enterRad0;
     [Foldout("Level 0"), Label("Update State")] public UnityEvent updateRad0;
     [Foldout("Level 0"), Label("Leave State")] public UnityEvent leaveRad0;
+    [HorizontalLine(color: EColor.Red)]
     [Foldout("Level 1"), Label("Enter State")] public UnityEvent enterRad1;
     [Foldout("Level 1"), Label("Update State")] public UnityEvent updateRad1;
     [Foldout("Level 1"), Label("Leave State")] public UnityEvent leaveRad1;
+    [HorizontalLine(color: EColor.Red)]
     [Foldout("Level 2"), Label("Enter State")] public UnityEvent enterRad2;
     [Foldout("Level 2"), Label("Update State")] public UnityEvent updateRad2;
     [Foldout("Level 2"), Label("Leave State")] public UnityEvent leaveRad2;
