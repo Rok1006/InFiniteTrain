@@ -885,9 +885,8 @@ namespace MoreMountains.InventoryEngine
 			}
 			if (item.Combine(PlayerID))
 			{
-				// remove 1 from quantity
+				// edit combine function here
 				MMInventoryEvent.Trigger(MMInventoryEventType.ItemCombined, slot, this.name, item.Copy(), 0, index, PlayerID);
-				Debug.Log("combine inside inventory class");
 			}
 			return true;
 		}

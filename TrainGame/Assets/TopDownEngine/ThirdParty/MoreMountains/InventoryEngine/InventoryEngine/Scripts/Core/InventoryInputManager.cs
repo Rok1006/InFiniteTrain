@@ -166,6 +166,7 @@ namespace MoreMountains.InventoryEngine
 		protected bool _dropKeyPressed;
 		protected bool _combineKeyPressed;
 
+
 		/// <summary>
 		/// On start, we grab references and prepare our hotbar list
 		/// </summary>
@@ -540,6 +541,7 @@ namespace MoreMountains.InventoryEngine
 		}
 
 		public virtual void Combine() {
+			
 			CurrentlySelectedInventorySlot.Combine();
 		}
 

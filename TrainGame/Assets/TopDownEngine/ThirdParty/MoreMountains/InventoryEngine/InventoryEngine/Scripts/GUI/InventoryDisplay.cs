@@ -839,6 +839,10 @@ namespace MoreMountains.InventoryEngine
 				case MMInventoryEventType.ItemUsed:
 					this.ReturnInventoryFocus();
 					break;
+
+				case MMInventoryEventType.ItemCombined:
+					this.ReturnInventoryFocus();
+					break;
 				
 				case MMInventoryEventType.EquipRequest:
 					if (this.TargetInventory.InventoryType == Inventory.InventoryTypes.Equipment)
