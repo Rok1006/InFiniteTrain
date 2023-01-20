@@ -13,6 +13,7 @@ public class CarrotFood : FoodItem, ICombinable
 
     public override bool Use(string playerID)
     {
+        Debug.Log("using carrot");
         return base.Use(playerID);
     }
 

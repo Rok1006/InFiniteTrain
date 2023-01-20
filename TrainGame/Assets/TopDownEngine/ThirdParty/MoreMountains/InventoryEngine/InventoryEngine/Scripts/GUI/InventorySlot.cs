@@ -377,7 +377,7 @@ namespace MoreMountains.InventoryEngine
 			{
 				return false;
 			}
-			if (!ParentInventoryDisplay.TargetInventory.Content[Index].Combinale)
+			if (!ParentInventoryDisplay.TargetInventory.Content[Index].Combinable)
 			{
 				return false;
 			}

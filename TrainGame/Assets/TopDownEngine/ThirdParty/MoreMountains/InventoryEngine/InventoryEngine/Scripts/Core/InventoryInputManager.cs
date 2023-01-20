@@ -95,9 +95,9 @@ namespace MoreMountains.InventoryEngine
 		/// the alt key used to go to the previous inventory
 		public string PrevInvAltKey = "joystick button 5";
 		/// the key used to combine two items
-		public string CombineKey = "";
+		public string CombineKey = "0";
 		/// the alt key used to combine two items
-		public string CombineAltKey = "";
+		public string CombineAltKey = "0";
 		#endif
 
 		[Header("Close Bindings")] 

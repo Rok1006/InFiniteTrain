@@ -872,7 +872,6 @@ namespace MoreMountains.InventoryEngine
 		/// <param name="item">Item.</param>
 		/// <param name="slot">Slot.</param>
 		/// <param name="index">Index.</param>
-		/*AWAREEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!
 		public virtual bool CombineItem(InventoryItem item, int index, InventorySlot slot = null)
 		{
 			if (InventoryItem.IsNull(item))
@@ -884,17 +883,14 @@ namespace MoreMountains.InventoryEngine
 			{
 				return false;
 			}
-			if (item.Use(PlayerID))
+			if (item.Combine(PlayerID))
 			{
 				// remove 1 from quantity
 				MMInventoryEvent.Trigger(MMInventoryEventType.ItemCombined, slot, this.name, item.Copy(), 0, index, PlayerID);
-				if ()
-				{
-					RemoveItem(index, item.ConsumeQuantity);    
-				}
+				Debug.Log("combine inside inventory class");
 			}
 			return true;
-		}*/
+		}
 
 		/// <summary>
 		/// Catches inventory events and acts on them
@@ -945,10 +941,9 @@ namespace MoreMountains.InventoryEngine
 					break;
 				
 				/////////////AWAREEEEEEEEEEEEEE!!!!!!!
-
-
-
-				//case MMInventoryEventType.CombineRequest:
+				case MMInventoryEventType.CombineRequest:
+					CombineItem(inventoryEvent.EventItem, inventoryEvent.Index, inventoryEvent.Slot);
+					break;
 					
 			}
 		}
