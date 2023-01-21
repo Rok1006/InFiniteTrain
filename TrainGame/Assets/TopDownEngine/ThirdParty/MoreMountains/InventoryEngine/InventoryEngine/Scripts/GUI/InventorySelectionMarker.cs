@@ -62,8 +62,8 @@ namespace MoreMountains.InventoryEngine
 				} 
 				_deltaTime =  (Time.unscaledTime - _originTime)*TransitionSpeed;
 				transform.position= Vector3.Lerp(_originPosition,_currentSelection.transform.position,_deltaTime);
-				_rectTransform.localScale = Vector3.Lerp(_originLocalScale, _currentSelection.GetComponent<RectTransform>().localScale,_deltaTime);
-				_rectTransform.sizeDelta = Vector3.Lerp(_originSizeDelta, _currentSelection.GetComponent<RectTransform>().sizeDelta, _deltaTime);
+				// _rectTransform.localScale = Vector3.Lerp(_originLocalScale, _currentSelection.GetComponent<RectTransform>().localScale,_deltaTime);
+				// _rectTransform.sizeDelta = Vector3.Lerp(_originSizeDelta, _currentSelection.GetComponent<RectTransform>().sizeDelta, _deltaTime);
 			}
 			else
 			{
