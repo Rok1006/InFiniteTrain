@@ -52,7 +52,7 @@ public class Point : MonoBehaviour
 
     public void MoveEnemy()
     {
-
+        Debug.Log("fdf");
     }
 
     public void MoveMerchant()

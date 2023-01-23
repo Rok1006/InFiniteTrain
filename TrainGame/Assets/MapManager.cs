@@ -30,7 +30,7 @@ public class MapManager : MonoBehaviour
             enemyTurn = true;
         }
 
-        if (enemyTurn = true)
+        if (enemyTurn == true)
         {
             foreach (GameObject x in points)
             {
@@ -39,11 +39,22 @@ public class MapManager : MonoBehaviour
                     x.GetComponent<Point>().MoveEnemy();
                 }
             }
-
+            enemyTurn = false;
             gameState = 0;
         }
     }
+    public bool AvailableToMove(GameObject gm)
+    {
+        var points = player.GetComponent<Point>();
+        for (int i = 0; i < points.connectedPoints.Length; i++)
+        {
+            if (points.connectedPoints[i].Equals(gm)){
+                return true;
+            }
+        }
 
+        return false;
+    }
     public void UpdatePlayer()
     {
         availableDestination.Clear();

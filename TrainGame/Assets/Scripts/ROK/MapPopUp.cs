@@ -14,13 +14,17 @@ public class MapPopUp : MonoBehaviour
     public Point point;
     public GameObject icon;
     public GameObject text;
+    private MapManager mm;
     //[HideInInspector]public List<GameObject> PopUpPoint = new List<GameObject>();
 
     void Start()
     {
+        
         point = GetComponent<Point>();
         PUAnim = PopUpObj.GetComponent<Animator>();
         SceneManageNDisplay = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
+        mm = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
+        // basically i need to access both of this right but for some reason mm is not saved
         //INPAnim = InfoPop.GetComponent<Animator>();
     }
     void Update()
@@ -43,21 +47,27 @@ public class MapPopUp : MonoBehaviour
         //     clicked = false;
         // }
         if(MapManager.gameState == 0) {
-            GetComponent<Point>().MovePlayer();
-            if (SceneManageNDisplay.PopUpPoint.Count > 0)
-                ResetPoint();
-            if (!clicked)
-            {
-                clicked = true;
-                PUAnim.SetTrigger("SetLocation");
-                SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
-                ResetAnim(0);
+           if( mm.AvailableToMove(this.gameObject) == true)
+           {
+                Debug.Log("df");
+                if (SceneManageNDisplay.PopUpPoint.Count > 0)
+                    ResetPoint();
+                if (!clicked)
+                {
+                    clicked = true;
+                    PUAnim.SetTrigger("SetLocation");
+                    SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
+                    ResetAnim(0);
+                    MapManager.gameState = 1;
+                    //if(SceneManageNDisplay.PopUpPoint.Count>0)
+                    //ResetAnim(0);
+                    //SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<MapPopUp>().clicked = false;
+                }
                 MapManager.gameState = 1;
-                //if(SceneManageNDisplay.PopUpPoint.Count>0)
-                //ResetAnim(0);
-                //SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<MapPopUp>().clicked = false;
-            }
-            MapManager.gameState = 1;
+                GetComponent<Point>().MovePlayer();
+           }
+            
+           
 
 
         }
