@@ -22,7 +22,7 @@ public class FakeCartManager : MMPersistentSingleton<FakeCartManager>
     {
         switch (SceneManager.GetActiveScene().name) {
             case "LeoPlayAround":
-                bioCart = GameObject.Find("Fake Bio Cart");
+                bioCart = GameObject.Find("BioCar");
                 cartDoor = GameObject.Find("Trains_Train_Mid_window2 (To the Bio Cart)");
                 leftTel = GameObject.Find("Left Tel").GetComponent<Teleporter>();
                 rightTel = GameObject.Find("Right Tel").GetComponent<Teleporter>();
