@@ -13,7 +13,7 @@ public class SceneTransition : MonoBehaviour
 
     public void ToBattleScene()
     {
-        SceneManager.LoadScene("Map Test");
+        SceneManager.LoadScene("MapPoint");
     }
 
     void OnTriggerEnter(Collider other) {
