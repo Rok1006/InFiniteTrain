@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3521810901131028298}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MoreMountains.InventoryEngine.InventoryInputManager,
           MoreMountains.InventoryEngine
         m_MethodName: Combine
@@ -5390,6 +5390,7 @@ MonoBehaviour:
   UnEquipButton: {fileID: 0}
   CombineButton: {fileID: 0}
   InventoryIsOpen: 0
+  pauseGameWhenOpenInven: 0
 --- !u!225 &5416381561145687420
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -12174,7 +12175,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3521810901131028298}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: Move
         m_Mode: 1
@@ -13271,8 +13272,8 @@ GameObject:
   - component: {fileID: 8893209260038126413}
   - component: {fileID: 6212765258043670810}
   - component: {fileID: 5037599279235480889}
-  - component: {fileID: 3521810901131028298}
   - component: {fileID: 8955490756632494112}
+  - component: {fileID: 1609280443512366460}
   - component: {fileID: 6137792892376176325}
   m_Layer: 5
   m_Name: BackPackUI
@@ -13364,7 +13365,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 0
---- !u!114 &3521810901131028298
+--- !u!225 &8955490756632494112
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425265776225169942}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &1609280443512366460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13379,7 +13392,7 @@ MonoBehaviour:
   TargetInventoryContainer: {fileID: 3986273096823986113}
   TargetInventoryDisplay: {fileID: 2030589621269525984}
   Overlay: {fileID: 7501741601383182360}
-  HideContainerOnStart: 1
+  HideContainerOnStart: 0
   InputOnlyWhenOpen: 1
   ToggleInventoryKey: 9
   ToggleInventoryAltKey: 356
@@ -13395,35 +13408,24 @@ MonoBehaviour:
   EquipOrUseAltKey: joystick button 0
   DropKey: delete
   DropAltKey: joystick button 1
-  NextInvKey: page up
+  NextInvKey: page down
   NextInvAltKey: joystick button 4
-  PrevInvKey: page down
+  PrevInvKey: page up
   PrevInvAltKey: joystick button 5
   CombineKey: 0
   CombineAltKey: 0
   CloseList: []
   ManageButtons: 0
-  ManageButtonsMode: 0
-  EquipUseButton: {fileID: 42390005083983706}
-  MoveButton: {fileID: 9204434828033986625}
-  DropButton: {fileID: 8012974284292821136}
+  ManageButtonsMode: 1
+  EquipUseButton: {fileID: 0}
+  MoveButton: {fileID: 0}
+  DropButton: {fileID: 0}
   EquipButton: {fileID: 0}
   UseButton: {fileID: 0}
   UnEquipButton: {fileID: 0}
   CombineButton: {fileID: 0}
   InventoryIsOpen: 0
---- !u!225 &8955490756632494112
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425265776225169942}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
+  pauseGameWhenOpenInven: 0
 --- !u!114 &6137792892376176325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13560,7 +13562,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3521810901131028298}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: EquipOrUse
         m_Mode: 1
@@ -14442,7 +14444,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3521810901131028298}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: Drop
         m_Mode: 1
