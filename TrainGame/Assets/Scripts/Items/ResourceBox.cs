@@ -6,7 +6,7 @@ using MoreMountains.InventoryEngine;
 
 public class ResourceBox : MonoBehaviour
 {
-    private GameObject inventoryCanvas;
+    private CanvasGroup inventoryCanvas;
     [SerializeField] private string playerID, invnetoryName;
     private SideInventoryDisplay sideInventoryDisplay;
     private InventoryDisplay inventoryDisplay;
@@ -35,7 +35,7 @@ public class ResourceBox : MonoBehaviour
     void OnTriggerEnter(Collider collider) {
         if (collider.tag.Equals("Player")) {
             inventoryDisplay.TargetInventoryName = invnetoryName;
-            inventoryCanvas.SetActive(true);
+            inventoryCanvas.alpha = 1;
         }
     }
 
@@ -45,7 +45,7 @@ public class ResourceBox : MonoBehaviour
     void OnTriggerExit(Collider collider) {
         if (collider.tag.Equals("Player")) {
             inventoryDisplay.TargetInventoryName = "";
-            inventoryCanvas.SetActive(false);
+            inventoryCanvas.alpha = 0;
         }
     }
 }
