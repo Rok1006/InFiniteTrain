@@ -16,9 +16,13 @@ public class ResourceBox : MonoBehaviour
         if (sideInventoryDisplay == null)
             Debug.LogWarning("Cannot find side inventory display");
         
-        inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
+        if (inventoryCanvas != null)
+            inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
 
-        inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
+        if (inventoryDisplay != null)
+            inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
+
+
         if (inventoryDisplay == null)
             Debug.LogWarning("Cannot find inventory display");
     }

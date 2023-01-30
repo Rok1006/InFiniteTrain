@@ -404,7 +404,7 @@ RectTransform:
   m_LocalScale: {x: 0.9999, y: 0.9999, z: 0.9999}
   m_Children: []
   m_Father: {fileID: 183093068719473137}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2862,7 +2862,6 @@ RectTransform:
   m_LocalScale: {x: 0.6870382, y: 0.6870382, z: 0.6870382}
   m_Children:
   - {fileID: 4961404445303538021}
-  - {fileID: 4328096708703858220}
   - {fileID: 1247217093097149817}
   m_Father: {fileID: 5416381561410363764}
   m_RootOrder: 8
@@ -4041,7 +4040,7 @@ GameObject:
   - component: {fileID: 4328096708703858220}
   - component: {fileID: 3424846037029878509}
   m_Layer: 0
-  m_Name: InventoryCanvasGroup
+  m_Name: SideInventoryCanvasGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4056,7 +4055,7 @@ RectTransform:
   m_GameObject: {fileID: 4129160240245284432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9999, y: 0.9999, z: 0.9999}
+  m_LocalScale: {x: 0.9999001, y: 0.9999001, z: 0.9999001}
   m_Children:
   - {fileID: 4811150407000293354}
   - {fileID: 8467377325533507886}
@@ -4064,8 +4063,8 @@ RectTransform:
   - {fileID: 4674224322443541258}
   - {fileID: 5356451489482541445}
   - {fileID: 1991788062045108035}
-  m_Father: {fileID: 183093068719473137}
-  m_RootOrder: 1
+  m_Father: {fileID: 4821029993587505826}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -16128,7 +16127,7 @@ RectTransform:
   m_LocalScale: {x: 0.9999, y: 0.9999, z: 0.9999}
   m_Children: []
   m_Father: {fileID: 4821029993587505826}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17209,6 +17208,7 @@ RectTransform:
   m_Children:
   - {fileID: 6912660717106038922}
   - {fileID: 2852919257480894505}
+  - {fileID: 4328096708703858220}
   - {fileID: 4642143563429930984}
   m_Father: {fileID: 5416381561410363764}
   m_RootOrder: 7
@@ -19530,7 +19530,7 @@ GameObject:
   - component: {fileID: 2852919257480894505}
   - component: {fileID: 3986273096823986113}
   m_Layer: 0
-  m_Name: InventoryCanvasGroup
+  m_Name: BackpackInventoryCanvasGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20878,12 +20878,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7aa124224af36241873e834dba2b039, type: 3}
---- !u!224 &4510748741828061152 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8481329513610066126, guid: d7aa124224af36241873e834dba2b039,
-    type: 3}
-  m_PrefabInstance: {fileID: 5416381561990815534}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3079120125232685294 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7030648046613446592, guid: d7aa124224af36241873e834dba2b039,
@@ -20896,6 +20890,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e863ef80d26f494daa08d762ebe9208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4510748741828061152 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8481329513610066126, guid: d7aa124224af36241873e834dba2b039,
+    type: 3}
+  m_PrefabInstance: {fileID: 5416381561990815534}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5416381562174678339
 PrefabInstance:
   m_ObjectHideFlags: 0
