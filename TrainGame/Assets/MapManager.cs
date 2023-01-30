@@ -41,14 +41,17 @@ public class MapManager : MonoBehaviour
             }
             enemyTurn = false;
             gameState = 0;
+            Debug.Log("can pick again");
         }
     }
     public bool AvailableToMove(GameObject gm)
     {
         var points = player.GetComponent<Point>();
-        for (int i = 0; i < points.connectedPoints.Length; i++)
+        for (int i = 0; i < points.connectedPoints.Length ; i++)
         {
+            Debug.Log("comparing" + points.connectedPoints[i].name);
             if (points.connectedPoints[i].Equals(gm)){
+                Debug.Log("tru");
                 return true;
             }
         }

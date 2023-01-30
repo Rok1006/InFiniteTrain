@@ -24,7 +24,7 @@ public class MapPopUp : MonoBehaviour
         PUAnim = PopUpObj.GetComponent<Animator>();
         SceneManageNDisplay = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
         mm = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
-        // basically i need to access both of this right but for some reason mm is not saved
+        // yeah man looks right
         //INPAnim = InfoPop.GetComponent<Animator>();
     }
     void Update()
@@ -65,6 +65,7 @@ public class MapPopUp : MonoBehaviour
                 }
                 MapManager.gameState = 1;
                 GetComponent<Point>().MovePlayer();
+                mm.UpdatePlayer();
            }
             
            

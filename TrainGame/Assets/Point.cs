@@ -21,7 +21,7 @@ public class Point : MonoBehaviour
             isNull = true;
         }
     }
-
+   
 
     public void MovePlayer()
     {
