@@ -16,15 +16,16 @@ public class ResourceBox : MonoBehaviour
         if (sideInventoryDisplay == null)
             Debug.LogWarning("Cannot find side inventory display");
         
-        if (inventoryCanvas != null)
-            inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
-
-        if (inventoryDisplay != null)
-            inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
+        inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
+        inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
 
 
         if (inventoryDisplay == null)
             Debug.LogWarning("Cannot find inventory display");
+        
+        inventoryCanvas.alpha = 0;
+        inventoryCanvas.interactable = false;
+
     }
 
     
@@ -40,6 +41,7 @@ public class ResourceBox : MonoBehaviour
         if (collider.tag.Equals("Player")) {
             inventoryDisplay.TargetInventoryName = invnetoryName;
             inventoryCanvas.alpha = 1;
+            inventoryCanvas.interactable = true;
         }
     }
 
@@ -50,6 +52,7 @@ public class ResourceBox : MonoBehaviour
         if (collider.tag.Equals("Player")) {
             inventoryDisplay.TargetInventoryName = "";
             inventoryCanvas.alpha = 0;
+            inventoryCanvas.interactable = false;
         }
     }
 }

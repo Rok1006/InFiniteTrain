@@ -11,14 +11,4 @@ public class SideInventoryDisplay : MonoBehaviour
 
     public CanvasGroup DisplayCanvasGroup {get=>displayCanvasGroup;}
     public InventoryDisplay InventoryDisplay {get=>inventoryDisplay;}
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

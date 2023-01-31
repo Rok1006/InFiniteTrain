@@ -143,7 +143,6 @@ namespace MoreMountains.InventoryEngine
 
 		protected CanvasGroup _canvasGroup;
 		protected bool _pause = false;
-		[SerializeField] private bool pauseGameWhenOpenInven = false;
 		protected GameObject _currentSelection;
 		protected InventorySlot _currentInventorySlot;
 		protected List<InventoryHotbar> _targetInventoryHotbars;
@@ -333,9 +332,7 @@ namespace MoreMountains.InventoryEngine
 			}
             
 			// we set the game to pause
-			if (pauseGameWhenOpenInven) {
-				_pause = true;
-			}
+			_pause = true;
 			if (_canvasGroup != null)
 			{
 				_canvasGroup.blocksRaycasts = true;
