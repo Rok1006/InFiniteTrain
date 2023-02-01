@@ -39,7 +39,7 @@ public class ResourceBox : MonoBehaviour
     /// set inventory canvas to active
     void OnTriggerEnter(Collider collider) {
         if (collider.tag.Equals("Player")) {
-            inventoryDisplay.TargetInventoryName = invnetoryName;
+            inventoryDisplay.ChangeTargetInventory(invnetoryName);
             inventoryCanvas.alpha = 1;
             inventoryCanvas.interactable = true;
         }
@@ -50,7 +50,6 @@ public class ResourceBox : MonoBehaviour
     /// set inventory canvas to inactive
     void OnTriggerExit(Collider collider) {
         if (collider.tag.Equals("Player")) {
-            inventoryDisplay.TargetInventoryName = "";
             inventoryCanvas.alpha = 0;
             inventoryCanvas.interactable = false;
         }

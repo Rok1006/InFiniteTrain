@@ -921,5 +921,12 @@ namespace MoreMountains.InventoryEngine
 		{
 			this.MMEventStopListening<MMInventoryEvent>();
 		}
+
+		public void ChangeTargetInventory(string targetInventoryName)
+		{
+			TargetInventoryName = targetInventoryName;
+			_targetInventory = null;
+			ContentHasChanged();
+		}	
 	}
 }
