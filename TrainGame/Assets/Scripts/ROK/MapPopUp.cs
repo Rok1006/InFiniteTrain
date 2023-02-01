@@ -15,6 +15,7 @@ public class MapPopUp : MonoBehaviour
     public GameObject icon;
     public GameObject text;
     private MapManager mm;
+    public GameObject door;
     //[HideInInspector]public List<GameObject> PopUpPoint = new List<GameObject>();
 
     void Start()
@@ -49,7 +50,7 @@ public class MapPopUp : MonoBehaviour
         if(MapManager.gameState == 0) {
            if( mm.AvailableToMove(this.gameObject) == true)
            {
-                Debug.Log("df");
+                
                 if (SceneManageNDisplay.PopUpPoint.Count > 0)
                     ResetPoint();
                 if (!clicked)
@@ -66,6 +67,7 @@ public class MapPopUp : MonoBehaviour
                 MapManager.gameState = 1;
                 GetComponent<Point>().MovePlayer();
                 mm.UpdatePlayer();
+                door.SetActive(true);
            }
             
            

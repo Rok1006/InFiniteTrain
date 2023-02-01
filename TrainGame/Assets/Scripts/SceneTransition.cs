@@ -7,12 +7,19 @@ using MoreMountains.Feedbacks;
 
 public class SceneTransition : MonoBehaviour
 {
+    private GameObject door;
+
+    private void Start()
+    {
+        door = this.gameObject;
+    }
     public void ToPlayerScene() {
         SceneManager.LoadScene("LeoPlayAround");
     }
 
     public void ToBattleScene()
     {
+        door.SetActive(false);
         SceneManager.LoadScene("MapPoint");
     }
 
