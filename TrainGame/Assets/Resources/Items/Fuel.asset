@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd81f9f1a128dd041b07769a1ee2b4a2, type: 3}
-  m_Name: Bread
+  m_Script: {fileID: 11500000, guid: 9fac9bd89dcafc049b19f543ccf8fd57, type: 3}
+  m_Name: Fuel
   m_EditorClassIdentifier: 
-  ItemID: Bread
-  TargetInventoryName: BackpackInventory
+  ItemID: Fuel
+  TargetInventoryName: MainInventory
   ForceSlotIndex: 0
   TargetIndex: 0
   Usable: 1
@@ -34,11 +34,14 @@ MonoBehaviour:
     DisplayUnequipButton: 1
     DisplayCombineButton: 1
   Quantity: 1
-  ItemName: 
-  ShortDescription: A piece of bread.
+  ItemName: Fuel
+  ShortDescription: 'Fuel for train.
+
+
+'
   Description: 
   Icon: {fileID: 0}
-  Prefab: {fileID: 6576778464643976282, guid: ef82f53b34a2148829460b269754a337, type: 3}
+  Prefab: {fileID: 3861697536189807108, guid: d7384d0f7b3ac4656b498c3b46688a44, type: 3}
   DropProperties:
     Shape: 0
     NormalToSpawnPlane: {x: 0, y: 1, z: 0}
@@ -88,4 +91,3 @@ MonoBehaviour:
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
-  FoodCount: 0

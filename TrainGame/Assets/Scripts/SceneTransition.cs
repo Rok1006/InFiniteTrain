@@ -20,6 +20,7 @@ public class SceneTransition : MonoBehaviour
     public void ToBattleScene()
     {
         door.SetActive(false);
+        MMEventManager.TriggerEvent(new MMGameEvent("Save"));
         SceneManager.LoadScene("MapPoint");
     }
 

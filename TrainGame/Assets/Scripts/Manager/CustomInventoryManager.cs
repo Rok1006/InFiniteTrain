@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Tools;
 
 public class CustomInventoryManager : MonoBehaviour
 {
@@ -11,10 +12,7 @@ public class CustomInventoryManager : MonoBehaviour
 
     void Update()
     {
-        
-    }
-
-    public bool Combine() {
-        return false;
+        if (Input.GetKeyDown(KeyCode.P))
+            MMEventManager.TriggerEvent(new MMGameEvent("Load"));
     }
 }
