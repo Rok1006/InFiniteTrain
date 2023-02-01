@@ -14,7 +14,7 @@ namespace MoreMountains.InventoryEngine
 		protected override void Awake () 
 		{
 			base.Awake ();
-			Player = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryDemoCharacter>()	;
+			Player = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryDemoCharacter>();
 		}
 
 		/// <summary>
