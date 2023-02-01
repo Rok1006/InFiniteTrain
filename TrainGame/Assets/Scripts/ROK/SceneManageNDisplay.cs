@@ -33,7 +33,8 @@ public class SceneManageNDisplay : MonoBehaviour
         mapIcon.SetActive(false);
         theMap.SetActive(false);
         mapCam.SetActive(false);
-        //FF_Panel.SetActive(false);
+        TrainFuelBar.SetActive(false);
+        FF_Panel.SetActive(false);
         //TrainINfoGuide.SetActive(false);
 //Listener ---
         FF_CloseButton.onClick.AddListener(Close_FF);
@@ -54,7 +55,7 @@ public class SceneManageNDisplay : MonoBehaviour
     public void Open_Map(){
         mapIcon.SetActive(false);
         theMap.SetActive(true);
-        Invoke("MapCamSwitch",1f);
+        Invoke("MapCamSwitch",.5f);
     }
     void MapCamSwitch(){
         mapCam.SetActive(true);
@@ -66,12 +67,11 @@ public class SceneManageNDisplay : MonoBehaviour
 //Fuel Machine Part ---------
     public void Close_FF(){
         FF_Panel.SetActive(false);
+        TrainFuelBar.SetActive(false);
     }
     public void Open_FuelPanel(){
         FF_Panel.SetActive(true);
-    }
-    public void AddFuel(){
-        //add to the bar and wtever store the player train fuel values
+        TrainFuelBar.SetActive(true);
     }
 
 

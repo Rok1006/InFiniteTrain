@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 //This script is for handling the display of icons and openign of relevant pannels when player approach an object/itel
 public class InteractableIcon : MonoBehaviour
 {
@@ -17,8 +18,10 @@ public class InteractableIcon : MonoBehaviour
     [SerializeField] private TextMeshProUGUI G_text;
     [SerializeField] private string guideDescript;
     [SerializeField] private Sprite smallIcon_sp;
-
     Animator iconAnim;
+
+    public UnityEvent DisplayFunction_Active;
+    public UnityEvent DisplayFunction_DeActive;
 
     void Start()
     {
@@ -26,7 +29,7 @@ public class InteractableIcon : MonoBehaviour
         iconAnim = thisIcon.GetComponent<Animator>();
         //guideDescript = " ";
         TrainInfoGuide.SetActive(false);
-        thisPanel.SetActive(false);
+        //thisPanel.SetActive(false);
     }
 
     void Update()
@@ -45,10 +48,9 @@ public class InteractableIcon : MonoBehaviour
             if(!TrainInfoGuide.activeSelf){TrainInfoGuide.SetActive(true);}
 
             if(Input.GetKeyDown(input_interact)){
-                thisPanel.SetActive(true);
-                //SceneMD.Open_[PanelName]();
+                DisplayFunction_Active.Invoke();
+                iconAnim.SetTrigger("disappear");
             }
-
         }
     }
     private void OnTriggerExit(Collider col) {
@@ -56,7 +58,7 @@ public class InteractableIcon : MonoBehaviour
             TrainInfoGuide.SetActive(false);
             iconAnim.SetTrigger("disappear");
             thisIcon.SetActive(false);
-            thisPanel.SetActive(false);
+            DisplayFunction_DeActive.Invoke();
         }
     }
     // private void IconDeactivate(){
