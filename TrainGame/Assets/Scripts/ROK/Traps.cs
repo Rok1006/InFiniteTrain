@@ -14,12 +14,15 @@ public class Traps : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private float waitTime;
     [SerializeField] private List<GameObject> Effects = new List<GameObject>();
+    [SerializeField] private List<GameObject> Objects = new List<GameObject>();
+    [SerializeField] private List<GameObject> Point = new List<GameObject>();
+
     [SerializeField] private List<GameObject> Projectile = new List<GameObject>();
     public bool inZone = false;
 
     void Start(){
         anim = this.gameObject.GetComponent<Animator>();
-        Effects[0].SetActive(false);
+        if(Effects.Count>0){Effects[0].SetActive(false);}
         switch(currentType){
             case TrapType.MINE:
 
@@ -31,7 +34,7 @@ public class Traps : MonoBehaviour
 
             break;
             case TrapType.SHARDSHOOTER:
-
+                StartCoroutine("Trap_ShardShooter");
             break;
         }
 
@@ -55,7 +58,9 @@ public class Traps : MonoBehaviour
 
             break;
             case TrapType.SHARDSHOOTER:
-
+                Debug.DrawRay(Point[0].transform.position, new Vector3(-40,0,0), Color.red);
+                //StartCoroutine("ShardShoot");
+                
             break;
         }
 //-----test
@@ -83,12 +88,31 @@ public class Traps : MonoBehaviour
         Effects[0].SetActive(false);
         StartCoroutine("Trap_Spike");
     }
-    private void Trap_DeadlyBound(){
-
+    IEnumerator Trap_DeadlyBound(){
+        yield return new WaitForSeconds(0);
     }
-    private void Trap_ShardShooter(){
-
+    IEnumerator Trap_ShardShooter(){
+        Projectile.Clear();
+        Projectile.TrimExcess();
+        yield return new WaitForSeconds(0);
+        for(int i = 0; i<3;i++){
+            GameObject s = Instantiate(Objects[0], Point[0].transform.position, Quaternion.identity);
+            s.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            yield return new WaitForSeconds(.5f);
+        }
+        yield return new WaitForSeconds(waitTime);
+        StartCoroutine("Trap_ShardShooter");
     }
+    // IEnumerator ShardShoot(){
+    //     yield return new WaitForSeconds(0);
+    //     if(Projectile.Count>2){
+    //         for(int i = 0; i<3;i++){
+    //             Projectile[i].transform.Translate(Vector3.left * 100 * Time.deltaTime);
+    //             yield return new WaitForSeconds(5f);
+    //         }
+    //     }
+    //     yield return new WaitForSeconds(3f);
+    // }
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Player"){
             inZone = true;

@@ -10615,6 +10615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 860266755}
+  - component: {fileID: 860266756}
   m_Layer: 0
   m_Name: Trap_ShardShooter
   m_TagString: Untagged
@@ -10640,6 +10641,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &860266756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860266754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d5e4d16fd0c405bb8fc4811e022187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentType: 4
+  damage: 0
+  duration: 0
+  waitTime: 5
+  Effects: []
+  Objects:
+  - {fileID: 3751275515162337005, guid: b90b5b86a691047feac5967fdeb4ab6f, type: 3}
+  Point:
+  - {fileID: 1813350227}
+  Projectile: []
+  inZone: 0
 --- !u!1 &862538503
 GameObject:
   m_ObjectHideFlags: 0
@@ -29813,6 +29837,8 @@ MonoBehaviour:
   waitTime: 5
   Effects:
   - {fileID: 1416676323}
+  Objects: []
+  Point: []
   Projectile: []
   inZone: 0
 --- !u!1 &1652064199
@@ -36006,7 +36032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813350228}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ShootPt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38377,6 +38403,8 @@ MonoBehaviour:
   waitTime: 3
   Effects:
   - {fileID: 1154307035}
+  Objects: []
+  Point: []
   Projectile: []
   inZone: 0
 --- !u!95 &2071991879
@@ -38830,6 +38858,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb33cb6ef70b4388b66afe4021ce380, type: 3}
+--- !u!1001 &3751275515869410312
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 130.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162336992, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751275515162337005, guid: b90b5b86a691047feac5967fdeb4ab6f,
+        type: 3}
+      propertyPath: m_Name
+      value: Shards
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b90b5b86a691047feac5967fdeb4ab6f, type: 3}
 --- !u!1001 &3861697535190265200
 PrefabInstance:
   m_ObjectHideFlags: 0
