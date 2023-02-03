@@ -11,6 +11,8 @@ public class FuelMachine : MonoBehaviour
     private int currentAmt;
     [SerializeField] private int addAmt; //temp
 
+    [SerializeField] private Animator TrainWheel;
+
     void Start()
     {
          FuelAdd_Button.onClick.AddListener(AddFuel);
@@ -24,5 +26,6 @@ public class FuelMachine : MonoBehaviour
     }
     public void AddFuel(){
         currentAmt += addAmt;
+        TrainWheel.SetTrigger("pulse");
     }
 }

@@ -16,6 +16,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField] private GameObject mapCam;
     [SerializeField] private GameObject mapIcon;
     [SerializeField] private GameObject theMap;
+    [SerializeField] private Vector3 mapFuelLocation;
 
     public List<GameObject> PopUpPoint = new List<GameObject>();
 
@@ -24,6 +25,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField] private Button FF_CloseButton;
     [SerializeField] private GameObject FF_MachineLever;
     [SerializeField] private GameObject TrainFuelBar; //this will also appear in map scene
+    [SerializeField] private Vector3 FuelMachineFuelLocation;
 
 //[HideInInspector]
 
@@ -56,6 +58,8 @@ public class SceneManageNDisplay : MonoBehaviour
         mapIcon.SetActive(false);
         theMap.SetActive(true);
         Invoke("MapCamSwitch",.5f);
+        TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = mapFuelLocation;
+        TrainFuelBar.SetActive(true);
     }
     void MapCamSwitch(){
         mapCam.SetActive(true);
@@ -63,6 +67,7 @@ public class SceneManageNDisplay : MonoBehaviour
     public void CloseMap(){
         theMap.SetActive(false);
         mapCam.SetActive(false);
+        TrainFuelBar.SetActive(false);
     }
 //Fuel Machine Part ---------
     public void Close_FF(){
@@ -71,6 +76,7 @@ public class SceneManageNDisplay : MonoBehaviour
     }
     public void Open_FuelPanel(){
         FF_Panel.SetActive(true);
+        TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
         TrainFuelBar.SetActive(true);
     }
 
