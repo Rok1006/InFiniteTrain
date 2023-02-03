@@ -20,18 +20,22 @@ public class Traps : MonoBehaviour
     [SerializeField] private List<GameObject> Projectile = new List<GameObject>();
     public bool inZone = false;
 
+    LineRenderer LR;
+
     void Start(){
         anim = this.gameObject.GetComponent<Animator>();
+
         if(Effects.Count>0){Effects[0].SetActive(false);}
         switch(currentType){
             case TrapType.MINE:
-
             break;
             case TrapType.SPIKE:
                 StartCoroutine("Trap_Spike");
             break;
             case TrapType.DEADLYBOUND:
-
+                LR = this.GetComponent<LineRenderer>();
+                LR.positionCount = 2;
+                StartCoroutine("Trap_DeadlyBound");
             break;
             case TrapType.SHARDSHOOTER:
                 StartCoroutine("Trap_ShardShooter");
@@ -55,7 +59,8 @@ public class Traps : MonoBehaviour
             case TrapType.SPIKE:
             break;
             case TrapType.DEADLYBOUND:
-
+                LR.SetPosition(0, new Vector3(Point[0].transform.position.x, Point[0].transform.position.y, Point[0].transform.position.z));
+                LR.SetPosition(1, new Vector3(Point[1].transform.position.x, Point[1].transform.position.y, Point[1].transform.position.z));
             break;
             case TrapType.SHARDSHOOTER:
                 Debug.DrawRay(Point[0].transform.position, new Vector3(-40,0,0), Color.red);
@@ -89,12 +94,20 @@ public class Traps : MonoBehaviour
         StartCoroutine("Trap_Spike");
     }
     IEnumerator Trap_DeadlyBound(){
-        yield return new WaitForSeconds(0);
+        LineRenderer lr = this.GetComponent<LineRenderer>();
+        lr.enabled = false;
+        lr.enabled = true;
+        yield return new WaitForSeconds(duration);
+        lr.enabled = false;
+        yield return new WaitForSeconds(waitTime);
+        StartCoroutine("Trap_DeadlyBound");
     }
     IEnumerator Trap_ShardShooter(){
         Projectile.Clear();
         Projectile.TrimExcess();
-        yield return new WaitForSeconds(0);
+        Effects[0].SetActive(false);
+        Effects[0].SetActive(true);
+        yield return new WaitForSeconds(1f);
         for(int i = 0; i<3;i++){
             GameObject s = Instantiate(Objects[0], Point[0].transform.position, Quaternion.identity);
             s.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
