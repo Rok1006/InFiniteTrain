@@ -16,11 +16,14 @@ public class BackpackInventoryUI : MonoBehaviour, MMEventListener<MMInventoryEve
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-            MMInventoryEvent.Trigger(MMInventoryEventType.InventoryOpens, null, inventoryDisplay.TargetInventoryName, null, 0, 0, inventoryDisplay.PlayerID);
+        if (Input.GetKeyDown(KeyCode.T)) {
+            MMInventoryEvent.Trigger(MMInventoryEventType.InventoryOpens, null, inventoryDisplay.TargetInventoryName, inventoryDisplay.TargetInventory.Content[0], 0, 0, inventoryDisplay.PlayerID);
+            MMGameEvent.Trigger("inventoryOpens");
+        }
     }
 
-    public void OnMMEvent(MMInventoryEvent inventoryEvent) {
+    public virtual void OnMMEvent(MMInventoryEvent inventoryEvent) {
+        Debug.Log("Event happening");
         if (inventoryEvent.InventoryEventType == MMInventoryEventType.InventoryCloseRequest)
         {
             inventoryInput.CloseInventory();
@@ -28,6 +31,7 @@ public class BackpackInventoryUI : MonoBehaviour, MMEventListener<MMInventoryEve
 
         if (inventoryEvent.InventoryEventType == MMInventoryEventType.InventoryOpens)
         {
+            Debug.Log("Opens");
             inventoryInput.OpenInventory();
         }
     }

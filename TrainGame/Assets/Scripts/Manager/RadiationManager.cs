@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using NaughtyAttributes;
+using MoreMountains.TopDownEngine;
+using UnityEngine.SceneManagement;
+using MoreMountains.Tools;
 
-public class RadiationManager : MonoBehaviour
+public class RadiationManager : MMMonoBehaviour
 {
     private int currentRadiationLevel = 0;
     [HorizontalLine(color: EColor.Red)]
@@ -20,9 +23,16 @@ public class RadiationManager : MonoBehaviour
     [Foldout("Level 2"), Label("Update State")] public UnityEvent updateRad2;
     [Foldout("Level 2"), Label("Leave State")] public UnityEvent leaveRad2;
 
+    private Health playerHealth;
+    [SerializeField, BoxGroup("UI")] string RadiationBarName;
+    [ShowNonSerializedField, BoxGroup("UI")] MMProgressBar radiationBar;
+    [SerializeField] private bool isRadiated = false;
+    private PlayerInformation playerInfo;
+
 
     //getters & setters
     public int CurrentRadiationLevel {get=>currentRadiationLevel; set=>currentRadiationLevel = value;}
+    public Health PlayerHealth {get=>playerHealth; set=>playerHealth=value;}
 
     //FSM
     private RadiationStateBase currentState;
@@ -50,6 +60,11 @@ public class RadiationManager : MonoBehaviour
     void Start()
     {
         currentState = radiationstate0;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        playerInfo = FindObjectOfType<PlayerInformation>();
+        PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
+        radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
     }
 
     void Update()
@@ -57,6 +72,23 @@ public class RadiationManager : MonoBehaviour
         currentState.UpdateState(this);  
         if (Input.GetKeyDown(KeyCode.Alpha1))
             ChangeState(radiationstate1);
+
+        if (isRadiated) {
+            playerInfo.CurrentRadiationValue += 0.5f * Time.deltaTime;
+        }
+
+        radiationBar.UpdateBar(playerInfo.CurrentRadiationValue, playerInfo.MinRadiationValue, playerInfo.MaxRadiationValue);
+
+        if (playerInfo.CurrentRadiationValue >= playerInfo.MaxRadiationValue) {
+            playerHealth.Damage(10000f, this.gameObject, 0, 0, Vector3.up, null);
+            radiationBar.gameObject.SetActive(false);
+        }
+
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
+        radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
     }
 
     public void showRadiationLevel(string str) {

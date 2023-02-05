@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject playerCam;
     [SerializeField] private GameObject depthDetect;
     public bool facingFront = true;   //or side
-    [HideInInspector]public List<GameObject> dust = new List<GameObject>();
+    [HideInInspector] public List<GameObject> dust = new List<GameObject>();
 
     Animator MCFrontAnim;
     Animator MCBackAnim;

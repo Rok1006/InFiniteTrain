@@ -1,19 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class PlayerInformation : MonoBehaviour
 {
     public Transform back;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [ShowNonSerializedField, BoxGroup("Radiation")] private float currentRadiationValue = 0f; 
+    [SerializeField, BoxGroup("Radiation")] private float maxRadiationValue = 10f, minRadiationValue = 0f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //getters & setters
+    public float CurrentRadiationValue {get=>currentRadiationValue; set=>currentRadiationValue=value;}
+    public float MaxRadiationValue {get=>maxRadiationValue; set=>maxRadiationValue=value;}
+    public float MinRadiationValue {get=>minRadiationValue; set=>minRadiationValue=value;}
 }
