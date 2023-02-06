@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using MoreMountains.TopDownEngine;
+using UnityEngine.SceneManagement;
 
 //This script handle wtever related to Player that is not related to topdown engine
 public class PlayerManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject emitPt; //the particle system: prefab
     [SerializeField] private GameObject playerCam;
     [SerializeField] private GameObject depthDetect;
+    [SerializeField] private GameObject SpotLight; //assign the player spotlight obj
     public bool facingFront = true;   //or side
     [HideInInspector] public List<GameObject> dust = new List<GameObject>();
 
@@ -40,6 +42,15 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        Scene currentScene = SceneManager.GetActiveScene ();
+        string sceneName = currentScene.name;
+        if (sceneName == "MapPoint") 
+        {
+            SpotLight.SetActive(true);
+        }else{
+            SpotLight.SetActive(false);
+        }
+        
         MCFrontAnim = FrontMC.GetComponent<Animator>();
         MCBackAnim = BackMC.GetComponent<Animator>();
         if(FrontMC!=null){
