@@ -23,7 +23,7 @@ public class RadiationManager : MMMonoBehaviour
     [Foldout("Level 2"), Label("Update State")] public UnityEvent updateRad2;
     [Foldout("Level 2"), Label("Leave State")] public UnityEvent leaveRad2;
 
-    private Health playerHealth;
+    [ShowNonSerializedField] private Health playerHealth;
     [SerializeField, BoxGroup("UI")] string RadiationBarName;
     [ShowNonSerializedField, BoxGroup("UI")] MMProgressBar radiationBar;
     [SerializeField] private bool isRadiated = false;
@@ -33,6 +33,7 @@ public class RadiationManager : MMMonoBehaviour
     //getters & setters
     public int CurrentRadiationLevel {get=>currentRadiationLevel; set=>currentRadiationLevel = value;}
     public Health PlayerHealth {get=>playerHealth; set=>playerHealth=value;}
+    public bool IsRadiated {get=>isRadiated; set=>isRadiated=value;}
 
     //FSM
     private RadiationStateBase currentState;
@@ -70,11 +71,19 @@ public class RadiationManager : MMMonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);  
+
+        if (playerInfo == null)
+            playerInfo = FindObjectOfType<PlayerInformation>();
+        if (playerHealth == null)
+            PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
+        if (radiationBar == null)
+            radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
             ChangeState(radiationstate1);
 
-        if (isRadiated) {
-            playerInfo.CurrentRadiationValue += 0.5f * Time.deltaTime;
+        if (IsRadiated) {
+            playerInfo.CurrentRadiationValue += 0.3f * Time.deltaTime;
         }
 
         radiationBar.UpdateBar(playerInfo.CurrentRadiationValue, playerInfo.MinRadiationValue, playerInfo.MaxRadiationValue);
@@ -83,15 +92,19 @@ public class RadiationManager : MMMonoBehaviour
             playerHealth.Damage(10000f, this.gameObject, 0, 0, Vector3.up, null);
             radiationBar.gameObject.SetActive(false);
         }
-
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
-        radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
+        StartCoroutine(waitToRefind());
     }
 
     public void showRadiationLevel(string str) {
         Debug.Log(str);
+    }
+
+    public IEnumerator waitToRefind() {
+        yield return new WaitForSeconds(1.0f);
+        PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
+        radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
     }
 }

@@ -6414,7 +6414,7 @@ PrefabInstance:
     - target: {fileID: 7681500954956085847, guid: a64f1b3c8473f4e62adebd95824bb51b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.95
+      value: -0.98
       objectReference: {fileID: 0}
     - target: {fileID: 7681500954956085847, guid: a64f1b3c8473f4e62adebd95824bb51b,
         type: 3}
@@ -6424,7 +6424,7 @@ PrefabInstance:
     - target: {fileID: 7681500954956085847, guid: a64f1b3c8473f4e62adebd95824bb51b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.27
+      value: 0.823
       objectReference: {fileID: 0}
     - target: {fileID: 7681500954956085847, guid: a64f1b3c8473f4e62adebd95824bb51b,
         type: 3}
@@ -12718,6 +12718,7 @@ Transform:
   - {fileID: 1381918766}
   - {fileID: 801702540}
   - {fileID: 879021914}
+  - {fileID: 1891139365}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12945,6 +12946,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871457145}
   m_CullTransparentMesh: 0
+--- !u!1 &1891139364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1891139365}
+  - component: {fileID: 1891139367}
+  - component: {fileID: 1891139366}
+  m_Layer: 0
+  m_Name: Train Trigger Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1891139365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891139364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.468, y: 0, z: -2.388}
+  m_LocalScale: {x: 2.332, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1858846301}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1891139366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891139364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d33d3f2ecda8947aabd7eb85124dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1891139367
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891139364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1915245450
 GameObject:
   m_ObjectHideFlags: 0
@@ -14691,7 +14749,7 @@ PrefabInstance:
     - target: {fileID: 315043451696005832, guid: d73a0ac1d0f5c08409e079a01e8cbbef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 315043451696005832, guid: d73a0ac1d0f5c08409e079a01e8cbbef,
         type: 3}

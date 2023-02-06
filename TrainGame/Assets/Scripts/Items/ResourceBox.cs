@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
 using MoreMountains.InventoryEngine;
+using UnityEngine.UI;
 
 public class ResourceBox : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class ResourceBox : MonoBehaviour
     [SerializeField] private string playerID, invnetoryName;
     private SideInventoryDisplay sideInventoryDisplay;
     private InventoryDisplay inventoryDisplay;
+
+    [SerializeField] private Image radicalBar;
+    [SerializeField] private GameObject timer;
+
+    private bool isOpening = false, isPlayerNear = false;
     void Start()
     {
         sideInventoryDisplay = FindObjectOfType<SideInventoryDisplay>();
@@ -31,7 +37,16 @@ public class ResourceBox : MonoBehaviour
     
     void Update()
     {
-        
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.Space)) {
+            isOpening = true;
+        }
+        if (isOpening)
+            radicalBar.fillAmount = Mathf.Min(radicalBar.fillAmount + 0.2f * Time.deltaTime, 1.0f);
+        if (radicalBar.fillAmount >= 1 && isOpening) {
+            inventoryDisplay.ChangeTargetInventory(invnetoryName);
+            inventoryCanvas.alpha = 1;
+            inventoryCanvas.interactable = true;
+        }
     }
 
     /// when enter trigger area
@@ -39,9 +54,11 @@ public class ResourceBox : MonoBehaviour
     /// set inventory canvas to active
     void OnTriggerEnter(Collider collider) {
         if (collider.tag.Equals("Player")) {
-            inventoryDisplay.ChangeTargetInventory(invnetoryName);
-            inventoryCanvas.alpha = 1;
-            inventoryCanvas.interactable = true;
+            isPlayerNear = true;
+            timer.SetActive(true);
+            // inventoryDisplay.ChangeTargetInventory(invnetoryName);
+            // inventoryCanvas.alpha = 1;
+            // inventoryCanvas.interactable = true;
         }
     }
 
@@ -50,6 +67,9 @@ public class ResourceBox : MonoBehaviour
     /// set inventory canvas to inactive
     void OnTriggerExit(Collider collider) {
         if (collider.tag.Equals("Player")) {
+            isPlayerNear = false;
+            timer.SetActive(false);
+            isOpening = false;
             inventoryCanvas.alpha = 0;
             inventoryCanvas.interactable = false;
         }
