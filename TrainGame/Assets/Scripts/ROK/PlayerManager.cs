@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        Scene currentScene = SceneManager.GetActiveScene ();
+        Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
         if (sceneName == "MapPoint") 
         {
@@ -83,6 +83,16 @@ public class PlayerManager : MonoBehaviour
         handleWeapon = GetComponent<CharacterHandleWeapon>();
         secondaryHandleWeapon = GetComponent<CharacterHandleSecondaryWeapon>();
     
+    }
+    private void Update() {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "MapPoint") 
+        {
+            SpotLight.SetActive(true);
+        }else{
+            SpotLight.SetActive(false);
+        }
     }
 
     void FixedUpdate()
