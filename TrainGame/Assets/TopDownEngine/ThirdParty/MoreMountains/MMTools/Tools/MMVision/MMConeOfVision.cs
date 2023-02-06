@@ -50,9 +50,9 @@ namespace MoreMountains.Tools
 		public float VisionRadius = 5f;
 		[Range(0f, 360f)]
 		public float VisionAngle = 20f;
-		[MMReadOnly]
+		
 		public Vector3 Direction;
-		[MMReadOnly]
+		
 		public Vector3 EulerAngles;
 		public Vector3 Offset;
         

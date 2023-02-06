@@ -48,11 +48,11 @@ namespace MoreMountains.TopDownEngine
 		[Tooltip("the threshold after which we start rotating (absolute mode only)")]
 		public float AbsoluteThresholdMovement = 0.5f;
 		/// the direction of the model
-		[MMReadOnly]
+		
 		[Tooltip("the direction of the model")]
 		public Vector3 ModelDirection;
 		/// the direction of the model in angle values
-		[MMReadOnly]
+		
 		[Tooltip("the direction of the model in angle values")]
 		public Vector3 ModelAngles;
 
