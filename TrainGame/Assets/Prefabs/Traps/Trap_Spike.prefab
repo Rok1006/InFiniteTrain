@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7681500954956085847}
   - component: {fileID: 7681500954956085846}
   - component: {fileID: 7681500954956085841}
+  - component: {fileID: 6553486643430351234}
   m_Layer: 0
   m_Name: Trap_Spike
   m_TagString: Untagged
@@ -161,6 +162,19 @@ MonoBehaviour:
   Point: []
   Projectile: []
   inZone: 0
+--- !u!65 &6553486643430351234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7681500954956085844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8400009, y: 1.8400005, z: 0.2000004}
+  m_Center: {x: -0.0000038146973, y: 0.0000014305115, z: -0.000000923872}
 --- !u!1 &7681500955248667636
 GameObject:
   m_ObjectHideFlags: 0
@@ -5126,7 +5140,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7681500955402710367}
   - component: {fileID: 7681500955402710360}
-  - component: {fileID: 7681500955402710361}
   m_Layer: 0
   m_Name: FloorTile
   m_TagString: Untagged
@@ -5200,19 +5213,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &7681500955402710361
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7681500955402710364}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8400009, y: 1.8400005, z: 0.2000004}
-  m_Center: {x: -0.0000038146973, y: 0.0000014305115, z: -0.000000923872}
 --- !u!1 &7681500955555411373
 GameObject:
   m_ObjectHideFlags: 0

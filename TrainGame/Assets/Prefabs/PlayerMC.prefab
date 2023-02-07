@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 777279040560813358}
   - component: {fileID: 1533075791323389424}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: PlayerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -646,7 +646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3161007082132082648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.22, y: 3.95, z: -0.92}
+  m_LocalPosition: {x: 0.22, y: 3.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8827246564645167332}
@@ -1312,6 +1312,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   depthDetect: {fileID: 0}
   SpotLight: {fileID: 9155543270581721771}
+  PlayerLight: {fileID: 3161007082132082648}
   facingFront: 1
   dust: []
   oldPositionX: 0

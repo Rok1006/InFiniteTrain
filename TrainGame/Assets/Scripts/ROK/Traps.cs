@@ -126,9 +126,10 @@ public class Traps : MonoBehaviour
     //     }
     //     yield return new WaitForSeconds(3f);
     // }
-    private void OnTriggerEnter(Collider col) {
+    private void OnTriggerEnter(Collider col) { //cant detect
         if(col.gameObject.tag == "Player"){
             inZone = true;
+            Debug.Log("yes");
         }
     }
     private void OnTriggerExit(Collider col) {

@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject playerCam;
     [SerializeField] private GameObject depthDetect;
     [SerializeField] private GameObject SpotLight; //assign the player spotlight obj
+    [SerializeField] private GameObject PlayerLight;
     public bool facingFront = true;   //or side
     [HideInInspector] public List<GameObject> dust = new List<GameObject>();
 
@@ -46,9 +47,11 @@ public class PlayerManager : MonoBehaviour
         string sceneName = currentScene.name;
         if (sceneName == "MapPoint") 
         {
+            PlayerLight.transform.position = new Vector3(PlayerLight.transform.position.x,PlayerLight.transform.position.y, PlayerLight.transform.position.z+2);
             SpotLight.SetActive(true);
         }else{
             SpotLight.SetActive(false);
+            PlayerLight.transform.position = new Vector3(PlayerLight.transform.position.x,PlayerLight.transform.position.y, (PlayerLight.transform.position.z-0.8f));
         }
         
         MCFrontAnim = FrontMC.GetComponent<Animator>();
