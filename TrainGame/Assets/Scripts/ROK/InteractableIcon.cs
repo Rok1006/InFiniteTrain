@@ -19,6 +19,7 @@ public class InteractableIcon : MonoBehaviour
     [SerializeField] private string guideDescript;
     [SerializeField] private Sprite smallIcon_sp;
     Animator iconAnim;
+    public bool PanelOn = false;
 
     public UnityEvent DisplayFunction_Active;
     public UnityEvent DisplayFunction_DeActive;
@@ -30,6 +31,7 @@ public class InteractableIcon : MonoBehaviour
         //guideDescript = " ";
         TrainInfoGuide.SetActive(false);
         //thisPanel.SetActive(false);
+        SceneMD = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
     }
 
     void Update()
@@ -47,7 +49,7 @@ public class InteractableIcon : MonoBehaviour
             if(!thisIcon.activeSelf){thisIcon.SetActive(true);}
             if(!TrainInfoGuide.activeSelf){TrainInfoGuide.SetActive(true);}
 
-            if(Input.GetKeyDown(input_interact)){
+            if(Input.GetKeyDown(input_interact)&&!SceneMD.PanelOn){
                 DisplayFunction_Active.Invoke();
                 iconAnim.SetTrigger("disappear");
             }
@@ -55,6 +57,7 @@ public class InteractableIcon : MonoBehaviour
     }
     private void OnTriggerExit(Collider col) {
         if(col.gameObject.tag == "Player"){
+            PanelOn = false;
             TrainInfoGuide.SetActive(false);
             iconAnim.SetTrigger("disappear");
             thisIcon.SetActive(false);

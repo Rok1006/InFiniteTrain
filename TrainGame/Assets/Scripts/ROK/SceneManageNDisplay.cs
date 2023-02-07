@@ -17,6 +17,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField] private GameObject mapIcon;
     [SerializeField] private GameObject theMap;
     [SerializeField] private Vector3 mapFuelLocation;
+    public bool PanelOn = false;
 
     public List<GameObject> PopUpPoint = new List<GameObject>();
 
@@ -44,6 +45,13 @@ public class SceneManageNDisplay : MonoBehaviour
     void Update()
     {
         roomName.text = '"' + " " + currentCartName.ToString() + " " + '"';
+
+        if(theMap.activeSelf&&PanelOn){
+            if(Input.GetKeyDown(KeyCode.Space)){
+                CloseMap();
+                PanelOn = false;
+            }
+        }
     }
     public void DisplayCartName(){
         InfoDisplay.SetActive(false);
@@ -59,10 +67,11 @@ public class SceneManageNDisplay : MonoBehaviour
         theMap.SetActive(true);
         Invoke("MapCamSwitch",.5f);
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = mapFuelLocation;
-        TrainFuelBar.SetActive(true);
     }
     void MapCamSwitch(){
+        PanelOn = true;
         mapCam.SetActive(true);
+        TrainFuelBar.SetActive(true);
     }
     public void CloseMap(){
         theMap.SetActive(false);
