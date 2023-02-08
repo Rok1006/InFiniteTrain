@@ -26,6 +26,21 @@ namespace InventoryDoubleClick
             {
                 _clicked = false;
                 if (inventoryEvent.Slot != _slot) return;
+
+                //move the stuff to the fist avaliable inventory slot 
+                InventoryDisplay targetInventoryDisplay = _slot.ParentInventoryDisplay.NextInventory;
+                if (_slot.Movable() && targetInventoryDisplay != null)  {
+                    Inventory currentInventory = _slot.ParentInventoryDisplay.TargetInventory;
+                    Inventory targetInventory = targetInventoryDisplay.TargetInventory;
+                    for (int i = 0; i < targetInventory.Content.Length; i++) {
+                        if (targetInventory.Content[i] == null) {
+                            currentInventory.MoveItemToInventory(_slot.Index, targetInventory);
+                            return;
+                        }
+                    }
+                }
+
+
                 if (_slot.Unequippable()) _slot.UnEquip();
                 else if (_slot.Equippable()) _slot.Equip();
                 if (_slot.Usable()) _slot.Use();
