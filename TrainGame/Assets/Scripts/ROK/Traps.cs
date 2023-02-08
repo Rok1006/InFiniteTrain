@@ -57,6 +57,11 @@ public class Traps : MonoBehaviour
                 }
             break;
             case TrapType.SPIKE:
+                if(inZone){
+                    Effects[0].SetActive(true);
+                    anim.SetTrigger("Stun");
+                    inZone = false;
+                }
             break;
             case TrapType.DEADLYBOUND:
                 LR.SetPosition(0, new Vector3(Point[0].transform.position.x, Point[0].transform.position.y, Point[0].transform.position.z));

@@ -21,8 +21,6 @@ public class MapPopUp : MonoBehaviour
 
     void Start()
     {
-      
-      
         point = GetComponent<Point>();
         PUAnim = PopUpObj.GetComponent<Animator>();
         SceneManageNDisplay = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
@@ -79,14 +77,7 @@ public class MapPopUp : MonoBehaviour
                 mm.UpdatePlayer();
                 door.SetActive(true);
            }
-            
-           
-
-
         }
-      
-        
-        
     }
     public void ResetPoint(){ //reset the status of point
         //PUAnim.SetTrigger("PlugFlag");
