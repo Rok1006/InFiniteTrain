@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class MapPopUp : MonoBehaviour
 {
     [SerializeField] private GameObject PopUpObj;
@@ -20,7 +21,8 @@ public class MapPopUp : MonoBehaviour
 
     void Start()
     {
-        
+      
+      
         point = GetComponent<Point>();
         PUAnim = PopUpObj.GetComponent<Animator>();
         SceneManageNDisplay = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
@@ -28,6 +30,7 @@ public class MapPopUp : MonoBehaviour
         // yeah man looks right
         //INPAnim = InfoPop.GetComponent<Animator>();
     }
+    
     void Update()
     {
         icon.GetComponent<Image>().sprite = point.icon;
@@ -40,6 +43,13 @@ public class MapPopUp : MonoBehaviour
     public void ExitPtIcon(){ //when player hover on green sq; on the Icon
         //if(SceneManageNDisplay.PopUpPoint.Count==0)
             PUAnim.SetTrigger("Off");
+    }
+    public void ForceChange()
+    {
+       
+        PUAnim.SetTrigger("SetLocation");
+        SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
+        ResetAnim(0);
     }
     public void ClickPtIcon(){ //Click the Icon, anim
         //Off Point

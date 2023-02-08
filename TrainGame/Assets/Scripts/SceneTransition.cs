@@ -7,6 +7,7 @@ using MoreMountains.Feedbacks;
 
 public class SceneTransition : MonoBehaviour
 {
+    public MapManager mapManager;
     private GameObject door;
     [SerializeField] private string otherSceneName;
 
@@ -20,12 +21,17 @@ public class SceneTransition : MonoBehaviour
 
     public void ToBattleScene()
     {
+        Singleton.Instance.id = mapManager.player.GetComponent<Point>().id;
         door.SetActive(false);
         MMEventManager.TriggerEvent(new MMGameEvent("Save"));
         SceneManager.LoadScene("MapPoint");
     }
 
     public void saveAndToOtherScene(string otherScene) {
+        if (otherScene != "LeoPlayAround")
+        {
+            Singleton.Instance.id = mapManager.player.GetComponent<Point>().id;
+        }
         door.SetActive(false);
         MMEventManager.TriggerEvent(new MMGameEvent("Save"));
         SceneManager.LoadScene(otherScene);

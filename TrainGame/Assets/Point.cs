@@ -13,6 +13,7 @@ public class Point : MonoBehaviour
     public bool isMerchant = false;
     public bool isEvent = false;
     public bool isNull = false;
+    public int id;
 
      void Update()
     {

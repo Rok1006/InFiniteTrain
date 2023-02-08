@@ -11,11 +11,15 @@ public class MapManager : MonoBehaviour
     public List<GameObject> availableDestination = new List<GameObject>();
     private bool playerTurn = false;
     private bool enemyTurn = false;
+    public int id;
 
     // Start is called before the first frame update
     void Start()
     {
+        id = Singleton.Instance.id;
+        UpdatePlayerIcon();
         UpdatePlayer();
+        
     }
 
     // Update is called once per frame
@@ -74,6 +78,23 @@ public class MapManager : MonoBehaviour
         }
         
     }
-
+    public void UpdatePlayerIcon()
+    {
+        Debug.Log("df");
+        for(int i = 0; i < points.Length; i++)
+        {
+            points[i].GetComponent<Point>().isPlayer = false;
+            if ( points[i].GetComponent<Point>().id == this.id)
+            {
+                player = points[i];
+                points[i].GetComponent<Point>().isPlayer = true;
+            }
+        }
+        if (this.player != null && this.player.GetComponent<Point>().id != 0) 
+        {
+            Debug.Log("ddf");
+            player.gameObject.GetComponent<MapPopUp>().ForceChange();
+        }
+    }
     
 }
