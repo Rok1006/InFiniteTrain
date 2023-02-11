@@ -174,6 +174,15 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    public void takeOutSword() {
+        handleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[0], weaponCollection.MeleeWeapons[0].WeaponName, false);
+        secondaryHandleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[1], weaponCollection.MeleeWeapons[1].WeaponName, false);
+        MCFrontAnim.SetBool("IsUsingWeapon", true);
+        DisableAllWeaponAnimation();
+        MCFrontAnim.SetTrigger("UseBigSword");
+        MCBackAnim.SetTrigger("UseBigSword");
+    }
+
     public void DustEmit(){
         if(Time.frameCount%10 == 0 && emitPt!=null){
             GameObject d = Instantiate(dustPrefab, emitPt.transform.position, Quaternion.identity) as GameObject;
