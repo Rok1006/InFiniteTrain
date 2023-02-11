@@ -21,6 +21,7 @@ namespace InventoryDoubleClick
                 _clicked = true;
                 _clickedTime = Time.time;
                 _slot = inventoryEvent.Slot;
+
             }
             else
             {
