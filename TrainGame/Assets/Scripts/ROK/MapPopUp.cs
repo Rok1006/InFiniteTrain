@@ -33,6 +33,12 @@ public class MapPopUp : MonoBehaviour
     {
         icon.GetComponent<Image>().sprite = point.icon;
         text.GetComponent<TextMeshProUGUI>().text = point.text;
+
+        if(Input.GetKeyDown(KeyCode.Space)&&clicked){ //make it appear after close and open again
+            PUAnim.SetTrigger("SetLocation");
+            //SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
+            //ResetAnim(0);
+        }
     }
     public void EnterPtIcon(){ //when player hover on green sq; on the Icon
         //if(SceneManageNDisplay.PopUpPoint.Count==0)
@@ -42,12 +48,14 @@ public class MapPopUp : MonoBehaviour
         //if(SceneManageNDisplay.PopUpPoint.Count==0)
             PUAnim.SetTrigger("Off");
     }
-    public void ForceChange()
+    public void ForceChange() 
     {
-       
-        PUAnim.SetTrigger("SetLocation");
-        SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
-        ResetAnim(0);
+        clicked = true;
+        if(clicked){
+            PUAnim.SetTrigger("SetLocation");
+            mm.PopUpPoint.Add(this.gameObject);
+            ResetAnim(0);
+        }
     }
     public void ClickPtIcon(){ //Click the Icon, anim
         //Off Point
@@ -58,14 +66,13 @@ public class MapPopUp : MonoBehaviour
         if(MapManager.gameState == 0) {
            if( mm.AvailableToMove(this.gameObject) == true)
            {
-                
-                if (SceneManageNDisplay.PopUpPoint.Count > 0)
+                if (mm.PopUpPoint.Count > 0)
                     ResetPoint();
                 if (!clicked)
                 {
                     clicked = true;
                     PUAnim.SetTrigger("SetLocation");
-                    SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
+                    mm.PopUpPoint.Add(this.gameObject);
                     ResetAnim(0);
                     MapManager.gameState = 1;
                     //if(SceneManageNDisplay.PopUpPoint.Count>0)
@@ -82,28 +89,28 @@ public class MapPopUp : MonoBehaviour
     public void ResetPoint(){ //reset the status of point
         //PUAnim.SetTrigger("PlugFlag");
         //if(SceneManageNDisplay.PopUpPoint.Count==1)
-            SceneManageNDisplay.PopUpPoint[0].GetComponent<MapPopUp>().clicked = false;
-            SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetTrigger("PlugFlag");
-            if(SceneManageNDisplay.PopUpPoint.Count==2){
+            mm.PopUpPoint[0].GetComponent<MapPopUp>().clicked = false;
+            mm.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetTrigger("PlugFlag");
+            if(mm.PopUpPoint.Count==2){
                 //ResetAnim(0);
                 // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", false);
                 // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", true);
-                SceneManageNDisplay.PopUpPoint.Remove(SceneManageNDisplay.PopUpPoint[0]);
+                mm.PopUpPoint.Remove(mm.PopUpPoint[0]);
                 //ResetAnim(0);
-            }else if(SceneManageNDisplay.PopUpPoint.Count==1){
+            }else if(mm.PopUpPoint.Count==1){
                 // ResetAnim(0);
                 // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", false);
                 // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", true);
-                SceneManageNDisplay.PopUpPoint.TrimExcess();
-                SceneManageNDisplay.PopUpPoint.Clear();
+                mm.PopUpPoint.TrimExcess();
+                mm.PopUpPoint.Clear();
                 //ResetAnim(0);
             }
             //if(SceneManageNDisplay.PopUpPoint.Count>0)
             //ResetAnim(0);
     }
     void ResetAnim(int i){
-        SceneManageNDisplay.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("Hover", false);
-        SceneManageNDisplay.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("Off", false);
+        mm.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("Hover", false);
+        mm.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("Off", false);
         // SceneManageNDisplay.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("SetLocation", false);
         // SceneManageNDisplay.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("PlugFlag", false);
     }

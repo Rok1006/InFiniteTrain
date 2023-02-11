@@ -19,7 +19,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField] private Vector3 mapFuelLocation;
     public bool PanelOn = false;
 
-    public List<GameObject> PopUpPoint = new List<GameObject>();
+    // public List<GameObject> PopUpPoint = new List<GameObject>();
 
     [Header("FuelMachine")]
     [SerializeField] private GameObject FF_Panel; //the whole ui panel

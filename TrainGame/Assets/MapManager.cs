@@ -13,6 +13,8 @@ public class MapManager : MonoBehaviour
     private bool enemyTurn = false;
     public int id;
 
+    public List<GameObject> PopUpPoint = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +90,7 @@ public class MapManager : MonoBehaviour
             {
                 player = points[i];
                 points[i].GetComponent<Point>().isPlayer = true;
+                PopUpPoint.Add(points[i]);
             }
         }
         if (this.player != null && this.player.GetComponent<Point>().id != 0) 

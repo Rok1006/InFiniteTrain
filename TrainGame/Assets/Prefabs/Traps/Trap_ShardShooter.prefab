@@ -4882,6 +4882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4006687781436710290}
   - component: {fileID: 4006687781436710293}
+  - component: {fileID: 6211542138465849574}
   m_Layer: 0
   m_Name: Trap_ShardShooter
   m_TagString: Untagged
@@ -4896,7 +4897,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4006687781436710291}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 142.7, y: -0.6204707, z: -0.3}
   m_LocalScale: {x: 3.4292097, y: 3.4643261, z: 4.3246775}
   m_Children:
@@ -4907,7 +4908,7 @@ Transform:
   - {fileID: 4006687781409432074}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &4006687781436710293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4921,9 +4922,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentType: 4
-  damage: 0
+  Player: {fileID: 0}
+  damage: 0.5
   duration: 0
   waitTime: 5
+  speed: 300
   Effects:
   - {fileID: 4006687781409432075}
   Objects:
@@ -4932,6 +4935,19 @@ MonoBehaviour:
   - {fileID: 4006687782423362498}
   Projectile: []
   inZone: 0
+--- !u!65 &6211542138465849574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006687781436710291}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.84277, y: 2.42, z: 7.155909}
+  m_Center: {x: -7.4213843, y: 0.30069405, z: -1.4263926}
 --- !u!1 &4006687781673513776
 GameObject:
   m_ObjectHideFlags: 0
