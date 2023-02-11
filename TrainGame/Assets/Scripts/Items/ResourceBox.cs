@@ -15,6 +15,7 @@ public class ResourceBox : MonoBehaviour
 
     [SerializeField, BoxGroup("UI")] private Image radicalBar;
     [SerializeField, BoxGroup("UI")] private GameObject timer;
+    [SerializeField, BoxGroup("Logic")] private float openBoxSpeed = 0.35f;
     [SerializeField, BoxGroup("Logic")] private bool isLocked = true;
 
     private bool isOpening = false, isPlayerNear = false;
@@ -46,7 +47,7 @@ public class ResourceBox : MonoBehaviour
 
         if (isLocked) { //if player need to open the lock
             if (isOpening)
-                radicalBar.fillAmount = Mathf.Min(radicalBar.fillAmount + 0.2f * Time.deltaTime, 1.0f);
+                radicalBar.fillAmount = Mathf.Min(radicalBar.fillAmount + openBoxSpeed * Time.deltaTime, 1.0f);
             if (radicalBar.fillAmount >= 1 && isOpening) {
                 inventoryDisplay.ChangeTargetInventory(invnetoryName);
                 inventoryCanvas.alpha = 1;
