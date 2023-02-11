@@ -342,7 +342,6 @@ namespace MoreMountains.InventoryEngine
 			MMInventoryEvent.Trigger(MMInventoryEventType.InventoryOpens, null, TargetInventoryDisplay.TargetInventoryName, TargetInventoryDisplay.TargetInventory.Content[0], 0, 0, TargetInventoryDisplay.PlayerID);
 			MMGameEvent.Trigger("inventoryOpens");
 			InventoryIsOpen = true;
-			Debug.Log("Opening");
 
 			StartCoroutine(MMFade.FadeCanvasGroup(TargetInventoryContainer, 0.2f, 1f));
 			StartCoroutine(MMFade.FadeCanvasGroup(Overlay, 0.2f, 0.85f));

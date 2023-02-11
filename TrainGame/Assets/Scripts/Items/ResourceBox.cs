@@ -4,16 +4,18 @@ using UnityEngine;
 using MoreMountains.Tools;
 using MoreMountains.InventoryEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 public class ResourceBox : MonoBehaviour
 {
     private CanvasGroup inventoryCanvas;
-    [SerializeField] private string playerID, invnetoryName;
+    [SerializeField,BoxGroup("TDE")] private string playerID, invnetoryName;
     private SideInventoryDisplay sideInventoryDisplay;
     private InventoryDisplay inventoryDisplay;
 
-    [SerializeField] private Image radicalBar;
-    [SerializeField] private GameObject timer;
+    [SerializeField, BoxGroup("UI")] private Image radicalBar;
+    [SerializeField, BoxGroup("UI")] private GameObject timer;
+    [SerializeField, BoxGroup("Logic")] private bool isLocked = true;
 
     private bool isOpening = false, isPlayerNear = false;
     void Start()
@@ -40,12 +42,22 @@ public class ResourceBox : MonoBehaviour
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space)) {
             isOpening = true;
         }
-        if (isOpening)
-            radicalBar.fillAmount = Mathf.Min(radicalBar.fillAmount + 0.2f * Time.deltaTime, 1.0f);
-        if (radicalBar.fillAmount >= 1 && isOpening) {
-            inventoryDisplay.ChangeTargetInventory(invnetoryName);
-            inventoryCanvas.alpha = 1;
-            inventoryCanvas.interactable = true;
+
+
+        if (isLocked) { //if player need to open the lock
+            if (isOpening)
+                radicalBar.fillAmount = Mathf.Min(radicalBar.fillAmount + 0.2f * Time.deltaTime, 1.0f);
+            if (radicalBar.fillAmount >= 1 && isOpening) {
+                inventoryDisplay.ChangeTargetInventory(invnetoryName);
+                inventoryCanvas.alpha = 1;
+                inventoryCanvas.interactable = true;
+            }
+        } else { //player are free to open it
+            if (isOpening) {
+                inventoryDisplay.ChangeTargetInventory(invnetoryName);
+                inventoryCanvas.alpha = 1;
+                inventoryCanvas.interactable = true;
+            }
         }
     }
 
@@ -55,10 +67,9 @@ public class ResourceBox : MonoBehaviour
     void OnTriggerEnter(Collider collider) {
         if (collider.tag.Equals("Player")) {
             isPlayerNear = true;
-            timer.SetActive(true);
-            // inventoryDisplay.ChangeTargetInventory(invnetoryName);
-            // inventoryCanvas.alpha = 1;
-            // inventoryCanvas.interactable = true;
+            
+            if (isLocked)
+                timer.SetActive(true);
         }
     }
 
@@ -68,7 +79,8 @@ public class ResourceBox : MonoBehaviour
     void OnTriggerExit(Collider collider) {
         if (collider.tag.Equals("Player")) {
             isPlayerNear = false;
-            timer.SetActive(false);
+            if (isLocked)
+                timer.SetActive(false);
             isOpening = false;
             inventoryCanvas.alpha = 0;
             inventoryCanvas.interactable = false;
