@@ -5,9 +5,12 @@ using MoreMountains.Tools;
 using MoreMountains.InventoryEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using MoreMountains.TopDownEngine;
 
 public class ResourceBox : MonoBehaviour
 {
+    private CharacterHandleWeapon playerWeapon;
+
     private CanvasGroup inventoryCanvas;
     [SerializeField,BoxGroup("TDE")] private string playerID, invnetoryName;
     private SideInventoryDisplay sideInventoryDisplay;
@@ -35,13 +38,18 @@ public class ResourceBox : MonoBehaviour
         inventoryCanvas.alpha = 0;
         inventoryCanvas.interactable = false;
 
+        playerWeapon = FindObjectOfType<PlayerManager>().GetComponent<CharacterHandleWeapon>();
+        if (playerWeapon == null)
+            Debug.LogWarning("cannot find character handle weapon for player");
+
     }
 
     
     void Update()
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.Space)) {
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) {
             isOpening = true;
+            playerWeapon.ShootStart();
         }
 
 
