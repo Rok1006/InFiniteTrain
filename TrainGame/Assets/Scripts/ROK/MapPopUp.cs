@@ -37,7 +37,7 @@ public class MapPopUp : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)&&clicked){ //make it appear after close and open again
             PUAnim.SetTrigger("SetLocation");
             //SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
-            //ResetAnim(0);
+            ResetAnim(0);
         }
     }
     public void EnterPtIcon(){ //when player hover on green sq; on the Icon

@@ -7,7 +7,7 @@ public class Point : MonoBehaviour
 {
     public GameObject[] connectedPoints;
     public Sprite icon;
-    public string text;
+    [TextArea(15,20)] public string text;
     public bool isPlayer = false;
     public bool isEnemy = false;
     public bool isMerchant = false;

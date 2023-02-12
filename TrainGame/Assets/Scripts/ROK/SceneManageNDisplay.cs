@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using MoreMountains.InventoryEngine;
 //THis script is for function of pannels and triggering events
 public class SceneManageNDisplay : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField] private GameObject theMap;
     [SerializeField] private Vector3 mapFuelLocation;
     public bool PanelOn = false;
+    // public InventoryInputManager IIM_Fuel;
 
     // public List<GameObject> PopUpPoint = new List<GameObject>();
 
@@ -85,6 +87,7 @@ public class SceneManageNDisplay : MonoBehaviour
     }
     public void Open_FuelPanel(){
         FF_Panel.SetActive(true);
+        FF_Panel.GetComponent<InventoryInputManager>().OpenInventory();
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
         TrainFuelBar.SetActive(true);
     }

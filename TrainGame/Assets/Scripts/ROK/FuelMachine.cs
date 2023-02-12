@@ -6,6 +6,7 @@ using TMPro;
 
 public class FuelMachine : MonoBehaviour
 {
+    private GameObject player;
     [SerializeField] private Button FuelAdd_Button;
     [SerializeField] private Slider FuelBar;
     private int currentAmt;
@@ -15,17 +16,18 @@ public class FuelMachine : MonoBehaviour
 
     void Start()
     {
-         FuelAdd_Button.onClick.AddListener(AddFuel);
+        player = GameObject.FindGameObjectWithTag("Player");
+        FuelAdd_Button.onClick.AddListener(AddFuel);
          //set a max
     }
 
     // Update is called once per frame
     void Update()
     {
-        FuelBar.value = currentAmt;
+        FuelBar.value = player.GetComponent<PlayerInformation>().FuelAmt;
     }
     public void AddFuel(){
-        currentAmt += addAmt;
+        player.GetComponent<PlayerInformation>().FuelAmt += addAmt;
         TrainWheel.SetTrigger("pulse");
     }
 }
