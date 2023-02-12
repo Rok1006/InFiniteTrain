@@ -35,6 +35,7 @@ public class SceneTransition : MonoBehaviour
         door.SetActive(false);
         MMEventManager.TriggerEvent(new MMGameEvent("Save"));
         SceneManager.LoadScene(otherScene);
+        MapManager.gameState = 0;
     }
 
     void OnTriggerEnter(Collider other) {

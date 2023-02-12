@@ -8,9 +8,10 @@ public class MapManager : MonoBehaviour
     public GameObject[] points;
    public static int gameState = 0;
     public GameObject player;
+    public GameObject playerResource;
     public List<GameObject> availableDestination = new List<GameObject>();
-    private bool playerTurn = false;
-    private bool enemyTurn = false;
+    public bool playerTurn = false;
+    public bool enemyTurn = false;
     public int id;
 
     public List<GameObject> PopUpPoint = new List<GameObject>();
@@ -18,6 +19,7 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         id = Singleton.Instance.id;
         UpdatePlayerIcon();
         UpdatePlayer();
@@ -30,6 +32,10 @@ public class MapManager : MonoBehaviour
         if(gameState == 0)
         {
             playerTurn = true;
+        }
+        else
+        {
+            playerTurn = false;
         }
         if(gameState == 1)
         {
@@ -46,20 +52,30 @@ public class MapManager : MonoBehaviour
                 }
             }
             enemyTurn = false;
-            gameState = 0;
+            gameState = 2;
             Debug.Log("can pick again");
         }
     }
     public bool AvailableToMove(GameObject gm)
     {
+        playerResource = GameObject.FindGameObjectWithTag("Player");
         var points = player.GetComponent<Point>();
         for (int i = 0; i < points.connectedPoints.Length ; i++)
         {
-            Debug.Log("comparing" + points.connectedPoints[i].name);
+            
+            Debug.Log(playerResource.GetComponent<PlayerInformation>().FuelAmt);
             if (points.connectedPoints[i].Equals(gm)){
-                Debug.Log("tru");
-                return true;
+                
+
+                if (playerResource.GetComponent<PlayerInformation>().FuelAmt >= gm.GetComponent<Point>().fuelAmtNeeded)
+                {
+                    
+                    playerResource.GetComponent<PlayerInformation>().FuelAmt -= gm.GetComponent<Point>().fuelAmtNeeded;
+                    return true;
+                }
+                
             }
+            
         }
 
         return false;

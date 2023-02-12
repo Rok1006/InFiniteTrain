@@ -14,6 +14,7 @@ public class Point : MonoBehaviour
     public bool isEvent = false;
     public bool isNull = false;
     public int id;
+    public int fuelAmtNeeded;
 
      void Update()
     {
@@ -67,8 +68,8 @@ public class Point : MonoBehaviour
     }
     public void Reset()
     {
-        this.icon = null;
-        this.text = "";
+        //this.icon = null;
+        //this.text = "";
         this.isPlayer = false;
         this.isEnemy = false;
         this.isEvent = false;
