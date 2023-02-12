@@ -8578,6 +8578,7 @@ GameObject:
   - component: {fileID: 589767387}
   - component: {fileID: 589767386}
   - component: {fileID: 589767389}
+  - component: {fileID: 589767390}
   m_Layer: 5
   m_Name: FoodUI
   m_TagString: Untagged
@@ -8679,6 +8680,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodCountText: {fileID: 1442169097}
+--- !u!225 &589767390
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589767384}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &592289436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38414,7 +38427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalAxis: Player1_Horizontal
   m_VerticalAxis: Player1_Vertical
-  m_SubmitButton: Player1_Jump
+  m_SubmitButton: Player1_SwitchWeapon
   m_CancelButton: Player1_Pause
   m_InputActionsPerSecond: 4
   m_RepeatDelay: 0.25
@@ -45386,6 +45399,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609280443512366460, guid: 43ea37a9a945448cd947ee3df4ae8142,
         type: 3}
+      propertyPath: CloseList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609280443512366460, guid: 43ea37a9a945448cd947ee3df4ae8142,
+        type: 3}
       propertyPath: HideContainerOnStart
       value: 1
       objectReference: {fileID: 0}
@@ -47527,6 +47545,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Drone_Pump
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288506302351037000, guid: 6532946ffe9a5ff46ac704da1bb9f612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7288506302400114265, guid: 6532946ffe9a5ff46ac704da1bb9f612,
         type: 3}
