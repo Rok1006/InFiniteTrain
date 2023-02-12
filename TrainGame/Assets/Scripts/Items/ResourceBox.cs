@@ -6,6 +6,7 @@ using MoreMountains.InventoryEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
 using MoreMountains.TopDownEngine;
+using UnityEngine.SceneManagement;
 
 public class ResourceBox : MonoBehaviour
 {
@@ -41,6 +42,9 @@ public class ResourceBox : MonoBehaviour
         playerWeapon = FindObjectOfType<PlayerManager>().GetComponent<CharacterHandleWeapon>();
         if (playerWeapon == null)
             Debug.LogWarning("cannot find character handle weapon for player");
+        
+        //things happens when loading scene
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
@@ -94,5 +98,11 @@ public class ResourceBox : MonoBehaviour
             inventoryCanvas.alpha = 0;
             inventoryCanvas.interactable = false;
         }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        playerWeapon = FindObjectOfType<PlayerManager>().GetComponent<CharacterHandleWeapon>();
+        if (playerWeapon == null)
+            Debug.LogWarning("cannot find character handle weapon for player");
     }
 }
