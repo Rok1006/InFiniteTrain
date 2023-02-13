@@ -60,19 +60,22 @@ public class ResourceBox : MonoBehaviour
         if (isLocked) { //if player need to open the lock
             if (isOpening)
                 radicalBar.fillAmount = Mathf.Min(radicalBar.fillAmount + openBoxSpeed * Time.deltaTime, 1.0f);
-                boxAnim.SetTrigger("opening");
+                if (boxAnim != null)
+                    boxAnim.SetTrigger("opening");
             if (radicalBar.fillAmount >= 1 && isOpening) {
                 inventoryDisplay.ChangeTargetInventory(invnetoryName);
                 inventoryCanvas.alpha = 1;
                 inventoryCanvas.interactable = true;
-                boxAnim.SetTrigger("open");
+                if (boxAnim != null)
+                    boxAnim.SetTrigger("open");
             }
         } else { //player are free to open it
             if (isOpening) {
                 inventoryDisplay.ChangeTargetInventory(invnetoryName);
                 inventoryCanvas.alpha = 1;
                 inventoryCanvas.interactable = true;
-                boxAnim.SetTrigger("open");
+                if (boxAnim != null)
+                    boxAnim.SetTrigger("open");
             }
         }
     }
