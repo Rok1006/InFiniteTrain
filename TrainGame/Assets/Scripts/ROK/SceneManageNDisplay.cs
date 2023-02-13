@@ -29,6 +29,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField] private GameObject FF_MachineLever;
     [SerializeField] private GameObject TrainFuelBar; //this will also appear in map scene
     [SerializeField] private Vector3 FuelMachineFuelLocation;
+    [SerializeField] private GameObject TrainInfoGuide;
 
 //[HideInInspector]
 
@@ -40,7 +41,7 @@ public class SceneManageNDisplay : MonoBehaviour
         mapCam.SetActive(false);
         TrainFuelBar.SetActive(false);
         FF_Panel.SetActive(false);
-        //TrainINfoGuide.SetActive(false);
+        TrainInfoGuide.SetActive(false);
 //Listener ---
         FF_CloseButton.onClick.AddListener(Close_FF);
     }
@@ -68,12 +69,16 @@ public class SceneManageNDisplay : MonoBehaviour
         mapIcon.SetActive(false);
         theMap.SetActive(true);
         Invoke("MapCamSwitch",.5f);
+        Invoke("ChangePos",1f);
+        TrainInfoGuide.SetActive(false);
+    }
+    void ChangePos(){
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = mapFuelLocation;
+        TrainFuelBar.SetActive(true);
     }
     void MapCamSwitch(){
         PanelOn = true;
         mapCam.SetActive(true);
-        TrainFuelBar.SetActive(true);
     }
     public void CloseMap(){
         theMap.SetActive(false);
@@ -84,12 +89,14 @@ public class SceneManageNDisplay : MonoBehaviour
     public void Close_FF(){
         FF_Panel.SetActive(false);
         TrainFuelBar.SetActive(false);
+        //TrainInfoGuide.SetActive(false);
     }
     public void Open_FuelPanel(){
         FF_Panel.SetActive(true);
         FF_Panel.GetComponent<InventoryInputManager>().OpenInventory();
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
         TrainFuelBar.SetActive(true);
+        TrainInfoGuide.SetActive(false);
     }
 
 

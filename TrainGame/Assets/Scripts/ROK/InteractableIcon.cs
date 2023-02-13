@@ -14,8 +14,8 @@ public class InteractableIcon : MonoBehaviour
     [SerializeField] private GameObject thisPanel;
     [SerializeField] private GameObject thisIcon; //icon on every interactable, no function
     [SerializeField] private GameObject TrainInfoGuide;
-    [SerializeField] private Image smallIcon;  
-    [SerializeField] private TextMeshProUGUI G_text;
+    [SerializeField] private Image smallIconImageObj;  
+    [SerializeField] private TextMeshProUGUI guideDescriptTextObj;
     [SerializeField] private string guideDescript;
     [SerializeField] private Sprite smallIcon_sp;
     Animator iconAnim;
@@ -36,12 +36,14 @@ public class InteractableIcon : MonoBehaviour
 
     void Update()
     {
-        
+        if(SceneMD.PanelOn){
+            TrainInfoGuide.SetActive(false);
+        }
     }
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Player"){
-            G_text.text = guideDescript.ToString();
-            smallIcon.sprite = smallIcon_sp;
+            guideDescriptTextObj.text = guideDescript.ToString();
+            smallIconImageObj.sprite = smallIcon_sp;
         }
     }
     private void OnTriggerStay(Collider col) {

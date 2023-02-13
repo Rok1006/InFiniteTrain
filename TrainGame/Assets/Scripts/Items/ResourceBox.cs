@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using NaughtyAttributes;
 using MoreMountains.TopDownEngine;
 using UnityEngine.SceneManagement;
-
+//script for box, timer, minigame
 public class ResourceBox : MonoBehaviour
 {
     private CharacterHandleWeapon playerWeapon;
@@ -21,6 +21,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField, BoxGroup("UI")] private GameObject timer;
     [SerializeField, BoxGroup("Logic")] private float openBoxSpeed = 0.35f;
     [SerializeField, BoxGroup("Logic")] private bool isLocked = true;
+    [SerializeField, BoxGroup("Box")] private Animator boxAnim;
 
     private bool isOpening = false, isPlayerNear = false;
     void Start()
@@ -47,7 +48,6 @@ public class ResourceBox : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
-
     
     void Update()
     {
@@ -60,16 +60,19 @@ public class ResourceBox : MonoBehaviour
         if (isLocked) { //if player need to open the lock
             if (isOpening)
                 radicalBar.fillAmount = Mathf.Min(radicalBar.fillAmount + openBoxSpeed * Time.deltaTime, 1.0f);
+                boxAnim.SetTrigger("opening");
             if (radicalBar.fillAmount >= 1 && isOpening) {
                 inventoryDisplay.ChangeTargetInventory(invnetoryName);
                 inventoryCanvas.alpha = 1;
                 inventoryCanvas.interactable = true;
+                boxAnim.SetTrigger("open");
             }
         } else { //player are free to open it
             if (isOpening) {
                 inventoryDisplay.ChangeTargetInventory(invnetoryName);
                 inventoryCanvas.alpha = 1;
                 inventoryCanvas.interactable = true;
+                boxAnim.SetTrigger("open");
             }
         }
     }
@@ -85,7 +88,6 @@ public class ResourceBox : MonoBehaviour
                 timer.SetActive(true);
         }
     }
-
     /// when enter trigger area
     /// set inventory display target's name to empty
     /// set inventory canvas to inactive

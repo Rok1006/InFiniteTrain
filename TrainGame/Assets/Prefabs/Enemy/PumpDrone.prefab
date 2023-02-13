@@ -81,6 +81,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291567164423674148}
   m_Mesh: {fileID: 0}
+--- !u!114 &4628422582847125905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2674729214552661429}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab38fb8d19ed4db48b4e6216a171c08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: 
+  ChangeDirectionOnObstacle: 1
+  ObstacleDetectionDistance: 1
+  ObstaclesCheckFrequency: 1
+  ObstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  CurrentPathIndex: 0
+--- !u!114 &4628422582847125923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2674729214552661429}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443ebf149b5f47147a1076bea95f5134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityStartSfx: {fileID: 0}
+  AbilityInProgressSfx: {fileID: 0}
+  AbilityStopSfx: {fileID: 0}
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
+  AbilityPermitted: 1
+  BlockingMovementStates: 
+  BlockingConditionStates: 
+  Target: {fileID: 0}
+  DistanceToWaypointThreshold: 1
+  ClosestPointThreshold: 3
+  DebugDrawPath: 0
+  Waypoints: []
+  NextWaypointIndex: 0
+  NextWaypointDirection: {x: 0, y: 0, z: 0}
+  DistanceToNextWaypoint: 0
+--- !u!114 &4628422582847125924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2674729214552661429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6383fad85525624bb743f73fa0668c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: 
 --- !u!1 &3323892089087913120
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,106 +547,6 @@ MonoBehaviour:
     m_PropagationSpeed: 343
   Velocity: {x: 1, y: 1, z: 1}
   ClearImpulseOnStop: 0
---- !u!114 &4628422582847125905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2674729214552661429}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab38fb8d19ed4db48b4e6216a171c08f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationMode: 0
-  Label: 
-  ChangeDirectionOnObstacle: 1
-  ObstacleDetectionDistance: 1
-  ObstaclesCheckFrequency: 1
-  ObstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  CurrentPathIndex: 0
---- !u!114 &4628422582847125906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2674729214552661429}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81dc1a6e4b189d4bae2faab8a2a1a25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CycleOption: 1
-  LoopInitialMovementDirection: 0
-  PathElements:
-  - PathElementPosition: {x: 0, y: 0, z: 0}
-    Delay: 0
-  - PathElementPosition: {x: 20, y: 0, z: 0}
-    Delay: 0
-  ReferenceMMPath: {fileID: 0}
-  AbsoluteReferencePath: 0
-  MinDistanceToGoal: 0.1
-  LockHandlesOnXAxis: 0
-  LockHandlesOnYAxis: 0
-  LockHandlesOnZAxis: 0
---- !u!114 &4628422582847125907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2674729214552661429}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9f7aa72bc091f346ae27e33844c93b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4628422582847125923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2674729214552661429}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 443ebf149b5f47147a1076bea95f5134, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  Target: {fileID: 0}
-  DistanceToWaypointThreshold: 1
-  ClosestPointThreshold: 3
-  DebugDrawPath: 0
-  Waypoints: []
-  NextWaypointIndex: 0
-  NextWaypointDirection: {x: 0, y: 0, z: 0}
-  DistanceToNextWaypoint: 0
---- !u!114 &4628422582847125924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2674729214552661429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6383fad85525624bb743f73fa0668c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationMode: 0
-  Label: 
 --- !u!1 &7447726739317613199
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +584,7 @@ GameObject:
   - component: {fileID: 7447726739317613198}
   - component: {fileID: 4132096828059328325}
   m_Layer: 13
-  m_Name: drone
+  m_Name: PumpDrone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -775,7 +738,7 @@ MonoBehaviour:
   UseDefaultMecanim: 1
   RunAnimatorSanityChecks: 0
   DisableAnimatorLogs: 1
-  CharacterModel: {fileID: 0}
+  CharacterModel: {fileID: 2674729214552661429}
   CharacterHealth: {fileID: 0}
   SendStateChangeEvents: 1
   AdditionalAbilityNodes: []
@@ -801,7 +764,7 @@ MonoBehaviour:
   AbilityPermitted: 1
   BlockingMovementStates: 
   BlockingConditionStates: 
-  RotationMode: 3
+  RotationMode: 1
   CharacterRotationAuthorized: 1
   ShouldRotateToFaceMovementDirection: 1
   MovementRotationSpeed: 1
@@ -840,7 +803,7 @@ MonoBehaviour:
   AbilityPermitted: 1
   BlockingMovementStates: 
   BlockingConditionStates: 
-  Movement: 0
+  Movement: 3
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
@@ -1269,11 +1232,11 @@ MonoBehaviour:
   PathElements:
   - PathElementPosition: {x: 0, y: 0.05, z: 0}
     Delay: 3
-  - PathElementPosition: {x: -0.8187399, y: 0.05, z: 11.407745}
+  - PathElementPosition: {x: 0, y: 0.05, z: 9}
     Delay: 0
-  - PathElementPosition: {x: 6.2468195, y: 0.05, z: 14.8523655}
+  - PathElementPosition: {x: 6, y: 0.05, z: 9}
     Delay: 3
-  - PathElementPosition: {x: 9.166875, y: 0.05, z: 3.9389477}
+  - PathElementPosition: {x: 6, y: 0.05, z: 0}
     Delay: 0
   ReferenceMMPath: {fileID: 0}
   AbsoluteReferencePath: 0
@@ -1421,7 +1384,7 @@ MonoBehaviour:
   VisionRadius: 15
   VisionAngle: 60
   Direction: {x: 0, y: 0, z: 0}
-  EulerAngles: {x: 0, y: 0, z: 0}
+  EulerAngles: {x: 0, y: -90, z: 0}
   Offset: {x: 0, y: 1.8, z: 0}
   ShouldScanForTargets: 1
   TargetMask:
@@ -1640,6 +1603,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7288506302400114269, guid: 6532946ffe9a5ff46ac704da1bb9f612,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288506302400114269, guid: 6532946ffe9a5ff46ac704da1bb9f612,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288506302400114269, guid: 6532946ffe9a5ff46ac704da1bb9f612,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 7354589089325768990, guid: 6532946ffe9a5ff46ac704da1bb9f612,
         type: 3}
       propertyPath: m_Enabled
@@ -1662,6 +1640,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3068466690363333130, guid: 6532946ffe9a5ff46ac704da1bb9f612, type: 3}
+    - {fileID: 7354589089325768990, guid: 6532946ffe9a5ff46ac704da1bb9f612, type: 3}
+    - {fileID: 6400586899839200228, guid: 6532946ffe9a5ff46ac704da1bb9f612, type: 3}
+    - {fileID: 2622291564860276636, guid: 6532946ffe9a5ff46ac704da1bb9f612, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6532946ffe9a5ff46ac704da1bb9f612, type: 3}
 --- !u!1 &2674729214552661429 stripped
 GameObject:

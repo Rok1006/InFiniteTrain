@@ -168,8 +168,8 @@ public class PlayerManager : MonoBehaviour
             secondaryHandleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[1], weaponCollection.MeleeWeapons[1].WeaponName, false);
             MCFrontAnim.SetBool("IsUsingWeapon", true);
             DisableAllWeaponAnimation();
-            MCFrontAnim.SetTrigger("UseBigSword");
-            MCBackAnim.SetTrigger("UseBigSword");
+            MCFrontAnim.SetTrigger("UseSmallSword");
+            MCBackAnim.SetTrigger("UseSmallSword");
         }
 
     }
@@ -179,8 +179,8 @@ public class PlayerManager : MonoBehaviour
         // secondaryHandleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[1], weaponCollection.MeleeWeapons[1].WeaponName, false);
         MCFrontAnim.SetBool("IsUsingWeapon", true);
         DisableAllWeaponAnimation();
-        MCFrontAnim.SetTrigger("UseBigSword");
-        MCBackAnim.SetTrigger("UseBigSword");
+        MCFrontAnim.SetTrigger("UseSmallSword");
+        MCBackAnim.SetTrigger("UseSmallSword");
     }
 
     public void DustEmit(){
@@ -218,6 +218,7 @@ public class PlayerManager : MonoBehaviour
         MCBackAnim.SetBool("Switch_smallGun", false);
         MCBackAnim.SetBool("Switch_bigGun", false);
         MCBackAnim.SetBool("Switch_bigSword", false);
+        
     }
 
     public void test() {

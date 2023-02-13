@@ -11,8 +11,8 @@ public class FuelMachine : MonoBehaviour
     [SerializeField] private Slider FuelBar;
     private int currentAmt;
     [SerializeField] private int addAmt; //temp
-
     [SerializeField] private Animator TrainWheel;
+    [SerializeField] private TextMeshProUGUI fuelNumDisplay;
 
     void Start()
     {
@@ -25,6 +25,7 @@ public class FuelMachine : MonoBehaviour
     void Update()
     {
         FuelBar.value = player.GetComponent<PlayerInformation>().FuelAmt;
+        fuelNumDisplay.text = player.GetComponent<PlayerInformation>().FuelAmt + "/ 10";
     }
     public void AddFuel(){
         player.GetComponent<PlayerInformation>().FuelAmt += addAmt;
