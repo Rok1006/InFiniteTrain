@@ -106,9 +106,14 @@ namespace MoreMountains.Tools
 				ScanForTargets();
 			}
 			DrawMesh();
+			
+		}
+		 private void Update()
+        {
+			this.GetComponent<MMConeOfVision>().enabled = true;
 		}
 
-		public virtual void SetDirectionAndAngles(Vector3 direction, Vector3 eulerAngles)
+        public virtual void SetDirectionAndAngles(Vector3 direction, Vector3 eulerAngles)
 		{
 			Direction = direction;
 			EulerAngles = eulerAngles;

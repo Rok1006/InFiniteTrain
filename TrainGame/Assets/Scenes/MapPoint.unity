@@ -7848,6 +7848,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1858846301}
     m_Modifications:
+    - target: {fileID: 2622291564860276636, guid: 6532946ffe9a5ff46ac704da1bb9f612,
+        type: 3}
+      propertyPath: ShouldDrawMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622291564860276636, guid: 6532946ffe9a5ff46ac704da1bb9f612,
+        type: 3}
+      propertyPath: ObstacleMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7288506302351036999, guid: 6532946ffe9a5ff46ac704da1bb9f612,
         type: 3}
       propertyPath: m_RootOrder
@@ -7926,7 +7936,7 @@ PrefabInstance:
     - target: {fileID: 7288506302351037000, guid: 6532946ffe9a5ff46ac704da1bb9f612,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7288506302400114265, guid: 6532946ffe9a5ff46ac704da1bb9f612,
         type: 3}
@@ -7948,6 +7958,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.3441
       objectReference: {fileID: 0}
+    - target: {fileID: 7354589089325768990, guid: 6532946ffe9a5ff46ac704da1bb9f612,
+        type: 3}
+      propertyPath: States.Array.data[1].Actions.array.Array.data[0]
+      value: 
+      objectReference: {fileID: 1181084482}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6532946ffe9a5ff46ac704da1bb9f612, type: 3}
 --- !u!4 &1181084480 stripped
@@ -7956,6 +7971,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1181084479}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1181084481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7288506302351037000, guid: 6532946ffe9a5ff46ac704da1bb9f612,
+    type: 3}
+  m_PrefabInstance: {fileID: 1181084479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1181084482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181084481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97230edd623230e4ea486ef91a6d23e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: 
+  MinimumDistance: 1
 --- !u!1 &1185873384
 GameObject:
   m_ObjectHideFlags: 0
@@ -8587,7 +8623,7 @@ GameObject:
   - component: {fileID: 1228415781}
   - component: {fileID: 1228415780}
   - component: {fileID: 1228415779}
-  m_Layer: 23
+  m_Layer: 9
   m_Name: Grd2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8953,7 +8989,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7762712, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12241,7 +12277,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7762712, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
