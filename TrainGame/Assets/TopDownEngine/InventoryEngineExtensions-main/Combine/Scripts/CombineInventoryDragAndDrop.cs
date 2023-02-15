@@ -71,13 +71,20 @@ namespace Combine
                 if (destinationSlot == null) continue;
                 if (_slot == destinationSlot && _item.Quantity == 1) return;
                 var destinationInventory = destinationSlot.ParentInventoryDisplay.TargetInventory;
+                Debug.Log(destinationInventory.gameObject.name);
                 var destinationItem = destinationInventory.Content[destinationSlot.Index];
                 var isDestinationEmpty = InventoryItem.IsNull(destinationItem);
                 if (!isDestinationEmpty &&
                     Combine.TryCombineItems(_inventory, _slot.Index, destinationInventory, destinationSlot.Index))
                     return;
-                if (_inventory == destinationInventory && (_item.CanMoveObject && isDestinationEmpty || _item.CanSwapObject && !isDestinationEmpty && destinationItem.CanSwapObject))
+                // if (_inventory == destinationInventory && (_item.CanMoveObject && isDestinationEmpty || _item.CanSwapObject && !isDestinationEmpty && destinationItem.CanSwapObject))
+                //     _inventory.MoveItem(_slot.Index, destinationSlot.Index);
+                if (_inventory == destinationInventory && (_item.CanMoveObject && isDestinationEmpty || _item.CanSwapObject && !isDestinationEmpty && destinationItem.CanSwapObject)) {
                     _inventory.MoveItem(_slot.Index, destinationSlot.Index);
+                }
+                else if (_item.CanMoveObject && isDestinationEmpty || _item.CanSwapObject && !isDestinationEmpty && destinationItem.CanSwapObject) {
+                    _inventory.MoveItemToInventory(_slot.Index, destinationInventory, destinationSlot.Index);
+                }
                 else if (_item.IsEquippable && _item.TargetEquipmentInventoryName == destinationInventory.name)
                 {
                     if (isDestinationEmpty)
