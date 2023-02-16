@@ -215,7 +215,7 @@ PrefabInstance:
     - target: {fileID: 1600182828364304407, guid: 304ce7f6da8a6884bad8b40d0f41a6b5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.14943
+      value: -24.149414
       objectReference: {fileID: 0}
     - target: {fileID: 5007610704223311097, guid: 304ce7f6da8a6884bad8b40d0f41a6b5,
         type: 3}
@@ -6566,7 +6566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 256, y: -27.999771}
+  m_AnchoredPosition: {x: 256, y: -27.999756}
   m_SizeDelta: {x: -522, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1106067072
@@ -8055,7 +8055,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7857143, y: 1}
+    m_SensorSize: {x: 1.7788697, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11054,7 +11054,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7857143, y: 1}
+    m_SensorSize: {x: 1.7788697, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11464,7 +11464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1858846301}
   m_Layer: 0
-  m_Name: EnemyMiniBasePt1#
+  m_Name: EnemyMiniBasePt1#(shd be named e.g StartLandA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12588,7 +12588,7 @@ GameObject:
   - component: {fileID: 2018121995}
   - component: {fileID: 2018121996}
   m_Layer: 0
-  m_Name: EnemyResourcePt1
+  m_Name: ERP_WetLand1_V1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12620,7 +12620,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef708b493c936442da9711b26c1e913f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Reminders: '1. The BoundaryArea List count shd equal to numberOfArea.
+
+'
   numberOfArea: 0
+  P_Data:
+  - {fileID: 11400000, guid: ce19890d859714f0c8e1d937818edd6f, type: 2}
   ResourcesBoxPoint:
   - {fileID: 0}
   - {fileID: 0}
@@ -12638,7 +12643,6 @@ MonoBehaviour:
   RandomPoint: []
   TrapTileType: []
   ResourceBoxType: []
-  GrassAmt: 5
   GrassType:
   - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
   minX: 0

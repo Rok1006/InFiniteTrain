@@ -2,25 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-// [CreateAssetMenu(fileName = "NewPointData", menuName = "ScriptableObject/PointData")]
+// This script pull data frm pointData scObj and partly determine the content of whole pt., and store resources used in the pt
 //To do: 
 //detect if spawned item are overlapping with eachother by checking their radius?
 //spawning enviromental object
 //** Shd deal with deapth issue of spawned object: resource box, plant
+//second land shd be spawned too, but first land shd always be the same
+//For each pt it shd always end with land that have one entrance/exit
 public class PointContent : MonoBehaviour
 {
-    [SerializeField, BoxGroup("PointInfo")]private int numberOfArea;
+    [Space(10)][TextArea(3, 10)]public string Reminders;
+    //1. The BoundaryArea List count shd equal to numberOfArea.
+    [Tooltip("For Display Purpose")][SerializeField, BoxGroup("PointInfo")] private int numberOfArea;
+    [Tooltip("Assign all needed point data accord to numOfArea")][SerializeField, BoxGroup("PointInfo")]private PointData[] P_Data; 
+    
     [SerializeField, BoxGroup("PointInfo")]private List<GameObject> ResourcesBoxPoint = new List<GameObject>();
-    [SerializeField, BoxGroup("PointInfo")] public List<boundaryAreaClass> BoundaryArea = new List<boundaryAreaClass>();
+    [Tooltip("Assign all corner pts frm heiarchy")][SerializeField, BoxGroup("PointInfo")] public List<boundaryAreaClass> BoundaryArea = new List<boundaryAreaClass>();
     [SerializeField, BoxGroup("PointInfo")] private List<Vector3> RandomPoint = new List<Vector3>();
     Vector3 previousPt;
+    List<GameObject> CreatedStuff = new List<GameObject>();
+
     [SerializeField, BoxGroup("Resources")]private GameObject[] TrapTileType;
     [SerializeField, BoxGroup("Resources")]private GameObject[] ResourceBoxType;
-
-    [SerializeField, BoxGroup("GrassSetting")]private int GrassAmt;
-    [SerializeField, BoxGroup("GrassSetting")]private GameObject[] GrassType; //grass prefab for generating grass or interactable environemnt
-
-    public float minX,maxX,minZ,maxZ = 0;
+    [SerializeField, BoxGroup("Resources")]private GameObject[] GrassType; //grass prefab for generating grass or interactable environemnt
+    
+    //[SerializeField, BoxGroup("GrassSetting")]private int GrassAmt;
+    [ReadOnly]public float minX,maxX,minZ,maxZ = 0;
 
     private void Start() {
         minX = Mathf.Infinity;
@@ -28,17 +35,24 @@ public class PointContent : MonoBehaviour
         minZ = Mathf.Infinity;
         maxZ = -Mathf.Infinity;
 
+        GenerateContent();
+        
+    }
+    private void Update() {
+        //
+    }
+    void GenerateContent(){ //Main Body
         foreach (boundaryAreaClass BA in BoundaryArea) //look through each class list
-        {
-            //Debug.Log(myClass.name + "'s list:");
-            for (int i = 0; i < BA.BoundaryPt.Count; i++)
+        { //Debug.Log(myClass.name + "'s list:");
+            int count = 0;
+            for (int i = 0; i < BA.BoundaryPt.Count; i++) //Assign Min Max
             {
                 Debug.Log(BA.BoundaryPt[i]);
                 FindMaxnMin(BA.BoundaryPt[i]);
             }
-            for (int i = 0; i < GrassAmt; i++){ //needa make sure that the generated pt is not the same
+//Enviroment Related-------------------------
+            for (int i = 0; i < P_Data[count].GrassAmt; i++){ //needa make sure that the generated pt is not the same
                 Vector3 currentPt = GetRandomPt(BA.BoundaryPt);
-                //GetRandomPt(BA.BoundaryPt);
                 if(currentPt==previousPt){
                     currentPt = GetRandomPt(BA.BoundaryPt);
                 }else{
@@ -46,9 +60,24 @@ public class PointContent : MonoBehaviour
                 }
                 GameObject g = Instantiate (GrassType[Random.Range(0, GrassType.Length)], currentPt, Quaternion.identity);
                 g.transform.localScale = new Vector3(7f,7f,7f); //currently hard code if have more types gotta figure out a way
-                g.transform.rotation = Quaternion.Euler(100f, 0f, 180f);
+                g.transform.rotation = Quaternion.Euler(70f, 0f, 180f);
+                CreatedStuff.Add(g);
+                // if(g.GetComponent<NonCharacterManager>().isOverlappWithMain){ //this not working, not showing result
+                //     Debug.Log("Respawn");
+                //     //OverLappedPt.Add(g);
+                //     RandomPoint.Remove(currentPt); //remove old point
+                //     // Vector3 newPt = GetRandomPt(BA.BoundaryPt);
+                //     // GameObject g_n = Instantiate (GrassType[Random.Range(0, GrassType.Length)], newPt, Quaternion.identity);
+                //     //RandomPoint.Add(newPt);
+                    
+                //     // Destroy(g); //destroy this object
+                // }
             }
+            //count+=1; but make sure ther is a second data assigned
         }
+    }
+    void CheckIfOverlap(){
+        //check through CreatedObjects list
     }
 
     void FindMaxnMin(GameObject pt){
@@ -117,3 +146,6 @@ public class PointContent : MonoBehaviour
         public List<GameObject> BoundaryPt;
     }
     
+/* Current Issue:
+- SomeTime Grass out of BoundaryPt, why?
+*/
