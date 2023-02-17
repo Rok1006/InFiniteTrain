@@ -45,7 +45,10 @@ public class PointContent : MonoBehaviour
         // minZ = Mathf.Infinity;
         // maxZ = -Mathf.Infinity;
         if(canCheckOverlap){
-            CheckIfOverlap();
+            foreach (boundaryAreaClass BA in BoundaryArea) //look through each class list
+            { 
+                CheckIfOverlap(CreatedTraps, BA.BoundaryPt); //this could move points to somewhere outside of boundrrrrrrrrrrrr, is it fixed
+            }
             canCheckOverlap = false;
         };
         
@@ -66,22 +69,23 @@ public class PointContent : MonoBehaviour
             count+=1; //Change Data files, make sure there is correct num of data
         }
     }
-    void CheckIfOverlap(){ //For traps
+    void CheckIfOverlap(List<GameObject> ListChecking, List<GameObject> BA){ //For traps
         int overLapCount = 0;
-        for (int i = 0; i < CreatedTraps.Count - 1; i++)
+        for (int i = 0; i < ListChecking.Count - 1; i++)
         {
-            for (int j = i + 1; j < CreatedTraps.Count; j++)
+            for (int j = i + 1; j < ListChecking.Count; j++)
             {
-                Collider collider1 = CreatedTraps[i].GetComponent<Collider>();
-                Collider collider2 = CreatedTraps[j].GetComponent<Collider>();
+                Collider collider1 = ListChecking[i].GetComponent<Collider>();
+                Collider collider2 = ListChecking[j].GetComponent<Collider>();
 
                 if (collider1 != null && collider2 != null && collider1.bounds.Intersects(collider2.bounds))
                 {
-                    //return true;
                     overLapCount+=1;
-                    //Debug.Log(overLapCount);
-                    CreatedTraps[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
-                    //Vector3 newPt = GetRandomPt(BA);
+                    
+                    Vector3 newPt = GetRandomPt(BA);
+                    Debug.Log(newPt);
+                    // CreatedTraps[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
+                    ListChecking[i].transform.position = newPt;
                 }
             }
         }
@@ -106,6 +110,8 @@ public class PointContent : MonoBehaviour
     void SpawnTraps(int count, List<GameObject> BA){ //count is the spawned land, each data count is one land, each pt can have multiple land
         RandomPoint.TrimExcess(); //Reset list //to get new random pts
         RandomPoint.Clear(); //Reset list
+        CreatedTraps.TrimExcess(); //Reset list //to get new random pts
+        CreatedTraps.Clear(); //Reset list
         for (int i = 0; i < P_Data[count].TrapAmt; i++){ //needa make sure that the generated pt is not the same
                 Vector3 currentPt = GetRandomPt(BA);
                 previousPt = currentPt;
@@ -113,7 +119,7 @@ public class PointContent : MonoBehaviour
                 GameObject t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
                 t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
                 CreatedTraps.Add(t);
-                if(i == P_Data[count].TrapAmt-1){
+                if(i == P_Data[count].TrapAmt-1){ //wait until the last check
                     canCheckOverlap = true;
                     //Debug.Log("sth");
                 }
