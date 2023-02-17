@@ -20,7 +20,8 @@ public class PointContent : MonoBehaviour
     [Tooltip("Assign all corner pts frm heiarchy")][SerializeField, BoxGroup("PointInfo")] public List<boundaryAreaClass> BoundaryArea = new List<boundaryAreaClass>();
     [SerializeField, BoxGroup("PointInfo")] private List<Vector3> RandomPoint = new List<Vector3>();
     Vector3 previousPt;
-    List<GameObject> CreatedStuff = new List<GameObject>();
+    List<GameObject> CreatedGrass = new List<GameObject>();  //list for created grass
+    List<GameObject> CreatedTraps = new List<GameObject>();
 
     [SerializeField, BoxGroup("Resources")]private GameObject[] TrapTileType;
     [SerializeField, BoxGroup("Resources")]private GameObject[] ResourceBoxType;
@@ -28,18 +29,22 @@ public class PointContent : MonoBehaviour
     
     //[SerializeField, BoxGroup("GrassSetting")]private int GrassAmt;
     [ReadOnly]public float minX,maxX,minZ,maxZ = 0;
+    bool canCheckOverlap = false;
+    //int count = 0;
 
     private void Start() {
         minX = Mathf.Infinity;
         maxX = -Mathf.Infinity;
         minZ = Mathf.Infinity;
         maxZ = -Mathf.Infinity;
-
         GenerateContent();
-        
     }
     private void Update() {
-        //
+        if(canCheckOverlap){
+            CheckIfOverlap();
+            canCheckOverlap = false;
+        };
+        
     }
     void GenerateContent(){ //Main Body
         foreach (boundaryAreaClass BA in BoundaryArea) //look through each class list
@@ -49,35 +54,71 @@ public class PointContent : MonoBehaviour
             {
                 Debug.Log(BA.BoundaryPt[i]);
                 FindMaxnMin(BA.BoundaryPt[i]);
+                
             }
 //Enviroment Related-------------------------
-            for (int i = 0; i < P_Data[count].GrassAmt; i++){ //needa make sure that the generated pt is not the same
-                Vector3 currentPt = GetRandomPt(BA.BoundaryPt);
+            SpawnGrass(count, BA.BoundaryPt);
+            SpawnTraps(count, BA.BoundaryPt);
+            count+=1; //Change Data files, make sure there is correct num of data
+        }
+    }
+    void CheckIfOverlap(){ //For traps
+        int overLapCount = 0;
+        for (int i = 0; i < CreatedTraps.Count - 1; i++)
+        {
+            for (int j = i + 1; j < CreatedTraps.Count; j++)
+            {
+                Collider collider1 = CreatedTraps[i].GetComponent<Collider>();
+                Collider collider2 = CreatedTraps[j].GetComponent<Collider>();
+
+                if (collider1 != null && collider2 != null && collider1.bounds.Intersects(collider2.bounds))
+                {
+                    //return true;
+                    overLapCount+=1;
+                    Debug.Log(overLapCount);
+                    CreatedTraps[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
+                    //Vector3 newPt = GetRandomPt(BA);
+                }
+            }
+        }
+        //return false;   
+    }
+    void SpawnGrass(int count, List<GameObject> BA){ //count is the spawned land, each data count is one land, each pt can have multiple land
+        RandomPoint.TrimExcess(); //Reset list
+        RandomPoint.Clear(); //Reset list
+        for (int i = 0; i < P_Data[count].GrassAmt; i++){ //needa make sure that the generated pt is not the same
+                Vector3 currentPt = GetRandomPt(BA);
                 if(currentPt==previousPt){
-                    currentPt = GetRandomPt(BA.BoundaryPt);
+                    currentPt = GetRandomPt(BA);
                 }else{
                     RandomPoint.Add(currentPt);
                 }
                 GameObject g = Instantiate (GrassType[Random.Range(0, GrassType.Length)], currentPt, Quaternion.identity);
                 g.transform.localScale = new Vector3(7f,7f,7f); //currently hard code if have more types gotta figure out a way
                 g.transform.rotation = Quaternion.Euler(70f, 0f, 180f);
-                CreatedStuff.Add(g);
-                // if(g.GetComponent<NonCharacterManager>().isOverlappWithMain){ //this not working, not showing result
-                //     Debug.Log("Respawn");
-                //     //OverLappedPt.Add(g);
-                //     RandomPoint.Remove(currentPt); //remove old point
-                //     // Vector3 newPt = GetRandomPt(BA.BoundaryPt);
-                //     // GameObject g_n = Instantiate (GrassType[Random.Range(0, GrassType.Length)], newPt, Quaternion.identity);
-                //     //RandomPoint.Add(newPt);
-                    
-                //     // Destroy(g); //destroy this object
-                // }
-            }
-            //count+=1; but make sure ther is a second data assigned
+                CreatedGrass.Add(g);
         }
     }
-    void CheckIfOverlap(){
-        //check through CreatedObjects list
+    void SpawnTraps(int count, List<GameObject> BA){ //count is the spawned land, each data count is one land, each pt can have multiple land
+        RandomPoint.TrimExcess(); //Reset list //to get new random pts
+        RandomPoint.Clear(); //Reset list
+        for (int i = 0; i < P_Data[count].TrapAmt; i++){ //needa make sure that the generated pt is not the same
+                Vector3 currentPt = GetRandomPt(BA);
+                if(currentPt==previousPt){
+                    currentPt = GetRandomPt(BA);
+                }else{
+                    RandomPoint.Add(currentPt);
+                }
+                GameObject t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
+                t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
+                CreatedTraps.Add(t);
+                if(i == P_Data[count].TrapAmt-1){
+                    canCheckOverlap = true;
+                    Debug.Log("sth");
+                }
+        }
+        
+        //CheckIfOverlap();
     }
 
     void FindMaxnMin(GameObject pt){
@@ -149,3 +190,15 @@ public class PointContent : MonoBehaviour
 /* Current Issue:
 - SomeTime Grass out of BoundaryPt, why?
 */
+// for (int i = 0; i < P_Data[count].GrassAmt; i++){ //needa make sure that the generated pt is not the same
+            //     Vector3 currentPt = GetRandomPt(BA.BoundaryPt);
+            //     if(currentPt==previousPt){
+            //         currentPt = GetRandomPt(BA.BoundaryPt);
+            //     }else{
+            //         RandomPoint.Add(currentPt);
+            //     }
+            //     GameObject g = Instantiate (GrassType[Random.Range(0, GrassType.Length)], currentPt, Quaternion.identity);
+            //     g.transform.localScale = new Vector3(7f,7f,7f); //currently hard code if have more types gotta figure out a way
+            //     g.transform.rotation = Quaternion.Euler(70f, 0f, 180f);
+            //     CreatedStuff.Add(g);
+            // }

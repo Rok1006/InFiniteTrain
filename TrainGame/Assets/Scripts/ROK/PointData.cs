@@ -16,8 +16,8 @@ public class PointData : ScriptableObject
     [Tooltip("The name shd Alligh with the land name in heiarchy")][SerializeField, BoxGroup("BaseSetting")] public string landType;   //Start land/End Land/Middle land; e.g MidLandA (Landtype+variationstype)
 //--------------------
     [SerializeField, BoxGroup("TrapSetting")] public bool haveTraps;
-    [SerializeField, BoxGroup("TrapSetting")] public int numberOfTraps;
-    [SerializeField, BoxGroup("TrapSetting")] public string TrapType;
+    [SerializeField, BoxGroup("TrapSetting")] public int TrapAmt;
+    //[SerializeField, BoxGroup("TrapSetting")] public string TrapType;
 //--------------------
     [SerializeField, BoxGroup("EnemySetting")] public bool haveEnemy;
     [SerializeField, BoxGroup("EnemySetting")] public int NumberOfEnemy;
