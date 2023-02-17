@@ -40,6 +40,10 @@ public class PointContent : MonoBehaviour
         GenerateContent();
     }
     private void Update() {
+        // minX = Mathf.Infinity;
+        // maxX = -Mathf.Infinity;
+        // minZ = Mathf.Infinity;
+        // maxZ = -Mathf.Infinity;
         if(canCheckOverlap){
             CheckIfOverlap();
             canCheckOverlap = false;
@@ -47,14 +51,14 @@ public class PointContent : MonoBehaviour
         
     }
     void GenerateContent(){ //Main Body
+    int count = 0;
         foreach (boundaryAreaClass BA in BoundaryArea) //look through each class list
         { //Debug.Log(myClass.name + "'s list:");
-            int count = 0;
+            Debug.Log("checked");
             for (int i = 0; i < BA.BoundaryPt.Count; i++) //Assign Min Max
             {
                 Debug.Log(BA.BoundaryPt[i]);
                 FindMaxnMin(BA.BoundaryPt[i]);
-                
             }
 //Enviroment Related-------------------------
             SpawnGrass(count, BA.BoundaryPt);
@@ -75,7 +79,7 @@ public class PointContent : MonoBehaviour
                 {
                     //return true;
                     overLapCount+=1;
-                    Debug.Log(overLapCount);
+                    //Debug.Log(overLapCount);
                     CreatedTraps[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
                     //Vector3 newPt = GetRandomPt(BA);
                 }
@@ -104,20 +108,16 @@ public class PointContent : MonoBehaviour
         RandomPoint.Clear(); //Reset list
         for (int i = 0; i < P_Data[count].TrapAmt; i++){ //needa make sure that the generated pt is not the same
                 Vector3 currentPt = GetRandomPt(BA);
-                if(currentPt==previousPt){
-                    currentPt = GetRandomPt(BA);
-                }else{
-                    RandomPoint.Add(currentPt);
-                }
+                previousPt = currentPt;
+                RandomPoint.Add(currentPt);
                 GameObject t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
                 t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
                 CreatedTraps.Add(t);
                 if(i == P_Data[count].TrapAmt-1){
                     canCheckOverlap = true;
-                    Debug.Log("sth");
+                    //Debug.Log("sth");
                 }
         }
-        
         //CheckIfOverlap();
     }
 
@@ -150,21 +150,22 @@ public class PointContent : MonoBehaviour
         return randomPoint;
     }
     bool IsPointInsideBoundary(Vector3 point, List<GameObject> boundary){ // Define a function to check if a point is inside the boundary
-        int count = 0;
+        int num = 0;
         for (int i = 0; i < boundary.Count; i++)
         {
             Vector3 p1 = boundary[i].transform.position;
             Vector3 p2 = boundary[(i + 1) % boundary.Count].transform.position;
             if (IsPointOnLineSegment(point, p1, p2))
             {
+                Debug.Log("jsehfjskdh");
                 return true;
             }
             if (IsPointToLeftOfLine(point, p1, p2))
             {
-                count++;
+                num++;
             }
         }
-        return count % 2 == 1;
+        return num % 2 == 1;
     }
     bool IsPointOnLineSegment(Vector3 point, Vector3 p1, Vector3 p2) // Define a function to check if a point is on a line segment
     {
@@ -177,8 +178,6 @@ public class PointContent : MonoBehaviour
     {
         return ((p2.x - p1.x) * (point.z - p1.z) - (p2.z - p1.z) * (point.x - p1.x)) > 0;
     }
-
-
 }
 
 [System.Serializable]
