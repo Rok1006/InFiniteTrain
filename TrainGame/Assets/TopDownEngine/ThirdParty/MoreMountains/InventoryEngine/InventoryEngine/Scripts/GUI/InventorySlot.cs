@@ -250,6 +250,7 @@ namespace MoreMountains.InventoryEngine
 				InventoryDisplay.CurrentlyBeingMovedItemIndex = -1;
 				InventoryDisplay.CurrentlyBeingMovedFromInventoryDisplay = null;
 				MMInventoryEvent.Trigger(MMInventoryEventType.Drop, this, ParentInventoryDisplay.TargetInventoryName, ParentInventoryDisplay.TargetInventory.Content[Index], 0, Index, ParentInventoryDisplay.PlayerID);
+				Debug.Log("On Correct Path");
 			}            
 		}
 

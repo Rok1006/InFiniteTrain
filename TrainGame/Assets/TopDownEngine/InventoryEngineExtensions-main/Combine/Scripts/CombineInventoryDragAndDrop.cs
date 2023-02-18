@@ -68,17 +68,14 @@ namespace Combine
             foreach (var result in _raycastResults)
             {
                 var destinationSlot = result.gameObject.GetComponent<InventorySlot>();
-                if (destinationSlot == null) continue;
+                if (destinationSlot == null) {Debug.Log("NUll");continue;}
                 if (_slot == destinationSlot && _item.Quantity == 1) return;
                 var destinationInventory = destinationSlot.ParentInventoryDisplay.TargetInventory;
-                Debug.Log(destinationInventory.gameObject.name);
                 var destinationItem = destinationInventory.Content[destinationSlot.Index];
                 var isDestinationEmpty = InventoryItem.IsNull(destinationItem);
                 if (!isDestinationEmpty &&
                     Combine.TryCombineItems(_inventory, _slot.Index, destinationInventory, destinationSlot.Index))
                     return;
-                // if (_inventory == destinationInventory && (_item.CanMoveObject && isDestinationEmpty || _item.CanSwapObject && !isDestinationEmpty && destinationItem.CanSwapObject))
-                //     _inventory.MoveItem(_slot.Index, destinationSlot.Index);
                 if (_inventory == destinationInventory && (_item.CanMoveObject && isDestinationEmpty || _item.CanSwapObject && !isDestinationEmpty && destinationItem.CanSwapObject)) {
                     _inventory.MoveItem(_slot.Index, destinationSlot.Index);
                 }
@@ -125,6 +122,7 @@ namespace Combine
 
                 return;
             }
+            Debug.Log("Dropping");
             _slot.Drop();
         }
     }

@@ -29,14 +29,4 @@ public class FoodItem : InventoryItem
         playerInfo.CurrentRadiationValue = Mathf.Max(playerInfo.CurrentRadiationValue-radiationDecrease, 0.0f);
         return true;
     }
-
-    public override bool Drop(string playerID)
-    {
-        FoodCart foodCart = FindObjectOfType<FoodCart>();
-        if (foodCart != null) {
-            foodCart.Foods.Add(this);
-        }
-        base.Drop(playerID);
-        return true;
-    }
 }

@@ -195,20 +195,30 @@ namespace MoreMountains.InventoryEngine
 		/// </summary>
 		public virtual void SpawnPrefab(string playerID)
 		{
+			Debug.Log("Spawning item");
 			if (TargetInventory(playerID) != null)
 			{
+				Debug.Log("player id is not null");
+				if (Prefab!=null)
+					Debug.Log("Prefab is not null");
+				if(TargetInventory(playerID).TargetTransform!=null)
+					Debug.Log("targetTransform is not null");
 				// if there's a prefab set for the item at this slot, we instantiate it at the specified offset
 				if (Prefab!=null && TargetInventory(playerID).TargetTransform!=null)
 				{
+					Debug.Log("Scale: " + Prefab.transform.localScale.x);
+
 					GameObject droppedObject=(GameObject)Instantiate(Prefab);
 					if (droppedObject.GetComponent<ItemPicker>()!=null)
 					{
 						droppedObject.GetComponent<ItemPicker>().Quantity = Quantity;
 						droppedObject.GetComponent<ItemPicker>().RemainingQuantity = Quantity;
+						Debug.Log("Scale111: " + droppedObject.transform.localScale.x);
 					}
 
 					MMSpawnAround.ApplySpawnAroundProperties(droppedObject, DropProperties,
 						TargetInventory(playerID).TargetTransform.position);
+						Debug.Log("Scale222: " + droppedObject.transform.localScale.x);
 				}
 			}
 		}
