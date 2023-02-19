@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1860568340325747981}
   - component: {fileID: 2110041665118984574}
   - component: {fileID: 6344070018317392998}
-  m_Layer: 26
+  m_Layer: 0
   m_Name: ResourceBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,10 +64,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: Player1
   invnetoryName: BoxInventory
+  autoSelectInventoryDisplay: 1
+  inventoryCanvas: {fileID: 0}
+  inventoryDisplay: {fileID: 0}
   radicalBar: {fileID: 8530647238621044657}
   timer: {fileID: 1111807558383782141}
-  openBoxSpeed: 0.35
   isLocked: 1
+  openBoxSpeed: 0.35
   boxAnim: {fileID: 6417475343445778666}
 --- !u!65 &2110041665118984574
 BoxCollider:
@@ -94,7 +97,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -109,7 +112,7 @@ GameObject:
   - component: {fileID: 8988536238301399451}
   - component: {fileID: 3161936250540050819}
   - component: {fileID: 8530647238621044657}
-  m_Layer: 26
+  m_Layer: 0
   m_Name: RadicalBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4152624779130764583}
-  m_Layer: 26
+  m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +226,7 @@ GameObject:
   - component: {fileID: 6432043782103909121}
   - component: {fileID: 3621348352440883872}
   - component: {fileID: 829067663702958751}
-  m_Layer: 26
+  m_Layer: 0
   m_Name: RadicalBarHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +303,7 @@ GameObject:
   - component: {fileID: 1540980086353905384}
   - component: {fileID: 3057747553982296506}
   - component: {fileID: 2289086588776831241}
-  m_Layer: 26
+  m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +405,7 @@ GameObject:
   - component: {fileID: 6417475343445778666}
   - component: {fileID: 8972723309343169849}
   - component: {fileID: 9078755206297136099}
-  m_Layer: 26
+  m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4308644550295948978}
   - component: {fileID: 6477720120665672301}
-  m_Layer: 26
+  m_Layer: 0
   m_Name: BoxInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +618,7 @@ GameObject:
   - component: {fileID: 2720494553234466803}
   - component: {fileID: 1152660867265349918}
   - component: {fileID: 1094001077536690502}
-  m_Layer: 26
+  m_Layer: 0
   m_Name: RadicalBarHolder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

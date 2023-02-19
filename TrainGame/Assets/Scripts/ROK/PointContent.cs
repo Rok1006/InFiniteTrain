@@ -38,6 +38,9 @@ public class PointContent : MonoBehaviour
         maxX = -Mathf.Infinity;
         minZ = Mathf.Infinity;
         maxZ = -Mathf.Infinity;
+        for(int a = 0; a<ActiveLand.Length; a++){
+            ActiveLand[a].SetActive(true);
+        }
         GenerateContent();
     }
     private void Update() {
@@ -127,7 +130,7 @@ public class PointContent : MonoBehaviour
     void SpawnPond(List<GameObject> BA){
         Vector3 currentPt = GetRandomPt(BA);
         GameObject t = Instantiate (PondType[Random.Range(0, PondType.Length)], currentPt, Quaternion.identity);
-        int ran = Random.Range(2,7);
+        int ran = Random.Range(2,5);
         t.transform.localScale = new Vector3(ran,ran,ran);
         CreatedStuff.Add(t);
         canCheckOverlap = true;
