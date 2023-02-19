@@ -12,26 +12,31 @@ public class ResourceBox : MonoBehaviour
 {
     private CharacterHandleWeapon playerWeapon;
 
-    private CanvasGroup inventoryCanvas;
+    
     [SerializeField,BoxGroup("TDE")] private string playerID, invnetoryName;
     private SideInventoryDisplay sideInventoryDisplay;
-    private InventoryDisplay inventoryDisplay;
-
+    
+    [SerializeField, BoxGroup("TDE")] private bool autoSelectInventoryDisplay = true;
+    [SerializeField, BoxGroup("TDE")] private CanvasGroup inventoryCanvas;
+    [SerializeField, BoxGroup("TDE")] private InventoryDisplay inventoryDisplay;
     [SerializeField, BoxGroup("UI")] private Image radicalBar;
     [SerializeField, BoxGroup("UI")] private GameObject timer;
-    [SerializeField, BoxGroup("Logic")] private float openBoxSpeed = 0.35f;
     [SerializeField, BoxGroup("Logic")] private bool isLocked = true;
+    [SerializeField, BoxGroup("Logic"), ShowIf("isLocked")] private float openBoxSpeed = 0.35f;
     [SerializeField, BoxGroup("Box")] private Animator boxAnim;
 
     private bool isOpening = false, isPlayerNear = false;
-    void Start()
+    public virtual void Start()
     {
-        sideInventoryDisplay = FindObjectOfType<SideInventoryDisplay>();
-        if (sideInventoryDisplay == null)
-            Debug.LogWarning("Cannot find side inventory display");
-        
-        inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
-        inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
+        if (autoSelectInventoryDisplay) {
+            sideInventoryDisplay = FindObjectOfType<SideInventoryDisplay>();
+            
+            if (sideInventoryDisplay == null)
+                Debug.LogWarning("Cannot find side inventory display");
+            
+            inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
+            inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
+        }
 
 
         if (inventoryDisplay == null)
@@ -49,7 +54,7 @@ public class ResourceBox : MonoBehaviour
 
     }
     
-    void Update()
+    public virtual void Update()
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) {
             isOpening = true;
