@@ -33,7 +33,7 @@ MonoBehaviour:
     DisplayUseButton: 1
     DisplayUnequipButton: 1
     DisplayCombineButton: 1
-  Quantity: 1
+  Quantity: 0
   ItemName: Carrot
   ShortDescription: A carrot, what can I do with it?
   Description: A ediable food that can eat directly or combine with other things.
@@ -42,13 +42,13 @@ MonoBehaviour:
   DropProperties:
     Shape: 0
     NormalToSpawnPlane: {x: 0, y: 1, z: 0}
-    MinimumSphereRadius: 5
-    MaximumSphereRadius: 20
+    MinimumSphereRadius: 3
+    MaximumSphereRadius: 4
     MinimumCubeBaseSize: {x: 1, y: 1, z: 1}
     MaximumCubeBaseSize: {x: 2, y: 2, z: 2}
-    MinimumNormalAxisOffset: 2
-    MaximumNormalAxisOffset: 6
-    UseNormalAxisOffsetCurve: 0
+    MinimumNormalAxisOffset: 0
+    MaximumNormalAxisOffset: 0
+    UseNormalAxisOffsetCurve: 1
     NormalOffsetCurve:
       serializedVersion: 2
       m_Curve:

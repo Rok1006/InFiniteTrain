@@ -71,6 +71,7 @@ public class ResourceBox : MonoBehaviour
                 inventoryDisplay.ChangeTargetInventory(invnetoryName);
                 inventoryCanvas.alpha = 1;
                 inventoryCanvas.interactable = true;
+                inventoryCanvas.blocksRaycasts = true;
                 if (boxAnim != null)
                     boxAnim.SetTrigger("open");
             }
@@ -79,6 +80,7 @@ public class ResourceBox : MonoBehaviour
                 inventoryDisplay.ChangeTargetInventory(invnetoryName);
                 inventoryCanvas.alpha = 1;
                 inventoryCanvas.interactable = true;
+                inventoryCanvas.blocksRaycasts = true;
                 if (boxAnim != null)
                     boxAnim.SetTrigger("open");
             }
@@ -107,6 +109,7 @@ public class ResourceBox : MonoBehaviour
             isOpening = false;
             inventoryCanvas.alpha = 0;
             inventoryCanvas.interactable = false;
+            inventoryCanvas.blocksRaycasts = false;
         }
     }
 
