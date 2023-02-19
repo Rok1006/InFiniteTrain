@@ -14,6 +14,7 @@ public class PointContent : MonoBehaviour
     [Space(10)][TextArea(3, 10)]public string Reminders;
     //1. The BoundaryArea List count shd equal to numberOfArea.
     [Tooltip("For Display Purpose")][SerializeField, BoxGroup("PointInfo")] private int numberOfArea;
+    [SerializeField, BoxGroup("PointInfo")]private GameObject[] ActiveLand;
     [Tooltip("Assign all needed point data accord to numOfArea")][SerializeField, BoxGroup("PointInfo")]private PointData[] P_Data; 
     
     [SerializeField, BoxGroup("PointInfo")]private List<GameObject> ResourcesBoxPoint = new List<GameObject>();
@@ -62,7 +63,7 @@ public class PointContent : MonoBehaviour
 //Enviroment Related-------------------------
             SpawnGrass(count, BA.BoundaryPt);
             SpawnTraps(count, BA.BoundaryPt);
-            if(P_Data[count].havePond){SpawnPond();};
+            if(P_Data[count].havePond){SpawnPond(BA.BoundaryPt);};
             count+=1; //Change Data files, make sure there is correct num of data
         }
     }
@@ -80,7 +81,7 @@ public class PointContent : MonoBehaviour
                     overLapCount+=1;
                     
                     Vector3 newPt = GetRandomPt(BA);
-                    Debug.Log(newPt);
+                    Debug.Log(ListChecking[i].gameObject.name);
                     // CreatedTraps[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
                     ListChecking[i].transform.position = newPt;
                 }
@@ -126,7 +127,10 @@ public class PointContent : MonoBehaviour
     void SpawnPond(List<GameObject> BA){
         Vector3 currentPt = GetRandomPt(BA);
         GameObject t = Instantiate (PondType[Random.Range(0, PondType.Length)], currentPt, Quaternion.identity);
+        int ran = Random.Range(2,7);
+        t.transform.localScale = new Vector3(ran,ran,ran);
         CreatedStuff.Add(t);
+        canCheckOverlap = true;
     }
 
     void FindMaxnMin(GameObject pt){
@@ -165,11 +169,12 @@ public class PointContent : MonoBehaviour
             Vector3 p2 = boundary[(i + 1) % boundary.Count].transform.position;
             if (IsPointOnLineSegment(point, p1, p2))
             {
-                Debug.Log("jsehfjskdh");
+                
                 return true;
             }
             if (IsPointToLeftOfLine(point, p1, p2))
             {
+                //Debug.Log("jsehfjskdh");
                 num++;
             }
         }
