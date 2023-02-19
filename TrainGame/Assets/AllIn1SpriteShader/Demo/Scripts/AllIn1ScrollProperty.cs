@@ -8,9 +8,9 @@ namespace AllIn1SpriteShader
     public class AllIn1ScrollProperty : MonoBehaviour
     {
         [SerializeField] private string numericPropertyName = "_RotateUvAmount";
-        [SerializeField] private float scrollSpeed;
+        [SerializeField] private float scrollSpeed = 0f;
 
-        [Space, SerializeField] private bool applyModulo;
+        [Space, SerializeField] private bool applyModulo = false;
         [SerializeField] private float modulo = 1f;
 
         [Space, SerializeField, Header("If missing will search object Sprite Renderer or UI Image")]
@@ -19,7 +19,7 @@ namespace AllIn1SpriteShader
         private int propertyShaderID;
         private float currValue;
 
-        void Start()
+        public void Start()
         {
             //Get material if missing
             if (mat == null)
@@ -45,7 +45,7 @@ namespace AllIn1SpriteShader
             }
         }
 
-        void Update()
+        private void Update()
         {
             //Update currOffset and update shader property
             currValue += scrollSpeed * Time.deltaTime;

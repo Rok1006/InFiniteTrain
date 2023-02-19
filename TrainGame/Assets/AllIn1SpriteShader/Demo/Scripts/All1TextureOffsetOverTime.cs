@@ -8,7 +8,7 @@ namespace AllIn1SpriteShader
     public class All1TextureOffsetOverTime : MonoBehaviour
     {
         [SerializeField] private string texturePropertyName = "_MainTex";
-        [SerializeField] private Vector2 offsetSpeed;
+        [SerializeField] private Vector2 offsetSpeed = Vector2.zero;
 
         [SerializeField, Header("If missing will search object Sprite Renderer or UI Image")]
         private Material mat;
@@ -16,7 +16,7 @@ namespace AllIn1SpriteShader
         private int textureShaderId;
         private Vector2 currOffset = Vector2.zero;
 
-        void Start()
+        private void Start()
         {
             //Get material if missing
             if (mat == null)
@@ -40,7 +40,7 @@ namespace AllIn1SpriteShader
             }
         }
 
-        void Update()
+        public void Update()
         {
             //Update currOffset and update shader property
             currOffset.x += offsetSpeed.x * Time.deltaTime;
