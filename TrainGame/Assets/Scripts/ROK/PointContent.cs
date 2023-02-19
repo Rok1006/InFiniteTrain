@@ -21,12 +21,12 @@ public class PointContent : MonoBehaviour
     [SerializeField, BoxGroup("PointInfo")] private List<Vector3> RandomPoint = new List<Vector3>();
     Vector3 previousPt;
     List<GameObject> CreatedGrass = new List<GameObject>();  //list for created grass
-    List<GameObject> CreatedTraps = new List<GameObject>();
+    List<GameObject> CreatedStuff = new List<GameObject>();
 
     [SerializeField, BoxGroup("Resources")]private GameObject[] TrapTileType;
     [SerializeField, BoxGroup("Resources")]private GameObject[] ResourceBoxType;
     [SerializeField, BoxGroup("Resources")]private GameObject[] GrassType; //grass prefab for generating grass or interactable environemnt
-    
+    [SerializeField, BoxGroup("Resources")]private GameObject[] PondType;
     //[SerializeField, BoxGroup("GrassSetting")]private int GrassAmt;
     [ReadOnly]public float minX,maxX,minZ,maxZ = 0;
     bool canCheckOverlap = false;
@@ -40,14 +40,10 @@ public class PointContent : MonoBehaviour
         GenerateContent();
     }
     private void Update() {
-        // minX = Mathf.Infinity;
-        // maxX = -Mathf.Infinity;
-        // minZ = Mathf.Infinity;
-        // maxZ = -Mathf.Infinity;
         if(canCheckOverlap){
             foreach (boundaryAreaClass BA in BoundaryArea) //look through each class list
             { 
-                CheckIfOverlap(CreatedTraps, BA.BoundaryPt); //this could move points to somewhere outside of boundrrrrrrrrrrrr, is it fixed
+                CheckIfOverlap(CreatedStuff, BA.BoundaryPt); //this could move points to somewhere outside of boundrrrrrrrrrrrr, is it fixed
             }
             canCheckOverlap = false;
         };
@@ -66,6 +62,7 @@ public class PointContent : MonoBehaviour
 //Enviroment Related-------------------------
             SpawnGrass(count, BA.BoundaryPt);
             SpawnTraps(count, BA.BoundaryPt);
+            if(P_Data[count].havePond){SpawnPond();};
             count+=1; //Change Data files, make sure there is correct num of data
         }
     }
@@ -110,21 +107,26 @@ public class PointContent : MonoBehaviour
     void SpawnTraps(int count, List<GameObject> BA){ //count is the spawned land, each data count is one land, each pt can have multiple land
         RandomPoint.TrimExcess(); //Reset list //to get new random pts
         RandomPoint.Clear(); //Reset list
-        CreatedTraps.TrimExcess(); //Reset list //to get new random pts
-        CreatedTraps.Clear(); //Reset list
+        CreatedStuff.TrimExcess(); //Reset list //to get new random pts
+        CreatedStuff.Clear(); //Reset list
         for (int i = 0; i < P_Data[count].TrapAmt; i++){ //needa make sure that the generated pt is not the same
                 Vector3 currentPt = GetRandomPt(BA);
                 previousPt = currentPt;
                 RandomPoint.Add(currentPt);
                 GameObject t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
                 t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
-                CreatedTraps.Add(t);
+                CreatedStuff.Add(t);
                 if(i == P_Data[count].TrapAmt-1){ //wait until the last check
                     canCheckOverlap = true;
                     //Debug.Log("sth");
                 }
         }
         //CheckIfOverlap();
+    }
+    void SpawnPond(List<GameObject> BA){
+        Vector3 currentPt = GetRandomPt(BA);
+        GameObject t = Instantiate (PondType[Random.Range(0, PondType.Length)], currentPt, Quaternion.identity);
+        CreatedStuff.Add(t);
     }
 
     void FindMaxnMin(GameObject pt){
