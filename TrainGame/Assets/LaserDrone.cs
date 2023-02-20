@@ -13,6 +13,7 @@ public class LaserDrone : MonoBehaviour
         STOP
         
     }
+    public LayerMask layermask;
     private int destPoint = 0;
     public float speed;
     private bool stop;
@@ -38,6 +39,7 @@ public class LaserDrone : MonoBehaviour
             case State.ATTACK:
                 break;
             case State.STOP:
+                Detect();
                 break;
             
                 
@@ -85,11 +87,11 @@ public class LaserDrone : MonoBehaviour
 
     void Detect()
     {
-        Vector3 dir = (transform.position - player.transform.position).normalized;
+        Vector3 dir = (player.transform.position - transform.position).normalized;
         float angle = Vector3.Angle(dir, transform.right);
         RaycastHit r;
         
-        if(Physics.Raycast(transform.position, dir, out r, range))
+        if(Physics.Raycast(transform.position, dir, out r, range , layermask))
         {
             Debug.Log("df");
             if(r.collider.gameObject != null)
@@ -97,7 +99,7 @@ public class LaserDrone : MonoBehaviour
                 Debug.Log(r.collider.gameObject.name);
             }
         }
-        Debug.DrawRay(transform.position, dir * r.distance, Color.yellow);
+        this.state = State.ATTACK;
     }
 
 }
