@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using NaughtyAttributes;
 using MoreMountains.TopDownEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Animations;
 //script for box, timer, minigame
 public class ResourceBox : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField, BoxGroup("Logic")] private bool isLocked = true;
     [SerializeField, BoxGroup("Logic"), ShowIf("isLocked")] private float openBoxSpeed = 0.35f;
     [SerializeField, BoxGroup("Box")] private Animator boxAnim;
-
+    [SerializeField] GameObject miniGame;
     private bool isOpening = false, isPlayerNear = false;
     public virtual void Start()
     {
@@ -62,7 +63,7 @@ public class ResourceBox : MonoBehaviour
         }
 
 
-        if (isLocked) { //if player need to open the lock
+        /*if (isLocked) { //if player need to open the lock
             if (isOpening)
                 radicalBar.fillAmount = Mathf.Min(radicalBar.fillAmount + openBoxSpeed * Time.deltaTime, 1.0f);
                 if (boxAnim != null)
@@ -84,7 +85,34 @@ public class ResourceBox : MonoBehaviour
                 if (boxAnim != null)
                     boxAnim.SetTrigger("open");
             }
+        }*/
+
+        if (isLocked) { //if player need to open the lock
+            if (isOpening && miniGame.GetComponent<LockPickGame>().Complete == false)
+                miniGame.gameObject.SetActive(true);
+                //miniGame.gameObject.GetComponent<CanvasScaler>().scaleFactor = Mathf.Lerp(0.01f, 1f, 0.01f);
+            if (miniGame.GetComponent<LockPickGame>().Complete && isOpening) {
+                
+                miniGame.gameObject.SetActive(false);
+                
+                inventoryDisplay.ChangeTargetInventory(invnetoryName);
+                inventoryCanvas.alpha = 1;
+                inventoryCanvas.interactable = true;
+                inventoryCanvas.blocksRaycasts = true;
+                if (boxAnim != null)
+                    boxAnim.SetTrigger("open");
+            }
+        } else { //player are free to open it
+            if (isOpening) {
+                inventoryDisplay.ChangeTargetInventory(invnetoryName);
+                inventoryCanvas.alpha = 1;
+                inventoryCanvas.interactable = true;
+                inventoryCanvas.blocksRaycasts = true;
+                if (boxAnim != null)
+                    boxAnim.SetTrigger("open");
+            }
         }
+
     }
 
     /// when enter trigger area
