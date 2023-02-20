@@ -7,6 +7,10 @@ using MoreMountains.InventoryEngine;
 public class ApplicationManager : MonoBehaviour
 {
     [SerializeField] Inventory targetInven;
+
+    void Start() {
+        // MMEventManager.TriggerEvent(new MMGameEvent("Load"));
+    }
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
