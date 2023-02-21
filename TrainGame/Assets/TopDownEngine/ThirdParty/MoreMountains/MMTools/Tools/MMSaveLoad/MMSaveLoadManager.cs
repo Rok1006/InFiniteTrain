@@ -125,6 +125,7 @@ namespace MoreMountains.Tools
 		public static void DeleteSave(string fileName, string folderName = _defaultFolderName)
 		{
 			string savePath = DetermineSavePath(folderName);
+			Debug.Log("save Path: " + savePath);
 			string saveFileName = DetermineSaveFileName(fileName);
 			if (File.Exists(savePath + saveFileName))
 			{
@@ -139,6 +140,7 @@ namespace MoreMountains.Tools
 		public static void DeleteSaveFolder(string folderName = _defaultFolderName)
 		{
 			string savePath = DetermineSavePath(folderName);
+			Debug.Log("deleted: " + folderName);
 			if (Directory.Exists(savePath))
 			{
 				DeleteDirectory(savePath);

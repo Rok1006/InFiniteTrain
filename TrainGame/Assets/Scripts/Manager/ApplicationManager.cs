@@ -16,9 +16,11 @@ public class ApplicationManager : MonoBehaviour
             Application.Quit();
         
         if (Input.GetKeyDown(KeyCode.O)) {
-            targetInven.ResetSavedInventory();
-            // string _saveFolderName = "TrainGameSave";
-            // MMSaveLoadManager.DeleteSaveFolder (_saveFolderName);
+            // targetInven.ResetSavedInventory();
+            // MMEventManager.TriggerEvent(new MMGameEvent("Save"));
+            // MMEventManager.TriggerEvent(new MMGameEvent("Load"));
+            string _saveFolderName = "InventoryEngine";
+            MMSaveLoadManager.DeleteSaveFolder (_saveFolderName);
         }
     }
 }
