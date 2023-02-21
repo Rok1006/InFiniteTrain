@@ -142,8 +142,5 @@ public class ResourceBox : MonoBehaviour
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        playerWeapon = FindObjectOfType<PlayerManager>().GetComponent<CharacterHandleWeapon>();
-        if (playerWeapon == null)
-            Debug.LogWarning("cannot find character handle weapon for player");
     }
 }
