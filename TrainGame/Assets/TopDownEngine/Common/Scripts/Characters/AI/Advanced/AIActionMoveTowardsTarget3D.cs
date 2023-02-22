@@ -20,6 +20,7 @@ namespace MoreMountains.TopDownEngine
 		protected CharacterMovement _characterMovement;
 		protected int _numberOfJumps = 0;
 		protected Vector2 _movementVector;
+		public int detectSpeed;
 
 		/// <summary>
 		/// On init we grab our CharacterMovement ability
@@ -53,8 +54,8 @@ namespace MoreMountains.TopDownEngine
 			_movementVector.x = _directionToTarget.x;
 			_movementVector.y = _directionToTarget.z;
 			_characterMovement.SetMovement(_movementVector);
-			_characterMovement.WalkSpeed *= 2;
-
+			_characterMovement.WalkSpeed = detectSpeed;
+			_characterMovement.ResetSpeed();
 
 			if (Mathf.Abs(this.transform.position.x - _brain.Target.position.x) < MinimumDistance)
 			{
