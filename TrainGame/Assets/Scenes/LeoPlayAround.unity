@@ -3201,6 +3201,36 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 0}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!1 &201480940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 201480941}
+  m_Layer: 0
+  m_Name: dest1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &201480941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201480940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -140.2558, y: 12.381629, z: -13.167713}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &226871765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5751,6 +5781,36 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5416381562136677591}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &403503200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 403503201}
+  m_Layer: 0
+  m_Name: dest1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &403503201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403503200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -151.03, y: 12.381629, z: -13.167713}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408242045
 GameObject:
   m_ObjectHideFlags: 0
@@ -10980,7 +11040,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9497992, y: 1}
+    m_SensorSize: {x: 1.7766143, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -18770,7 +18830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2375eb698262f49824ead2997b04e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetInven: {fileID: 916628461}
+  _saveFolderName: InventoryEngine
 --- !u!1 &1199380521
 GameObject:
   m_ObjectHideFlags: 0
@@ -27106,6 +27166,10 @@ MonoBehaviour:
   openBoxSpeed: 0.35
   boxAnim: {fileID: 0}
   miniGame: {fileID: 0}
+  B_Skin: {fileID: 0}
+  boxLook:
+  - Normal
+  - Wood
 --- !u!1 &1585509930
 GameObject:
   m_ObjectHideFlags: 0
@@ -27861,7 +27925,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9497992, y: 1}
+    m_SensorSize: {x: 1.7766143, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -34258,7 +34322,7 @@ PrefabInstance:
     - target: {fileID: 1600182828364304407, guid: 304ce7f6da8a6884bad8b40d0f41a6b5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.149643
+      value: -24.149658
       objectReference: {fileID: 0}
     - target: {fileID: 5007610704223311097, guid: 304ce7f6da8a6884bad8b40d0f41a6b5,
         type: 3}
@@ -35243,6 +35307,10 @@ MonoBehaviour:
   openBoxSpeed: 0.35
   boxAnim: {fileID: 0}
   miniGame: {fileID: 0}
+  B_Skin: {fileID: 0}
+  boxLook:
+  - Normal
+  - Wood
 --- !u!1001 &2088235208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35318,6 +35386,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094692912}
+  - component: {fileID: 2094692913}
+  - component: {fileID: 2094692914}
+  - component: {fileID: 2094692915}
   m_Layer: 13
   m_Name: Drone_Laser
   m_TagString: Untagged
@@ -35342,6 +35413,58 @@ Transform:
   m_Father: {fileID: 832391708}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2094692913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094692911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4245c5bacb65de241af50c954a093ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoints:
+  - {fileID: 201480941}
+  - {fileID: 403503201}
+  layermask:
+    serializedVersion: 2
+    m_Bits: 0
+  speed: 3
+  state: 0
+  player: {fileID: 0}
+  range: 1000
+--- !u!136 &2094692914
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094692911}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 10
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2094692915
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094692911}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2095126756
 GameObject:
   m_ObjectHideFlags: 0
@@ -35462,13 +35585,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097741940}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.007057978, y: -0, z: -0, w: 0.9999751}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2094692912}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.809, y: 0, z: 0}
 --- !u!114 &2097741942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42442,7 +42565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 256, y: -28.000229}
+  m_AnchoredPosition: {x: 256, y: -28.000244}
   m_SizeDelta: {x: -522, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224435349101980482
@@ -52575,7 +52698,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9497992, y: 1}
+    m_SensorSize: {x: 1.7766143, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

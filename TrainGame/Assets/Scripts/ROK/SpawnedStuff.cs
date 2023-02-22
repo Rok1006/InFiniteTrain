@@ -10,6 +10,12 @@ public class SpawnedStuff : MonoBehaviour
     public bool IsOverlapping = false;
     public float SphereCastRadius = 0.5f;
     public float SphereCastDistance = 1f;
+
+    //public GameObject[] Component;
+    public List<GameObject> Component = new List<GameObject>();
+    [HideInInspector]public int order;
+
+    //public Quaternion rotation;
     void Start()
     {
         IsOverlapping = false;
@@ -18,6 +24,11 @@ public class SpawnedStuff : MonoBehaviour
 
     void Update()
     {
+        for(int i = 0; i<Component.Count;i++){
+            Component[i].GetComponent<SpriteRenderer>().sortingOrder = order;
+        }
+
+//---------------
         if(OtherObject!=null){
             // if (Physics.OverlapBox(transform.position, transform.localScale / 2, Quaternion.identity).Any(c => c.gameObject == OtherObject))
             // {
@@ -58,3 +69,7 @@ public class SpawnedStuff : MonoBehaviour
         }
     }
 }
+/* Note**
+Grass Packet - Quaternion.Euler(70f, 0f, 180f);
+
+*/

@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2409359529036100383}
+  - component: {fileID: 6743184041336407679}
+  - component: {fileID: 6781751647508116861}
   m_Layer: 0
   m_Name: MushRoomV1
   m_TagString: Untagged
@@ -23,14 +25,46 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6276835593191020488}
-  m_LocalRotation: {x: 0.14183936, y: -0, z: -0, w: 0.9898897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.7, y: 0.01, z: -14.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 974149000493787966}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 16.309, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6743184041336407679
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276835593191020488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.82117796
+  m_Center: {x: 0.06295347, y: 0.86175513, z: -0.2889228}
+--- !u!114 &6781751647508116861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276835593191020488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1181cf918032e448fa00e15b41cf777e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OtherObject: {fileID: 0}
+  IsOverlapping: 0
+  SphereCastRadius: 0.5
+  SphereCastDistance: 1
+  Component:
+  - {fileID: 8723797731025992877}
+  order: 0
 --- !u!1 &8723797731025992877
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,8 +75,6 @@ GameObject:
   m_Component:
   - component: {fileID: 974149000493787966}
   - component: {fileID: 4387767031466259771}
-  - component: {fileID: 640074200573540385}
-  - component: {fileID: 341784388263534614}
   m_Layer: 0
   m_Name: MushRoomV1
   m_TagString: Untagged
@@ -57,13 +89,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8723797731025992877}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0.95976317, z: -0.28081062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2409359529036100383}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 16.309, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!212 &4387767031466259771
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -101,8 +133,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1998343457
-  m_SortingLayer: 3
+  m_SortingLayerID: 961700441
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -407710932058760133, guid: 2e5e76b890c9045b0828a7e44b3540e2,
     type: 3}
@@ -116,32 +148,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!135 &640074200573540385
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8723797731025992877}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.9470353
-  m_Center: {x: 0, y: -0.030671477, z: 1.7980883e-10}
---- !u!114 &341784388263534614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8723797731025992877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1181cf918032e448fa00e15b41cf777e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OtherObject: {fileID: 0}
-  IsOverlapping: 0
-  SphereCastRadius: 0.5
-  SphereCastDistance: 1

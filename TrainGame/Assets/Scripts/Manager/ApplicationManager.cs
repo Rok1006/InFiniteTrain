@@ -2,23 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
-using MoreMountains.InventoryEngine;
+using MoreMountains.TopDownEngine;
+using UnityEngine.SceneManagement;
 
-public class ApplicationManager : MonoBehaviour
+public class ApplicationManager : MMSingleton<ApplicationManager>
 {
-    [SerializeField] Inventory targetInven;
-
-    void Start() {
-        // MMEventManager.TriggerEvent(new MMGameEvent("Load"));
-    }
+    [SerializeField] private string _saveFolderName = "InventoryEngine";
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
         
         if (Input.GetKeyDown(KeyCode.O)) {
-            targetInven.ResetSavedInventory();
-            // string _saveFolderName = "TrainGameSave";
-            // MMSaveLoadManager.DeleteSaveFolder (_saveFolderName);
+            MMSaveLoadManager.DeleteSaveFolder (_saveFolderName);
         }
     }
+
+    public void NewGame() {
+        MMSaveLoadManager.DeleteSaveFolder (_saveFolderName);
+        MMSceneLoadingManager.LoadScene ("LeoPlayAround");
+    }
+
+    public void ContinueGame() {
+        MMSceneLoadingManager.LoadScene ("LeoPlayAround");
+    }
+
+    public void ExitGame() {
+        Application.Quit();
+    }
+
 }

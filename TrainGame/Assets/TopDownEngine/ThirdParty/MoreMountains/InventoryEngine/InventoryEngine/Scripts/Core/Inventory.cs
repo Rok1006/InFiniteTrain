@@ -661,6 +661,7 @@ namespace MoreMountains.InventoryEngine
 		public virtual void ResetSavedInventory()
 		{
 			MMSaveLoadManager.DeleteSave(DetermineSaveName(), _saveFolderName);
+			Debug.Log("Save File name: " + DetermineSaveName() + " \nsave folder name: " + _saveFolderName);
 			Debug.LogFormat("save file deleted");
 		}
 
