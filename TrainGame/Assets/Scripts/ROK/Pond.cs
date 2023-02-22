@@ -7,14 +7,13 @@ public class Pond : MonoBehaviour
 {
     [SerializeField] private float initialSpeed = 20; //20
     [SerializeField] private float slowerSpeed;
-    private GameObject Player;
+    public GameObject Player;
     [SerializeField] private CharacterMovement CM;
     void Start()
     {
         //CM = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
         Player = GameObject.FindGameObjectWithTag("Player");
         if(Player!= null){
-            Debug.Log("fuck u");
             CM = FindObjectOfType<PlayerManager>().GetComponent<CharacterMovement>();
         }
         

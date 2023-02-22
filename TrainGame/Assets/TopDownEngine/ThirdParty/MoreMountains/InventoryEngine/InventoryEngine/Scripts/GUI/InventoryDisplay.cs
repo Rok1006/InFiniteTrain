@@ -231,9 +231,11 @@ namespace MoreMountains.InventoryEngine
 			_contentLastUpdate = new List<ItemQuantity>();		
 			SlotContainer = new List<InventorySlot>() ;		
 			_comparison = new List<int>();
-			if (!TargetInventory.Persistent)
-			{
-				RedrawInventoryDisplay (); 	
+			if (TargetInventory != null) {
+				if (!TargetInventory.Persistent)
+				{
+					RedrawInventoryDisplay (); 	
+				}
 			}
 		}
 
