@@ -23,6 +23,8 @@ public class PointContent : MonoBehaviour
     Vector3 previousPt;
     List<GameObject> CreatedGrass = new List<GameObject>();  //list for created grass
     List<GameObject> CreatedStuff = new List<GameObject>();
+    List<GameObject> DepthDetectStuff = new List<GameObject>();
+    [SerializeField] private List<bool> IsPointFull = new List<bool>();
 
     [SerializeField, BoxGroup("Resources")]private GameObject[] TrapTileType;
     [SerializeField, BoxGroup("Resources")]private GameObject[] ResourceBoxType;
@@ -31,7 +33,7 @@ public class PointContent : MonoBehaviour
     //[SerializeField, BoxGroup("GrassSetting")]private int GrassAmt;
     [ReadOnly]public float minX,maxX,minZ,maxZ = 0;
     bool canCheckOverlap = false;
-    //int count = 0;
+    int depth = 0;
 
     private void Start() {
         minX = Mathf.Infinity;
@@ -66,8 +68,25 @@ public class PointContent : MonoBehaviour
 //Enviroment Related-------------------------
             SpawnGrass(count, BA.BoundaryPt);
             SpawnTraps(count, BA.BoundaryPt);
+            if(P_Data[count].haveResources){
+                for(int a = 0; a<ResourcesBoxPoint.Count; a++){
+                    IsPointFull.Add(false);
+                }
+                SpawnResouceBox(count);
+            };
             if(P_Data[count].havePond){SpawnPond(BA.BoundaryPt);};
             count+=1; //Change Data files, make sure there is correct num of data
+        }
+    }
+    void AssignDepthLayer(GameObject j){ //put this in a for loop check the spawned obj with the created list evertime if the Z is more front assign a higher number
+        //j is the newly instanciated obj
+        //j.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        for(int i = 0; i<DepthDetectStuff.Count; i++){
+            if(j.transform.position.z > DepthDetectStuff[i].transform.position.z){ //is at the back
+                j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order-1;
+            }else if(j.transform.position.z < DepthDetectStuff[i].transform.position.z){ //is in front
+                j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order+1;
+            }
         }
     }
     void CheckIfOverlap(List<GameObject> ListChecking, List<GameObject> BA){ //For traps
@@ -103,11 +122,15 @@ public class PointContent : MonoBehaviour
                     RandomPoint.Add(currentPt);
                 }
                 GameObject g = Instantiate (GrassType[Random.Range(0, GrassType.Length)], currentPt, Quaternion.identity);
-                g.transform.localScale = new Vector3(7f,7f,7f); //currently hard code if have more types gotta figure out a way
-                g.transform.rotation = Quaternion.Euler(70f, 0f, 180f);
+                var sc = g.GetComponent<SpawnedStuff>();
+                //g.transform.localScale = new Vector3(7f,7f,7f); //currently hard code if have more types gotta figure out a way
+                //g.transform.rotation = g.GetComponent<SpawnedStuff>().rotation;
+                
                 CreatedGrass.Add(g);
+                DepthDetectStuff.Add(g); //add it to assign depth
+                AssignDepthLayer(g);
         }
-    }
+    }//saveable
     void SpawnTraps(int count, List<GameObject> BA){ //count is the spawned land, each data count is one land, each pt can have multiple land
         RandomPoint.TrimExcess(); //Reset list //to get new random pts
         RandomPoint.Clear(); //Reset list
@@ -122,11 +145,10 @@ public class PointContent : MonoBehaviour
                 CreatedStuff.Add(t);
                 if(i == P_Data[count].TrapAmt-1){ //wait until the last check
                     canCheckOverlap = true;
-                    //Debug.Log("sth");
                 }
         }
         //CheckIfOverlap();
-    }
+    }//saveable
     void SpawnPond(List<GameObject> BA){
         Vector3 currentPt = GetRandomPt(BA);
         GameObject t = Instantiate (PondType[Random.Range(0, PondType.Length)], currentPt, Quaternion.identity);
@@ -134,8 +156,38 @@ public class PointContent : MonoBehaviour
         t.transform.localScale = new Vector3(ran,ran,ran);
         CreatedStuff.Add(t);
         canCheckOverlap = true;
-    }
-
+    }//saveable
+    void SpawnResouceBox(int count){ //cannot spawn on the same pt
+        Vector3 getAPt;
+        int index;
+        for(int x = 0; x < P_Data[count].resourceBoxNum; x++){
+            for(int y = 0; y < IsPointFull.Count; y++){
+                index = Random.Range(0,ResourcesBoxPoint.Count);
+                if(IsPointFull[index]==false){
+                    getAPt = ResourcesBoxPoint[index].transform.position;
+                    GameObject r = Instantiate (ResourceBoxType[Random.Range(0, ResourceBoxType.Length)], getAPt, Quaternion.identity);
+                    IsPointFull[index]=true;
+                    break;
+                }
+            }
+        }
+    }//saveable
+    // bool CheckIfSameLocation(Vector3 point, List<GameObject> ResourcePt){
+    //     int num = 0;
+    //     bool isConflict = false;
+    //     foreach(GameObject r in ResourcePt){
+    //         if(point == r.transform.position){ //this is not right cus it will always be true everyone of them
+    //             Debug.Log("overlapped");
+    //             isConflict = true;
+    //             //return false; //found overlap
+    //         }
+    //         // else{
+    //         //     num++;
+    //         // }
+    //     }
+    //     return isConflict;
+    //     //return num % 2 == 1; //after checked all and found no overlap
+    // }
     void FindMaxnMin(GameObject pt){
             Vector3 point = pt.transform.position;
             if (point.x < minX)

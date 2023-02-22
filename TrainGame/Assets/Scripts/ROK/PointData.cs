@@ -24,7 +24,8 @@ public class PointData : ScriptableObject
     [SerializeField, BoxGroup("EnemySetting")] public string EnemyType;
 //--------------------
     [SerializeField, BoxGroup("ResourcesSetting")] public bool haveResources;
-    [SerializeField, BoxGroup("ResourcesSetting")] public string boxType; //box skin name; same as in spine
+    [SerializeField, BoxGroup("ResourcesSetting")] public int resourceBoxNum;
+    [SerializeField, BoxGroup("ResourcesSetting")] public string boxType; //box skin name; same as in spine or integer?
 
 
 }

@@ -8,12 +8,13 @@ using NaughtyAttributes;
 using MoreMountains.TopDownEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Animations;
+using Spine.Unity;
+using Spine.Unity.AttachmentTools;
 //script for box, timer, minigame
 public class ResourceBox : MonoBehaviour
 {
     private CharacterHandleWeapon playerWeapon;
 
-    
     [SerializeField,BoxGroup("TDE")] private string playerID, invnetoryName;
     private SideInventoryDisplay sideInventoryDisplay;
     
@@ -27,8 +28,17 @@ public class ResourceBox : MonoBehaviour
     [SerializeField, BoxGroup("Box")] private Animator boxAnim;
     [SerializeField] GameObject miniGame;
     private bool isOpening = false, isPlayerNear = false;
+
+    [SerializeField] private SkeletonMecanim B_Skin;
+    [SpineSkin] public string[] boxLook = { "Normal", "Wood"};
+    //private Spine.Skeleton _skeleton;
+    // private List<Skin> _skins = new List<Skin>();
+
     public virtual void Start()
     {
+        B_Skin = this.transform.GetChild(0).gameObject.GetComponent<SkeletonMecanim>();     
+        B_Skin.skeleton.SetSkin(boxLook[Random.Range(0,boxLook.Length)]);
+//-----------------------
         if (autoSelectInventoryDisplay) {
             sideInventoryDisplay = FindObjectOfType<SideInventoryDisplay>();
             
