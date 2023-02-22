@@ -180,7 +180,7 @@ public class PlayerManager : MonoBehaviour
         MCFrontAnim.SetBool("IsUsingWeapon", true);
         DisableAllWeaponAnimation();
         MCFrontAnim.SetTrigger("UseSmallSword");
-        MCBackAnim.SetTrigger("UseSmallSword");
+        // MCBackAnim.SetTrigger("UseSmallSword");
     }
 
     public void DustEmit(){
@@ -215,9 +215,9 @@ public class PlayerManager : MonoBehaviour
         MCFrontAnim.SetBool("Switch_smallGun", false);
         MCFrontAnim.SetBool("Switch_bigGun", false);
         MCFrontAnim.SetBool("Switch_bigSword", false);
-        MCBackAnim.SetBool("Switch_smallGun", false);
-        MCBackAnim.SetBool("Switch_bigGun", false);
-        MCBackAnim.SetBool("Switch_bigSword", false);
+        // MCBackAnim.SetBool("Switch_smallGun", false);
+        // MCBackAnim.SetBool("Switch_bigGun", false);
+        // MCBackAnim.SetBool("Switch_bigSword", false);
         
     }
 
