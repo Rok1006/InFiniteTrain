@@ -29,6 +29,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField] GameObject miniGame;
     private bool isOpening = false, isPlayerNear = false;
 
+    [SerializeField] private bool useSkeletonMecanim = true;
     [SerializeField] private SkeletonMecanim B_Skin;
     [SpineSkin] public string[] boxLook = { "Normal", "Wood"};
     //private Spine.Skeleton _skeleton;
@@ -36,8 +37,10 @@ public class ResourceBox : MonoBehaviour
 
     public virtual void Start()
     {
-        B_Skin = this.transform.GetChild(0).gameObject.GetComponent<SkeletonMecanim>();     
-        B_Skin.skeleton.SetSkin(boxLook[Random.Range(0,boxLook.Length)]);
+        if (useSkeletonMecanim) {
+            B_Skin = this.transform.GetChild(0).gameObject.GetComponent<SkeletonMecanim>();     
+            B_Skin.skeleton.SetSkin(boxLook[Random.Range(0,boxLook.Length)]);
+        }
 //-----------------------
         if (autoSelectInventoryDisplay) {
             sideInventoryDisplay = FindObjectOfType<SideInventoryDisplay>();
@@ -68,6 +71,7 @@ public class ResourceBox : MonoBehaviour
     public virtual void Update()
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) {
+            Debug.Log("Is Opening");
             isOpening = true;
             playerWeapon.ShootStart();
         }
@@ -129,7 +133,7 @@ public class ResourceBox : MonoBehaviour
     /// set inventory display target's name to this resrouce box's name
     /// set inventory canvas to active
     void OnTriggerEnter(Collider col) {
-        if (col.gameObject.name == ("Player")) {
+        if (col.gameObject.tag == ("Player")) {
             isPlayerNear = true;
             
             if (isLocked)
@@ -140,7 +144,7 @@ public class ResourceBox : MonoBehaviour
     /// set inventory display target's name to empty
     /// set inventory canvas to inactive
     void OnTriggerExit(Collider col) {
-        if (col.gameObject.name ==("Player")) {
+        if (col.gameObject.tag ==("Player")) {
             isPlayerNear = false;
             if (isLocked)
                 timer.SetActive(false);
