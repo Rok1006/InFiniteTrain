@@ -15,6 +15,7 @@ public class Point : MonoBehaviour
     public bool isNull = false;
     public int id;
     public int fuelAmtNeeded;
+    public Info InfoSC;
 
      void Update()
     {
@@ -22,8 +23,12 @@ public class Point : MonoBehaviour
         {
             isNull = true;
         }
+        InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
     }
    
+    public void SendInfo(){
+        InfoSC.pointID = id;
+    }
 
     public void MovePlayer()
     {

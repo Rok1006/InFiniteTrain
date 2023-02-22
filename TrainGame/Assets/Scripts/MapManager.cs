@@ -29,6 +29,7 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(id);
         if(gameState == 0)
         {
             playerTurn = true;

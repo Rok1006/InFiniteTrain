@@ -63,6 +63,7 @@ public class MapPopUp : MonoBehaviour
         //     ResetPoint();
         //     clicked = false;
         // }
+        this.GetComponent<Point>().SendInfo();
         if(MapManager.gameState == 0) {
            if( mm.AvailableToMove(this.gameObject) == true)
            {
