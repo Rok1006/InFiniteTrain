@@ -7,23 +7,30 @@ public class Pond : MonoBehaviour
 {
     [SerializeField] private float initialSpeed = 20; //20
     [SerializeField] private float slowerSpeed;
+    private GameObject Player;
     [SerializeField] private CharacterMovement CM;
     void Start()
     {
-        CM = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
+        //CM = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        if(Player!= null){
+            Debug.Log("fuck u");
+            CM = FindObjectOfType<PlayerManager>().GetComponent<CharacterMovement>();
+        }
+        
     }
     void Update()
     {
         
     }
     private void OnTriggerEnter(Collider col) {
-        if(gameObject.tag == "Trap"){
+        if(col.gameObject.tag == "Player"){
             CM.WalkSpeed = slowerSpeed;
             CM.ResetSpeed();
         }
     }
     private void OnTriggerExit(Collider col) {
-        if(gameObject.tag == "Trap"){
+        if(col.gameObject.tag == "Player"){
             CM.WalkSpeed = initialSpeed;
             CM.ResetSpeed();
         }
