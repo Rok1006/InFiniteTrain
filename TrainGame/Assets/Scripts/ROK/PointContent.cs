@@ -20,10 +20,12 @@ public class PointContent : MonoBehaviour
     [SerializeField, BoxGroup("PointInfo")]private List<GameObject> ResourcesBoxPoint = new List<GameObject>();
     [Tooltip("Assign all corner pts frm heiarchy")][SerializeField, BoxGroup("PointInfo")] public List<boundaryAreaClass> BoundaryArea = new List<boundaryAreaClass>();
     [SerializeField, BoxGroup("PointInfo")] private List<Vector3> RandomPoint = new List<Vector3>();
+    [SerializeField] private GameObject WalkingArea;
     Vector3 previousPt;
     List<GameObject> CreatedGrass = new List<GameObject>();  //list for created grass
     List<GameObject> CreatedStuff = new List<GameObject>();
     List<GameObject> DepthDetectStuff = new List<GameObject>();
+    List<GameObject> CurrentList = new List<GameObject>();
     [SerializeField] private List<bool> IsPointFull = new List<bool>();
 
     [SerializeField, BoxGroup("Resources")]private GameObject[] TrapTileType;
@@ -34,29 +36,40 @@ public class PointContent : MonoBehaviour
     [ReadOnly]public float minX,maxX,minZ,maxZ = 0;
     bool canCheckOverlap = false;
     int depth = 0;
-
+    int count = 0;//num of data
+    private void Awake() {
+        for(int a = 0; a<ActiveLand.Length; a++){
+            ActiveLand[a].SetActive(true);
+        }
+    }
     private void Start() {
         minX = Mathf.Infinity;
         maxX = -Mathf.Infinity;
         minZ = Mathf.Infinity;
         maxZ = -Mathf.Infinity;
-        for(int a = 0; a<ActiveLand.Length; a++){
-            ActiveLand[a].SetActive(true);
-        }
+        
         GenerateContent();
+        if(WalkingArea!=null){
+            CreatedStuff.Add(WalkingArea);
+            CreatedGrass.Add(WalkingArea);  
+        }
+        
     }
     private void Update() {
         if(canCheckOverlap){
-            foreach (boundaryAreaClass BA in BoundaryArea) //look through each class list
-            { 
-                CheckIfOverlap(CreatedStuff, BA.BoundaryPt); //this could move points to somewhere outside of boundrrrrrrrrrrrr, is it fixed
-            }
+            // foreach (boundaryAreaClass BA in BoundaryArea) //look through each class list
+            // { 
+                // int iteration = 0;
+                // if(iteration==count){
+                CheckIfOverlap(CreatedStuff, CurrentList); //Fixed
+                CheckIfOverlap(CreatedGrass, CurrentList);
+            //}
             canCheckOverlap = false;
         };
         
     }
     void GenerateContent(){ //Main Body
-    int count = 0;
+    // int count = 0;
         foreach (boundaryAreaClass BA in BoundaryArea) //look through each class list
         { //Debug.Log(myClass.name + "'s list:");
             Debug.Log("checked");
@@ -66,6 +79,7 @@ public class PointContent : MonoBehaviour
                 FindMaxnMin(BA.BoundaryPt[i]);
             }
 //Enviroment Related-------------------------
+            CurrentList = BA.BoundaryPt;
             SpawnGrass(count, BA.BoundaryPt);
             SpawnTraps(count, BA.BoundaryPt);
             if(P_Data[count].haveResources){
@@ -102,10 +116,13 @@ public class PointContent : MonoBehaviour
                 {
                     overLapCount+=1;
                     
-                    Vector3 newPt = GetRandomPt(BA);
+                    Vector3 newPt = GetRandomPt(BA);  //this is get all the other land pt too, get specific land
                     Debug.Log(ListChecking[i].gameObject.name);
-                    // CreatedTraps[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
-                    ListChecking[i].transform.position = newPt;
+                    if(WalkingArea!=null){
+                        ListChecking[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
+                    }else{
+                        ListChecking[i].transform.position = newPt; //find a way to redo
+                    }
                 }
             }
         }
@@ -127,6 +144,9 @@ public class PointContent : MonoBehaviour
                 //g.transform.rotation = g.GetComponent<SpawnedStuff>().rotation;
                 
                 CreatedGrass.Add(g);
+                if(i == P_Data[count].GrassAmt-1){ //wait until the last check
+                    canCheckOverlap = true;
+                }
                 DepthDetectStuff.Add(g); //add it to assign depth
                 AssignDepthLayer(g);
         }

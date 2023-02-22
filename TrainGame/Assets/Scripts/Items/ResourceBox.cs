@@ -45,8 +45,8 @@ public class ResourceBox : MonoBehaviour
             if (sideInventoryDisplay == null)
                 Debug.LogWarning("Cannot find side inventory display");
             
-            inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
-            inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
+                inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
+                inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
         }
 
 
@@ -128,8 +128,8 @@ public class ResourceBox : MonoBehaviour
     /// when enter trigger area
     /// set inventory display target's name to this resrouce box's name
     /// set inventory canvas to active
-    void OnTriggerEnter(Collider collider) {
-        if (collider.tag.Equals("Player")) {
+    void OnTriggerEnter(Collider col) {
+        if (col.gameObject.name == ("Player")) {
             isPlayerNear = true;
             
             if (isLocked)
@@ -139,8 +139,8 @@ public class ResourceBox : MonoBehaviour
     /// when enter trigger area
     /// set inventory display target's name to empty
     /// set inventory canvas to inactive
-    void OnTriggerExit(Collider collider) {
-        if (collider.tag.Equals("Player")) {
+    void OnTriggerExit(Collider col) {
+        if (col.gameObject.name ==("Player")) {
             isPlayerNear = false;
             if (isLocked)
                 timer.SetActive(false);
