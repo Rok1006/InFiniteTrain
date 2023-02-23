@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4246254681075765689}
   - component: {fileID: 4246254681075765691}
   - component: {fileID: 4246254681075765688}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: DarkExplode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4900,7 +4900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4246254681152226853}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4935,7 +4935,7 @@ GameObject:
   - component: {fileID: 4246254681555995080}
   - component: {fileID: 4246254681555995082}
   - component: {fileID: 4246254681555995083}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: ExplodingDirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9807,7 +9807,7 @@ GameObject:
   - component: {fileID: 4246254681668927221}
   - component: {fileID: 4246254681668927223}
   - component: {fileID: 4246254681668927220}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: LitExplode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14699,7 +14699,7 @@ GameObject:
   - component: {fileID: 4246254681821561558}
   - component: {fileID: 4246254681821561559}
   - component: {fileID: 4246254681821561556}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: MIneFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14817,7 +14817,8 @@ GameObject:
   - component: {fileID: 4246254681969804223}
   - component: {fileID: 5525646344199002832}
   - component: {fileID: 3251240414684732}
-  m_Layer: 0
+  - component: {fileID: 5665761887269171719}
+  m_Layer: 24
   m_Name: Trap_Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14912,3 +14913,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5665761887269171719
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4246254681969804221}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8400009, y: 1.8400005, z: 0}
+  m_Center: {x: -0.0000038146973, y: 0.0000014305115, z: -0.000000923872}

@@ -64,7 +64,7 @@ public class PointContent : MonoBehaviour
                 // int iteration = 0;
                 // if(iteration==count){
                 CheckIfOverlap(CreatedStuff, CurrentList); //Fixed
-                CheckIfOverlap(CreatedGrass, CurrentList);
+                //CheckIfOverlap(CreatedGrass, CurrentList);
             //}
             canCheckOverlap = false;
         };
@@ -118,18 +118,35 @@ public class PointContent : MonoBehaviour
                 if (collider1 != null && collider2 != null && collider1.bounds.Intersects(collider2.bounds))
                 {
                     overLapCount+=1;
-                    
                     Vector3 newPt = GetRandomPt(BA);  //this is get all the other land pt too, get specific land
-                    Debug.Log(ListChecking[i].gameObject.name);
-                    if(NONOSQUARE.Length>0){
-                        ListChecking[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
-                    }else{
-                        ListChecking[i].transform.position = newPt; //find a way to redo
-                    }
+                       //Debug.Log(ListChecking[i].gameObject.name);
+                        if(NONOSQUARE.Length>0){
+                            //ListChecking[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
+                            //ListChecking[i].transform.position = newPt;
+                        }else{
+                            ListChecking[i].transform.position = newPt; //find a way to redo
+                        }
+                    
                 }
             }
         }
         //return false;   
+    }
+    bool DetectUnderneath(GameObject t, float raycastLength){
+        Debug.Log("df");
+        RaycastHit hit;
+        int layerMask = LayerMask.GetMask("Environment");
+        Vector3 rayStartPos = new Vector3(t.transform.position.x, t.transform.position.y,t.transform.position.z);
+        if(Physics.BoxCast(rayStartPos,t.transform.localScale / 2.0f, Vector3.down, out hit, Quaternion.identity,  raycastLength, layerMask)){   //not detecting the tile but the ground
+            Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.green);
+            //Debug.Log("yep");
+            Debug.Log("Object detected underneath: " + hit.collider.gameObject.name);
+            
+            return true;
+        }else{
+            Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.red);
+        }
+        return false;
     }
     void SpawnGrass(int count, List<GameObject> BA){ //count is the spawned land, each data count is one land, each pt can have multiple land
         RandomPoint.TrimExcess(); //Reset list
@@ -147,9 +164,9 @@ public class PointContent : MonoBehaviour
                 //g.transform.rotation = g.GetComponent<SpawnedStuff>().rotation;
                 
                 CreatedGrass.Add(g);
-                if(i == P_Data[count].GrassAmt-1){ //wait until the last check
+                //if(i == P_Data[count].GrassAmt-1){ //wait until the last check
                     canCheckOverlap = true;
-                }
+                // }
                 DepthDetectStuff.Add(g); //add it to assign depth
                 AssignDepthLayer(g);
         }
@@ -160,18 +177,52 @@ public class PointContent : MonoBehaviour
         CreatedStuff.TrimExcess(); //Reset list //to get new random pts
         CreatedStuff.Clear(); //Reset list
         for (int i = 0; i < P_Data[count].TrapAmt; i++){ //needa make sure that the generated pt is not the same
-                Vector3 currentPt = GetRandomPt(BA);
-                previousPt = currentPt;
-                RandomPoint.Add(currentPt);
-                GameObject t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
+            GameObject t;
+            Vector3 currentPt;
+            //currentPt = GetRandomPt(BA);
+                //previousPt = currentPt;
+                //RandomPoint.Add(currentPt);
+              //  currentPt = new Vector3(currentPt.x, currentPt.y+10, currentPt.z);
+               // t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
+                //t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
+            while(true){
+                Debug.Log(i);
+                currentPt = GetRandomPt(BA);
+                 currentPt = new Vector3(currentPt.x, currentPt.y+10, currentPt.z);
+                t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
                 t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
-                CreatedStuff.Add(t);
-                if(i == P_Data[count].TrapAmt-1){ //wait until the last check
-                    canCheckOverlap = true;
+                if( DetectUnderneath(t , 100f)){
+                    Destroy(t);
+                    Debug.Log("in");
+                    
+                
                 }
+                else{
+                    Debug.Log("out");
+                    break;
+                }
+
+                
+               
+                
+
+
+            
+            };
+                
+                t.transform.position = new Vector3(currentPt.x, currentPt.y-10, currentPt.z);
+                //DetectUnderneath(t, 3f);
+                CreatedStuff.Add(t);
+                //if(i == P_Data[count].TrapAmt-1){ //wait until the last check
+                canCheckOverlap = true;
+                //}
+            //
+
+            
         }
         //CheckIfOverlap();
     }//saveable
+
     void SpawnPond(List<GameObject> BA){
         Vector3 currentPt = GetRandomPt(BA);
         GameObject t = Instantiate (PondType[Random.Range(0, PondType.Length)], currentPt, Quaternion.identity);

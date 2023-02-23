@@ -50,6 +50,17 @@ public class Traps : MonoBehaviour
     }
 
     void Update(){
+        // RaycastHit hit;
+        // int layerMask = LayerMask.GetMask("Environment");
+        // Vector3 rayStartPos = new Vector3(transform.position.x, transform.position.y,transform.position.z);
+        // if(Physics.BoxCast(rayStartPos,this.transform.localScale / 2.0f, Vector3.down, out hit, Quaternion.identity,  10, layerMask)){   //not detecting the tile but the ground
+        //     Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.green);
+        //     //Debug.Log("yep");
+        //     Debug.Log("Object detected underneath: " + hit.collider.gameObject.name);
+        // }else{
+        //     Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.red);
+        // }
+        
         switch(currentType){
             case TrapType.MINE:
                 if(inZone){
