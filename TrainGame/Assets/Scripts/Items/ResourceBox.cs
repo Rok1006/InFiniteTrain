@@ -70,6 +70,17 @@ public class ResourceBox : MonoBehaviour
     
     public virtual void Update()
     {
+        //making sure there's reference
+        if (autoSelectInventoryDisplay && sideInventoryDisplay == null) {
+            sideInventoryDisplay = FindObjectOfType<SideInventoryDisplay>();
+            
+            if (sideInventoryDisplay == null)
+                Debug.LogWarning("Cannot find side inventory display");
+            
+                inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
+                inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
+        }
+
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) {
             Debug.Log("Is Opening");
             isOpening = true;
