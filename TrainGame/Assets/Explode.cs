@@ -19,9 +19,9 @@ public class Explode : MonoBehaviour
     void Update()
     {
         Debug.Log(Vector3.Distance(this.transform.position, player.transform.position));
-        if(Vector3.Distance(this.transform.position , player.transform.position )< 0.5f){
+        if(Vector3.Distance(this.transform.position , player.transform.position  + new Vector3(0,1,0) ) < 3f){
             rm.CurrentRadiationLevel++;
-            Instantiate(particles, transform.position, Quaternion.identity);
+            Instantiate(particles, player.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
