@@ -8941,8 +8941,9 @@ MonoBehaviour:
     - {fileID: 331911038}
     - {fileID: 1902811994}
     - {fileID: 1417413760}
+  EnemyPoint: []
   RandomPoint: []
-  WalkingArea: {fileID: 800609834}
+  NONOSQUARE: []
   IsPointFull: 
   TrapTileType:
   - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
@@ -8959,6 +8960,7 @@ MonoBehaviour:
   PondType:
   - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
   - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
+  EnemyType: []
   minX: 0
   maxX: 0
   minZ: 0
@@ -15095,9 +15097,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1858846301}
   - {fileID: 7288506303321848184}
   - {fileID: 645377696}
-  - {fileID: 1858846301}
   - {fileID: 1115176560}
   - {fileID: 1860609414}
   - {fileID: 2061404936}
@@ -16247,7 +16249,7 @@ Transform:
   - {fileID: 568577736}
   - {fileID: 315043451376942426}
   m_Father: {fileID: 1750576427}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1860609413
 GameObject:
@@ -18032,8 +18034,11 @@ MonoBehaviour:
     - {fileID: 938932182}
     - {fileID: 159547870}
     - {fileID: 1279636017}
+  EnemyPoint:
+  - {fileID: 1895563238}
+  - {fileID: 1552330625}
   RandomPoint: []
-  WalkingArea: {fileID: 0}
+  NONOSQUARE: []
   IsPointFull: 
   TrapTileType:
   - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
@@ -18050,6 +18055,8 @@ MonoBehaviour:
   PondType:
   - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
   - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
+  EnemyType:
+  - {fileID: 7358651152949181842, guid: b8b9eb62a945c4606962d5bb820f607d, type: 3}
   minX: 0
   maxX: 0
   minZ: 0
@@ -22210,6 +22217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Drone_Pump
+      objectReference: {fileID: 0}
+    - target: {fileID: 426301920856138296, guid: e9dc789849e1d384888b35a22bf8a072,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9dc789849e1d384888b35a22bf8a072, type: 3}

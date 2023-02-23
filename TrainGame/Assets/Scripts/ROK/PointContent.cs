@@ -19,8 +19,9 @@ public class PointContent : MonoBehaviour
     
     [SerializeField, BoxGroup("PointInfo")]private List<GameObject> ResourcesBoxPoint = new List<GameObject>();
     [Tooltip("Assign all corner pts frm heiarchy")][SerializeField, BoxGroup("PointInfo")] public List<boundaryAreaClass> BoundaryArea = new List<boundaryAreaClass>();
+    [SerializeField, BoxGroup("PointInfo")] private List<GameObject> EnemyPoint = new List<GameObject>();
     [SerializeField, BoxGroup("PointInfo")] private List<Vector3> RandomPoint = new List<Vector3>();
-    [SerializeField] private GameObject WalkingArea;
+    [SerializeField] private GameObject[] NONOSQUARE;
     Vector3 previousPt;
     List<GameObject> CreatedGrass = new List<GameObject>();  //list for created grass
     List<GameObject> CreatedStuff = new List<GameObject>();
@@ -32,6 +33,7 @@ public class PointContent : MonoBehaviour
     [SerializeField, BoxGroup("Resources")]private GameObject[] ResourceBoxType;
     [SerializeField, BoxGroup("Resources")]private GameObject[] GrassType; //grass prefab for generating grass or interactable environemnt
     [SerializeField, BoxGroup("Resources")]private GameObject[] PondType;
+    [SerializeField, BoxGroup("Resources")]private GameObject[] EnemyType;
     //[SerializeField, BoxGroup("GrassSetting")]private int GrassAmt;
     [ReadOnly]public float minX,maxX,minZ,maxZ = 0;
     bool canCheckOverlap = false;
@@ -49,9 +51,9 @@ public class PointContent : MonoBehaviour
         maxZ = -Mathf.Infinity;
         
         GenerateContent();
-        if(WalkingArea!=null){
-            CreatedStuff.Add(WalkingArea);
-            CreatedGrass.Add(WalkingArea);  
+        for(int i = 0; i<NONOSQUARE.Length; i++){
+            CreatedStuff.Add(NONOSQUARE[i]);
+            CreatedGrass.Add(NONOSQUARE[i]); 
         }
         
     }
@@ -89,6 +91,7 @@ public class PointContent : MonoBehaviour
                 SpawnResouceBox(count);
             };
             if(P_Data[count].havePond){SpawnPond(BA.BoundaryPt);};
+            if(P_Data[count].haveEnemy){SpawnEnemy();};
             count+=1; //Change Data files, make sure there is correct num of data
         }
     }
@@ -118,7 +121,7 @@ public class PointContent : MonoBehaviour
                     
                     Vector3 newPt = GetRandomPt(BA);  //this is get all the other land pt too, get specific land
                     Debug.Log(ListChecking[i].gameObject.name);
-                    if(WalkingArea!=null){
+                    if(NONOSQUARE.Length>0){
                         ListChecking[i].SetActive(false); ///currently only disable them but need to think abt how to generate new ones at the missing point
                     }else{
                         ListChecking[i].transform.position = newPt; //find a way to redo
@@ -192,6 +195,11 @@ public class PointContent : MonoBehaviour
             }
         }
     }//saveable
+    void SpawnEnemy(){
+        for(int x = 0; x < EnemyPoint.Count; x++){
+            GameObject e = Instantiate (EnemyType[Random.Range(0, EnemyType.Length)], EnemyPoint[x].transform.position, Quaternion.identity);
+        }
+    }
     // bool CheckIfSameLocation(Vector3 point, List<GameObject> ResourcePt){
     //     int num = 0;
     //     bool isConflict = false;
