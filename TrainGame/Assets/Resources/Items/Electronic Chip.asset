@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fac9bd89dcafc049b19f543ccf8fd57, type: 3}
-  m_Name: Gear
+  m_Name: Electronic Chip
   m_EditorClassIdentifier: 
-  ItemID: Gear
+  ItemID: Chip
   TargetInventoryName: MainInventory
   ForceSlotIndex: 0
   TargetIndex: 0
@@ -34,16 +34,16 @@ MonoBehaviour:
     DisplayUnequipButton: 1
     DisplayCombineButton: 1
   Quantity: 1
-  ItemName: 
-  ShortDescription: A Gear Piece.
+  ItemName: Chip
+  ShortDescription: A chip piece.
   Description: 
-  Icon: {fileID: -2313487379536410156, guid: 94bc010a784ad433bba197af11a30e59, type: 3}
-  Prefab: {fileID: 2157760623848039425, guid: 05f99afd218ef409cafb8818acb6d4dc, type: 3}
+  Icon: {fileID: -1126382010016129877, guid: 94bc010a784ad433bba197af11a30e59, type: 3}
+  Prefab: {fileID: 0}
   DropProperties:
     Shape: 0
     NormalToSpawnPlane: {x: 0, y: 1, z: 0}
-    MinimumSphereRadius: 2
-    MaximumSphereRadius: 3
+    MinimumSphereRadius: 3
+    MaximumSphereRadius: 4
     MinimumCubeBaseSize: {x: 1, y: 1, z: 1}
     MaximumCubeBaseSize: {x: 2, y: 2, z: 2}
     MinimumNormalAxisOffset: 1
@@ -78,8 +78,8 @@ MonoBehaviour:
     InvertNormalOffsetCurve: 0
     MinimumRotation: {x: 0, y: 0, z: 0}
     MaximumRotation: {x: 0, y: 0, z: 0}
-    MinimumScale: {x: 2.1635, y: 2.1635, z: 2.1635}
-    MaximumScale: {x: 2.1635, y: 2.1635, z: 2.1635}
+    MinimumScale: {x: 1, y: 1, z: 1}
+    MaximumScale: {x: 1, y: 1, z: 1}
   MaximumStack: 1
   ItemClass: 0
   TargetEquipmentInventoryName: 

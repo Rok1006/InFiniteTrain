@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd81f9f1a128dd041b07769a1ee2b4a2, type: 3}
-  m_Name: CanFood
+  m_Script: {fileID: 11500000, guid: 9fac9bd89dcafc049b19f543ccf8fd57, type: 3}
+  m_Name: Mechanism Part
   m_EditorClassIdentifier: 
-  ItemID: CanFood
-  TargetInventoryName: BackpackInventory
+  ItemID: Mechanism Part
+  TargetInventoryName: MainInventory
   ForceSlotIndex: 0
   TargetIndex: 0
-  Usable: 1
+  Usable: 0
   Consumable: 1
   ConsumeQuantity: 1
   Equippable: 0
@@ -34,20 +34,20 @@ MonoBehaviour:
     DisplayUnequipButton: 1
     DisplayCombineButton: 1
   Quantity: 1
-  ItemName: Can Of Food
-  ShortDescription: A can of food
-  Description: It stops your hungry
-  Icon: {fileID: 21300000, guid: a3e5ea080f0643849822180f1eb82eb9, type: 3}
-  Prefab: {fileID: 100000, guid: 71c1a7d31ae1f5148bd68555e9baee05, type: 3}
+  ItemName: 
+  ShortDescription: A Gear Piece.
+  Description: 
+  Icon: {fileID: -2313487379536410156, guid: 94bc010a784ad433bba197af11a30e59, type: 3}
+  Prefab: {fileID: 2157760623848039425, guid: 05f99afd218ef409cafb8818acb6d4dc, type: 3}
   DropProperties:
     Shape: 0
     NormalToSpawnPlane: {x: 0, y: 1, z: 0}
-    MinimumSphereRadius: 1
-    MaximumSphereRadius: 2
+    MinimumSphereRadius: 2
+    MaximumSphereRadius: 3
     MinimumCubeBaseSize: {x: 1, y: 1, z: 1}
     MaximumCubeBaseSize: {x: 2, y: 2, z: 2}
-    MinimumNormalAxisOffset: 0
-    MaximumNormalAxisOffset: 0
+    MinimumNormalAxisOffset: 1
+    MaximumNormalAxisOffset: 2
     UseNormalAxisOffsetCurve: 0
     NormalOffsetCurve:
       serializedVersion: 2
@@ -78,15 +78,13 @@ MonoBehaviour:
     InvertNormalOffsetCurve: 0
     MinimumRotation: {x: 0, y: 0, z: 0}
     MaximumRotation: {x: 0, y: 0, z: 0}
-    MinimumScale: {x: 1, y: 1, z: 1}
-    MaximumScale: {x: 1, y: 1, z: 1}
+    MinimumScale: {x: 2.1635, y: 2.1635, z: 2.1635}
+    MaximumScale: {x: 2.1635, y: 2.1635, z: 2.1635}
   MaximumStack: 1
   ItemClass: 0
   TargetEquipmentInventoryName: 
   EquippedSound: {fileID: 0}
-  UsedSound: {fileID: 8300000, guid: 78e18157601dadc4da5ddc4b91744520, type: 3}
+  UsedSound: {fileID: 0}
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
-  FoodCount: 1
-  radiationDecrease: 4
