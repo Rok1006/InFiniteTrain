@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fac9bd89dcafc049b19f543ccf8fd57, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a82c89f197eb5045bf24fe296240bac, type: 3}
   m_Name: Fuel
   m_EditorClassIdentifier: 
   ItemID: Fuel
-  TargetInventoryName: MainInventory
+  TargetInventoryName: BackpackInventory
   ForceSlotIndex: 0
   TargetIndex: 0
-  Usable: 1
+  Usable: 0
   Consumable: 0
   ConsumeQuantity: 1
   Equippable: 0
@@ -35,11 +35,13 @@ MonoBehaviour:
     DisplayCombineButton: 1
   Quantity: 0
   ItemName: Fuel
-  ShortDescription: 'Fuel for train.
-
+  ShortDescription: 'No particular use when alone.
 
 '
-  Description: 
+  Description: 'The only thing this world relies on. No, for real.
+
+    No particular
+    use when alone.'
   Icon: {fileID: -7019108316184148509, guid: 94bc010a784ad433bba197af11a30e59, type: 3}
   Prefab: {fileID: 3861697536189807108, guid: d7384d0f7b3ac4656b498c3b46688a44, type: 3}
   DropProperties:
