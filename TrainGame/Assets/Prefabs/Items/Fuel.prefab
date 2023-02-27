@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3861697536189807112}
   - component: {fileID: 3861697536189807114}
   - component: {fileID: 3861697536189807113}
-  m_Layer: 25
+  m_Layer: 0
   m_Name: Fuel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3861697536189807108}
   m_Material: {fileID: 13400000, guid: a3af7c94922ad484892128171ade6f8b, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5727867
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GrabMainCameraOnStart: 1
-  NestObject: 1
+  NestObject: 0
   OffsetDirection: {x: 0, y: 0, z: 1}
   Up: {x: 0, y: 1, z: 0}
 --- !u!114 &3861697536189807113
@@ -147,5 +147,5 @@ MonoBehaviour:
   Item: {fileID: 11400000, guid: f0a002c3ec0c9984aa5d1bfcffb3a19d, type: 2}
   Quantity: 1
   RemainingQuantity: 1
-  PickableIfInventoryIsFull: 1
+  PickableIfInventoryIsFull: 0
   DisableObjectWhenDepleted: 1
