@@ -92,6 +92,7 @@ public class SceneManageNDisplay : MonoBehaviour
         //TrainInfoGuide.SetActive(false);
     }
     public void Open_FuelPanel(){
+        PanelOn = true;
         FF_Panel.SetActive(true);
         FF_Panel.GetComponent<InventoryInputManager>().OpenInventory();
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
