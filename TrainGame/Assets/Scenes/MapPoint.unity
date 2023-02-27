@@ -4517,7 +4517,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784201, y: 1}
+    m_SensorSize: {x: 1.7771261, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11079,7 +11079,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7762431, y: 1}
+    m_SensorSize: {x: 1.7771261, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -16620,7 +16620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1860609414
 Transform:
   m_ObjectHideFlags: 0
@@ -20527,7 +20527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 126773736897779243}
   - component: {fileID: 126773736897779242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20559,7 +20559,8 @@ GameObject:
   - component: {fileID: 126773737127740252}
   - component: {fileID: 126773737127740255}
   - component: {fileID: 126773737127740254}
-  m_Layer: 24
+  - component: {fileID: 126773737127740256}
+  m_Layer: 8
   m_Name: PondBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20634,6 +20635,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &126773737127740256
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126773737127740253}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.546547, y: 4.084755, z: 0.767693}
+  m_Center: {x: -0.042656895, y: -0.0061241086, z: -0.39368886}
 --- !u!114 &126773737131706540
 MonoBehaviour:
   m_ObjectHideFlags: 0
