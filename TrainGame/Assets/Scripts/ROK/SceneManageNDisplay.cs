@@ -40,7 +40,7 @@ public class SceneManageNDisplay : MonoBehaviour
         theMap.SetActive(false);
         mapCam.SetActive(false);
         TrainFuelBar.SetActive(false);
-        FF_Panel.SetActive(false);
+        // FF_Panel.SetActive(false);
         TrainInfoGuide.SetActive(false);
 //Listener ---
         FF_CloseButton.onClick.AddListener(Close_FF);
@@ -93,8 +93,9 @@ public class SceneManageNDisplay : MonoBehaviour
     }
     public void Open_FuelPanel(){
         PanelOn = true;
-        FF_Panel.SetActive(true);
+        // FF_Panel.SetActive(true);
         FF_Panel.GetComponent<InventoryInputManager>().OpenInventory();
+        FF_Panel.GetComponentInChildren<InventoryDisplay>().ChangeTargetInventory("FuelInventory");
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
         TrainFuelBar.SetActive(true);
         TrainInfoGuide.SetActive(false);

@@ -26300,7 +26300,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7774763, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -44610,7 +44610,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7774763, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -64731,16 +64731,36 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1180090663, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
+      propertyPath: m_Name
+      value: FuelInventoryDisplay
+      objectReference: {fileID: 0}
     - target: {fileID: 1180090664, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -314.99838
       objectReference: {fileID: 0}
     - target: {fileID: 1180090665, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
+      propertyPath: GetFocusOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180090665, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
+      propertyPath: EnableNavigation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180090665, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
       propertyPath: TargetInventoryName
       value: FuelInventory
       objectReference: {fileID: 0}
+    - target: {fileID: 1180090665, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
+      propertyPath: AllowMovingObjectsToThisInventory
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1196768499, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196768501, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
+      propertyPath: HideContainerOnStart
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1196768503, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
@@ -70226,7 +70246,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7774763, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
