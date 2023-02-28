@@ -15,6 +15,7 @@ public class PointContent : MonoBehaviour
     //1. The BoundaryArea List count shd equal to numberOfArea.
     [Tooltip("For Display Purpose")][SerializeField, BoxGroup("PointInfo")] private int numberOfArea;
     [SerializeField, BoxGroup("PointInfo")]private GameObject[] ActiveLand;
+    [SerializeField, BoxGroup("PointInfo")]private GameObject[] RandomMidLand; //here put a list of midland here and random pick one
     [Tooltip("Assign all needed point data accord to numOfArea")][SerializeField, BoxGroup("PointInfo")]private PointData[] P_Data; 
     
     [SerializeField, BoxGroup("PointInfo")]private List<GameObject> ResourcesBoxPoint = new List<GameObject>();
