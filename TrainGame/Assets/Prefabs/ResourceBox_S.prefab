@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2110041665118984574}
   - component: {fileID: 6344070018317392998}
   m_Layer: 0
-  m_Name: ResourceBox
+  m_Name: ResourceBox_S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,6 +75,7 @@ MonoBehaviour:
   openBoxSpeed: 0.35
   boxAnim: {fileID: 6417475343445778666}
   miniGame: {fileID: 6789235374179188541}
+  useSkeletonMecanim: 1
   B_Skin: {fileID: 0}
   boxLook:
   - Normal
@@ -1007,6 +1008,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 0.7490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341539923433326055, guid: 1e493568cea801f4d8c8a42b960f8bd4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5341539923433326055, guid: 1e493568cea801f4d8c8a42b960f8bd4,
         type: 3}
