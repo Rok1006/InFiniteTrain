@@ -87,14 +87,13 @@ public class SceneManageNDisplay : MonoBehaviour
     }
 //Fuel Machine Part ---------
     public void Close_FF(){
-        FF_Panel.SetActive(false);
+        FF_Panel.GetComponent<InventoryInputManager>().CloseInventory();
         TrainFuelBar.SetActive(false);
         //TrainInfoGuide.SetActive(false);
     }
     public void Open_FuelPanel(){
         PanelOn = true;
         // FF_Panel.SetActive(true);
-        FF_Panel.GetComponentInChildren<InventoryDisplay>().ChangeTargetInventory("FuelInventory");
         FF_Panel.GetComponent<InventoryInputManager>().OpenInventory();
         
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
