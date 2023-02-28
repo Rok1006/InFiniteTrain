@@ -84,7 +84,7 @@ public class ResourceBox : MonoBehaviour
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) {
             Debug.Log("Is Opening");
             isOpening = true;
-            playerWeapon.ShootStart();
+            //playerWeapon.ShootStart();
         }
 
 
@@ -114,11 +114,15 @@ public class ResourceBox : MonoBehaviour
 
         if (isLocked) { //if player need to open the lock
             if (isOpening && miniGame.GetComponent<LockPickGame>().Complete == false)
-                miniGame.gameObject.SetActive(true);
+                //miniGame.gameObject.SetActive(true);
+                //miniGame.GetComponent<Animator>().SetTrigger("open");
+                Invoke("DisplayMiniGame", .7f);
                 //miniGame.gameObject.GetComponent<CanvasScaler>().scaleFactor = Mathf.Lerp(0.01f, 1f, 0.01f);
             if (miniGame.GetComponent<LockPickGame>().Complete && isOpening) {
                 
-                miniGame.gameObject.SetActive(false);
+                //miniGame.gameObject.SetActive(false);
+                miniGame.GetComponent<Animator>().SetTrigger("close");
+                Invoke("CloseMiniGame", 2f);
                 
                 inventoryDisplay.ChangeTargetInventory(invnetoryName);
                 inventoryCanvas.alpha = 1;
@@ -138,6 +142,12 @@ public class ResourceBox : MonoBehaviour
             }
         }
 
+    }
+    void DisplayMiniGame(){
+        miniGame.gameObject.SetActive(true);
+    }
+    void CloseMiniGame(){
+        miniGame.gameObject.SetActive(false);
     }
 
     /// when enter trigger area
