@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: BlackOutline
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: ONLYOUTLINE_ON OUTBASE8DIR_ON OUTBASEPIXELPERF_ON OUTDIST_ON
+  m_ShaderKeywords: CHROMABERR_ON DOODLE_ON OUTBASE8DIR_ON SHINE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -70,10 +70,10 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _AlphaCutoffValue: 0.25
-    - _AlphaOutlineBlend: 1
+    - _AlphaOutlineBlend: 0.207
     - _AlphaOutlineGlow: 5
     - _AlphaOutlineMinAlpha: 0
-    - _AlphaOutlinePower: 1
+    - _AlphaOutlinePower: 3.38
     - _AlphaRoundThreshold: 0.5
     - _BillboardY: 0
     - _BlurHD: 0
@@ -90,7 +90,7 @@ Material:
     - _ColorChangeTolerance2: 0.25
     - _ColorChangeTolerance3: 0.25
     - _ColorRampBlend: 1
-    - _ColorRampLuminosity: 0
+    - _ColorRampLuminosity: 0.16
     - _ColorRampOutline: 0
     - _ColorSwapBlend: 1
     - _ColorSwapBlueLuminosity: 0.5
@@ -129,8 +129,8 @@ Material:
     - _GreyscaleBlend: 1
     - _GreyscaleLuminosity: 0
     - _GreyscaleOutline: 0
-    - _HandDrawnAmount: 2.7
-    - _HandDrawnSpeed: 5
+    - _HandDrawnAmount: 2
+    - _HandDrawnSpeed: 3.8
     - _HitEffectBlend: 1
     - _HitEffectGlow: 5
     - _HologramBlend: 1
@@ -139,9 +139,9 @@ Material:
     - _HologramStripesAmount: 0.1
     - _HologramStripesSpeed: 4.5
     - _HologramUnmodAmount: 0
-    - _HsvBright: 1.44
-    - _HsvSaturation: 1.65
-    - _HsvShift: 0
+    - _HsvBright: 1.19
+    - _HsvSaturation: 1
+    - _HsvShift: 180
     - _InnerOutlineAlpha: 1
     - _InnerOutlineGlow: 1
     - _InnerOutlineThickness: 2.54
@@ -166,7 +166,7 @@ Material:
     - _OutlinePixelWidth: 5.03
     - _OutlineTexXSpeed: 10
     - _OutlineTexYSpeed: 0
-    - _OutlineWidth: 0.026
+    - _OutlineWidth: 0.005
     - _OverlayBlend: 1
     - _OverlayGlow: 1
     - _PinchUvAmount: 0.35
@@ -186,7 +186,7 @@ Material:
     - _ShakeUvX: 1.5
     - _ShakeUvY: 1
     - _ShineGlow: 0.5
-    - _ShineLocation: 0.372
+    - _ShineLocation: 0.408
     - _ShineRotate: 0.03
     - _ShineWidth: 0.127
     - _TextureScrollXSpeed: 1

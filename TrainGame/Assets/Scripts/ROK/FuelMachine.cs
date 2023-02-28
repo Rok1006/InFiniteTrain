@@ -13,11 +13,15 @@ public class FuelMachine : MonoBehaviour
     [SerializeField] private int addAmt; //temp
     [SerializeField] private Animator TrainWheel;
     [SerializeField] private TextMeshProUGUI fuelNumDisplay;
+    [Header("Display")]
+    [SerializeField] private GameObject displayFuelPrefab;
+    [SerializeField] private GameObject AppearPt;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         FuelAdd_Button.onClick.AddListener(AddFuel);
+        AppearPt= GameObject.Find("AppearPt");
          //set a max
     }
 
@@ -27,8 +31,10 @@ public class FuelMachine : MonoBehaviour
         FuelBar.value = player.GetComponent<PlayerInformation>().FuelAmt;
         fuelNumDisplay.text = player.GetComponent<PlayerInformation>().FuelAmt + "/ 10";
     }
+
     public void AddFuel(){
         player.GetComponent<PlayerInformation>().FuelAmt += addAmt;
         TrainWheel.SetTrigger("pulse");
+        GameObject f = Instantiate(displayFuelPrefab, AppearPt.transform.position, Quaternion.identity);  
     }
 }

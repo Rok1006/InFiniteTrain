@@ -54,16 +54,18 @@ public class InteractableIcon : MonoBehaviour
             if(Input.GetKeyDown(input_interact)&&!SceneMD.PanelOn){
                 DisplayFunction_Active.Invoke();
                 iconAnim.SetTrigger("disappear");
+                Debug.Log("yes");
             }
         }
     }
     private void OnTriggerExit(Collider col) {
         if(col.gameObject.tag == "Player"){
-            PanelOn = false;
+            SceneMD.PanelOn = false;
             TrainInfoGuide.SetActive(false);
             iconAnim.SetTrigger("disappear");
             thisIcon.SetActive(false);
             DisplayFunction_DeActive.Invoke();
+            Debug.Log("no");
         }
     }
     // private void IconDeactivate(){
