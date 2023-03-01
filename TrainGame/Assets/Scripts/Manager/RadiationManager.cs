@@ -71,13 +71,14 @@ public class RadiationManager : MMMonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);  
-
-        if (playerInfo == null)
-            playerInfo = FindObjectOfType<PlayerInformation>();
-        if (playerHealth == null)
-            PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
-        if (radiationBar == null)
-            radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
+        if (!SceneManager.GetActiveScene().name.Equals("LoadingScreen")) {
+            if (playerInfo == null)
+                playerInfo = FindObjectOfType<PlayerInformation>();
+            if (playerHealth == null)
+                PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
+            if (radiationBar == null)
+                radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
             ChangeState(radiationstate1);

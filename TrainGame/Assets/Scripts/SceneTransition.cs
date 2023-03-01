@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using MoreMountains.Tools;
 using MoreMountains.Feedbacks;
+using MoreMountains.TopDownEngine;
 
 public class SceneTransition : MonoBehaviour
 {
@@ -11,11 +12,15 @@ public class SceneTransition : MonoBehaviour
     private GameObject door;
     [SerializeField] private string otherSceneName;
 
+    private GoToLevelEntryPoint gotoLevelEntryPoint;
+
     private void Start()
     {
         door = this.gameObject;
+        gotoLevelEntryPoint = GetComponent<GoToLevelEntryPoint>();
     }
     public void ToPlayerScene() {
+        BetweenSceneManager.Instance.IsBackFromMapPoint = true;
         SceneManager.LoadScene("LeoPlayAround");
     }
 
@@ -34,7 +39,8 @@ public class SceneTransition : MonoBehaviour
         }
         door.SetActive(false);
         MMEventManager.TriggerEvent(new MMGameEvent("Save"));
-        SceneManager.LoadScene(otherScene);
+        // SceneManager.LoadScene(otherScene);
+        gotoLevelEntryPoint.GoToNextLevel();
         MapManager.gameState = 0;
     }
 

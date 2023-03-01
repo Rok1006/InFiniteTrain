@@ -4400,6 +4400,66 @@ MonoBehaviour:
     - {x: -0.0044255224, y: 0.9999331, z: -0.010684367}
     - {x: -0.015972178, y: 0.99958664, z: -0.023905015}
     - {x: -0.008177179, y: 0.9999331, z: -0.008177001}
+--- !u!1 &262069265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 262069266}
+  - component: {fileID: 262069268}
+  - component: {fileID: 262069267}
+  m_Layer: 0
+  m_Name: Train Door Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &262069266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262069265}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.39, y: -3.36, z: 6.27}
+  m_LocalScale: {x: 0.7278021, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 410523696}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &262069267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262069265}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.260538, y: 4.4415946, z: 3.5876036}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &262069268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262069265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f359eb84f4e17794791e62eb88e8c6a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FacingDirection: 1
+  ForceAssignation: 0
+  CheckPointOrder: 0
 --- !u!1 &262899331
 GameObject:
   m_ObjectHideFlags: 0
@@ -11363,6 +11423,7 @@ Transform:
   - {fileID: 2058649892}
   - {fileID: 1726712557}
   - {fileID: 1622312760}
+  - {fileID: 262069266}
   m_Father: {fileID: 1752999504}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26300,7 +26361,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778761, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -31922,7 +31983,6 @@ Transform:
   - {fileID: 1775162960}
   - {fileID: 1846931348}
   - {fileID: 1359651296}
-  - {fileID: 1978073871}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34461,6 +34521,7 @@ GameObject:
   - component: {fileID: 1198596570}
   - component: {fileID: 1198596571}
   - component: {fileID: 1198596572}
+  - component: {fileID: 1198596573}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -34580,6 +34641,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointID: 0
+--- !u!114 &1198596573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198596567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16555fd8df462c0489f90101326d0dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsBackFromMapPoint: 0
+  mainTrainDoor: {x: 14.39, y: -3.36, z: 6.27}
+  mainSceneName: LeoPlayAround
 --- !u!1 &1199380521
 GameObject:
   m_ObjectHideFlags: 0
@@ -42574,7 +42650,9 @@ MonoBehaviour:
   SceneCharacters: []
   InitialSpawnPoint: {fileID: 511999719}
   CurrentCheckpoint: {fileID: 0}
-  PointsOfEntry: []
+  PointsOfEntry:
+  - {fileID: 262069266}
+  - {fileID: 511999718}
   IntroFadeDuration: 0.1
   SpawnDelay: 0
   OutroFadeDuration: 0.1
@@ -44610,7 +44688,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778761, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -50443,56 +50521,6 @@ MonoBehaviour:
   displayFuelPrefab: {fileID: 7539863333140782654, guid: f14054f3cd7914fa882c40fdfef48b6e,
     type: 3}
   AppearPt: {fileID: 995687171}
---- !u!1 &1978073870
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1978073871}
-  - component: {fileID: 1978073873}
-  m_Layer: 0
-  m_Name: Custom Inventory Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1978073871
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978073870}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1053706293}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1978073873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978073870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78af5094ea5ca5d4399c65bf44d933d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemA: {fileID: 0}
-  itemB: {fileID: 0}
-  itemCombination: {fileID: 0}
-  currentSelectingItem: {fileID: 0}
-  mainInvInputManager: {fileID: 0}
-  playerID: 
-  combineIndicator: {fileID: 0}
 --- !u!1 &1983467501
 GameObject:
   m_ObjectHideFlags: 0
@@ -64100,6 +64128,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1445022614}
     m_Modifications:
+    - target: {fileID: 585971654374930607, guid: c3a9fa4bfa2306c478de67f26c08ab62,
+        type: 3}
+      propertyPath: LevelName
+      value: MapPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 585971654374930607, guid: c3a9fa4bfa2306c478de67f26c08ab62,
+        type: 3}
+      propertyPath: UseEntryPoints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5012803582101684240, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
       propertyPath: m_RootOrder
@@ -65644,6 +65682,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416381561410363720, guid: 43ea37a9a945448cd947ee3df4ae8142,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5416381561592551694, guid: 43ea37a9a945448cd947ee3df4ae8142,
         type: 3}
@@ -70246,7 +70289,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778761, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

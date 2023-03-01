@@ -5,14 +5,4 @@ using UnityEngine;
 public class Info : MonoBehaviour
 {
     public int pointID;
-    
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }
