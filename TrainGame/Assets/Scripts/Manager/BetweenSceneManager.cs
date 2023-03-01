@@ -26,7 +26,6 @@ public class BetweenSceneManager : MMSingleton<BetweenSceneManager>
         }
 
         if (IsBackFromMapPoint && SceneManager.GetActiveScene().name.Equals(mainSceneName)) {
-            Debug.Log("HAAAAAAAAAAAAAA");
             SetSpawnPointBeforeSpawn(mainTrainDoor);
             IsBackFromMapPoint = false;
         }

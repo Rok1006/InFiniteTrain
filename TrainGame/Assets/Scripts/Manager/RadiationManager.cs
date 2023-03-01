@@ -62,7 +62,6 @@ public class RadiationManager : MMMonoBehaviour
     {
         currentState = radiationstate0;
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
         playerInfo = FindObjectOfType<PlayerInformation>();
         PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
         radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
@@ -78,34 +77,24 @@ public class RadiationManager : MMMonoBehaviour
                 PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
             if (radiationBar == null)
                 radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                ChangeState(radiationstate1);
+
+            if (IsRadiated) {
+                playerInfo.CurrentRadiationValue += 0.3f * Time.deltaTime;
+            }
+
+            radiationBar.UpdateBar(playerInfo.CurrentRadiationValue, playerInfo.MinRadiationValue, playerInfo.MaxRadiationValue);
+
+            if (playerInfo.CurrentRadiationValue >= playerInfo.MaxRadiationValue) {
+                playerHealth.Damage(10000f, this.gameObject, 0, 0, Vector3.up, null);
+                radiationBar.gameObject.SetActive(false);
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            ChangeState(radiationstate1);
-
-        if (IsRadiated) {
-            playerInfo.CurrentRadiationValue += 0.3f * Time.deltaTime;
-        }
-
-        radiationBar.UpdateBar(playerInfo.CurrentRadiationValue, playerInfo.MinRadiationValue, playerInfo.MaxRadiationValue);
-
-        if (playerInfo.CurrentRadiationValue >= playerInfo.MaxRadiationValue) {
-            playerHealth.Damage(10000f, this.gameObject, 0, 0, Vector3.up, null);
-            radiationBar.gameObject.SetActive(false);
-        }
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        StartCoroutine(waitToRefind());
     }
 
     public void showRadiationLevel(string str) {
         Debug.Log(str);
-    }
-
-    public IEnumerator waitToRefind() {
-        yield return new WaitForSeconds(1.0f);
-        PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
-        radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
     }
 }
