@@ -12,6 +12,7 @@ public class FoodItem : InventoryItem
     [Header("Food")]
     public int FoodCount;
     [SerializeField] private float radiationDecrease;
+    [SerializeField] private int score;
 
     //references
     PlayerInformation playerInfo;

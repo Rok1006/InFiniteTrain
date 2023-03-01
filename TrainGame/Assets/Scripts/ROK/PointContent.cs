@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using MoreMountains.InventoryEngine;
+
 // This script pull data frm pointData scObj and partly determine the content of whole pt., and store resources used in the pt
 //To do: 
 //detect if spawned item are overlapping with eachother by checking their radius?
@@ -32,6 +34,8 @@ public class PointContent : MonoBehaviour
 
     [SerializeField, BoxGroup("Resources")]private GameObject[] TrapTileType;
     [SerializeField, BoxGroup("Resources")]private GameObject[] ResourceBoxType;
+    [SerializeField, BoxGroup("Resources")]private ResourceBoxItem[] NecessaryItems, BonusItems;
+    [ShowNonSerializedField, BoxGroup("Resources")]private List<ResourceBoxItem> TotalItemList = new List<ResourceBoxItem>();
     [SerializeField, BoxGroup("Resources")]private GameObject[] GrassType; //grass prefab for generating grass or interactable environemnt
     [SerializeField, BoxGroup("Resources")]private GameObject[] PondType;
     [SerializeField, BoxGroup("Resources")]private GameObject[] EnemyType;
@@ -40,6 +44,7 @@ public class PointContent : MonoBehaviour
     bool canCheckOverlap = false;
     int depth = 0;
     int count = 0;//num of data
+
     private void Awake() {
         for(int a = 0; a<ActiveLand.Length; a++){
             ActiveLand[a].SetActive(true);
@@ -235,15 +240,49 @@ public class PointContent : MonoBehaviour
     void SpawnResouceBox(int count){ //cannot spawn on the same pt
         Vector3 getAPt;
         int index;
+
+        //decides what items should be in this map point
+        TotalItemList.AddRange(NecessaryItems);
+        for (int i = 0; i < BonusItems.Length; i++) {
+            if (Random.Range(0,100) > 50)
+                TotalItemList.Add(BonusItems[i]);
+        }
+
+        //generate those resources boxes
+        List<Inventory> boxes = new List<Inventory>();
         for(int x = 0; x < P_Data[count].resourceBoxNum; x++){
             for(int y = 0; y < IsPointFull.Count; y++){
                 index = Random.Range(0,ResourcesBoxPoint.Count);
                 if(IsPointFull[index]==false){
                     getAPt = ResourcesBoxPoint[index].transform.position;
                     GameObject r = Instantiate (ResourceBoxType[Random.Range(0, ResourceBoxType.Length)], getAPt, Quaternion.identity);
+                    
+                    //change name of the inventory for each resource box
+                    r.name = "ResourceBox" + x;
+                    string inventoryName = r.name + "Inventory";
+                    ResourceBox box = r.GetComponent<ResourceBox>();
+                    Inventory inventory = r.GetComponentInChildren<Inventory>();
+                    box.InventoryName = inventoryName;
+                    inventory.name = inventoryName;
+
+                    //add box into boxes list
+                    boxes.Add(inventory);
+                    
+
                     IsPointFull[index]=true;
                     break;
                 }
+            }
+        }
+
+        //distribute items into different boxes
+        for (int i = 0; i < TotalItemList.Count; i++) {
+            for (int tryTime = 0; tryTime < 99; tryTime++) {
+                int randomIndex = Random.Range(0, boxes.Count);
+                if (boxes[randomIndex].NumberOfFreeSlots > 0) {
+                    boxes[randomIndex].AddItem(TotalItemList[i].Item, TotalItemList[i].Quantity);
+                    break;
+                }   
             }
         }
     }//saveable
@@ -332,6 +371,12 @@ public class PointContent : MonoBehaviour
     public class boundaryAreaClass
     {
         public List<GameObject> BoundaryPt;
+    }
+
+[System.Serializable]
+    struct ResourceBoxItem {
+        public InventoryItem Item;
+        public int Quantity;
     }
     
 /* Current Issue:

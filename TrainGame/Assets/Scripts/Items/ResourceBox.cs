@@ -32,8 +32,9 @@ public class ResourceBox : MonoBehaviour
     [SerializeField] private bool useSkeletonMecanim = true;
     [SerializeField] private SkeletonMecanim B_Skin;
     [SpineSkin] public string[] boxLook = { "Normal", "Wood"};
-    //private Spine.Skeleton _skeleton;
-    // private List<Skin> _skins = new List<Skin>();
+
+    //getters & setters
+    public string InventoryName {get=>invnetoryName; set=>invnetoryName=value;}
 
     public virtual void Start()
     {
@@ -124,7 +125,7 @@ public class ResourceBox : MonoBehaviour
                 miniGame.GetComponent<Animator>().SetTrigger("close");
                 Invoke("CloseMiniGame", 2f);
                 
-                inventoryDisplay.ChangeTargetInventory(invnetoryName);
+                inventoryDisplay.ChangeTargetInventory(InventoryName);
                 inventoryCanvas.alpha = 1;
                 inventoryCanvas.interactable = true;
                 inventoryCanvas.blocksRaycasts = true;
@@ -133,7 +134,7 @@ public class ResourceBox : MonoBehaviour
             }
         } else { //player are free to open it
             if (isOpening) {
-                inventoryDisplay.ChangeTargetInventory(invnetoryName);
+                inventoryDisplay.ChangeTargetInventory(InventoryName);
                 inventoryCanvas.alpha = 1;
                 inventoryCanvas.interactable = true;
                 inventoryCanvas.blocksRaycasts = true;
