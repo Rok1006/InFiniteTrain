@@ -4606,7 +4606,7 @@ MonoBehaviour:
   TrainInfoGuide: {fileID: 771749181}
   smallIconImageObj: {fileID: 1860124436}
   guideDescriptTextObj: {fileID: 912772606}
-  guideDescript: S T O P  T R A I N
+  guideDescript: S T A R T  T R A I N
   smallIcon_sp: {fileID: -891688587281602717, guid: d3af28526a7a94fe49c6789a2bdd6377,
     type: 3}
   PanelOn: 0
@@ -26402,7 +26402,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7772973, y: 1}
+    m_SensorSize: {x: 1.7784946, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -33655,7 +33655,13 @@ MonoBehaviour:
   FuelMachineFuelLocation: {x: 97, y: -405, z: 0}
   Lever: {fileID: 8707273952857120844}
   IsOn: 0
-  currentMessage: 
+  trainTrigger: {fileID: 264447334}
+  CMCam:
+  - {fileID: 704495169}
+  - {fileID: 1598962735}
+  - {fileID: 9152521496026156527}
+  trainNoiseV: 0
+  currentAccess: 
 --- !u!1 &1143699463 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1890839001232098791, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
@@ -44789,7 +44795,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7772973, y: 1}
+    m_SensorSize: {x: 1.7784946, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -46961,8 +46967,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
+  m_AmplitudeGain: -0.009999925
+  m_FrequencyGain: -0.009999925
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1765989829
 MonoBehaviour:
@@ -51989,8 +51995,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
+  m_AmplitudeGain: -0.009999925
+  m_FrequencyGain: -0.009999925
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &2069941861
 MonoBehaviour:
@@ -69966,8 +69972,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
+  m_AmplitudeGain: -0.009999925
+  m_FrequencyGain: -0.009999925
   mNoiseOffsets: {x: 896.7285, y: 814.3888, z: -647.95166}
 --- !u!114 &9152521495152902370
 MonoBehaviour:
@@ -70418,7 +70424,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7772973, y: 1}
+    m_SensorSize: {x: 1.7784946, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

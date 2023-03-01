@@ -16,7 +16,8 @@ public class InteractableIcon : MonoBehaviour
     [SerializeField] private GameObject TrainInfoGuide;
     [SerializeField] private Image smallIconImageObj;  
     [SerializeField] private TextMeshProUGUI guideDescriptTextObj;
-    [SerializeField] private string guideDescript;
+    public string guideDescript;
+    private string currentAccess;
     [SerializeField] private Sprite smallIcon_sp;
     Animator iconAnim;
     public bool PanelOn = false;
@@ -31,6 +32,9 @@ public class InteractableIcon : MonoBehaviour
         iconAnim = thisIcon.GetComponent<Animator>();
         TrainInfoGuide.SetActive(false);
         SceneMD = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
+        // if(this.PanelName == "TrainToggleTrigger#"){
+        //     guideDescriptTextObj.text = "S T A R T  T R A I N";
+        // }
     }
 
     void Update()
@@ -38,13 +42,16 @@ public class InteractableIcon : MonoBehaviour
         if(SceneMD.PanelOn){
             TrainInfoGuide.SetActive(false);
         }
-        if(this.PanelName == "TrainToggleTrigger#"&&Input.GetKeyDown(input_interact)){
-            guideDescriptTextObj.text = SceneMD.currentMessage;
-        }
+        guideDescriptTextObj.text = SceneMD.currentAccess.ToString();
+        // if(this.PanelName == "TrainToggleTrigger#"){ //this apply to everything
+        //     this.guideDescript = SceneMD.currentMessage;
+        //     guideDescriptTextObj.text = this.guideDescript;
+        // }
     }
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Player"){
-            guideDescriptTextObj.text = guideDescript.ToString();
+            SceneMD.currentAccess = this.guideDescript;
+            //Debug.Log(this.guideDescript);
             smallIconImageObj.sprite = smallIcon_sp;
         }
     }
@@ -53,11 +60,15 @@ public class InteractableIcon : MonoBehaviour
             if(!thisIcon.activeSelf){thisIcon.SetActive(true);}
             if(!TrainInfoGuide.activeSelf){TrainInfoGuide.SetActive(true);}
 
-            if(Input.GetKeyDown(input_interact)&&!SceneMD.PanelOn){
+            if(Input.GetKeyUp(input_interact)&&!SceneMD.PanelOn){
                 DisplayFunction_Active.Invoke();
                 ActionCall.Invoke();
                 iconAnim.SetTrigger("disappear");
                 Debug.Log("yes");
+                // if(this.PanelName == "TrainToggleTrigger#"){ //this apply to everything
+                //     this.guideDescript = SceneMD.currentTrainStatusMessage;
+                //     guideDescriptTextObj.text = guideDescript.ToString();
+                // }
             }
         }
     }
