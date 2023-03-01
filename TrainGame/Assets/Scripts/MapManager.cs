@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class MapManager : MonoBehaviour
 {
 
-    public GameObject[] points;
-   public static int gameState = 0;
-    public GameObject player;
-    public GameObject playerResource;
-    public List<GameObject> availableDestination = new List<GameObject>();
-    public bool playerTurn = false;
-    public bool enemyTurn = false;
-    public int id;
+    public static int gameState = 0;
+    [BoxGroup("REF")]public GameObject player;
+    [BoxGroup("REF")]public GameObject playerResource;
 
-    public List<GameObject> PopUpPoint = new List<GameObject>();
+    [BoxGroup("Status")]public bool playerTurn = false;
+    [BoxGroup("Status")]public bool enemyTurn = false;
+    [BoxGroup("Status")]public int id;
+
+    [BoxGroup("PointInfo")]public GameObject[] points;
+    [BoxGroup("PointInfo")]public List<GameObject> availableDestination = new List<GameObject>();
+    
+    [BoxGroup("PointInfo")]public List<GameObject> PopUpPoint = new List<GameObject>();
+    [SerializeField, BoxGroup("PointInfo")] List<GameObject> Intervals = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
