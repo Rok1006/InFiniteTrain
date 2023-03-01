@@ -4,32 +4,38 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using MoreMountains.InventoryEngine;
+using NaughtyAttributes;
 //THis script is for function of pannels and triggering events
 public class SceneManageNDisplay : MonoBehaviour
 {
-    [Header("Train Info")]
+    [SerializeField, BoxGroup("General")] private GameObject TrainInfoGuide;
+    [SerializeField, BoxGroup("General")] private TextMeshProUGUI TrainInfoGuide_Text;
+
     public string currentCartName;
-    [SerializeField] private TextMeshProUGUI roomName;
-    [SerializeField] private GameObject InfoDisplay;
+    [SerializeField, BoxGroup("Train Info")] private TextMeshProUGUI roomName;
+    [SerializeField, BoxGroup("Train Info")] private GameObject InfoDisplay;
     //[SerializeField] private GameObject TrainINfoGuide;
 
-    [Header("InteractableMap")]
-    [SerializeField] private GameObject mapCam;
-    [SerializeField] private GameObject mapIcon;
-    [SerializeField] private GameObject theMap;
-    [SerializeField] private Vector3 mapFuelLocation;
+    [SerializeField, BoxGroup("InteractableMap")] private GameObject mapCam;
+    [SerializeField, BoxGroup("InteractableMap")] private GameObject mapIcon;
+    [SerializeField, BoxGroup("InteractableMap")] private GameObject theMap;
+    [SerializeField, BoxGroup("InteractableMap")] private Vector3 mapFuelLocation;
     public bool PanelOn = false;
     // public InventoryInputManager IIM_Fuel;
 
     // public List<GameObject> PopUpPoint = new List<GameObject>();
 
-    [Header("FuelMachine")]
-    [SerializeField] private GameObject FF_Panel; //the whole ui panel
-    [SerializeField] private Button FF_CloseButton;
-    [SerializeField] private GameObject FF_MachineLever;
-    [SerializeField] private GameObject TrainFuelBar; //this will also appear in map scene
-    [SerializeField] private Vector3 FuelMachineFuelLocation;
-    [SerializeField] private GameObject TrainInfoGuide;
+    [SerializeField, BoxGroup("FuelMachine")] private GameObject FF_Panel; //the whole ui panel
+    [SerializeField, BoxGroup("FuelMachine")] private Button FF_CloseButton;
+    [SerializeField, BoxGroup("FuelMachine")] private GameObject FF_MachineLever;
+    [SerializeField, BoxGroup("FuelMachine")] private GameObject TrainFuelBar; //this will also appear in map scene
+    [SerializeField, BoxGroup("FuelMachine")] private Vector3 FuelMachineFuelLocation;
+
+    [SerializeField, BoxGroup("TrainMoveStop")] private GameObject Lever; //still a placeholder
+    Animator leverAnim;
+    [SerializeField, BoxGroup("TrainMoveStop")] private bool IsOn; //train will move, else it stop
+    [ReadOnly] public string currentMessage;
+
 
 //[HideInInspector]
 
@@ -42,6 +48,8 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainFuelBar.SetActive(false);
         // FF_Panel.SetActive(false);
         TrainInfoGuide.SetActive(false);
+        IsOn = false;
+        leverAnim = Lever.GetComponent<Animator>();
 //Listener ---
         FF_CloseButton.onClick.AddListener(Close_FF);
     }
@@ -99,6 +107,29 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
         TrainFuelBar.SetActive(true);
         TrainInfoGuide.SetActive(false);
+    }
+//Train Move Stop Toggle
+    public void OpenToggleGuide(){
+        TrainInfoGuide.SetActive(true);
+    }
+    public void CloseToggleGuide(){  //put this in actionCall
+        TrainInfoGuide.SetActive(false);
+    }
+    public void PullLever(){  //put this in actionCall
+        if(IsOn){ //make the train stop
+            Debug.Log("Train is gonna stop");
+            leverAnim.SetTrigger("Off");
+            currentMessage = "S T A R T  T R A I N";
+                IsOn = false;
+            
+            //some enviromental change trigger: access to camera, plau audio, some foregrd backgrd
+        }else if(!IsOn){ //make the train move
+            Debug.Log("Train is gonna move");
+            leverAnim.SetTrigger("On");
+            currentMessage = "S T O P  T R A I N";
+                IsOn = true;
+            //some enviromental change trigger: access to camera, plau audio
+        }
     }
 
 

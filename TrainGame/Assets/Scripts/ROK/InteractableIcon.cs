@@ -21,16 +21,15 @@ public class InteractableIcon : MonoBehaviour
     Animator iconAnim;
     public bool PanelOn = false;
 
-    public UnityEvent DisplayFunction_Active;
-    public UnityEvent DisplayFunction_DeActive;
+    public UnityEvent DisplayFunction_Active;   //wtever On call
+    public UnityEvent DisplayFunction_DeActive; //wtever off call
+    public UnityEvent ActionCall; //wtever off call
 
     void Start()
     {
         thisIcon.SetActive(false);
         iconAnim = thisIcon.GetComponent<Animator>();
-        //guideDescript = " ";
         TrainInfoGuide.SetActive(false);
-        //thisPanel.SetActive(false);
         SceneMD = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
     }
 
@@ -38,6 +37,9 @@ public class InteractableIcon : MonoBehaviour
     {
         if(SceneMD.PanelOn){
             TrainInfoGuide.SetActive(false);
+        }
+        if(this.PanelName == "TrainToggleTrigger#"&&Input.GetKeyDown(input_interact)){
+            guideDescriptTextObj.text = SceneMD.currentMessage;
         }
     }
     private void OnTriggerEnter(Collider col) {
@@ -53,6 +55,7 @@ public class InteractableIcon : MonoBehaviour
 
             if(Input.GetKeyDown(input_interact)&&!SceneMD.PanelOn){
                 DisplayFunction_Active.Invoke();
+                ActionCall.Invoke();
                 iconAnim.SetTrigger("disappear");
                 Debug.Log("yes");
             }

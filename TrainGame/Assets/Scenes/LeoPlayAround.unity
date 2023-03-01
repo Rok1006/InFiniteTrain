@@ -487,6 +487,7 @@ Transform:
   - {fileID: 526533742}
   - {fileID: 1118065971}
   - {fileID: 1127321683}
+  - {fileID: 4083501151364872689}
   - {fileID: 543450653237004215}
   - {fileID: 1467649892}
   m_Father: {fileID: 850498323}
@@ -4565,7 +4566,7 @@ GameObject:
   - component: {fileID: 264447335}
   - component: {fileID: 264447334}
   m_Layer: 0
-  m_Name: TrainMoveStopTrigger
+  m_Name: TrainToggleTrigger#
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4597,7 +4598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f860f883f82894103b20a903ecee4815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelName: MOVESTOP
+  PanelName: TrainToggleTrigger#
   input_interact: 32
   SceneMD: {fileID: 1135883014}
   thisPanel: {fileID: 0}
@@ -4611,10 +4612,49 @@ MonoBehaviour:
   PanelOn: 0
   DisplayFunction_Active:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1135883014}
+        m_TargetAssemblyTypeName: SceneManageNDisplay, Assembly-CSharp
+        m_MethodName: OpenToggleGuide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   DisplayFunction_DeActive:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1135883014}
+        m_TargetAssemblyTypeName: SceneManageNDisplay, Assembly-CSharp
+        m_MethodName: CloseToggleGuide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ActionCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1135883014}
+        m_TargetAssemblyTypeName: SceneManageNDisplay, Assembly-CSharp
+        m_MethodName: PullLever
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &264447335
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19295,6 +19335,7 @@ RectTransform:
   - {fileID: 1445943563}
   - {fileID: 1911052028}
   - {fileID: 1455048154}
+  - {fileID: 1088265676}
   m_Father: {fileID: 1329013137}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26361,7 +26402,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7772973, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32851,6 +32892,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1087828202}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1088265675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1088265676}
+  - component: {fileID: 1088265677}
+  m_Layer: 5
+  m_Name: TrainMONOFF
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1088265676
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088265675}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -18.93}
+  m_LocalScale: {x: 0.71627, y: 0.71627, z: 0.71627}
+  m_Children: []
+  m_Father: {fileID: 587467400}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 33.76, y: -110.19}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1088265677
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088265675}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: -1182784615
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &1088772791
 GameObject:
   m_ObjectHideFlags: 0
@@ -33540,6 +33638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3d25f50896a4618b6b7b1525ec901f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrainInfoGuide: {fileID: 771749181}
+  TrainInfoGuide_Text: {fileID: 0}
   currentCartName: 
   roomName: {fileID: 736218830}
   InfoDisplay: {fileID: 1553113262}
@@ -33553,7 +33653,9 @@ MonoBehaviour:
   FF_MachineLever: {fileID: 661546955}
   TrainFuelBar: {fileID: 1458017205}
   FuelMachineFuelLocation: {x: 97, y: -405, z: 0}
-  TrainInfoGuide: {fileID: 771749181}
+  Lever: {fileID: 8707273952857120844}
+  IsOn: 0
+  currentMessage: 
 --- !u!1 &1143699463 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1890839001232098791, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
@@ -42463,7 +42565,7 @@ GameObject:
   - component: {fileID: 1467649894}
   - component: {fileID: 1467649893}
   m_Layer: 0
-  m_Name: Lever(P)
+  m_Name: LeverHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42481,7 +42583,7 @@ Transform:
   m_LocalScale: {x: 15.156798, y: 4.783739, z: 4.783739}
   m_Children: []
   m_Father: {fileID: 34589294}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1467649893
 BoxCollider:
@@ -43751,6 +43853,9 @@ MonoBehaviour:
   DisplayFunction_DeActive:
     m_PersistentCalls:
       m_Calls: []
+  ActionCall:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1582129594
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44684,7 +44789,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7772973, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -49903,6 +50008,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ActionCall:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1949966314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50497,6 +50605,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ActionCall:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1976879603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51192,7 +51303,7 @@ PrefabInstance:
     - target: {fileID: 1600182828364304407, guid: 304ce7f6da8a6884bad8b40d0f41a6b5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.149536
+      value: -24.149475
       objectReference: {fileID: 0}
     - target: {fileID: 5007610704223311097, guid: 304ce7f6da8a6884bad8b40d0f41a6b5,
         type: 3}
@@ -52233,6 +52344,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   DisplayFunction_DeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  ActionCall:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &2087916249
@@ -59536,7 +59650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 256, y: -28.000122}
+  m_AnchoredPosition: {x: 256, y: -28.000061}
   m_SizeDelta: {x: -522, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224435349101980482
@@ -60647,10 +60761,9 @@ Transform:
   m_LocalPosition: {x: 268.24, y: 8.85, z: -9}
   m_LocalScale: {x: 0.03865325, y: 0.03865325, z: 0.03865325}
   m_Children:
-  - {fileID: 4083501151364872689}
   - {fileID: 6645823804828236397}
   m_Father: {fileID: 34589294}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &582496361234453092
 GameObject:
@@ -63377,13 +63490,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8707273952857120844}
-  m_LocalRotation: {x: -0.530237, y: -0, z: -0, w: 0.8478495}
-  m_LocalPosition: {x: -331.7, y: 16, z: 322}
-  m_LocalScale: {x: 42.8305, y: 57.521492, z: 57.521492}
+  m_LocalRotation: {x: -0.14247371, y: -0.6926047, z: -0.14247371, w: 0.6926047}
+  m_LocalPosition: {x: 255.79364, y: 9.313839, z: -21.821287}
+  m_LocalScale: {x: 1.6555381, y: 2.223393, z: 2.2233925}
   m_Children: []
-  m_Father: {fileID: 543450653237004215}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -64.043, y: 0, z: 0}
+  m_Father: {fileID: 34589294}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -23.248, y: 0, z: 0}
 --- !u!1 &4085372563238377410
 GameObject:
   m_ObjectHideFlags: 0
@@ -66981,7 +67094,7 @@ Transform:
   m_LocalScale: {x: 53.823776, y: 29.281027, z: 10.454152}
   m_Children: []
   m_Father: {fileID: 543450653237004215}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6755821101325680085
 BoxCollider:
@@ -68684,13 +68797,33 @@ GameObject:
   - component: {fileID: 4083501151364872689}
   - component: {fileID: 3260616448680500188}
   - component: {fileID: 7762067042577285709}
+  - component: {fileID: 8707273952857120845}
   m_Layer: 0
-  m_Name: Cube.001
+  m_Name: Lever(P)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &8707273952857120845
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707273952857120844}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 952f5fefcddee43ac83e2db163a188f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!23 &8786336029401817870
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70285,7 +70418,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7772973, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
