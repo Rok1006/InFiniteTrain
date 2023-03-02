@@ -27,7 +27,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField, BoxGroup("Logic"), ShowIf("isLocked")] private float openBoxSpeed = 0.35f;
     [SerializeField, BoxGroup("Box")] private Animator boxAnim;
     [SerializeField] GameObject miniGame;
-    private bool isOpening = false, isPlayerNear = false;
+    private bool isOpening = false, isPlayerNear = false, opened = false;
 
     [SerializeField] private bool useSkeletonMecanim = true;
     [SerializeField] private SkeletonMecanim B_Skin;
@@ -83,7 +83,6 @@ public class ResourceBox : MonoBehaviour
         }
 
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) {
-            Debug.Log("Is Opening");
             isOpening = true;
             //playerWeapon.ShootStart();
         }
@@ -119,7 +118,7 @@ public class ResourceBox : MonoBehaviour
                 //miniGame.GetComponent<Animator>().SetTrigger("open");
                 Invoke("DisplayMiniGame", .7f);
                 //miniGame.gameObject.GetComponent<CanvasScaler>().scaleFactor = Mathf.Lerp(0.01f, 1f, 0.01f);
-            if (miniGame.GetComponent<LockPickGame>().Complete && isOpening) {
+            if (miniGame.GetComponent<LockPickGame>().Complete && isOpening && !opened) {
                 
                 //miniGame.gameObject.SetActive(false);
                 miniGame.GetComponent<Animator>().SetTrigger("close");
@@ -131,15 +130,17 @@ public class ResourceBox : MonoBehaviour
                 inventoryCanvas.blocksRaycasts = true;
                 if (boxAnim != null)
                     boxAnim.SetTrigger("open");
+                opened = true;
             }
         } else { //player are free to open it
-            if (isOpening) {
+            if (isOpening && !opened) {
                 inventoryDisplay.ChangeTargetInventory(InventoryName);
                 inventoryCanvas.alpha = 1;
                 inventoryCanvas.interactable = true;
                 inventoryCanvas.blocksRaycasts = true;
                 if (boxAnim != null)
                     boxAnim.SetTrigger("open");
+                opened = true;
             }
         }
 
@@ -174,6 +175,7 @@ public class ResourceBox : MonoBehaviour
             inventoryCanvas.alpha = 0;
             inventoryCanvas.interactable = false;
             inventoryCanvas.blocksRaycasts = false;
+            opened = false;
         }
     }
 

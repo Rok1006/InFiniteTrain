@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using MoreMountains.InventoryEngine;
+using MoreMountains.Tools;
 
 // This script pull data frm pointData scObj and partly determine the content of whole pt., and store resources used in the pt
 //To do: 
@@ -285,6 +286,7 @@ public class PointContent : MonoBehaviour
                 }   
             }
         }
+        
     }//saveable
     void SpawnEnemy(){
         for(int x = 0; x < EnemyPoint.Count; x++){
