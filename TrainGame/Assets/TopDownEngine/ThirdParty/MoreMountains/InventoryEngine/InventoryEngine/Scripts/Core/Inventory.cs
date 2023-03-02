@@ -336,6 +336,7 @@ namespace MoreMountains.InventoryEngine
 			}
 
 			InventoryItem itemToMove = Content[startIndex].Copy();
+			Debug.Log(itemToMove.ItemName);
             
 			// if we've specified a destination index, we use it, otherwise we add normally
 			if (endIndex >= 0)
@@ -345,6 +346,7 @@ namespace MoreMountains.InventoryEngine
 			else
 			{
 				targetInventory.AddItem(itemToMove, itemToMove.Quantity);
+				Debug.Log("added " + itemToMove.Quantity);
 			}
             
 			// we then remove from the original inventory
