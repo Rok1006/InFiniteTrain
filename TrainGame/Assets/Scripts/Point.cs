@@ -28,6 +28,7 @@ public class Point : MonoBehaviour
    
     public void SendInfo(){
         InfoSC.pointID = id;
+        InfoSC.CurrentSelectedPt = id;
     }
 
     public void MovePlayer()

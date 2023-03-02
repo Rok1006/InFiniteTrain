@@ -17,6 +17,8 @@ public class MapPopUp : MonoBehaviour
     public GameObject text;
     private MapManager mm;
     public GameObject door;
+    [SerializeField] 
+    private Info InfoSC;
     //[HideInInspector]public List<GameObject> PopUpPoint = new List<GameObject>();
 
     void Start()
@@ -25,8 +27,7 @@ public class MapPopUp : MonoBehaviour
         PUAnim = PopUpObj.GetComponent<Animator>();
         SceneManageNDisplay = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
         mm = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
-        // yeah man looks right
-        //INPAnim = InfoPop.GetComponent<Animator>();
+        InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
     }
     
     void Update()
@@ -57,20 +58,15 @@ public class MapPopUp : MonoBehaviour
             ResetAnim(0);
         }
     }
-    public void ClickPtIcon(){ //Click the Icon, anim
-        //Off Point
-        // if(clicked){
-        //     ResetPoint();
-        //     clicked = false;
-        // }
-        this.GetComponent<Point>().SendInfo();
+    public void ClickPtIcon(){ //Click the Icon, set the destination
         if(MapManager.gameState == 0) {
-           if( mm.AvailableToMove(this.gameObject) == true)
+           if( mm.AvailableToMove(this.gameObject) == true) //available to move Accord to fuelAmt
            {
                 if (mm.PopUpPoint.Count > 0)
                     ResetPoint();
                 if (!clicked)
                 {
+                    this.GetComponent<Point>().SendInfo(); //send selcted pt
                     clicked = true;
                     PUAnim.SetTrigger("SetLocation");
                     mm.PopUpPoint.Add(this.gameObject);

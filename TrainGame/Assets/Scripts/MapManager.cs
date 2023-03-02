@@ -5,10 +5,14 @@ using NaughtyAttributes;
 
 public class MapManager : MonoBehaviour
 {
-
+    [SerializeField, BoxGroup("REF")]private Info InfoSC;
+    [SerializeField, BoxGroup("REF")]private SceneManageNDisplay SMD;
     public static int gameState = 0;
     [BoxGroup("REF")]public GameObject player;
     [BoxGroup("REF")]public GameObject playerResource;
+    [SerializeField,BoxGroup("REF")]private GameObject playerTrain;
+    [SerializeField,BoxGroup("REF")]private GameObject enemyTrain;
+    [SerializeField,BoxGroup("REF")]private GameObject triggerDoorToOutside;
 
     [BoxGroup("Status")]public bool playerTurn = false;
     [BoxGroup("Status")]public bool enemyTurn = false;
@@ -20,22 +24,28 @@ public class MapManager : MonoBehaviour
     [BoxGroup("PointInfo")]public List<GameObject> PopUpPoint = new List<GameObject>();
     [SerializeField, BoxGroup("PointInfo")] List<GameObject> Intervals = new List<GameObject>();
 
-    // Start is called before the first frame update
     void Start()
     {
-        
         player = GameObject.FindGameObjectWithTag("Player");
         if (Singleton.Instance == null)
             Debug.Log("singlton is null");
         id = Singleton.Instance.id;
+        InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
+        SMD = GameObject.Find("SceneManage&Interactions").GetComponent<SceneManageNDisplay>();
         UpdatePlayerIcon();
         UpdatePlayer();
-        
+        triggerDoorToOutside.SetActive(false);
+        //InitialState
+        InfoSC.CurrentPlayerTrainInterval = 0;
+        InfoSC.CurrentEnemyTrainInterval = 0;
+        enemyTrain.SetActive(false);
+        //Debug.Log(InfoSC.CurrentPlayerTrainInterval.transform.localPosition);
+        UpdateTrainLocation();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        UpdateTrainLocation();
         //Debug.Log(id);
         if(gameState == 0)
         {
@@ -63,6 +73,15 @@ public class MapManager : MonoBehaviour
             gameState = 2;
             Debug.Log("can pick again");
         }
+
+        if(SMD.IsMoving){
+            //train sprite start moving slowly
+            //player train move to target pt
+            //takes several while (sec)
+        }
+    }
+    private void FixedUpdate() {
+        
     }
     public bool AvailableToMove(GameObject gm)
     {
@@ -123,5 +142,25 @@ public class MapManager : MonoBehaviour
             player.gameObject.GetComponent<MapPopUp>().ForceChange();
         }
     }
+    void CheckHaveFuel(int fuelNeeded){
+            //check current selected point
+            // take into account that what if player wanna skip some points, need to add up the accumulated fuel require
+    }
+    void UpdateTrainLocation(){
+        float pX = Intervals[InfoSC.CurrentPlayerTrainInterval].transform.localPosition.x;
+        float pY = Intervals[InfoSC.CurrentPlayerTrainInterval].transform.localPosition.y;
+        float eX = Intervals[InfoSC.CurrentEnemyTrainInterval].transform.localPosition.x;
+        float eY = Intervals[InfoSC.CurrentEnemyTrainInterval].transform.localPosition.y;
+        playerTrain.transform.localPosition = new Vector3(pX,pY,0);  //set theit location
+        enemyTrain.transform.localPosition = new Vector3(eX, eY, 0);
+    }
+    void EnemyMove(int ToPoint){ //put the num of destination pt
+        InfoSC.CurrentEnemyTrainInterval = ToPoint;
+    }
+    void PlayerMove(int ToPoint){ //insert the currentSetected Pt
+        InfoSC.CurrentPlayerTrainInterval = ToPoint;
+    }
     
 }
+//order:
+//u select a point on the map, u go pull the lever, train start moving and arrive in a while

@@ -16,16 +16,11 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField, BoxGroup("Train Info")] private TextMeshProUGUI roomName;
     [SerializeField, BoxGroup("Train Info")] private GameObject InfoDisplay;
     //[SerializeField] private GameObject TrainINfoGuide;
-
     [SerializeField, BoxGroup("InteractableMap")] private GameObject mapCam;
     [SerializeField, BoxGroup("InteractableMap")] private GameObject mapIcon;
     [SerializeField, BoxGroup("InteractableMap")] private GameObject theMap;
     [SerializeField, BoxGroup("InteractableMap")] private Vector3 mapFuelLocation;
     public bool PanelOn = false;
-    // public InventoryInputManager IIM_Fuel;
-
-    // public List<GameObject> PopUpPoint = new List<GameObject>();
-
     [SerializeField, BoxGroup("FuelMachine")] private GameObject FF_Panel; //the whole ui panel
     [SerializeField, BoxGroup("FuelMachine")] private Button FF_CloseButton;
     [SerializeField, BoxGroup("FuelMachine")] private GameObject FF_MachineLever;
@@ -35,13 +30,13 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField, BoxGroup("TrainMoveStop")] private GameObject Lever; //still a placeholder
     Animator leverAnim;
     [SerializeField, BoxGroup("TrainMoveStop")] private bool IsOn; //train will move, else it stop
+    [BoxGroup("TrainMoveStop")] public bool IsMoving; //train start moving, can be stop
     [SerializeField,BoxGroup("TrainMoveStop")] private InteractableIcon trainTrigger;
     [SerializeField, BoxGroup("TrainMoveStop")] private List<GameObject> CMCam = new List<GameObject>();
     [SerializeField, BoxGroup("TrainMoveStop")] private float trainNoiseV;
     private float currentValue, targetValue;
     [BoxGroup("TrainMoveStop"), ReadOnly] public string currentAccess;
     //private CinemachineBasicMultiChannelPerlin m_noise;
-
 //[HideInInspector]
 
     void Start()
@@ -54,6 +49,7 @@ public class SceneManageNDisplay : MonoBehaviour
         // FF_Panel.SetActive(false);
         TrainInfoGuide.SetActive(false);
         IsOn = false;
+        IsMoving = false;
         leverAnim = Lever.GetComponent<Animator>();
         currentValue = 0; //set initial
         targetValue = 1.5f;
@@ -143,6 +139,7 @@ public class SceneManageNDisplay : MonoBehaviour
             targetValue = 0f;
             TrainStopMotion();
                 IsOn = false;
+                IsMoving = true;
             //some enviromental change trigger: access to camera, plau audio, some foregrd backgrd
         }else if(!IsOn){ //make the train move
             Debug.Log("Train is gonna move");
@@ -152,6 +149,7 @@ public class SceneManageNDisplay : MonoBehaviour
             targetValue = 1.5f;
             TrainStartMotion();
                 IsOn = true;
+                IsMoving = false;
             //some enviromental change trigger: access to camera, plau audio
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using NaughtyAttributes;
 
 public class FuelMachine : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class FuelMachine : MonoBehaviour
     [Header("Display")]
     [SerializeField] private GameObject displayFuelPrefab;
     [SerializeField] private GameObject AppearPt;
+ 
 
     void Start()
     {
