@@ -76,7 +76,7 @@ public class LockPickBar : MonoBehaviour
     {
         current = list[iterator];
         CheckLockBar();
-        if(pt.rect.Overlaps(t.rect)){
+        if(pt.rect.Overlaps(t.rect)){   //still constatntly detecting
             Debug.Log("heyyyyyyy");
         }
     }
