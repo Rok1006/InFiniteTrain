@@ -118,7 +118,7 @@ public class ResourceBox : MonoBehaviour
                 //miniGame.gameObject.GetComponent<CanvasScaler>().scaleFactor = Mathf.Lerp(0.01f, 1f, 0.01f);
             if (miniGame.GetComponent<LockPickBar>().Complete && isOpening && !opened) {
                 
-                //miniGame.GetComponent<Animator>().SetTrigger("close");
+                miniGame.GetComponent<Animator>().SetTrigger("close");
                 Invoke("CloseMiniGame", 2f);
                 
                 inventoryDisplay.ChangeTargetInventory(InventoryName);

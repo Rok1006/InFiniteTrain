@@ -22,9 +22,9 @@ public class LockPickBar : MonoBehaviour
     public bool Complete;
     [SerializeField] List<GameObject> list;
     public int iterator;
-    public GameObject current;
+    [ReadOnly]public GameObject current;
     [SerializeField] AudioSource unlockSound;
-    // Animator anim;
+    Animator anim;
 
     RectTransform t;
     RectTransform m;
@@ -35,16 +35,17 @@ public class LockPickBar : MonoBehaviour
 
     float T_pos, M_pos, B_pos;
     float T_width, M_width, B_width;
-    float ranT, ranM, ranB;
-    bool canMoveT, canMoveM, canMoveB;
+    public float moveSpeedT, moveSpeedM, moveSpeedB;
+    bool isMovingT, isMovingM, isMovingB = false;
 
     float targetPosT;
 
     void Start()
     {
+        anim = this.GetComponent<Animator>();
         t = Top.GetComponent<RectTransform>();
-        b = Mid.GetComponent<RectTransform>();
-        m = Bottom.GetComponent<RectTransform>();
+        m = Mid.GetComponent<RectTransform>();
+        b = Bottom.GetComponent<RectTransform>();
         pt = PT.GetComponent<RectTransform>();
         pm = PM.GetComponent<RectTransform>();
         pb = PB.GetComponent<RectTransform>();
@@ -57,105 +58,97 @@ public class LockPickBar : MonoBehaviour
 
         T_width = SetRandomBarWidth(70, 150);
         M_width = SetRandomBarWidth(50, 120);
-        B_width = SetRandomBarWidth(10, 50);
+        B_width = SetRandomBarWidth(10, 70);
         
         t.sizeDelta = new Vector2(T_width, 0);
         m.sizeDelta = new Vector2(M_width, 0);
         b.sizeDelta = new Vector2(B_width, 0);
+        T_S.value = GetRanNum();  //set initial spot
+         M_S.value = GetRanNum();
+          B_S.value = GetRanNum();
 
-        ranT = GetRanNum();
-        ranM = GetRanNum();
-        ranB = GetRanNum();
-        //anim = this.GetComponent<Animator>();
-
+        StartCoroutine(MoveTop());
+        StartCoroutine(MoveMiddle());
+        StartCoroutine(MoveBottom());
     }
-
 
     void Update()
     {
         current = list[iterator];
-        T_S.value = T_pos;
-        M_S.value = M_pos;
-        B_S.value = B_pos; 
-
-        // targetPosT = 10;
-        if(canMoveT){
-            if(CompareHandleToRan(T_pos, ranT)){
-                while(T_pos<ranT){
-                    T_pos+=TSpeed; 
-                    //Debug.Log("yoooooooooooooo");
-                }
-                canMoveT = false;
-            }
-            if(!CompareHandleToRan(T_pos, ranT)){
-                while(T_pos>ranT){
-                    T_pos-=TSpeed; 
-                    //Debug.Log("yoooooooooooooo");
-                }
-                canMoveT = false;
-            }
-        }
-        if(T_pos!=ranT){
-            canMoveT = true;
-            //
-        }
-        // if(T_pos==ranT){
-        //     ranT = GetRanNum();
-        //     Debug.Log("arrive");
-        // }
-        //else{
-        //     canMoveT = true;
-        // }
-        // if(T_pos!=10){
-            
-        // }else if(T_pos>=10){
-        //     T_pos-=TSpeed; 
-        // }
-        // if(M_pos<10){
-        //     M_pos+=MSpeed; 
-        // }else if(M_pos>=10){
-        //     M_pos-=MSpeed; 
-        // }
-        // if(B_pos<10){
-        //     B_pos+=BSpeed; 
-        // }else if(B_pos>=10){
-        //     B_pos-=BSpeed; 
-        // }
-
         CheckLockBar();
-    }
-    bool CompareHandleToRan(float pos, float ran){  //increase = true
-        bool isIncrease = false;
-        if(pos<ran){
-            isIncrease =  true;
-        }else if(pos>ran){
-            isIncrease =  false;
+        if(pt.rect.Overlaps(t.rect)){
+            Debug.Log("heyyyyyyy");
         }
-        return isIncrease;
-        
     }
+
+    IEnumerator MoveTop()
+    {
+        float targetValue = Random.Range(0, 10);// Generate a random value between minRange and maxRange
+        isMovingT = true;// Move the handle towards the target value
+        while (T_S.value != targetValue)
+        {
+            T_S.value = Mathf.MoveTowards(T_S.value, targetValue, TSpeed * Time.deltaTime);
+            yield return null;
+        }
+        isMovingT = false;
+        // Wait until the handle arrives at the target value before generating a new random value
+        yield return new WaitUntil(() => !isMovingT);
+        // Start the coroutine again to generate a new random value and move the handle towards it
+        StartCoroutine(MoveTop());
+    }
+    IEnumerator MoveMiddle()
+    {
+        float targetValue = Random.Range(0, 10);// Generate a random value between minRange and maxRange
+        isMovingM = true;// Move the handle towards the target value
+        while (M_S.value != targetValue)
+        {
+            M_S.value = Mathf.MoveTowards(M_S.value, targetValue, MSpeed * Time.deltaTime);
+            yield return null;
+        }
+        isMovingM = false;
+        // Wait until the handle arrives at the target value before generating a new random value
+        yield return new WaitUntil(() => !isMovingM);
+        // Start the coroutine again to generate a new random value and move the handle towards it
+        StartCoroutine(MoveMiddle());
+    }
+    IEnumerator MoveBottom()
+    {
+        float targetValue = Random.Range(0, 10);// Generate a random value between minRange and maxRange
+        isMovingB = true;// Move the handle towards the target value
+        while (B_S.value != targetValue)
+        {
+            B_S.value = Mathf.MoveTowards(B_S.value, targetValue, BSpeed * Time.deltaTime);
+            yield return null;
+        }
+        isMovingB = false;
+        // Wait until the handle arrives at the target value before generating a new random value
+        yield return new WaitUntil(() => !isMovingB);
+        // Start the coroutine again to generate a new random value and move the handle towards it
+        StartCoroutine(MoveBottom());
+    }
+
     void CheckLockBar(){
-        if (Input.GetKeyUp(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (current == Top && pt.rect.Overlaps(t.rect)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
             {
-                //anim.SetTrigger("pulse");
+                anim.SetTrigger("pulse");
                 list[iterator].gameObject.SetActive(false);
-                //unlockSound.Play();
+                unlockSound.Play();
                 iterator++;
                 Debug.Log("layer1");
             } else if (current == Mid && pm.rect.Overlaps(m.rect)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
             {
-                //anim.SetTrigger("pulse");
+                anim.SetTrigger("pulse");
                 list[iterator].gameObject.SetActive(false);
-                //unlockSound.Play(); 
+                unlockSound.Play(); 
                 iterator++;
                 Debug.Log("layer2");
             }
             else if (current == Bottom && pb.rect.Overlaps(b.rect)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
             {
-                //anim.SetTrigger("pulse");
-                //unlockSound.Play();
+                anim.SetTrigger("pulse");
+                unlockSound.Play();
                 list[iterator].gameObject.SetActive(false);
                 Complete = true;
                 Debug.Log("layer3");
@@ -173,6 +166,19 @@ public class LockPickBar : MonoBehaviour
         int ranN = Random.Range(0,10);
         return ranN;
     }
-}
 
-//it always go frm left right right left
+    bool IsOverlapping(RectTransform rectTransform1, RectTransform rectTransform2)
+    {
+        Debug.Log("doing it");
+        // Get the corners of the first rect transform
+        Vector3[] corners1 = new Vector3[4];
+        rectTransform1.GetWorldCorners(corners1);
+
+        // Get the corners of the second rect transform
+        Vector3[] corners2 = new Vector3[4];
+        rectTransform2.GetWorldCorners(corners2);
+
+        // Check if the rectangles overlap
+        return (corners1[0].x < corners2[3].x && corners1[3].x > corners2[0].x && corners1[0].y < corners2[3].y && corners1[3].y > corners2[0].y);
+    }
+}
