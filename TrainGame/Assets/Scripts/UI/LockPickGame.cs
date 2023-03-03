@@ -91,9 +91,7 @@ public class LockPickGame : MonoBehaviour
     }
 
     void CheckLock(){ //by rect transform
-    // outer.sizeDelta = new Vector2(outer.rect.width, outer.rect.height);
-    // middle.sizeDelta = new Vector2(middle.rect.width, middle.rect.height);
-    // inner.sizeDelta = new Vector2(inner.rect.width, inner.rect.height);
+
         if (Input.GetKeyUp(KeyCode.L))
         {
             if (current == Outer && hand.rect.Overlaps(outer.rect)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
@@ -122,6 +120,10 @@ public class LockPickGame : MonoBehaviour
                 Debug.Log("Bruh");
             }
         }
+    }
+
+    void Lock_Bar(){
+        
     }
 
     void SetRangeForRings(){

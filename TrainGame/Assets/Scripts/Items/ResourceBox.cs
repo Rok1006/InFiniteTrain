@@ -113,15 +113,12 @@ public class ResourceBox : MonoBehaviour
         }*/
 
         if (isLocked) { //if player need to open the lock
-            if (isOpening && miniGame.GetComponent<LockPickGame>().Complete == false)
-                //miniGame.gameObject.SetActive(true);
-                //miniGame.GetComponent<Animator>().SetTrigger("open");
+            if (isOpening && miniGame.GetComponent<LockPickBar>().Complete == false)
                 Invoke("DisplayMiniGame", .7f);
                 //miniGame.gameObject.GetComponent<CanvasScaler>().scaleFactor = Mathf.Lerp(0.01f, 1f, 0.01f);
-            if (miniGame.GetComponent<LockPickGame>().Complete && isOpening && !opened) {
+            if (miniGame.GetComponent<LockPickBar>().Complete && isOpening && !opened) {
                 
-                //miniGame.gameObject.SetActive(false);
-                miniGame.GetComponent<Animator>().SetTrigger("close");
+                //miniGame.GetComponent<Animator>().SetTrigger("close");
                 Invoke("CloseMiniGame", 2f);
                 
                 inventoryDisplay.ChangeTargetInventory(InventoryName);

@@ -125,7 +125,7 @@ public class MapManager : MonoBehaviour
     }
     public void UpdatePlayerIcon()
     {
-        Debug.Log("df");
+        //Debug.Log("df");
         for(int i = 0; i < points.Length; i++)
         {
             points[i].GetComponent<Point>().isPlayer = false;

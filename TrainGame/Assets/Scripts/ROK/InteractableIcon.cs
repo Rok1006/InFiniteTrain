@@ -32,9 +32,6 @@ public class InteractableIcon : MonoBehaviour
         iconAnim = thisIcon.GetComponent<Animator>();
         TrainInfoGuide.SetActive(false);
         SceneMD = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
-        // if(this.PanelName == "TrainToggleTrigger#"){
-        //     guideDescriptTextObj.text = "S T A R T  T R A I N";
-        // }
     }
 
     void Update()
@@ -43,10 +40,6 @@ public class InteractableIcon : MonoBehaviour
             TrainInfoGuide.SetActive(false);
         }
         guideDescriptTextObj.text = SceneMD.currentAccess.ToString();
-        // if(this.PanelName == "TrainToggleTrigger#"){ //this apply to everything
-        //     this.guideDescript = SceneMD.currentMessage;
-        //     guideDescriptTextObj.text = this.guideDescript;
-        // }
     }
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Player"){
@@ -64,11 +57,7 @@ public class InteractableIcon : MonoBehaviour
                 DisplayFunction_Active.Invoke();
                 ActionCall.Invoke();
                 iconAnim.SetTrigger("disappear");
-                Debug.Log("yes");
-                // if(this.PanelName == "TrainToggleTrigger#"){ //this apply to everything
-                //     this.guideDescript = SceneMD.currentTrainStatusMessage;
-                //     guideDescriptTextObj.text = guideDescript.ToString();
-                // }
+                //Debug.Log("yes");
             }
         }
     }

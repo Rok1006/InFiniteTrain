@@ -84,7 +84,7 @@ public class PointContent : MonoBehaviour
             Debug.Log("checked");
             for (int i = 0; i < BA.BoundaryPt.Count; i++) //Assign Min Max
             {
-                Debug.Log(BA.BoundaryPt[i]);
+                //Debug.Log(BA.BoundaryPt[i]);
                 FindMaxnMin(BA.BoundaryPt[i]);
             }
 //Enviroment Related-------------------------
