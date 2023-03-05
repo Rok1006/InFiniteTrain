@@ -3,45 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.InventoryEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using TMPro;
 
 public class InventorySlotPlus : InventorySlot, IPointerEnterHandler, IPointerExitHandler
 {
-    private bool mouse_over = false;
-    void Update()
-    {
-        if (mouse_over)
-        {
-            Debug.Log("Mouse Over");
-        }
-    }
-    public void OnMouseOver() {
-        Debug.Log("Mouse is over GameObject.");
-        if (InventoryItem.IsNull(ParentInventoryDisplay.TargetInventory.Content[Index]))
-            return;
-        else {
-            InventoryItem item = ParentInventoryDisplay.TargetInventory.Content[Index];
-            Debug.Log(item.name);
-        }
-    }
+    [SerializeField] private GameObject tooltip;
+    [SerializeField] private TextMeshProUGUI tooltipText;
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        mouse_over = true;
-        Debug.Log("Mouse enter");
-        base.OnPointerEnter(eventData);
-        
+        InventoryItem item = ParentInventoryDisplay.TargetInventory.Content[Index];
+        if (item != null) {
+            tooltip.SetActive(true);
+            tooltipText.text = item.ShortDescription;
+        }
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
-        base.OnPointerExit(eventData);
-        mouse_over = false;
-        Debug.Log("Mouse exit");
+        tooltip.SetActive(false);
     }
-
-    public void DebugLogSth() {
-        Debug.Log("123");
-    }
-
 }
