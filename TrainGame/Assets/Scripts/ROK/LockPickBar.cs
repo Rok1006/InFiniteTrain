@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class LockPickBar : MonoBehaviour
 {
     [SerializeField, BoxGroup("REF")] GameObject Top;  //the hadle bro
-    [SerializeField, BoxGroup("REF")] Slider T_S;
+    //[SerializeField, BoxGroup("REF")] Slider T_S;
     [SerializeField, BoxGroup("REF")] float TSpeed; //0.0001f
     [SerializeField, BoxGroup("REF")] GameObject Mid;
-    [SerializeField, BoxGroup("REF")] Slider M_S;
+    //[SerializeField, BoxGroup("REF")] Slider M_S;
     [SerializeField, BoxGroup("REF")] float MSpeed;
     [SerializeField, BoxGroup("REF")] GameObject Bottom;  //last layer layer 3
-    [SerializeField, BoxGroup("REF")] Slider B_S;
+    //[SerializeField, BoxGroup("REF")] Slider B_S;
     [SerializeField, BoxGroup("REF")] float BSpeed;
     [SerializeField, BoxGroup("REF")] GameObject PT;  //the handle
     [SerializeField, BoxGroup("REF")] GameObject PM;
     [SerializeField, BoxGroup("REF")] GameObject PB;
+
+    // public GameObject test1;
+    //  public GameObject test2;
+    // RectTransform t1;
+    // RectTransform t2;
 
     public bool Complete;
     [SerializeField] List<GameObject> list;
@@ -35,10 +41,12 @@ public class LockPickBar : MonoBehaviour
 
     float T_pos, M_pos, B_pos;
     float T_width, M_width, B_width;
-    public float moveSpeedT, moveSpeedM, moveSpeedB;
+    //public float moveSpeedT, moveSpeedM, moveSpeedB;
     bool isMovingT, isMovingM, isMovingB = false;
 
     float targetPosT;
+    private Vector2 touchMargin;// Flag to indicate whether the static UI is touching/overlapping with the moving UI
+    private bool isTouching = false;
 
     void Start()
     {
@@ -52,44 +60,64 @@ public class LockPickBar : MonoBehaviour
 
         iterator = 0;
 
-        T_S.value = 0;
-        M_S.value = 0;
-        B_S.value = 0; 
+        // T_S.value = 0;
+        // M_S.value = 0;
+        // B_S.value = 0; 
 
-        T_width = SetRandomBarWidth(70, 150);
-        M_width = SetRandomBarWidth(50, 120);
-        B_width = SetRandomBarWidth(10, 70);
+        t.sizeDelta = new Vector2(SetRandomBarWidth(150, 200), t.sizeDelta.y);
+        m.sizeDelta = new Vector2(SetRandomBarWidth(100, 150), m.sizeDelta.y);
+        b.sizeDelta = new Vector2(SetRandomBarWidth(30, 120), b.sizeDelta.y);
+
+        t.anchoredPosition = new Vector2(Random.Range(-151, 151), t.anchoredPosition.y);
+        m.anchoredPosition = new Vector2(Random.Range(-151, 151), m.anchoredPosition.y);
+        b.anchoredPosition = new Vector2(Random.Range(-151, 151), b.anchoredPosition.y);
+        // //t.rect.width = SetRandomBarWidth(70, 150);
+        // m.rect.width = SetRandomBarWidth(50, 120);
+        // b.rect.width = SetRandomBarWidth(10, 70);
         
-        t.sizeDelta = new Vector2(T_width, 0);
-        m.sizeDelta = new Vector2(M_width, 0);
-        b.sizeDelta = new Vector2(B_width, 0);
-        T_S.value = GetRanNum();  //set initial spot
-         M_S.value = GetRanNum();
-          B_S.value = GetRanNum();
+        // t.sizeDelta = new Vector2(T_width, 0);
+        // m.sizeDelta = new Vector2(M_width, 0);
+        // b.sizeDelta = new Vector2(B_width, 0);
+        // T_S.value = GetRanNum();  //set initial spot
+        //  M_S.value = GetRanNum();
+        //   B_S.value = GetRanNum();
 
         StartCoroutine(MoveTop());
         StartCoroutine(MoveMiddle());
         StartCoroutine(MoveBottom());
+
+        // t2 = test2.GetComponent<RectTransform>();
+        // t1 = test1.GetComponent<RectTransform>();
     }
 
     void Update()
     {
         current = list[iterator];
         CheckLockBar();
-        if(pt.rect.Overlaps(t.rect)){   //still constatntly detecting
+
+        if(CheckOverlap(t, pt)){ //if current
             Debug.Log("heyyyyyyy");
         }
+        
+    }
+               
+    public bool IsTouching()
+    {
+        return isTouching;
     }
 
-    IEnumerator MoveTop()
+    IEnumerator MoveTop()  //-151, 151
     {
-        float targetValue = Random.Range(0, 10);// Generate a random value between minRange and maxRange
+        float targetValue = Random.Range(-151, 151);// Generate a random value between minRange and maxRange
+        Vector2 targetPosition = new Vector2(targetValue, t.anchoredPosition.y);
         isMovingT = true;// Move the handle towards the target value
-        while (T_S.value != targetValue)
+        while (t.anchoredPosition.x != targetValue)
         {
-            T_S.value = Mathf.MoveTowards(T_S.value, targetValue, TSpeed * Time.deltaTime);
+            //t.anchoredPosition.x = Mathf.MoveTowards(t.anchoredPosition.x, targetValue, TSpeed * Time.deltaTime);
+            t.anchoredPosition = Vector2.MoveTowards(t.anchoredPosition, targetPosition, TSpeed * Time.deltaTime);
             yield return null;
         }
+        Debug.Log("done");
         isMovingT = false;
         // Wait until the handle arrives at the target value before generating a new random value
         yield return new WaitUntil(() => !isMovingT);
@@ -98,11 +126,13 @@ public class LockPickBar : MonoBehaviour
     }
     IEnumerator MoveMiddle()
     {
-        float targetValue = Random.Range(0, 10);// Generate a random value between minRange and maxRange
+        float targetValue = Random.Range(-151, 151);// Generate a random value between minRange and maxRange
+        Vector2 targetPosition = new Vector2(targetValue, m.anchoredPosition.y);
         isMovingM = true;// Move the handle towards the target value
-        while (M_S.value != targetValue)
+        while (m.anchoredPosition.x != targetValue)
         {
-            M_S.value = Mathf.MoveTowards(M_S.value, targetValue, MSpeed * Time.deltaTime);
+            //t.anchoredPosition.x = Mathf.MoveTowards(t.anchoredPosition.x, targetValue, TSpeed * Time.deltaTime);
+            m.anchoredPosition = Vector2.MoveTowards(m.anchoredPosition, targetPosition, MSpeed * Time.deltaTime);
             yield return null;
         }
         isMovingM = false;
@@ -113,11 +143,13 @@ public class LockPickBar : MonoBehaviour
     }
     IEnumerator MoveBottom()
     {
-        float targetValue = Random.Range(0, 10);// Generate a random value between minRange and maxRange
-        isMovingB = true;// Move the handle towards the target value
-        while (B_S.value != targetValue)
+        float targetValue = Random.Range(-151, 151);// Generate a random value between minRange and maxRange
+        Vector2 targetPosition = new Vector2(targetValue, b.anchoredPosition.y);
+        isMovingT = true;// Move the handle towards the target value
+        while (b.anchoredPosition.x != targetValue)
         {
-            B_S.value = Mathf.MoveTowards(B_S.value, targetValue, BSpeed * Time.deltaTime);
+            //t.anchoredPosition.x = Mathf.MoveTowards(t.anchoredPosition.x, targetValue, TSpeed * Time.deltaTime);
+            b.anchoredPosition = Vector2.MoveTowards(b.anchoredPosition, targetPosition, BSpeed * Time.deltaTime);
             yield return null;
         }
         isMovingB = false;
@@ -130,14 +162,14 @@ public class LockPickBar : MonoBehaviour
     void CheckLockBar(){
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (current == Top && pt.rect.Overlaps(t.rect)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
+            if (current == Top && CheckOverlap(t, pt)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
             {
                 anim.SetTrigger("pulse");
                 list[iterator].gameObject.SetActive(false);
                 unlockSound.Play();
                 iterator++;
                 Debug.Log("layer1");
-            } else if (current == Mid && pm.rect.Overlaps(m.rect)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
+            } else if (current == Mid && CheckOverlap(m, pm)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
             {
                 anim.SetTrigger("pulse");
                 list[iterator].gameObject.SetActive(false);
@@ -145,7 +177,7 @@ public class LockPickBar : MonoBehaviour
                 iterator++;
                 Debug.Log("layer2");
             }
-            else if (current == Bottom && pb.rect.Overlaps(b.rect)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
+            else if (current == Bottom && CheckOverlap(b, pb)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
             {
                 anim.SetTrigger("pulse");
                 unlockSound.Play();
@@ -166,19 +198,35 @@ public class LockPickBar : MonoBehaviour
         int ranN = Random.Range(0,10);
         return ranN;
     }
-
-    bool IsOverlapping(RectTransform rectTransform1, RectTransform rectTransform2)
+    bool rectOverlaps(RectTransform rectTrans1, RectTransform rectTrans2) //this work on normal default ui, this work but the ui for the slider bar is somewhere else
     {
-        Debug.Log("doing it");
-        // Get the corners of the first rect transform
-        Vector3[] corners1 = new Vector3[4];
-        rectTransform1.GetWorldCorners(corners1);
+        Rect rect1 = new Rect(rectTrans1.anchoredPosition.x, rectTrans1.anchoredPosition.y, rectTrans1.rect.width, rectTrans1.rect.height);  //for some reason *2 makes the 
+        Rect rect2 = new Rect(rectTrans2.anchoredPosition.x, rectTrans2.anchoredPosition.y, rectTrans2.rect.width, rectTrans2.rect.height);
+        //Debug.Log(rect1);
+        Debug.Log(rect2);
+        return rect1.Overlaps(rect2);
+    }//not usng
 
-        // Get the corners of the second rect transform
-        Vector3[] corners2 = new Vector3[4];
-        rectTransform2.GetWorldCorners(corners2);
+    bool CheckOverlap(RectTransform MUI, RectTransform SUI){
+        Rect staticRect = new Rect(SUI.GetComponent<RectTransform>().anchoredPosition - SUI.GetComponent<RectTransform>().rect.size / 2, SUI.GetComponent<RectTransform>().rect.size);
+        Rect movingRect = new Rect(MUI.anchoredPosition - MUI.rect.size / 2,MUI.rect.size);
 
-        // Check if the rectangles overlap
-        return (corners1[0].x < corners2[3].x && corners1[3].x > corners2[0].x && corners1[0].y < corners2[3].y && corners1[3].y > corners2[0].y);
+        touchMargin.x = (MUI.rect.width + SUI.GetComponent<RectTransform>().rect.width) / 2;
+        touchMargin.y = (MUI.rect.height + SUI.GetComponent<RectTransform>().rect.height) / 2;
+        // Check if the two UI elements are touching/overlapping
+        return staticRect.Overlaps(movingRect) && 
+            Mathf.Abs(MUI.anchoredPosition.x - SUI.GetComponent<RectTransform>().anchoredPosition.x) < touchMargin.x &&
+            Mathf.Abs(MUI.anchoredPosition.y - SUI.GetComponent<RectTransform>().anchoredPosition.y) < touchMargin.y;
+        // {
+        //     isTouching = true;
+        //     Debug.Log("heyyyyyyy");
+        // }
+        // else
+        // {
+        //     isTouching = false;
+        // }
     }
+
+
+ 
 }
