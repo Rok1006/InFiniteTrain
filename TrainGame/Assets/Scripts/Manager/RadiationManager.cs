@@ -89,12 +89,21 @@ public class RadiationManager : MMMonoBehaviour
 
             if (playerInfo.CurrentRadiationValue >= playerInfo.MaxRadiationValue) {
                 playerHealth.Damage(10000f, this.gameObject, 0, 0, Vector3.up, null);
-                radiationBar.gameObject.SetActive(false);
             }
         }
     }
 
     public void showRadiationLevel(string str) {
         Debug.Log(str);
+    }
+
+    public void DeathOfRadiation() {
+        //set radiation back to full
+        playerInfo.CurrentRadiationValue = playerInfo.MaxRadiationValue;
+        IsRadiated = false;
+
+        //remove all items from backpack
+        playerInfo.BackpackInven.EmptyInventory();
+        MMEventManager.TriggerEvent(new MMGameEvent("Save"));
     }
 }

@@ -32,6 +32,11 @@ public class SceneTransition : MonoBehaviour
         SceneManager.LoadScene("MapPoint");
     }
 
+    public void RespawnToPlayerScene() {
+        FindObjectOfType<RadiationManager>().DeathOfRadiation();
+        MMSceneLoadingManager.LoadScene("LeoPlayAround");
+    }
+
     public void saveAndToOtherScene(string otherScene) {
         if (otherScene != "LeoPlayAround")
         {
