@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Animations;
 using Spine.Unity;
 using Spine.Unity.AttachmentTools;
+
 //script for box, timer, minigame
 public class ResourceBox : MonoBehaviour
 {
@@ -84,8 +85,8 @@ public class ResourceBox : MonoBehaviour
 
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) { //open inventory
             isOpening = true;
-        } else if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && opened) { //close inventory
-            hideInventoryUI();
+        } else if (isPlayerNear && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape)) && opened) { //close inventory
+            HideInventoryUI();
         }
 
         
@@ -124,23 +125,11 @@ public class ResourceBox : MonoBehaviour
                 miniGame.GetComponent<Animator>().SetTrigger("close");
                 Invoke("CloseMiniGame", 2f);
                 
-                inventoryDisplay.ChangeTargetInventory(InventoryName);
-                inventoryCanvas.alpha = 1;
-                inventoryCanvas.interactable = true;
-                inventoryCanvas.blocksRaycasts = true;
-                if (boxAnim != null)
-                    boxAnim.SetTrigger("open");
-                opened = true;
+                ShowInventoryUI();
             }
         } else { //player are free to open it
             if (isOpening && !opened) {
-                inventoryDisplay.ChangeTargetInventory(InventoryName);
-                inventoryCanvas.alpha = 1;
-                inventoryCanvas.interactable = true;
-                inventoryCanvas.blocksRaycasts = true;
-                if (boxAnim != null)
-                    boxAnim.SetTrigger("open");
-                opened = true;
+                ShowInventoryUI();
             }
         }
 
@@ -169,19 +158,31 @@ public class ResourceBox : MonoBehaviour
     /// set inventory canvas to inactive
     void OnTriggerExit(Collider col) {
         if (col.gameObject.tag ==("Player")) {
-            hideInventoryUI();
+            HideInventoryUI();
             isPlayerNear = false;
         }
     }
 
-    public void hideInventoryUI() {
-            if (isLocked)
-                timer.SetActive(false);
-            isOpening = false;
-            inventoryCanvas.alpha = 0;
-            inventoryCanvas.interactable = false;
-            inventoryCanvas.blocksRaycasts = false;
-            opened = false;
+    public void HideInventoryUI() {
+        if (isLocked)
+            timer.SetActive(false);
+        isOpening = false;
+        inventoryCanvas.alpha = 0;
+        inventoryCanvas.interactable = false;
+        inventoryCanvas.blocksRaycasts = false;
+        opened = false;
+        Info.Instance.IsViewingInventory = false;
+    }
+
+    public void ShowInventoryUI() {
+        inventoryDisplay.ChangeTargetInventory(InventoryName);
+        inventoryCanvas.alpha = 1;
+        inventoryCanvas.interactable = true;
+        inventoryCanvas.blocksRaycasts = true;
+        if (boxAnim != null)
+            boxAnim.SetTrigger("open");
+        opened = true;
+        Info.Instance.IsViewingInventory = true;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {

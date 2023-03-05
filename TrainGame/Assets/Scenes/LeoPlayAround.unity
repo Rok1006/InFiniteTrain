@@ -26250,7 +26250,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7789203, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -34780,6 +34780,7 @@ MonoBehaviour:
   CurrentSelectedPt: 0
   playerTrainInterval: 0
   enemyTrainInterval: 0
+  IsViewingInventory: 0
 --- !u!1 &1199380521
 GameObject:
   m_ObjectHideFlags: 0
@@ -43825,7 +43826,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7789203, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -44834,7 +44835,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7789203, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -54274,7 +54275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1663800586810786
 GameObject:
   m_ObjectHideFlags: 0
@@ -54421,9 +54422,9 @@ GameObject:
   - component: {fileID: 4776084887449124}
   - component: {fileID: 20646998427825848}
   - component: {fileID: 124846487746051214}
-  - component: {fileID: 114905644900628130}
   - component: {fileID: 114714365566476908}
   - component: {fileID: 1474207231}
+  - component: {fileID: 1737469105336893}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: Untagged
@@ -54431,6 +54432,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1737469105336893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737469105336892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c5777e95b8d364d91f8bbaaa63e430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCanvas: {fileID: 223698241504642782}
+  HUD: {fileID: 1663800586810786}
+  HealthBars:
+  - {fileID: 114677896380480072}
+  DashBars:
+  - {fileID: 114288385206857168}
+  AmmoDisplays: []
+  PauseScreen: {fileID: 1253938389544080}
+  DeathScreen: {fileID: 1041692814321174}
+  Buttons: {fileID: 225035570806339784}
+  Arrows: {fileID: 225004371393300124}
+  Joystick: {fileID: 225721415465819998}
+  PointsText: {fileID: 0}
+  PointsTextPattern: 000000
 --- !u!1 &1743983549689620
 GameObject:
   m_ObjectHideFlags: 0
@@ -58485,7 +58512,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BACK TO LEVEL SELECTION
+  m_Text: BACK TO START SCREEN
 --- !u!114 &114818101226322960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58532,7 +58559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316ab92be1a09414daadf97f5d5d2a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelName: LevelSelection
+  LevelName: Start Screen
   DoNotUseLevelManager: 0
 --- !u!114 &114837496458668256
 MonoBehaviour:
@@ -58726,33 +58753,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: RESTART LEVEL
---- !u!114 &114905644900628130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737469105336892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45c07d1fd86b2c488aeed1a9e84e924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainCanvas: {fileID: 223698241504642782}
-  HUD: {fileID: 1663800586810786}
-  HealthBars:
-  - {fileID: 114677896380480072}
-  DashBars:
-  - {fileID: 114288385206857168}
-  AmmoDisplays:
-  - {fileID: 0}
-  PauseScreen: {fileID: 1253938389544080}
-  DeathScreen: {fileID: 1041692814321174}
-  Buttons: {fileID: 225035570806339784}
-  Arrows: {fileID: 225004371393300124}
-  Joystick: {fileID: 225721415465819998}
-  PointsText: {fileID: 0}
-  PointsTextPattern: 000000
 --- !u!114 &114913794447166768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70900,7 +70900,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7789203, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
