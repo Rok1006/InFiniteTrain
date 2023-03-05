@@ -82,10 +82,13 @@ public class ResourceBox : MonoBehaviour
                 inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
         }
 
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) {
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) { //open inventory
             isOpening = true;
-            //playerWeapon.ShootStart();
+        } else if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && opened) { //close inventory
+            hideInventoryUI();
         }
+
+        
 
 
         /*if (isLocked) { //if player need to open the lock
@@ -160,12 +163,18 @@ public class ResourceBox : MonoBehaviour
                 timer.SetActive(true);
         }
     }
-    /// when enter trigger area
+
+    /// when exit trigger area
     /// set inventory display target's name to empty
     /// set inventory canvas to inactive
     void OnTriggerExit(Collider col) {
         if (col.gameObject.tag ==("Player")) {
+            hideInventoryUI();
             isPlayerNear = false;
+        }
+    }
+
+    public void hideInventoryUI() {
             if (isLocked)
                 timer.SetActive(false);
             isOpening = false;
@@ -173,7 +182,6 @@ public class ResourceBox : MonoBehaviour
             inventoryCanvas.interactable = false;
             inventoryCanvas.blocksRaycasts = false;
             opened = false;
-        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
