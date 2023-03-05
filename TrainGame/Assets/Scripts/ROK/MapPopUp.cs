@@ -17,7 +17,7 @@ public class MapPopUp : MonoBehaviour
     public GameObject text;
     private MapManager mm;
     [SerializeField] GameObject RequirementPanel;
-    //public GameObject door;
+    public GameObject door;
     [SerializeField]private Info InfoSC;
     //[HideInInspector]public List<GameObject> PopUpPoint = new List<GameObject>();
 
@@ -79,7 +79,7 @@ public class MapPopUp : MonoBehaviour
                 MapManager.gameState = 1;
                 GetComponent<Point>().MovePlayer();
                 mm.UpdatePlayer();
-                //door.SetActive(true);
+                door.SetActive(true);
            }
         }
     }
