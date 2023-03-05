@@ -46,22 +46,27 @@ public class InventoryShowDetail : MonoBehaviour, MMEventListener<MMInventoryEve
 
     public void OnMMEvent(MMInventoryEvent inventoryEvent)
     {
-        if (inventoryEvent.InventoryEventType != MMInventoryEventType.Click) return;
-        Inventory targetInventory = inventoryEvent.Slot.ParentInventoryDisplay.TargetInventory;
-        if (targetInventory.Content[inventoryEvent.Slot.Index] == null) return;
+        Inventory targetInventory;
+        switch (inventoryEvent.InventoryEventType) {
+            case MMInventoryEventType.Click:
+            targetInventory = inventoryEvent.Slot.ParentInventoryDisplay.TargetInventory;
+            if (targetInventory.Content[inventoryEvent.Slot.Index] == null) return;
 
-        //set up name text box
-        nameTextBox.alpha = 1;
-        nameText.text = targetInventory.Content[inventoryEvent.Slot.Index].ItemName;
-        nameTextBox.transform.position = new Vector3(inventoryEvent.Slot.transform.position.x, 
-                                                        inventoryEvent.Slot.transform.position.y + YOffset, 
-                                                        inventoryEvent.Slot.transform.position.z);
+            //set up name text box
+            nameTextBox.alpha = 1;
+            nameText.text = targetInventory.Content[inventoryEvent.Slot.Index].ItemName;
+            nameTextBox.transform.position = new Vector3(inventoryEvent.Slot.transform.position.x, 
+                                                            inventoryEvent.Slot.transform.position.y + YOffset, 
+                                                            inventoryEvent.Slot.transform.position.z);
+            
+            //start count down for the name text box to stay on screen
+            currentLerpTime = 0.0f;
+            currentAppearTime = 0.0f;
+            currentLerpTime += Time.deltaTime;
+            currentAppearTime += Time.deltaTime;
+            break;
+        }
         
-        //start count down for the name text box to stay on screen
-        currentLerpTime = 0.0f;
-        currentAppearTime = 0.0f;
-        currentLerpTime += Time.deltaTime;
-        currentAppearTime += Time.deltaTime;
     }
 
     public void lerpInOut(CanvasGroup obj, float targetNum, float timeToTake) {
