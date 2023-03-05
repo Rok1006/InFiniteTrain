@@ -16,9 +16,9 @@ public class MapPopUp : MonoBehaviour
     public GameObject icon;
     public GameObject text;
     private MapManager mm;
-    public GameObject door;
-    [SerializeField] 
-    private Info InfoSC;
+    [SerializeField] GameObject RequirementPanel;
+    //public GameObject door;
+    [SerializeField]private Info InfoSC;
     //[HideInInspector]public List<GameObject> PopUpPoint = new List<GameObject>();
 
     void Start()
@@ -79,7 +79,7 @@ public class MapPopUp : MonoBehaviour
                 MapManager.gameState = 1;
                 GetComponent<Point>().MovePlayer();
                 mm.UpdatePlayer();
-                door.SetActive(true);
+                //door.SetActive(true);
            }
         }
     }
@@ -110,5 +110,13 @@ public class MapPopUp : MonoBehaviour
         mm.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("Off", false);
         // SceneManageNDisplay.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("SetLocation", false);
         // SceneManageNDisplay.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("PlugFlag", false);
+    }
+    public void HoverExitPt(GameObject panel){
+        panel.SetActive(true);
+        PUAnim.SetTrigger("Hover");
+    }
+    public void ExitExitPt(GameObject panel){
+        panel.SetActive(false);
+        PUAnim.SetTrigger("Off");
     }
 }
