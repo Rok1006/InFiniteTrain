@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 //This script shd be assigned on traps object 
 public class Traps : MonoBehaviour
@@ -21,6 +22,7 @@ public class Traps : MonoBehaviour
     [SerializeField] private List<GameObject> Point = new List<GameObject>();
 
     [SerializeField] private List<GameObject> Projectile = new List<GameObject>();
+    [SerializeField] private MMF_Player mmfPlayer;
     public bool inZone = false;
 
     LineRenderer LR;
@@ -75,6 +77,7 @@ public class Traps : MonoBehaviour
                     Debug.Log(Player.GetComponent<PlayerInformation>().CurrentRadiationValue);
                     inZone = false;
                     audioSource.Play();
+                    MMFlashEvent.Trigger(Color.red, 0.3f, 0.6f, 0, 0, TimescaleModes.Unscaled);
                     //Effects[0].SetActive(false);
                     //destroy itself
                 }
@@ -87,6 +90,7 @@ public class Traps : MonoBehaviour
                     Debug.Log(Player.GetComponent<PlayerInformation>().CurrentRadiationValue);
                     inZone = false;
                     audioSource.Play();
+                    MMFlashEvent.Trigger(Color.red, 0.3f, 0.6f, 0, 0, TimescaleModes.Unscaled);
                 }
             break;
             case TrapType.DEADLYBOUND:

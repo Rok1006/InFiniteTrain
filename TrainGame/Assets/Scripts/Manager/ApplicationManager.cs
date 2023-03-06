@@ -9,8 +9,8 @@ public class ApplicationManager : MMSingleton<ApplicationManager>
 {
     [SerializeField] private string _saveFolderName = "InventoryEngine";
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        //     Application.Quit();
         
         if (Input.GetKeyDown(KeyCode.O)) {
             MMSaveLoadManager.DeleteSaveFolder (_saveFolderName);
