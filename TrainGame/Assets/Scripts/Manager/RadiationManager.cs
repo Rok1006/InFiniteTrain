@@ -70,7 +70,7 @@ public class RadiationManager : MMMonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);  
-        if (!SceneManager.GetActiveScene().name.Equals("LoadingScreen")) {
+        if (!SceneManager.GetActiveScene().name.Equals("LoadingScreen") && !SceneManager.GetActiveScene().name.Equals("Start Screen")) {
             if (playerInfo == null)
                 playerInfo = FindObjectOfType<PlayerInformation>();
             if (playerHealth == null)
