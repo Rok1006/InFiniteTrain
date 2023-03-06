@@ -3907,6 +3907,7 @@ GameObject:
   - component: {fileID: 5152694538191852788}
   - component: {fileID: 5050083819259079527}
   - component: {fileID: 5049569008826238117}
+  - component: {fileID: 7608298615649700446}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: Untagged
@@ -4064,6 +4065,20 @@ MonoBehaviour:
   Joystick: {fileID: 4986729520564660678}
   PointsText: {fileID: 0}
   PointsTextPattern: 000000
+--- !u!114 &7608298615649700446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049569008826238116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69a17c303f4ead48b84e66a210ab15c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapManager: {fileID: 0}
+  otherSceneName: 
 --- !u!1 &5049575727176161676
 GameObject:
   m_ObjectHideFlags: 0
@@ -6048,38 +6063,14 @@ MonoBehaviour:
   Interactable: 1
   ButtonPressedFirstTime:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: RestartLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   ButtonReleased:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5050083820684022746}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: RestartLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   ButtonPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7608298615649700446}
         m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
         m_MethodName: RespawnToPlayerScene
         m_Mode: 1
