@@ -60,8 +60,9 @@ public class MapPopUp : MonoBehaviour
     }
     public void ClickPtIcon(){ //Click the Icon, set the destination; after this player go pull the lever
         if(MapManager.gameState == 0) {
-           if( mm.AvailableToMove(this.gameObject) == true) //available to move Accord to fuelAmt
+           if( mm.IsAvailableToMove(this.gameObject) == true) //available to move Accord to fuelAmt
            {
+            Debug.Log("yehhhhh");
                 if (mm.PopUpPoint.Count > 0)
                     ResetPoint();
                 if (!clicked)
