@@ -143,12 +143,13 @@ public class MapManager : MonoBehaviour
     }
     public void UpdatePlayerIcon()
     {
-        Debug.Log("df");
+        
         for(int i = 0; i < points.Length; i++)
         {
             points[i].GetComponent<Point>().isPlayer = false;
-            if ( points[i].GetComponent<Point>().id == this.id)
+            if ( points[i].GetComponent<Point>().id == InfoSC.pointID)
             {
+                Debug.Log("df");
                 player = points[i];
                 points[i].GetComponent<Point>().isPlayer = true;
                 PopUpPoint.Add(points[i]);

@@ -166,6 +166,9 @@ public class SceneManageNDisplay : MonoBehaviour
             IsOn = true;    
             //some enviromental change trigger: access to camera, plau audio
         }
+        if(!PickedLocation){
+            WarningGuideCall(3);
+        }
     }
     public void PullLever(){  //put this in actionCall
         //StartCoroutine("Pull");
@@ -176,6 +179,7 @@ public class SceneManageNDisplay : MonoBehaviour
         MM.PTMT(IsMoving, 2f);
         //player do wtever
         yield return new WaitForSeconds(7f);
+        targetValue = 0f;
         door.SetActive(true);
         IsMoving = false;
         WarningGuideCall(0);
