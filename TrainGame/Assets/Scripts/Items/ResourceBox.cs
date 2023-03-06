@@ -172,6 +172,7 @@ public class ResourceBox : MonoBehaviour
         inventoryCanvas.blocksRaycasts = false;
         opened = false;
         Info.Instance.IsViewingInventory = false;
+        GameObject.Find("BakcpackDisplay").GetComponent<InventoryDisplay>().SlotContainer[0].Select();
     }
 
     public void ShowInventoryUI() {
