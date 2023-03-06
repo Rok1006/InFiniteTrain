@@ -41,11 +41,12 @@ public class MapManager : MonoBehaviour
         enemyTrain.SetActive(false);
         //Debug.Log(InfoSC.CurrentPlayerTrainInterval.transform.localPosition);
         UpdateTrainLocation();
+        // StartCoroutine(PlayerTrainMoveTowards());
     }
 
     void Update()
     {
-        UpdateTrainLocation();
+        //UpdateTrainLocation();
         //Debug.Log(id);
         if(gameState == 0)
         {
@@ -74,11 +75,11 @@ public class MapManager : MonoBehaviour
             Debug.Log("can pick again");
         }
 
-        if(SMD.IsMoving){
-            //train sprite start moving slowly
-            //player train move to target pt
-            //takes several while (sec)
-        }
+        // if(SMD.IsMoving){
+        //     //train sprite start moving slowly
+        //     //player train move to target pt
+        //     //takes several while (sec)
+        // }
     }
     private void FixedUpdate() {
         
@@ -105,6 +106,23 @@ public class MapManager : MonoBehaviour
             
         }
 
+        return false;
+    }
+    public bool IsAvailableToMove(GameObject gm) //Changed accord to new map system
+    {
+        playerResource = GameObject.FindGameObjectWithTag("Player");
+        //var point = gm.GetComponent<Point>();
+        // for (int i = 0; i < points.connectedPoints.Length ; i++)
+        // {
+            Debug.Log(playerResource.GetComponent<PlayerInformation>().FuelAmt);
+            // if (points.connectedPoints[i].Equals(gm)){
+            if (playerResource.GetComponent<PlayerInformation>().FuelAmt >= gm.GetComponent<Point>().fuelAmtNeeded)
+                {
+                    playerResource.GetComponent<PlayerInformation>().FuelAmt -= gm.GetComponent<Point>().fuelAmtNeeded;
+                    return true;
+                }
+        //     }
+        // }
         return false;
     }
     public void UpdatePlayer()
@@ -146,7 +164,7 @@ public class MapManager : MonoBehaviour
             //check current selected point
             // take into account that what if player wanna skip some points, need to add up the accumulated fuel require
     }
-    void UpdateTrainLocation(){
+    void UpdateTrainLocation(){ //For instant update when come back from map pt scene
         float pX = Intervals[InfoSC.CurrentPlayerTrainInterval].transform.localPosition.x;
         float pY = Intervals[InfoSC.CurrentPlayerTrainInterval].transform.localPosition.y;
         float eX = Intervals[InfoSC.CurrentEnemyTrainInterval].transform.localPosition.x;
@@ -154,11 +172,23 @@ public class MapManager : MonoBehaviour
         playerTrain.transform.localPosition = new Vector3(pX,pY,0);  //set theit location
         enemyTrain.transform.localPosition = new Vector3(eX, eY, 0);
     }
-    void EnemyMove(int ToPoint){ //put the num of destination pt
-        InfoSC.CurrentEnemyTrainInterval = ToPoint;
+    void EnemyMove(int ToPoint){ InfoSC.CurrentEnemyTrainInterval = ToPoint;} //put the num of destination pt
+    public void PlayerMove(int ToPoint){ InfoSC.CurrentPlayerTrainInterval = ToPoint;} //insert the currentSetected Pt
+    
+    IEnumerator PlayerTrainMoveTowards(bool isMoving, float speed){ //this will be trigger to move player train when ever the currentplayerinterval changes
+        //bool isMoving = true;
+        GameObject targetPos = Intervals[InfoSC.CurrentPlayerTrainInterval];
+        while (playerTrain.transform.localPosition != targetPos.transform.localPosition)
+       {
+           playerTrain.transform.localPosition = Vector2.MoveTowards(playerTrain.transform.localPosition, targetPos.transform.localPosition, speed * Time.deltaTime);
+           yield return null;
+       }
+       isMoving = false;
+       yield return new WaitUntil(() => !isMoving);
+       ///StartCoroutine(PlayerTrainMoveTowards());
     }
-    void PlayerMove(int ToPoint){ //insert the currentSetected Pt
-        InfoSC.CurrentPlayerTrainInterval = ToPoint;
+    public void PTMT(bool isMoving, float speed){
+        StartCoroutine(PlayerTrainMoveTowards(isMoving,speed));
     }
     
 }

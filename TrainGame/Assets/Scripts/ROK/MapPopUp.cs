@@ -17,7 +17,7 @@ public class MapPopUp : MonoBehaviour
     public GameObject text;
     private MapManager mm;
     [SerializeField] GameObject RequirementPanel;
-    public GameObject door;
+    //public GameObject door;
     [SerializeField]private Info InfoSC;
     //[HideInInspector]public List<GameObject> PopUpPoint = new List<GameObject>();
 
@@ -58,7 +58,7 @@ public class MapPopUp : MonoBehaviour
             ResetAnim(0);
         }
     }
-    public void ClickPtIcon(){ //Click the Icon, set the destination
+    public void ClickPtIcon(){ //Click the Icon, set the destination; after this player go pull the lever
         if(MapManager.gameState == 0) {
            if( mm.AvailableToMove(this.gameObject) == true) //available to move Accord to fuelAmt
            {
@@ -72,6 +72,8 @@ public class MapPopUp : MonoBehaviour
                     mm.PopUpPoint.Add(this.gameObject);
                     ResetAnim(0);
                     MapManager.gameState = 1;
+                    SceneManageNDisplay.PickedLocation = true; //this shd turn false when train arrive at location
+                    mm.PlayerMove(this.GetComponent<Point>().id);  //sent desitination inteval
                     //if(SceneManageNDisplay.PopUpPoint.Count>0)
                     //ResetAnim(0);
                     //SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<MapPopUp>().clicked = false;
@@ -79,7 +81,9 @@ public class MapPopUp : MonoBehaviour
                 MapManager.gameState = 1;
                 GetComponent<Point>().MovePlayer();
                 mm.UpdatePlayer();
-                door.SetActive(true);
+                //door.SetActive(true);
+           }else{
+                SceneManageNDisplay.WarningGuideCall(2);
            }
         }
     }
