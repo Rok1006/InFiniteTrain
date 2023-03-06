@@ -143,7 +143,7 @@ public class MapManager : MonoBehaviour
     }
     public void UpdatePlayerIcon()
     {
-        //Debug.Log("df");
+        Debug.Log("df");
         for(int i = 0; i < points.Length; i++)
         {
             points[i].GetComponent<Point>().isPlayer = false;
@@ -154,10 +154,17 @@ public class MapManager : MonoBehaviour
                 PopUpPoint.Add(points[i]);
             }
         }
+        // if (this.player != null && this.player.GetComponent<Point>().id != 0) 
+        // {
+        //     Debug.Log("ddf");
+        //     player.gameObject.GetComponent<MapPopUp>().ForceChange();
+        // }
+    }
+    public void FFC(){
         if (this.player != null && this.player.GetComponent<Point>().id != 0) 
         {
             Debug.Log("ddf");
-            player.gameObject.GetComponent<MapPopUp>().ForceChange();
+            this.player.gameObject.GetComponent<MapPopUp>().ForceChange();
         }
     }
     void CheckHaveFuel(int fuelNeeded){
@@ -189,6 +196,11 @@ public class MapManager : MonoBehaviour
     }
     public void PTMT(bool isMoving, float speed){
         StartCoroutine(PlayerTrainMoveTowards(isMoving,speed));
+    }
+    public void Reappear(){
+        if(this.player != null){
+            player.gameObject.GetComponent<MapPopUp>().ReapperaFlagPt();
+        }
     }
     
 }

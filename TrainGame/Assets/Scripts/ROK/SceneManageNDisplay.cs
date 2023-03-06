@@ -98,8 +98,10 @@ public class SceneManageNDisplay : MonoBehaviour
         mapIcon.SetActive(true);
     }
     public void Open_Map(){
+        //
         mapIcon.SetActive(false);
         theMap.SetActive(true);
+        
         Invoke("MapCamSwitch",.5f);
         Invoke("ChangePos",1f);
         TrainInfoGuide.SetActive(false);
@@ -109,6 +111,8 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainFuelBar.SetActive(true);
     }
     void MapCamSwitch(){
+        MM.Reappear();
+        MM.FFC();
         PanelOn = true;
         mapCam.SetActive(true);
     }

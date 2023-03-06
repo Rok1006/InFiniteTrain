@@ -28,6 +28,7 @@ public class MapPopUp : MonoBehaviour
         SceneManageNDisplay = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
         mm = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
         InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
+        //PUAnim.SetTrigger("SetLocation");
     }
     
     void Update()
@@ -35,8 +36,14 @@ public class MapPopUp : MonoBehaviour
         icon.GetComponent<Image>().sprite = point.icon;
         text.GetComponent<TextMeshProUGUI>().text = point.text;
 
-        if(Input.GetKeyDown(KeyCode.Space)&&clicked){ //make it appear after close and open again
-            PUAnim.SetTrigger("SetLocation");
+        if(Input.GetKeyDown(KeyCode.Space)&&this.clicked){ //make it appear after close and open again
+            
+        }
+    }
+    public void ReapperaFlagPt(){
+        if(this.clicked&&this.PUAnim!=null){
+            Debug.Log("bruh");
+            this.PUAnim.SetTrigger("SetLocation"); //this one not going
             //SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
             ResetAnim(0);
         }
@@ -53,7 +60,7 @@ public class MapPopUp : MonoBehaviour
     {
         clicked = true;
         if(clicked){
-            PUAnim.SetTrigger("SetLocation");
+            this.PUAnim.SetTrigger("SetLocation");
             mm.PopUpPoint.Add(this.gameObject);
             ResetAnim(0);
         }
@@ -110,7 +117,8 @@ public class MapPopUp : MonoBehaviour
             //if(SceneManageNDisplay.PopUpPoint.Count>0)
             //ResetAnim(0);
     }
-    void ResetAnim(int i){
+    public void ResetAnim(int i){
+        //Debug.Log("brugh this shit");
         mm.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("Hover", false);
         mm.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("Off", false);
         // SceneManageNDisplay.PopUpPoint[i].transform.GetChild(0).GetComponent<Animator>().SetBool("SetLocation", false);
