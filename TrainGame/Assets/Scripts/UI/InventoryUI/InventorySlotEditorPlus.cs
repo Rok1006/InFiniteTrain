@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.InventoryEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 
 [CustomEditor(typeof(InventorySlotPlus))]
@@ -29,3 +30,4 @@ public class InventorySlotEditorPlus : InventorySlotEditor
 
     }
 }
+#endif
