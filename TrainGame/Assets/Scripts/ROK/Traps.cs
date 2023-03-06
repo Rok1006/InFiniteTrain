@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 //This script shd be assigned on traps object 
 public class Traps : MonoBehaviour
 {
@@ -25,9 +26,12 @@ public class Traps : MonoBehaviour
     LineRenderer LR;
     //EdgeCollider2D edgeCollider;
 
+    private AudioSource audioSource;
+
     void Start(){
         Player = GameObject.FindGameObjectWithTag("Player");
         anim = this.gameObject.GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         if(Effects.Count>0){Effects[0].SetActive(false);}
         switch(currentType){
@@ -70,6 +74,7 @@ public class Traps : MonoBehaviour
                     Player.GetComponent<PlayerInformation>().CurrentRadiationValue += damage;
                     Debug.Log(Player.GetComponent<PlayerInformation>().CurrentRadiationValue);
                     inZone = false;
+                    audioSource.Play();
                     //Effects[0].SetActive(false);
                     //destroy itself
                 }
@@ -81,6 +86,7 @@ public class Traps : MonoBehaviour
                     Player.GetComponent<PlayerInformation>().CurrentRadiationValue += damage;
                     Debug.Log(Player.GetComponent<PlayerInformation>().CurrentRadiationValue);
                     inZone = false;
+                    audioSource.Play();
                 }
             break;
             case TrapType.DEADLYBOUND:
