@@ -27,7 +27,6 @@ public class Explode : MonoBehaviour
             playerInfo.CurrentRadiationValue++;
             GameObject e = Instantiate(particles, ExplodePt.transform.position, Quaternion.identity);  //need destroy the particle
             //e.transform.parent = this.transform;
-            audioSource.Play();
             Destroy(this.gameObject);
         }
     }
