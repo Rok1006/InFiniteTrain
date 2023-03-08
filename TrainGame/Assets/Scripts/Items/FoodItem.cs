@@ -23,7 +23,7 @@ public class FoodItem : InventoryItem
     public override bool Use(string playerID)
     {
         base.Use(playerID);
-        Debug.Log("Eating Food");
+        Debug.Log("Eating " + name);
         playerInfo = FindObjectOfType<PlayerInformation>();
         if (playerInfo == null)
             Debug.LogWarning("cant find playerInfomation");

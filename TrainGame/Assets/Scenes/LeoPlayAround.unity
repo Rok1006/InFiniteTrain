@@ -25472,7 +25472,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7781786, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -28098,7 +28098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: Player1
   Content:
-  - {fileID: 11400000, guid: f0a002c3ec0c9984aa5d1bfcffb3a19d, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -29676,9 +29676,9 @@ MonoBehaviour:
   PlayerID: Player1
   Content:
   - {fileID: 0}
-  - {fileID: 11400000, guid: b057a4eca1d5ad244825a9a023fd11d5, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 0fa05ce05215f5947be75e0d16d24821, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 1e6425005b3ce2c439be6860c8b7d9e2, type: 2}
   - {fileID: 0}
   InventoryType: 0
@@ -42825,7 +42825,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7781786, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -43834,7 +43834,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7781786, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -50604,6 +50604,8 @@ MonoBehaviour:
   displayFuelPrefab: {fileID: 7539863333140782654, guid: f14054f3cd7914fa882c40fdfef48b6e,
     type: 3}
   AppearPt: {fileID: 995687171}
+  fuelAmt: 3
+  fuel: {fileID: 11400000, guid: 652d3f9742dc7b6469ed2a2937dbcc4d, type: 2}
 --- !u!1 &1983467501
 GameObject:
   m_ObjectHideFlags: 0
@@ -53593,6 +53595,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Inventories
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341702615083451418, guid: efe1c3b5f917be34884f5f2ba33255b4,
+        type: 3}
+      propertyPath: Content.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341702615083451418, guid: efe1c3b5f917be34884f5f2ba33255b4,
+        type: 3}
+      propertyPath: Content.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341702615083451418, guid: efe1c3b5f917be34884f5f2ba33255b4,
+        type: 3}
+      propertyPath: Content.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341702615083451418, guid: efe1c3b5f917be34884f5f2ba33255b4,
+        type: 3}
+      propertyPath: Content.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341702615083451418, guid: efe1c3b5f917be34884f5f2ba33255b4,
+        type: 3}
+      propertyPath: Content.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341702615083451418, guid: efe1c3b5f917be34884f5f2ba33255b4,
+        type: 3}
+      propertyPath: ResetThisInventorySaveOnStart
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efe1c3b5f917be34884f5f2ba33255b4, type: 3}
@@ -57064,7 +57096,7 @@ PrefabInstance:
     - target: {fileID: 4974460979476987180, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -27.999878
+      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 4987528776321881598, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
@@ -57129,7 +57161,7 @@ PrefabInstance:
     - target: {fileID: 5050083818741374471, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -18.999878
+      value: -19
       objectReference: {fileID: 0}
     - target: {fileID: 5050083819073588801, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
@@ -57209,7 +57241,7 @@ PrefabInstance:
     - target: {fileID: 5774034426201652611, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.149292
+      value: -24.149414
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 029fa9527cb42f949beb33a59141bd7d, type: 3}
@@ -63139,7 +63171,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7781786, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

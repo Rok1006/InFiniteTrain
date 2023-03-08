@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5f90df71318a142a84321310d575a4, type: 3}
+  m_Script: {fileID: 11500000, guid: dd81f9f1a128dd041b07769a1ee2b4a2, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
   ItemID: Carrot
@@ -33,7 +33,7 @@ MonoBehaviour:
     DisplayUseButton: 1
     DisplayUnequipButton: 1
     DisplayCombineButton: 1
-  Quantity: 0
+  Quantity: 1
   ItemName: Carrot
   ShortDescription: Can make a person move slightly faster.
   Description: "A great vegetable provides a lot of nutrition. Many people don\u2019t
@@ -43,13 +43,13 @@ MonoBehaviour:
   DropProperties:
     Shape: 0
     NormalToSpawnPlane: {x: 0, y: 1, z: 0}
-    MinimumSphereRadius: 3
-    MaximumSphereRadius: 4
+    MinimumSphereRadius: 1
+    MaximumSphereRadius: 2
     MinimumCubeBaseSize: {x: 1, y: 1, z: 1}
     MaximumCubeBaseSize: {x: 2, y: 2, z: 2}
     MinimumNormalAxisOffset: 0
     MaximumNormalAxisOffset: 0
-    UseNormalAxisOffsetCurve: 1
+    UseNormalAxisOffsetCurve: 0
     NormalOffsetCurve:
       serializedVersion: 2
       m_Curve:
@@ -79,15 +79,16 @@ MonoBehaviour:
     InvertNormalOffsetCurve: 0
     MinimumRotation: {x: 0, y: 0, z: 0}
     MaximumRotation: {x: 0, y: 0, z: 0}
-    MinimumScale: {x: 249.8928, y: 249.8928, z: 249.8928}
-    MaximumScale: {x: 249.8928, y: 249.8928, z: 249.8928}
+    MinimumScale: {x: 1, y: 1, z: 1}
+    MaximumScale: {x: 1, y: 1, z: 1}
   MaximumStack: 1
   ItemClass: 0
   TargetEquipmentInventoryName: 
   EquippedSound: {fileID: 0}
-  UsedSound: {fileID: 8300000, guid: 78e18157601dadc4da5ddc4b91744520, type: 3}
+  UsedSound: {fileID: 0}
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
   FoodCount: 0
-  radiationDecrease: 2
+  radiationDecrease: 0
+  score: 0
