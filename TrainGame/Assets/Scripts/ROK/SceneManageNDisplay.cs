@@ -23,6 +23,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField, BoxGroup("InteractableMap")] private GameObject mapCam;
     [SerializeField, BoxGroup("InteractableMap")] private GameObject mapIcon;
     [SerializeField, BoxGroup("InteractableMap")] private GameObject theMap;
+    [SerializeField, BoxGroup("InteractableMap")] private GameObject mapCore;
     [SerializeField, BoxGroup("InteractableMap")] private Vector3 mapFuelLocation;
     public bool PanelOn = false;
     [SerializeField, BoxGroup("FuelMachine")] private GameObject FF_Panel; //the whole ui panel
@@ -58,6 +59,7 @@ public class SceneManageNDisplay : MonoBehaviour
         mapIcon.SetActive(false);
         theMap.SetActive(false);
         mapCam.SetActive(false);
+        mapCore.SetActive(false);
         TrainFuelBar.SetActive(false);
         // FF_Panel.SetActive(false);
         TrainInfoGuide.SetActive(false);
@@ -130,8 +132,12 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainInfoGuide.SetActive(false);
     }
     void ChangePos(){
+        Invoke("CoreAppear",1.5f);
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = mapFuelLocation;
         TrainFuelBar.SetActive(true);
+    }
+    void CoreAppear(){
+        mapCore.SetActive(true);
     }
     void MapCamSwitch(){
         MM.Reappear();
@@ -143,6 +149,7 @@ public class SceneManageNDisplay : MonoBehaviour
         theMap.SetActive(false);
         mapCam.SetActive(false);
         TrainFuelBar.SetActive(false);
+        mapCore.SetActive(false);
     }
 //Fuel Machine Part ---------
     public void Close_FF(){

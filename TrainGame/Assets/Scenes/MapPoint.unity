@@ -123,6 +123,91 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &7644820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7644821}
+  - component: {fileID: 7644822}
+  m_Layer: 0
+  m_Name: ERP_TrainStationB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7644821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7644820}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056401740}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7644822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7644820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef708b493c936442da9711b26c1e913f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reminders: '1. The BoundaryArea List count shd equal to numberOfArea.
+
+'
+  numberOfArea: 1
+  ActiveLand:
+  - {fileID: 1860609413}
+  RandomMidLand: []
+  P_Data:
+  - {fileID: 11400000, guid: ebdaf5e380e4d4dfc8aee6ff46adea73, type: 2}
+  ResourcesBoxPoint: []
+  BoundaryArea:
+  - BoundaryPt:
+    - {fileID: 910127686}
+    - {fileID: 331911038}
+    - {fileID: 1902811994}
+    - {fileID: 1417413760}
+  EnemyPoint: []
+  RandomPoint: []
+  NONOSQUARE: []
+  IsPointFull: 
+  TrapTileType:
+  - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
+  - {fileID: 4246254681969804221, guid: 93cbd9c591c224ad89b5e722b1b76b63, type: 3}
+  ResourceBoxType:
+  - {fileID: 315043451696005846, guid: d73a0ac1d0f5c08409e079a01e8cbbef, type: 3}
+  - {fileID: 4515798336559218550, guid: c3ab926f72b2545c09202dfab4900006, type: 3}
+  NecessaryItems: []
+  BonusItems: []
+  GrassType:
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
+  - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  PondType:
+  - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
+  - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
+  EnemyType: []
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
 --- !u!1 &13791076
 GameObject:
   m_ObjectHideFlags: 0
@@ -3239,6 +3324,125 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 423062059}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &427459355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 427459356}
+  - component: {fileID: 427459357}
+  m_Layer: 0
+  m_Name: ERP_WetLand3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &427459356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427459355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056401740}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &427459357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427459355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef708b493c936442da9711b26c1e913f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reminders: '1. The BoundaryArea List count shd equal to numberOfArea.
+
+'
+  numberOfArea: 3
+  ActiveLand:
+  - {fileID: 1858846300}
+  - {fileID: 1515912868}
+  - {fileID: 1115176559}
+  RandomMidLand: []
+  P_Data:
+  - {fileID: 11400000, guid: ce19890d859714f0c8e1d937818edd6f, type: 2}
+  - {fileID: 11400000, guid: fd2de96540f6d4b689cbfaed2f56c69f, type: 2}
+  ResourcesBoxPoint:
+  - {fileID: 1731990728}
+  - {fileID: 85096511}
+  - {fileID: 1618278567}
+  - {fileID: 1280238437}
+  - {fileID: 1601958942}
+  - {fileID: 1566562663}
+  BoundaryArea:
+  - BoundaryPt:
+    - {fileID: 392449612}
+    - {fileID: 1447111151}
+    - {fileID: 380722706}
+    - {fileID: 67646681}
+  - BoundaryPt:
+    - {fileID: 1532331372}
+    - {fileID: 1049504728}
+    - {fileID: 1619770104}
+    - {fileID: 2023632982}
+  - BoundaryPt:
+    - {fileID: 1247105588}
+    - {fileID: 938932182}
+    - {fileID: 159547870}
+    - {fileID: 1279636017}
+  EnemyPoint:
+  - {fileID: 1895563238}
+  - {fileID: 1552330625}
+  RandomPoint: []
+  NONOSQUARE: []
+  IsPointFull: 
+  TrapTileType:
+  - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
+  - {fileID: 4246254681969804221, guid: 93cbd9c591c224ad89b5e722b1b76b63, type: 3}
+  ResourceBoxType:
+  - {fileID: 315043451696005846, guid: d73a0ac1d0f5c08409e079a01e8cbbef, type: 3}
+  - {fileID: 4515798336559218550, guid: c3ab926f72b2545c09202dfab4900006, type: 3}
+  NecessaryItems:
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  BonusItems:
+  - Item: {fileID: 11400000, guid: a283d488efc8c364bbe66c1146e98dfb, type: 2}
+    Quantity: 0
+  - Item: {fileID: 11400000, guid: ffdb14aa22263984f9ce1c90e2c1da9b, type: 2}
+    Quantity: 0
+  GrassType:
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
+  - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  PondType:
+  - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
+  - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
+  EnemyType:
+  - {fileID: 7358651152949181842, guid: b8b9eb62a945c4606962d5bb820f607d, type: 3}
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
 --- !u!1 &455892733
 GameObject:
   m_ObjectHideFlags: 0
@@ -4979,7 +5183,7 @@ GameObject:
   - component: {fileID: 673556431}
   - component: {fileID: 673556432}
   m_Layer: 0
-  m_Name: ERP_WetLand2_V1
+  m_Name: ERP_WetLand2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4997,7 +5201,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1056401740}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &673556432
 MonoBehaviour:
@@ -5073,11 +5277,11 @@ MonoBehaviour:
   - Item: {fileID: 11400000, guid: ffdb14aa22263984f9ce1c90e2c1da9b, type: 2}
     Quantity: 0
   GrassType:
-  - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
   - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
   - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
-  - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
-  - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
   PondType:
   - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
   - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
@@ -7719,8 +7923,16 @@ Transform:
   m_Children:
   - {fileID: 1755706898}
   - {fileID: 2018121995}
-  - {fileID: 1105368979}
   - {fileID: 673556431}
+  - {fileID: 1105368979}
+  - {fileID: 427459356}
+  - {fileID: 1935271790}
+  - {fileID: 2067525380}
+  - {fileID: 7644821}
+  - {fileID: 1803392253}
+  - {fileID: 1533089095}
+  - {fileID: 1737421136}
+  - {fileID: 1369515749}
   m_Father: {fileID: 2118592477}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8037,7 +8249,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1056401740}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1105368980
 MonoBehaviour:
@@ -8080,11 +8292,11 @@ MonoBehaviour:
   NecessaryItems: []
   BonusItems: []
   GrassType:
-  - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
   - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
   - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
-  - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
-  - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
   PondType:
   - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
   - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
@@ -9987,6 +10199,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.9443338, y: 1.6563053, z: 0.06763434}
   m_Center: {x: -1.7289873, y: 0.69810027, z: -3.0226338}
+--- !u!1 &1369515748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369515749}
+  m_Layer: 0
+  m_Name: EXIT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1369515749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369515748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056401740}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388339505
 GameObject:
   m_ObjectHideFlags: 0
@@ -11103,6 +11345,125 @@ Transform:
   m_Father: {fileID: 2125753909}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1533089094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1533089095}
+  - component: {fileID: 1533089096}
+  m_Layer: 0
+  m_Name: TrainMarket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1533089095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533089094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056401740}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1533089096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533089094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef708b493c936442da9711b26c1e913f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reminders: '1. The BoundaryArea List count shd equal to numberOfArea.
+
+'
+  numberOfArea: 3
+  ActiveLand:
+  - {fileID: 1858846300}
+  - {fileID: 1515912868}
+  - {fileID: 1115176559}
+  RandomMidLand: []
+  P_Data:
+  - {fileID: 11400000, guid: ce19890d859714f0c8e1d937818edd6f, type: 2}
+  - {fileID: 11400000, guid: fd2de96540f6d4b689cbfaed2f56c69f, type: 2}
+  ResourcesBoxPoint:
+  - {fileID: 1731990728}
+  - {fileID: 85096511}
+  - {fileID: 1618278567}
+  - {fileID: 1280238437}
+  - {fileID: 1601958942}
+  - {fileID: 1566562663}
+  BoundaryArea:
+  - BoundaryPt:
+    - {fileID: 392449612}
+    - {fileID: 1447111151}
+    - {fileID: 380722706}
+    - {fileID: 67646681}
+  - BoundaryPt:
+    - {fileID: 1532331372}
+    - {fileID: 1049504728}
+    - {fileID: 1619770104}
+    - {fileID: 2023632982}
+  - BoundaryPt:
+    - {fileID: 1247105588}
+    - {fileID: 938932182}
+    - {fileID: 159547870}
+    - {fileID: 1279636017}
+  EnemyPoint:
+  - {fileID: 1895563238}
+  - {fileID: 1552330625}
+  RandomPoint: []
+  NONOSQUARE: []
+  IsPointFull: 
+  TrapTileType:
+  - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
+  - {fileID: 4246254681969804221, guid: 93cbd9c591c224ad89b5e722b1b76b63, type: 3}
+  ResourceBoxType:
+  - {fileID: 315043451696005846, guid: d73a0ac1d0f5c08409e079a01e8cbbef, type: 3}
+  - {fileID: 4515798336559218550, guid: c3ab926f72b2545c09202dfab4900006, type: 3}
+  NecessaryItems:
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  BonusItems:
+  - Item: {fileID: 11400000, guid: a283d488efc8c364bbe66c1146e98dfb, type: 2}
+    Quantity: 0
+  - Item: {fileID: 11400000, guid: ffdb14aa22263984f9ce1c90e2c1da9b, type: 2}
+    Quantity: 0
+  GrassType:
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
+  - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  PondType:
+  - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
+  - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
+  EnemyType:
+  - {fileID: 7358651152949181842, guid: b8b9eb62a945c4606962d5bb820f607d, type: 3}
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
 --- !u!1 &1538772431
 GameObject:
   m_ObjectHideFlags: 0
@@ -14192,6 +14553,91 @@ Transform:
   m_Father: {fileID: 676772638}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1737421135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1737421136}
+  - component: {fileID: 1737421137}
+  m_Layer: 0
+  m_Name: ERP_WetLand7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1737421136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737421135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056401740}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1737421137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737421135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef708b493c936442da9711b26c1e913f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reminders: '1. The BoundaryArea List count shd equal to numberOfArea.
+
+'
+  numberOfArea: 1
+  ActiveLand:
+  - {fileID: 1860609413}
+  RandomMidLand: []
+  P_Data:
+  - {fileID: 11400000, guid: ebdaf5e380e4d4dfc8aee6ff46adea73, type: 2}
+  ResourcesBoxPoint: []
+  BoundaryArea:
+  - BoundaryPt:
+    - {fileID: 910127686}
+    - {fileID: 331911038}
+    - {fileID: 1902811994}
+    - {fileID: 1417413760}
+  EnemyPoint: []
+  RandomPoint: []
+  NONOSQUARE: []
+  IsPointFull: 
+  TrapTileType:
+  - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
+  - {fileID: 4246254681969804221, guid: 93cbd9c591c224ad89b5e722b1b76b63, type: 3}
+  ResourceBoxType:
+  - {fileID: 315043451696005846, guid: d73a0ac1d0f5c08409e079a01e8cbbef, type: 3}
+  - {fileID: 4515798336559218550, guid: c3ab926f72b2545c09202dfab4900006, type: 3}
+  NecessaryItems: []
+  BonusItems: []
+  GrassType:
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
+  - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  PondType:
+  - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
+  - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
+  EnemyType: []
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
 --- !u!1 &1750576426
 GameObject:
   m_ObjectHideFlags: 0
@@ -14276,7 +14722,7 @@ PrefabInstance:
     - target: {fileID: 4515798336559218536, guid: c3ab926f72b2545c09202dfab4900006,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4515798336559218536, guid: c3ab926f72b2545c09202dfab4900006,
         type: 3}
@@ -14717,6 +15163,125 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1803392252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1803392253}
+  - component: {fileID: 1803392254}
+  m_Layer: 0
+  m_Name: ERP_WetLand6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1803392253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803392252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056401740}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1803392254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803392252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef708b493c936442da9711b26c1e913f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reminders: '1. The BoundaryArea List count shd equal to numberOfArea.
+
+'
+  numberOfArea: 3
+  ActiveLand:
+  - {fileID: 1858846300}
+  - {fileID: 1515912868}
+  - {fileID: 1115176559}
+  RandomMidLand: []
+  P_Data:
+  - {fileID: 11400000, guid: ce19890d859714f0c8e1d937818edd6f, type: 2}
+  - {fileID: 11400000, guid: fd2de96540f6d4b689cbfaed2f56c69f, type: 2}
+  ResourcesBoxPoint:
+  - {fileID: 1731990728}
+  - {fileID: 85096511}
+  - {fileID: 1618278567}
+  - {fileID: 1280238437}
+  - {fileID: 1601958942}
+  - {fileID: 1566562663}
+  BoundaryArea:
+  - BoundaryPt:
+    - {fileID: 392449612}
+    - {fileID: 1447111151}
+    - {fileID: 380722706}
+    - {fileID: 67646681}
+  - BoundaryPt:
+    - {fileID: 1532331372}
+    - {fileID: 1049504728}
+    - {fileID: 1619770104}
+    - {fileID: 2023632982}
+  - BoundaryPt:
+    - {fileID: 1247105588}
+    - {fileID: 938932182}
+    - {fileID: 159547870}
+    - {fileID: 1279636017}
+  EnemyPoint:
+  - {fileID: 1895563238}
+  - {fileID: 1552330625}
+  RandomPoint: []
+  NONOSQUARE: []
+  IsPointFull: 
+  TrapTileType:
+  - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
+  - {fileID: 4246254681969804221, guid: 93cbd9c591c224ad89b5e722b1b76b63, type: 3}
+  ResourceBoxType:
+  - {fileID: 315043451696005846, guid: d73a0ac1d0f5c08409e079a01e8cbbef, type: 3}
+  - {fileID: 4515798336559218550, guid: c3ab926f72b2545c09202dfab4900006, type: 3}
+  NecessaryItems:
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  BonusItems:
+  - Item: {fileID: 11400000, guid: a283d488efc8c364bbe66c1146e98dfb, type: 2}
+    Quantity: 0
+  - Item: {fileID: 11400000, guid: ffdb14aa22263984f9ce1c90e2c1da9b, type: 2}
+    Quantity: 0
+  GrassType:
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
+  - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  PondType:
+  - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
+  - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
+  EnemyType:
+  - {fileID: 7358651152949181842, guid: b8b9eb62a945c4606962d5bb820f607d, type: 3}
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
 --- !u!1 &1811673387
 GameObject:
   m_ObjectHideFlags: 0
@@ -14829,7 +15394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1811954165
 Transform:
   m_ObjectHideFlags: 0
@@ -14993,7 +15558,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7769784, y: 1}
+    m_SensorSize: {x: 1.7719299, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -16137,6 +16702,125 @@ Transform:
   m_Father: {fileID: 1653406859}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1935271789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1935271790}
+  - component: {fileID: 1935271791}
+  m_Layer: 0
+  m_Name: ERP_WetLand4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1935271790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935271789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056401740}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1935271791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935271789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef708b493c936442da9711b26c1e913f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reminders: '1. The BoundaryArea List count shd equal to numberOfArea.
+
+'
+  numberOfArea: 3
+  ActiveLand:
+  - {fileID: 1858846300}
+  - {fileID: 1515912868}
+  - {fileID: 1115176559}
+  RandomMidLand: []
+  P_Data:
+  - {fileID: 11400000, guid: ce19890d859714f0c8e1d937818edd6f, type: 2}
+  - {fileID: 11400000, guid: fd2de96540f6d4b689cbfaed2f56c69f, type: 2}
+  ResourcesBoxPoint:
+  - {fileID: 1731990728}
+  - {fileID: 85096511}
+  - {fileID: 1618278567}
+  - {fileID: 1280238437}
+  - {fileID: 1601958942}
+  - {fileID: 1566562663}
+  BoundaryArea:
+  - BoundaryPt:
+    - {fileID: 392449612}
+    - {fileID: 1447111151}
+    - {fileID: 380722706}
+    - {fileID: 67646681}
+  - BoundaryPt:
+    - {fileID: 1532331372}
+    - {fileID: 1049504728}
+    - {fileID: 1619770104}
+    - {fileID: 2023632982}
+  - BoundaryPt:
+    - {fileID: 1247105588}
+    - {fileID: 938932182}
+    - {fileID: 159547870}
+    - {fileID: 1279636017}
+  EnemyPoint:
+  - {fileID: 1895563238}
+  - {fileID: 1552330625}
+  RandomPoint: []
+  NONOSQUARE: []
+  IsPointFull: 
+  TrapTileType:
+  - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
+  - {fileID: 4246254681969804221, guid: 93cbd9c591c224ad89b5e722b1b76b63, type: 3}
+  ResourceBoxType:
+  - {fileID: 315043451696005846, guid: d73a0ac1d0f5c08409e079a01e8cbbef, type: 3}
+  - {fileID: 4515798336559218550, guid: c3ab926f72b2545c09202dfab4900006, type: 3}
+  NecessaryItems:
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  BonusItems:
+  - Item: {fileID: 11400000, guid: a283d488efc8c364bbe66c1146e98dfb, type: 2}
+    Quantity: 0
+  - Item: {fileID: 11400000, guid: ffdb14aa22263984f9ce1c90e2c1da9b, type: 2}
+    Quantity: 0
+  GrassType:
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
+  - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  PondType:
+  - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
+  - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
+  EnemyType:
+  - {fileID: 7358651152949181842, guid: b8b9eb62a945c4606962d5bb820f607d, type: 3}
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
 --- !u!1 &1945342590
 GameObject:
   m_ObjectHideFlags: 0
@@ -16475,7 +17159,7 @@ GameObject:
   - component: {fileID: 2018121995}
   - component: {fileID: 2018121996}
   m_Layer: 0
-  m_Name: ERP_WetLand1_V1
+  m_Name: ERP_WetLand1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16569,11 +17253,11 @@ MonoBehaviour:
   - Item: {fileID: 0}
     Quantity: 1
   GrassType:
-  - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
   - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
   - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
-  - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
-  - {fileID: 7173170078562214184, guid: afd8f42b2782e42ac903ff759be9499a, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
   PondType:
   - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
   - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
@@ -16778,6 +17462,125 @@ Transform:
   m_Father: {fileID: 1750576427}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2067525379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2067525380}
+  - component: {fileID: 2067525381}
+  m_Layer: 0
+  m_Name: ERP_WetLand5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2067525380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067525379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056401740}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2067525381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067525379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef708b493c936442da9711b26c1e913f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reminders: '1. The BoundaryArea List count shd equal to numberOfArea.
+
+'
+  numberOfArea: 3
+  ActiveLand:
+  - {fileID: 1858846300}
+  - {fileID: 1515912868}
+  - {fileID: 1115176559}
+  RandomMidLand: []
+  P_Data:
+  - {fileID: 11400000, guid: ce19890d859714f0c8e1d937818edd6f, type: 2}
+  - {fileID: 11400000, guid: fd2de96540f6d4b689cbfaed2f56c69f, type: 2}
+  ResourcesBoxPoint:
+  - {fileID: 1731990728}
+  - {fileID: 85096511}
+  - {fileID: 1618278567}
+  - {fileID: 1280238437}
+  - {fileID: 1601958942}
+  - {fileID: 1566562663}
+  BoundaryArea:
+  - BoundaryPt:
+    - {fileID: 392449612}
+    - {fileID: 1447111151}
+    - {fileID: 380722706}
+    - {fileID: 67646681}
+  - BoundaryPt:
+    - {fileID: 1532331372}
+    - {fileID: 1049504728}
+    - {fileID: 1619770104}
+    - {fileID: 2023632982}
+  - BoundaryPt:
+    - {fileID: 1247105588}
+    - {fileID: 938932182}
+    - {fileID: 159547870}
+    - {fileID: 1279636017}
+  EnemyPoint:
+  - {fileID: 1895563238}
+  - {fileID: 1552330625}
+  RandomPoint: []
+  NONOSQUARE: []
+  IsPointFull: 
+  TrapTileType:
+  - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
+  - {fileID: 4246254681969804221, guid: 93cbd9c591c224ad89b5e722b1b76b63, type: 3}
+  ResourceBoxType:
+  - {fileID: 315043451696005846, guid: d73a0ac1d0f5c08409e079a01e8cbbef, type: 3}
+  - {fileID: 4515798336559218550, guid: c3ab926f72b2545c09202dfab4900006, type: 3}
+  NecessaryItems:
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  - Item: {fileID: 0}
+    Quantity: 1
+  BonusItems:
+  - Item: {fileID: 11400000, guid: a283d488efc8c364bbe66c1146e98dfb, type: 2}
+    Quantity: 0
+  - Item: {fileID: 11400000, guid: ffdb14aa22263984f9ce1c90e2c1da9b, type: 2}
+    Quantity: 0
+  GrassType:
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
+  - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  PondType:
+  - {fileID: 2287463054854267175, guid: b3737da4266204787b77aa6e17640083, type: 3}
+  - {fileID: 126773737038804266, guid: 97f38ae9978ec4ab785c4fe3ae452766, type: 3}
+  EnemyType:
+  - {fileID: 7358651152949181842, guid: b8b9eb62a945c4606962d5bb820f607d, type: 3}
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
 --- !u!1 &2072968287
 GameObject:
   m_ObjectHideFlags: 0
@@ -19722,6 +20525,80 @@ MonoBehaviour:
   SphereCastDistance: 1
   Component: []
   order: 0
+--- !u!1001 &3158299412984316954
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324108, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_Name
+      value: GrassV1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780967557217861281, guid: 9fbf55f08822849389348160a095d209,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fbf55f08822849389348160a095d209, type: 3}
 --- !u!135 &3454698964777825274
 SphereCollider:
   m_ObjectHideFlags: 0
