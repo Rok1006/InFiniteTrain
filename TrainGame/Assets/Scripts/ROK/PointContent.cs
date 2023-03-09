@@ -201,20 +201,11 @@ public class PointContent : MonoBehaviour
                 if( DetectUnderneath(t , 100f)){
                     Destroy(t);
                     Debug.Log("in");
-                    
-                
                 }
                 else{
                     Debug.Log("out");
                     break;
                 }
-
-                
-               
-                
-
-
-            
             };
                 
                 t.transform.position = new Vector3(currentPt.x, currentPt.y-10, currentPt.z);
