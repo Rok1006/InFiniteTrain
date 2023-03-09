@@ -11,6 +11,7 @@ public class SceneManageNDisplay : MonoBehaviour
 {
     private MapManager MM;
     private WarningGuide WG;
+    [BoxGroup("REF"), ReadOnly]public GameObject player;
     [SerializeField, BoxGroup("General")] private GameObject TrainInfoGuide;
     [SerializeField, BoxGroup("General")] private TextMeshProUGUI TrainInfoGuide_Text;
     [SerializeField, BoxGroup("General")] private GameObject WarningGuide;
@@ -34,13 +35,17 @@ public class SceneManageNDisplay : MonoBehaviour
     Animator leverAnim;
     [SerializeField, BoxGroup("TrainMoveStop")] private bool IsOn; //train will move, else it stop
     [BoxGroup("TrainMoveStop")] public bool PickedLocation; //did player pick a location, after player come back frm mappt it will auto clear itself
+    [BoxGroup("TrainMoveStop")] public bool hasEnoughFuel;  //check if there is enough fuel after start train
     [BoxGroup("TrainMoveStop")] public bool IsMoving; //train start moving, can be stop
+    [BoxGroup("TrainMoveStop")] public int fuelCost;  //store the amt of score that need to pay, later add up the previous if skip
     [SerializeField,BoxGroup("TrainMoveStop")] private InteractableIcon trainTrigger;
     [SerializeField, BoxGroup("TrainMoveStop")] private List<GameObject> CMCam = new List<GameObject>();
     [SerializeField, BoxGroup("TrainMoveStop")] private float trainNoiseV;
     private float currentValue, targetValue;
     [BoxGroup("TrainMoveStop"), ReadOnly] public string currentAccess;
     [BoxGroup("TrainMoveStop")] public GameObject door;
+    [SerializeField,BoxGroup("TrainMoveStop")] private Animator doorAnim;
+    [SerializeField,BoxGroup("TrainMoveStop")] private AudioSource doorAudio;
     //private CinemachineBasicMultiChannelPerlin m_noise;
 //[HideInInspector]
 
@@ -48,6 +53,7 @@ public class SceneManageNDisplay : MonoBehaviour
     {
         MM = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
         WG = this.GetComponent<WarningGuide>();
+        player = GameObject.FindGameObjectWithTag("Player");
         InfoDisplay.SetActive(false);
         mapIcon.SetActive(false);
         theMap.SetActive(false);
@@ -58,15 +64,20 @@ public class SceneManageNDisplay : MonoBehaviour
         WarningGuide.SetActive(false);
         IsOn = false;
         PickedLocation = false;
+        hasEnoughFuel = false;
         IsMoving = false;
         leverAnim = Lever.GetComponent<Animator>();
         currentValue = 0; //set initial
         targetValue = 1.5f;
         UpdateCamNoise(currentValue);
         door.SetActive(false);
+        doorAnim.SetTrigger("Close");
         //currentTrainStatusMessage = "S T A R T  T R A I N";
 //Listener ---
         FF_CloseButton.onClick.AddListener(Close_FF);
+    }
+    private void LateUpdate() {
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     void Update()
     {
@@ -86,7 +97,19 @@ public class SceneManageNDisplay : MonoBehaviour
             currentValue+=0.01f;
             UpdateCamNoise(currentValue);
         }
+        // if(player!=null){
+        //     if (player.GetComponent<PlayerInformation>().FuelAmt >= fuelCost)
+        //     {
+        //         //playerResource.GetComponent<PlayerInformation>().FuelAmt -= gm.GetComponent<Point>().fuelAmtNeeded;
+        //         hasEnoughFuel = true;
+        //     }else{
+        //         hasEnoughFuel = false;
+        //     }
+        // }
         //Debug.Log(currentTrainStatusMessage);
+    }
+    public void TrainInforGuide(){
+        TrainInfoGuide.SetActive(true);
     }
     public void DisplayCartName(){
         InfoDisplay.SetActive(false);
@@ -137,62 +160,91 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainInfoGuide.SetActive(false);
     }
 //Train Move Stop Toggle --------------
-    public void OpenToggleGuide(){
-        TrainInfoGuide.SetActive(true);
+    public void OnToggle(){
+        // if(!IsOn){
+        PanelOn = true; 
+        TrainInfoGuide.SetActive(false);
+        // }
     }
-    public void CloseToggleGuide(){  //put this in actionCall
+    public void OffToggle(){  //put this in actionCall
         TrainInfoGuide.SetActive(false);
     }
     void Pull(){
         //yield return new WaitForSeconds(.5f);
-        if(IsOn){ //make the train stop
-            Debug.Log("Train is gonna stop");
-            leverAnim.SetTrigger("Off");
-            currentAccess = "S T A R T  T R A I N";
-            trainTrigger.guideDescript = "S T A R T  T R A I N";
-            targetValue = 0f;
-            //TrainStopMotion();
-            IsOn = false;
+        // if(IsOn){ //make the train stop
+        //     Debug.Log("Train is gonna stop");
+        //     leverAnim.SetTrigger("Off");
+        //     currentAccess = "S T A R T  T R A I N";
+        //     trainTrigger.guideDescript = "S T A R T  T R A I N";
+        //     targetValue = 0f;
+        //     //TrainStopMotion();
+        //     IsOn = false;
                 //IsMoving = true;
             //some enviromental change trigger: access to camera, plau audio, some foregrd backgrd
-        }else if(!IsOn&&PickedLocation){ //make the train move but need to pick a point
+        // }else 
+        if(!IsOn&&PickedLocation&&hasEnoughFuel){ //make the train move but need to pick a point
+            //doorAnim.SetTrigger("Close");  //close when train started
+            //Reduce num of fuel here
+            ConsumeFuel();
             Debug.Log("Train is gonna move");
             leverAnim.SetTrigger("On");
-            currentAccess = "S T O P  T R A I N";
-            trainTrigger.guideDescript = "S T O P  T R A I N";
+            //change icon image
+            currentAccess = "T R A I N  M O V I N G";
+            trainTrigger.guideDescript = "T R A I N  M O V I N G";
             targetValue = 1.5f;
             IsMoving = true;
             StartCoroutine(TrainStartMotion());
             IsOn = true;    
             //some enviromental change trigger: access to camera, plau audio
         }
-        if(!PickedLocation){
-            WarningGuideCall(3);
-        }
     }
     public void PullLever(){  //put this in actionCall
         //StartCoroutine("Pull");
+        TrainInfoGuide.SetActive(false);
+        CheckIfEnoughFuel();
+        if(!hasEnoughFuel){
+            WarningGuideCall(2); //nt enough fuel
+        }
+        if(!PickedLocation){
+            WarningGuideCall(3); //picked location
+        }
         Invoke("Pull", .5f);
+    }
+    void ConsumeFuel(){
+        if (player.GetComponent<PlayerInformation>().FuelAmt >= fuelCost){
+            player.GetComponent<PlayerInformation>().FuelAmt -= fuelCost;
+        }
     }
     IEnumerator TrainStartMotion(){
         yield return new WaitForSeconds(0f);
         MM.PTMT(IsMoving, 2f);
         //player do wtever
         yield return new WaitForSeconds(7f);
-        targetValue = 0f;
-        door.SetActive(true);
-        IsMoving = false;
+       //targetValue = 0f;
+        //IsMoving = false;
+        TrainStopMotion();
         WarningGuideCall(0);
+        doorAnim.SetBool("Close", false);
+        doorAnim.SetTrigger("Open");
+        doorAudio.Play();
         //the anim: moving of bg or foreground
         //object active
     }
-    // void TrainStopMotion(){  //When train arrive at the location, do this after player click pt and on train
-    //     yield return new WaitForSeconds(0f);
-
-    //     yield return new WaitForSeconds(5f);
-        
-    //     IsMoving = false;
-    // }
+    void TrainStopMotion(){  //When train arrive at the location, do this after player click pt and on train
+        //yield return new WaitForSeconds(0f);
+        if(IsOn){ //make the train stop
+            Debug.Log("Train is gonna stop");
+            leverAnim.SetTrigger("Off");
+            currentAccess = "S T A R T  T R A I N";
+            trainTrigger.guideDescript = "S T A R T  T R A I N";
+            targetValue = 0f;
+            door.SetActive(true);
+        }
+        IsOn = false;
+        IsMoving = false;
+        CheckIfEnoughFuel();
+        //yield return new WaitForSeconds(5f);
+    }
     void UpdateCamNoise(float value){
         for(int i = 0; i < CMCam.Count; i++){
             //REf: https://stackoverflow.com/questions/66091697/how-to-access-cinemachine-basic-mutlichannel-perlin-noise
@@ -207,7 +259,15 @@ public class SceneManageNDisplay : MonoBehaviour
         WarningGuide.SetActive(true);
         WG.index = _index;
     }
-
-
-
+    void CheckIfEnoughFuel(){
+        if (player.GetComponent<PlayerInformation>().FuelAmt >= fuelCost && fuelCost!=0)
+            {
+                //playerResource.GetComponent<PlayerInformation>().FuelAmt -= gm.GetComponent<Point>().fuelAmtNeeded;
+                hasEnoughFuel = true;
+            }else{
+                hasEnoughFuel = false;
+        }
+    }
 }
+//cannot move until fue is enough
+//fuel reduce when train pull not when click location

@@ -66,34 +66,35 @@ public class MapPopUp : MonoBehaviour
         }
     }
     public void ClickPtIcon(){ //Click the Icon, set the destination; after this player go pull the lever
-        if(MapManager.gameState == 0) {
-           if( mm.IsAvailableToMove(this.gameObject) == true) //available to move Accord to fuelAmt
-           {
-            Debug.Log("yehhhhh");
-                if (mm.PopUpPoint.Count > 0)
-                    ResetPoint();
-                if (!clicked)
-                {
-                    this.GetComponent<Point>().SendInfo(); //send selcted pt
-                    clicked = true;
-                    PUAnim.SetTrigger("SetLocation");
-                    mm.PopUpPoint.Add(this.gameObject);
-                    ResetAnim(0);
-                    MapManager.gameState = 1;
-                    SceneManageNDisplay.PickedLocation = true; //this shd turn false when train arrive at location
-                    mm.PlayerMove(this.GetComponent<Point>().id);  //sent desitination inteval
-                    //if(SceneManageNDisplay.PopUpPoint.Count>0)
-                    //ResetAnim(0);
-                    //SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<MapPopUp>().clicked = false;
-                }
+        //if(MapManager.gameState == 0) {
+            if (mm.PopUpPoint.Count > 0){
+                ResetPoint();
+            }
+            if (!clicked)
+            {
+                this.GetComponent<Point>().SendInfo(); //send selcted pt
+                clicked = true;
+                PUAnim.SetTrigger("SetLocation");
+                mm.PopUpPoint.Add(this.gameObject);
+                ResetAnim(0);
                 MapManager.gameState = 1;
-                GetComponent<Point>().MovePlayer();
-                mm.UpdatePlayer();
-                //door.SetActive(true);
-           }else{
-                SceneManageNDisplay.WarningGuideCall(2);
+                SceneManageNDisplay.PickedLocation = true; //this shd turn false when train arrive at location
+                mm.PlayerMove(this.GetComponent<Point>().id);  //sent desitination inteval
+                SceneManageNDisplay.fuelCost = this.gameObject.GetComponent<Point>().fuelAmtNeeded;
+                SceneManageNDisplay.WarningGuideCall(4);
            }
-        }
+                //MapManager.gameState = 1;  //turns related
+            GetComponent<Point>().MovePlayer();
+            mm.UpdatePlayer();
+        //    if( mm.IsAvailableToMove(this.gameObject) == true) //available to move Accord to fuelAmt
+        //    {
+        //         SceneManageNDisplay.hasEnoughFuel = true; //have enoughfuel
+        //         Debug.Log("yehhhhh");
+        //    }else{
+        //         SceneManageNDisplay.hasEnoughFuel = false; //not enough fuel
+        //         SceneManageNDisplay.WarningGuideCall(2);
+        //    }
+        //}
     }
     public void ResetPoint(){ //reset the status of point
         //PUAnim.SetTrigger("PlugFlag");
@@ -133,3 +134,7 @@ public class MapPopUp : MonoBehaviour
         PUAnim.SetTrigger("Off");
     }
 }
+
+//  //if(SceneManageNDisplay.PopUpPoint.Count>0)
+                    //ResetAnim(0);
+                    //SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<MapPopUp>().clicked = false;

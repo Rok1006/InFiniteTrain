@@ -50,6 +50,9 @@ public class WarningGuide : MonoBehaviour
             case 3:
                 message = "    Destination Not Set";
             break;
+            case 4:
+                message = "    Destination Set";
+            break;
         }
     }
 }

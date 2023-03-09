@@ -18,14 +18,14 @@ public class ExitDoor : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Player"){
-            doorAnim.SetTrigger("Open");
-            if (!audioSource.isPlaying)
-                audioSource.Play();
+            //doorAnim.SetTrigger("Open");
+            //if (!audioSource.isPlaying)
+                //audioSource.Play();
         }
     }
     private void OnTriggerExit(Collider col) {
         if(col.gameObject.tag == "Player"){
-            doorAnim.SetTrigger("Close");
+            //doorAnim.SetTrigger("Close");
         }
     }
 }

@@ -36,8 +36,8 @@ public class MapManager : MonoBehaviour
         UpdatePlayer();
         triggerDoorToOutside.SetActive(false);
         //InitialState
-        InfoSC.CurrentPlayerTrainInterval = 0;
-        InfoSC.CurrentEnemyTrainInterval = 0;
+        // InfoSC.CurrentPlayerTrainInterval = 0;
+        // InfoSC.CurrentEnemyTrainInterval = 0;
         enemyTrain.SetActive(false);
         //Debug.Log(InfoSC.CurrentPlayerTrainInterval.transform.localPosition);
         UpdateTrainLocation();
@@ -84,7 +84,7 @@ public class MapManager : MonoBehaviour
     private void FixedUpdate() {
         
     }
-    public bool AvailableToMove(GameObject gm)
+    public bool AvailableToMove(GameObject gm)   //By Joon
     {
         playerResource = GameObject.FindGameObjectWithTag("Player");
         var points = player.GetComponent<Point>();
@@ -108,7 +108,7 @@ public class MapManager : MonoBehaviour
 
         return false;
     }
-    public bool IsAvailableToMove(GameObject gm) //Changed accord to new map system
+    public bool IsAvailableToMove(GameObject gm) //Changed accord to new map system By Rok
     {
         playerResource = GameObject.FindGameObjectWithTag("Player");
         //var point = gm.GetComponent<Point>();
@@ -118,7 +118,7 @@ public class MapManager : MonoBehaviour
             // if (points.connectedPoints[i].Equals(gm)){
             if (playerResource.GetComponent<PlayerInformation>().FuelAmt >= gm.GetComponent<Point>().fuelAmtNeeded)
                 {
-                    playerResource.GetComponent<PlayerInformation>().FuelAmt -= gm.GetComponent<Point>().fuelAmtNeeded;
+                    //playerResource.GetComponent<PlayerInformation>().FuelAmt -= gm.GetComponent<Point>().fuelAmtNeeded;
                     return true;
                 }
         //     }

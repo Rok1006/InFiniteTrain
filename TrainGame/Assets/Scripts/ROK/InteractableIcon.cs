@@ -25,6 +25,7 @@ public class InteractableIcon : MonoBehaviour
     public UnityEvent DisplayFunction_Active;   //wtever On call
     public UnityEvent DisplayFunction_DeActive; //wtever off call
     public UnityEvent ActionCall; //wtever off call
+    public UnityEvent TrainInfoGuideCall; //wtever off call
 
     void Start()
     {
@@ -52,7 +53,7 @@ public class InteractableIcon : MonoBehaviour
         if(col.gameObject.tag == "Player"){
             if(!thisIcon.activeSelf){thisIcon.SetActive(true);}
             if(!TrainInfoGuide.activeSelf){TrainInfoGuide.SetActive(true);}
-
+            //TrainInfoGuideCall.Invoke();  //need more edit
             if(Input.GetKeyUp(input_interact)&&!SceneMD.PanelOn){
                 DisplayFunction_Active.Invoke();
                 ActionCall.Invoke();

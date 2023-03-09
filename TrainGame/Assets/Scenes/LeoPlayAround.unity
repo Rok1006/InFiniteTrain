@@ -4659,7 +4659,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1135883014}
         m_TargetAssemblyTypeName: SceneManageNDisplay, Assembly-CSharp
-        m_MethodName: OpenToggleGuide
+        m_MethodName: OnToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4674,7 +4674,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1135883014}
         m_TargetAssemblyTypeName: SceneManageNDisplay, Assembly-CSharp
-        m_MethodName: CloseToggleGuide
+        m_MethodName: OffToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4699,6 +4699,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  TrainInfoGuideCall:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &264447335
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25472,7 +25475,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7775091, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32667,6 +32670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3d25f50896a4618b6b7b1525ec901f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   TrainInfoGuide: {fileID: 771749181}
   TrainInfoGuide_Text: {fileID: 0}
   WarningGuide: {fileID: 2043479565}
@@ -32686,7 +32690,9 @@ MonoBehaviour:
   Lever: {fileID: 8707273952857120844}
   IsOn: 0
   PickedLocation: 0
+  hasEnoughFuel: 0
   IsMoving: 0
+  fuelCost: 0
   trainTrigger: {fileID: 264447334}
   CMCam:
   - {fileID: 704495169}
@@ -32695,6 +32701,8 @@ MonoBehaviour:
   trainNoiseV: 0
   currentAccess: 
   door: {fileID: 1990180613}
+  doorAnim: {fileID: 857203300}
+  doorAudio: {fileID: 1445022617}
 --- !u!114 &1135883015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40792,7 +40800,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422682672}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.536102, y: 0.24000168, z: 0}
+  m_LocalPosition: {x: -13.54, y: 0.2, z: 0}
   m_LocalScale: {x: 1.8142037, y: 1.8142041, z: 1.8142041}
   m_Children: []
   m_Father: {fileID: 177550735}
@@ -42825,7 +42833,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7775091, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -42901,6 +42909,21 @@ MonoBehaviour:
   ActionCall:
     m_PersistentCalls:
       m_Calls: []
+  TrainInfoGuideCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1135883014}
+        m_TargetAssemblyTypeName: SceneManageNDisplay, Assembly-CSharp
+        m_MethodName: TrainInforGuide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &1582129594
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43834,7 +43857,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7775091, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -46839,8 +46862,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
-  m_FrequencyGain: 0
+  m_AmplitudeGain: -0.009999925
+  m_FrequencyGain: -0.009999925
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1765989829
 MonoBehaviour:
@@ -49997,6 +50020,21 @@ MonoBehaviour:
   ActionCall:
     m_PersistentCalls:
       m_Calls: []
+  TrainInfoGuideCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1135883014}
+        m_TargetAssemblyTypeName: SceneManageNDisplay, Assembly-CSharp
+        m_MethodName: TrainInforGuide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1949966314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50584,6 +50622,21 @@ MonoBehaviour:
   ActionCall:
     m_PersistentCalls:
       m_Calls: []
+  TrainInfoGuideCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1135883014}
+        m_TargetAssemblyTypeName: SceneManageNDisplay, Assembly-CSharp
+        m_MethodName: TrainInforGuide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1976879603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51879,8 +51932,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
-  m_FrequencyGain: 0
+  m_AmplitudeGain: -0.009999925
+  m_FrequencyGain: -0.009999925
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &2069941861
 MonoBehaviour:
@@ -52239,6 +52292,21 @@ MonoBehaviour:
   ActionCall:
     m_PersistentCalls:
       m_Calls: []
+  TrainInfoGuideCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1135883014}
+        m_TargetAssemblyTypeName: SceneManageNDisplay, Assembly-CSharp
+        m_MethodName: TrainInforGuide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2087916249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60130,6 +60198,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1662438721}
+    - target: {fileID: 1890839000503138127, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1890839000798628862, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: m_Sprite
@@ -60158,6 +60231,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -116751646580687041, guid: d3af28526a7a94fe49c6789a2bdd6377,
         type: 3}
+    - target: {fileID: 1890839001232098789, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1890839001232098790, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: m_RootOrder
@@ -62720,8 +62798,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
-  m_FrequencyGain: 0
+  m_AmplitudeGain: -0.009999925
+  m_FrequencyGain: -0.009999925
   mNoiseOffsets: {x: 896.7285, y: 814.3888, z: -647.95166}
 --- !u!114 &9152521495152902370
 MonoBehaviour:
@@ -63171,7 +63249,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7775091, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
