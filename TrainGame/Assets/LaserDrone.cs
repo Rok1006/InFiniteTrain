@@ -102,6 +102,7 @@ public class LaserDrone : MonoBehaviour
 
     void Detect()
     {
+        if(player!=null){
         Vector3 dir = (player.transform.position + new Vector3(0 , 5 , 0) - transform.position).normalized;
         float angle = Vector3.Angle(dir, transform.right);
         RaycastHit r;
@@ -121,10 +122,8 @@ public class LaserDrone : MonoBehaviour
                     this.state = State.ATTACK;
                 }
             }
-        }
-        
-      
-        
+        }   
+    }
     }
 
 }
