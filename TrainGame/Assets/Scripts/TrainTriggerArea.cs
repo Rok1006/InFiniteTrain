@@ -32,9 +32,6 @@ public class TrainTriggerArea : MonoBehaviour
     void OnTriggerExit(Collider collider) {
         if (collider.tag.Equals("Player")) {
             radiationManager.IsRadiated = true;
-
-            //equip weapon
-            player.takeOutSword();
         }
     }
 }
