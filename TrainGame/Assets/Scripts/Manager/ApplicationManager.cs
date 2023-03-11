@@ -19,6 +19,9 @@ public class ApplicationManager : MMSingleton<ApplicationManager>
 
     public void NewGame() {
         MMSaveLoadManager.DeleteSaveFolder (_saveFolderName);
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager != null)
+            Destroy(gameManager.gameObject);
         MMSceneLoadingManager.LoadScene ("LeoPlayAround");
     }
 
