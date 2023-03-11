@@ -22,8 +22,6 @@ public class ApplicationManager : MMSingleton<ApplicationManager>
         GameManager gameManager = FindObjectOfType<GameManager>();
         if (gameManager != null)
             Destroy(gameManager.gameObject);
-        else
-            gameManager.GetComponent<Info>().isNewGame = true;
         MMSceneLoadingManager.LoadScene ("LeoPlayAround");
     }
 
