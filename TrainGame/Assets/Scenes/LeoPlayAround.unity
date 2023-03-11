@@ -1492,7 +1492,7 @@ PrefabInstance:
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: fuelAmtNeeded
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -25858,7 +25858,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.77758, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -28405,12 +28405,12 @@ GameObject:
   - component: {fileID: 819885538}
   - component: {fileID: 819885537}
   m_Layer: 5
-  m_Name: AreaInfo
+  m_Name: Require?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &819885536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28427,7 +28427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -276.35968, y: -150.1}
+  m_AnchoredPosition: {x: -288.82, y: -145.53}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &819885537
@@ -28450,10 +28450,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AREA 0
+  m_text: Require ? Fuel
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4eccd51250cfa3948a3ac1e21d15fe34, type: 2}
-  m_sharedMaterial: {fileID: 7304186015023537574, guid: 4eccd51250cfa3948a3ac1e21d15fe34,
+  m_fontAsset: {fileID: 11400000, guid: 2f490f72b6ed6ae4d8b31cee2cac3de7, type: 2}
+  m_sharedMaterial: {fileID: -6263097307693789204, guid: 2f490f72b6ed6ae4d8b31cee2cac3de7,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -28478,14 +28478,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.35
-  m_fontSizeBase: 31.35
+  m_fontSize: 22.2
+  m_fontSizeBase: 22.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -28514,7 +28514,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 6.490198, z: -8.560867, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -33154,6 +33154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3d25f50896a4618b6b7b1525ec901f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ISF: {fileID: 0}
   player: {fileID: 0}
   TrainInfoGuide: {fileID: 771749181}
   TrainInfoGuide_Text: {fileID: 0}
@@ -35915,6 +35916,7 @@ MonoBehaviour:
   playerTurn: 0
   enemyTurn: 0
   id: 0
+  confirmedPlayerTrainLocal: 0
   points:
   - {fileID: 5000993665836621536}
   - {fileID: 1563878042}
@@ -35945,6 +35947,7 @@ MonoBehaviour:
   - {fileID: 645520964}
   - {fileID: 948151110}
   - {fileID: 1785014295}
+  requireText: {fileID: 819885537}
 --- !u!1 &1359996576
 GameObject:
   m_ObjectHideFlags: 0
@@ -48145,7 +48148,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.77758, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -49194,7 +49197,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.77758, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -52215,8 +52218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: -0.009999925
-  m_FrequencyGain: -0.009999925
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1765989829
 MonoBehaviour:
@@ -52895,7 +52898,7 @@ PrefabInstance:
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: fuelAmtNeeded
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -62309,8 +62312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: -0.009999925
-  m_FrequencyGain: -0.009999925
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &2069941861
 MonoBehaviour:
@@ -63414,7 +63417,7 @@ PrefabInstance:
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: fuelAmtNeeded
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -63642,7 +63645,7 @@ PrefabInstance:
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: fuelAmtNeeded
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -73065,8 +73068,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: -0.009999925
-  m_FrequencyGain: -0.009999925
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 896.7285, y: 814.3888, z: -647.95166}
 --- !u!114 &9152521495152902370
 MonoBehaviour:
@@ -73472,7 +73475,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.77758, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
