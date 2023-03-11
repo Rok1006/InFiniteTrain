@@ -221,6 +221,12 @@ public class MapManager : MonoBehaviour
     public void ResetFuelNeedDisplay(){
         requireText.text = "Select a location.";
     }
+    public void DisablePreviousLands(){
+        // int currentLocal = confirmedPlayerTrainLocal;
+        // for(int i = 0; i<currentLocal;i++){
+        //     points[i].
+        // }
+    }
     
 }
 //order:
