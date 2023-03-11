@@ -183,6 +183,7 @@ public class ResourceBox : MonoBehaviour
 
     public void ShowInventoryUI() {
         inventoryDisplay.ChangeTargetInventory(InventoryName);
+        inventoryCanvas.GetComponentInChildren<InventoryDetails>().TargetInventoryName = InventoryName;
         inventoryCanvas.alpha = 1;
         inventoryCanvas.interactable = true;
         inventoryCanvas.blocksRaycasts = true;

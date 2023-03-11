@@ -27,8 +27,8 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField, BoxGroup("InteractableMap")] private GameObject mapCore;
     [SerializeField, BoxGroup("InteractableMap")] private Vector3 mapFuelLocation;
     public bool PanelOn = false;
-    [SerializeField, BoxGroup("FuelMachine")] private GameObject FF_Panel; //the whole ui panel
-    [SerializeField, BoxGroup("FuelMachine")] private Button FF_CloseButton;
+    [SerializeField, BoxGroup("FuelMachine")] private CanvasGroup FF_Panel; //the whole ui panel
+    [SerializeField, BoxGroup("FuelMachine")] private Button FF_CloseButton, FF_AddButton;
     [SerializeField, BoxGroup("FuelMachine")] private GameObject FF_MachineLever;
     [SerializeField, BoxGroup("FuelMachine")] private GameObject TrainFuelBar; //this will also appear in map scene
     [SerializeField, BoxGroup("FuelMachine")] private Vector3 FuelMachineFuelLocation;
@@ -158,14 +158,19 @@ public class SceneManageNDisplay : MonoBehaviour
     }
 //Fuel Machine Part ---------
     public void Close_FF(){
-        FF_Panel.GetComponent<InventoryInputManager>().CloseInventory();
+        FF_Panel.interactable = false;
+        FF_Panel.alpha = 0;
+        FF_AddButton.gameObject.SetActive(false);
         TrainFuelBar.SetActive(false);
         //TrainInfoGuide.SetActive(false);
     }
     public void Open_FuelPanel(){
         PanelOn = true;
         // FF_Panel.SetActive(true);
-        FF_Panel.GetComponent<InventoryInputManager>().OpenInventory();
+        FF_Panel.interactable = true;
+        FF_Panel.alpha = 1;
+        FF_AddButton.gameObject.SetActive(true);
+        Debug.Log("opened fuel panel");
         
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
         TrainFuelBar.SetActive(true);
