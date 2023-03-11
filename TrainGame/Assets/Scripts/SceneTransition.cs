@@ -50,7 +50,9 @@ public class SceneTransition : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.GetComponent<PlayerManager>() != null)
+        if (other.GetComponent<PlayerManager>() != null) {
             saveAndToOtherScene(otherSceneName);
+            Info.Instance.isNewGame = false;
+        }
     }
 }

@@ -25,6 +25,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField, BoxGroup("Logic")] private bool isLocked = true;
     [SerializeField, BoxGroup("Logic"), ShowIf("isLocked")] private float openBoxSpeed = 0.35f;
     [SerializeField, BoxGroup("Invetory")] private List<InventoryItem> itemsToGenerate;
+    [SerializeField, BoxGroup("Inventory")] private Info info;
     [SerializeField, BoxGroup("Box")] private Animator boxAnim;
     [SerializeField] GameObject miniGame;
     private bool isOpening = false, isPlayerNear = false, opened = false;
@@ -55,8 +56,12 @@ public class ResourceBox : MonoBehaviour
         }
 
         //generate inventory items into inventory if there's any in the list
-        foreach(InventoryItem item in itemsToGenerate) {
-            GetComponentInChildren<Inventory>().AddItem(item, 1);
+        info = FindObjectOfType<Info>();
+        if (info.isNewGame) {
+            Debug.Log("adding items");
+            foreach(InventoryItem item in itemsToGenerate) {
+                GetComponentInChildren<Inventory>().AddItem(item, 1);
+            }
         }
 
 

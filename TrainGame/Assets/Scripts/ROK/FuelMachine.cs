@@ -30,7 +30,8 @@ public class FuelMachine : MonoBehaviour
         AppearPt= GameObject.Find("AppearPt");
 
         //add some fuel to fuel inventory
-        fuelInventory.AddItem(fuel, fuelAmt);
+        if (FindObjectOfType<Info>().isNewGame)
+            fuelInventory.AddItem(fuel, fuelAmt);
 
          //set a max
     }
@@ -48,7 +49,6 @@ public class FuelMachine : MonoBehaviour
     /*add fuel only if there's fuel in fuel inventory*/
     public void AddFuel() {
         if (fuelInventory.GetQuantity("Fuel") >= addAmt) {
-            Debug.Log("adding");
             player.GetComponent<PlayerInformation>().FuelAmt += addAmt;
             fuelInventory.RemoveItemByID("Fuel", addAmt);
             TrainWheel.SetTrigger("pulse");

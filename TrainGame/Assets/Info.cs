@@ -13,6 +13,7 @@ public class Info : MMSingleton<Info>
     [SerializeField, BoxGroup("Map")]private int enemyTrainInterval;
 
     [SerializeField, BoxGroup("UI Info")] public bool IsViewingInventory = false;
+    [BoxGroup("Save & Load")] public bool isNewGame = true;
 
     //getters & setters
     public int CurrentPlayerTrainInterval {get=>playerTrainInterval; set=>playerTrainInterval = value;}
