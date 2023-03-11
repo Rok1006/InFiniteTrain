@@ -24,10 +24,16 @@ public class FoodItem : InventoryItem
     {
         base.Use(playerID);
         Debug.Log("Eating " + name);
+        
         playerInfo = FindObjectOfType<PlayerInformation>();
         if (playerInfo == null)
             Debug.LogWarning("cant find playerInfomation");
+
+        //decreases radiation
         playerInfo.CurrentRadiationValue = Mathf.Max(playerInfo.CurrentRadiationValue-radiationDecrease, 0.0f);
+
+        //increase movement speed
+
         return true;
     }
 }
