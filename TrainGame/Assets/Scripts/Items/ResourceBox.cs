@@ -14,8 +14,6 @@ using Spine.Unity.AttachmentTools;
 //script for box, timer, minigame
 public class ResourceBox : MonoBehaviour
 {
-    private CharacterHandleWeapon playerWeapon;
-
     [SerializeField,BoxGroup("TDE")] private string playerID, invnetoryName;
     private SideInventoryDisplay sideInventoryDisplay;
     
@@ -26,6 +24,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField, BoxGroup("UI")] private GameObject timer;
     [SerializeField, BoxGroup("Logic")] private bool isLocked = true;
     [SerializeField, BoxGroup("Logic"), ShowIf("isLocked")] private float openBoxSpeed = 0.35f;
+    [SerializeField, BoxGroup("Invetory")] private List<InventoryItem> itemsToGenerate;
     [SerializeField, BoxGroup("Box")] private Animator boxAnim;
     [SerializeField] GameObject miniGame;
     private bool isOpening = false, isPlayerNear = false, opened = false;
@@ -43,7 +42,8 @@ public class ResourceBox : MonoBehaviour
             B_Skin = this.transform.GetChild(0).gameObject.GetComponent<SkeletonMecanim>();     
             B_Skin.skeleton.SetSkin(boxLook[Random.Range(0,boxLook.Length)]);
         }
-//-----------------------
+        //-----------------------
+        //auto select side inventory display
         if (autoSelectInventoryDisplay) {
             sideInventoryDisplay = FindObjectOfType<SideInventoryDisplay>();
             
@@ -54,16 +54,17 @@ public class ResourceBox : MonoBehaviour
                 inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
         }
 
+        //generate inventory items into inventory if there's any in the list
+        foreach(InventoryItem item in itemsToGenerate) {
+            GetComponentInChildren<Inventory>().AddItem(item, 1);
+        }
+
 
         if (inventoryDisplay == null)
             Debug.LogWarning("Cannot find inventory display");
         
         inventoryCanvas.alpha = 0;
         inventoryCanvas.interactable = false;
-
-        playerWeapon = FindObjectOfType<PlayerManager>().GetComponent<CharacterHandleWeapon>();
-        if (playerWeapon == null)
-            Debug.LogWarning("cannot find character handle weapon for player");
         
         //things happens when loading scene
         SceneManager.sceneLoaded += OnSceneLoaded;
