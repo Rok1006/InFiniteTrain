@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserDrone : MonoBehaviour
+public class UpdatedLaserDrone : MonoBehaviour
 {
     public Transform[] wayPoints;
 
@@ -11,7 +11,7 @@ public class LaserDrone : MonoBehaviour
         PATROL,
         ATTACK,
         STOP
-        
+
     }
     public LayerMask layermask;
     public int destPoint = 0;
@@ -23,7 +23,6 @@ public class LaserDrone : MonoBehaviour
     public float range;
     public float fovAngle;
     private Rigidbody rb;
-    bool canAttack = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,26 +37,22 @@ public class LaserDrone : MonoBehaviour
         {
             case State.PATROL:
                 Move();
-                Detect();
+                //Detect();
                 break;
             case State.ATTACK:
-                MoveTowards();
-                if(canAttack == true)
-                {
-                    //attack here and disable canAttack
-
-
-                }
+                Attack();
                 break;
             case State.STOP:
-                Detect();
+                //Detect();
                 break;
-            
-                
+
+
         }
     }
-    void MoveTowards()
+
+    void Move()
     {
+
         if (rb.velocity.x > 0)
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
@@ -66,48 +61,39 @@ public class LaserDrone : MonoBehaviour
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
         }
-        var dir = (player.transform.position - this.transform.position).normalized;
-        rb.velocity = dir * speed;
-
-        if (Vector3.Distance(transform.position, player.transform.position) < 0.8f)
-        {
-            canAttack = true;
-        }
-    }
-    void Move()
-    {
-
-        if(rb.velocity.x > 0)
-        {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-        else
-        {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-        }
-        if(wayPoints.Length == 0)
+        if (wayPoints.Length == 0)
         {
             return;
         }
         //transform.position = Vector3.MoveTowards(transform.position, wayPoints[destPoint].position, speed);
         var direction = (wayPoints[destPoint].position - this.transform.position).normalized;
-        
+
         rb.velocity = direction * speed;
 
         var currentDestination = wayPoints[destPoint].position;
 
-        if(Vector3.Distance(transform.position , currentDestination) < 0.8f)
+        if (Vector3.Distance(transform.position, currentDestination) < 0.8f)
         {
             destPoint = (destPoint + 1) % wayPoints.Length;
             var stopChance = Random.Range(0, 1f);
-            if(stopChance < chance)
+            if (stopChance < chance)
             {
                 this.state = State.STOP;
                 StartCoroutine(Stop());
-                
+
             }
         }
 
+    }
+
+    void Attack()
+    {
+        Debug.Log("Df");
+        this.rb.velocity = Vector3.zero;
+        //do whatever u want here
+
+
+        
     }
     IEnumerator Stop()
     {
@@ -125,30 +111,40 @@ public class LaserDrone : MonoBehaviour
         this.state = State.PATROL;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            this.state = State.ATTACK;
+        }
+    }
     void Detect()
     {
-        if(player!=null){
-        Vector3 dir = (player.transform.position + new Vector3(0 , 5 , 0) - transform.position).normalized;
-        float angle = Vector3.Angle(dir, transform.right);
-        RaycastHit r;
-        
-        if(angle < fovAngle / 2)
+        /*
+        if (player != null)
         {
-            
-            Debug.DrawLine(transform.position, dir, Color.green);
-            Debug.DrawRay(transform.position, dir);
-            if (Physics.Raycast(transform.position, dir, out r, range, layermask))
-            {
-                Debug.Log("df");
+            Vector3 dir = (player.transform.position + new Vector3(0, 5, 0) - transform.position).normalized;
+            float angle = Vector3.Angle(dir, transform.right);
+            RaycastHit r;
 
-                if (r.collider.gameObject != null)
+            if (angle < fovAngle / 2)
+            {
+
+                Debug.DrawLine(transform.position, dir, Color.green);
+                Debug.DrawRay(transform.position, dir);
+                if (Physics.Raycast(transform.position, dir, out r, range, layermask))
                 {
-                    Debug.Log(r.collider.gameObject.name);
-                    this.state = State.ATTACK;
+                    Debug.Log("df");
+
+                    if (r.collider.gameObject != null)
+                    {
+                        Debug.Log(r.collider.gameObject.name);
+                        this.state = State.ATTACK;
+                    }
                 }
             }
-        }   
-    }
+        }
+        */
     }
 
 }
