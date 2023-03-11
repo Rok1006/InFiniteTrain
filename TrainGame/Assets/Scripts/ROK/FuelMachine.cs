@@ -18,21 +18,14 @@ public class FuelMachine : MonoBehaviour
     [Header("Display")]
     [SerializeField] private GameObject displayFuelPrefab;
     [SerializeField] private GameObject AppearPt;
-    [ShowNonSerializedField] private Inventory fuelInventory;
     [SerializeField, Tooltip("add some fuel to inventory")] private int fuelAmt;
     [SerializeField] private InventoryItem fuel;
 
     void Start()
     {
-        fuelInventory = GameObject.Find("FuelInventory").GetComponent<Inventory>();
         player = GameObject.FindGameObjectWithTag("Player");
-        FuelAdd_Button.onClick.AddListener(AddFuel);
+        // FuelAdd_Button.onClick.AddListener(AddFuel);
         AppearPt= GameObject.Find("AppearPt");
-
-        //add some fuel to fuel inventory
-        if (FindObjectOfType<Info>().isNewGame)
-            fuelInventory.AddItem(fuel, fuelAmt);
-
          //set a max
     }
 
@@ -41,18 +34,12 @@ public class FuelMachine : MonoBehaviour
     {
         FuelBar.value = player.GetComponent<PlayerInformation>().FuelAmt;
         fuelNumDisplay.text = player.GetComponent<PlayerInformation>().FuelAmt + "/ 50 MAX";
-
-        if (Input.GetKeyDown(KeyCode.O))
-            Debug.Log(fuelInventory.GetQuantity("Fuel"));
     }   
 
     /*add fuel only if there's fuel in fuel inventory*/
     public void AddFuel() {
-        if (fuelInventory.GetQuantity("Fuel") >= addAmt) {
-            player.GetComponent<PlayerInformation>().FuelAmt += addAmt;
-            fuelInventory.RemoveItemByID("Fuel", addAmt);
-            TrainWheel.SetTrigger("pulse");
-            GameObject f = Instantiate(displayFuelPrefab, AppearPt.transform.position, Quaternion.identity);  
-        }
+        player.GetComponent<PlayerInformation>().FuelAmt += addAmt;
+        TrainWheel.SetTrigger("pulse");
+        GameObject f = Instantiate(displayFuelPrefab, AppearPt.transform.position, Quaternion.identity);  
     }
 }
