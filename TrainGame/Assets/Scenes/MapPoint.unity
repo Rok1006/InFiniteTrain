@@ -4193,17 +4193,17 @@ PrefabInstance:
     - target: {fileID: 2581161468251579180, guid: 7dc879665407b46318fefff314fec708,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.349335
+      value: 80.87045
       objectReference: {fileID: 0}
     - target: {fileID: 2581161468251579180, guid: 7dc879665407b46318fefff314fec708,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41.94864
+      value: 41.948654
       objectReference: {fileID: 0}
     - target: {fileID: 2581161468251579180, guid: 7dc879665407b46318fefff314fec708,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -31.987305
+      value: -48.93625
       objectReference: {fileID: 0}
     - target: {fileID: 2581161468251579180, guid: 7dc879665407b46318fefff314fec708,
         type: 3}
@@ -6522,6 +6522,8 @@ GameObject:
   m_Component:
   - component: {fileID: 567080792}
   - component: {fileID: 567080793}
+  - component: {fileID: 567080794}
+  - component: {fileID: 567080795}
   m_Layer: 0
   m_Name: EnterStation
   m_TagString: Untagged
@@ -6536,12 +6538,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567080791}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9, y: 0, z: 3.49}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.998996, y: 0, z: 3.5833373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1860609414}
-  m_RootOrder: 10
+  m_Father: {fileID: 1413540153}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &567080793
 BoxCollider:
@@ -6556,6 +6558,126 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5863779, y: 1.2558742, z: 0.62450594}
   m_Center: {x: 0.00533071, y: 0.49042466, z: 1.0348749}
+--- !u!114 &567080794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567080791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67c8b1f0cc0f1c46901ec3b398875b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonActivatedRequirement: 2
+  RequiresPlayerType: 1
+  RequiresButtonActivationAbility: 1
+  Activable: 1
+  AutoActivation: 1
+  AutoActivationDelay: 0
+  AutoActivationDelayResetsOnExit: 1
+  CanOnlyActivateIfGrounded: 0
+  ShouldUpdateState: 1
+  OnlyOneActivationAtOnce: 1
+  UnlimitedActivations: 1
+  MaxNumberOfActivations: 0
+  DelayBetweenUses: 1
+  DisableAfterUse: 0
+  InputType: 0
+  InputButton: Interact
+  InputKey: 32
+  AnimationTriggerParameterName: 
+  UseVisualPrompt: 1
+  ButtonPromptPrefab: {fileID: 0}
+  ButtonPromptText: A
+  ButtonPromptColor: {r: 0.4862745, g: 0.9882353, b: 0, a: 1}
+  ButtonPromptTextColor: {r: 1, g: 1, b: 1, a: 1}
+  AlwaysShowPrompt: 1
+  ShowPromptWhenColliding: 1
+  HidePromptAfterUse: 0
+  PromptRelativePosition: {x: 0, y: 0, z: 0}
+  PromptRotation: {x: 0, y: 0, z: 0}
+  ActivationFeedback: {fileID: 0}
+  DeniedFeedback: {fileID: 0}
+  EnterFeedback: {fileID: 0}
+  ExitFeedback: {fileID: 0}
+  OnActivation:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStay:
+    m_PersistentCalls:
+      m_Calls: []
+  OnlyAffectsPlayer: 1
+  ExitOffset: {x: 0, y: 0, z: -10}
+  TeleportationMode: 0
+  TweenCurve: 4
+  MaintainXEntryPositionOnExit: 0
+  MaintainYEntryPositionOnExit: 1
+  MaintainZEntryPositionOnExit: 0
+  Destination: {fileID: 929931060}
+  AddToDestinationIgnoreList: 0
+  CameraMode: 2
+  CurrentRoom: {fileID: 0}
+  TargetRoom: {fileID: 1957260367}
+  TriggerFade: 1
+  FaderID: 1
+  FadeTween:
+    MMTweenDefinitionType: 0
+    MMTweenCurve: 7
+    Curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  FadeIgnoresTimescale: 0
+  MoveMask: 1
+  MoveMaskCurve: 4
+  MoveMaskMethod: 1
+  MoveMaskDuration: 0.2
+  FreezeTime: 0
+  FreezeCharacter: 1
+  TimeMode: 0
+  InitialDelay: 0
+  FadeOutDuration: 0.5
+  DelayBetweenFades: 0.8
+  FadeInDuration: 0.5
+  FinalDelay: 0
+--- !u!114 &567080795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567080791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2766dc2ec07296e45a8df31be29233c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTeleporters: []
 --- !u!1001 &568577735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12008,9 +12130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2766dc2ec07296e45a8df31be29233c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTeleporters:
-  - PointID: 3
-    Target: {fileID: 650158944}
+  targetTeleporters: []
 --- !u!114 &929931060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12065,17 +12185,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnlyAffectsPlayer: 1
-  ExitOffset: {x: 0, y: 10, z: 0}
+  ExitOffset: {x: 0, y: 0, z: 10}
   TeleportationMode: 0
   TweenCurve: 4
   MaintainXEntryPositionOnExit: 0
   MaintainYEntryPositionOnExit: 1
   MaintainZEntryPositionOnExit: 0
-  Destination: {fileID: 650158944}
+  Destination: {fileID: 567080794}
   AddToDestinationIgnoreList: 0
   CameraMode: 2
   CurrentRoom: {fileID: 0}
-  TargetRoom: {fileID: 589003297}
+  TargetRoom: {fileID: 1413540154}
   TriggerFade: 1
   FaderID: 1
   FadeTween:
@@ -18135,6 +18255,7 @@ Transform:
   m_Children:
   - {fileID: 546467553}
   - {fileID: 13791077}
+  - {fileID: 567080792}
   m_Father: {fileID: 1860609414}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21038,8 +21159,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.171023, y: 1, z: 11.78856}
-  m_Center: {x: -3.4633224, y: 0, z: 3.66395}
+  m_Size: {x: 6.06756, y: 1, z: 12.302355}
+  m_Center: {x: -3.4633224, y: 0, z: 3.2225635}
 --- !u!1 &1633152885
 GameObject:
   m_ObjectHideFlags: 0
@@ -25800,7 +25921,6 @@ Transform:
   - {fileID: 1615234526}
   - {fileID: 800609835}
   - {fileID: 1413540153}
-  - {fileID: 567080792}
   m_Father: {fileID: 1750576427}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
