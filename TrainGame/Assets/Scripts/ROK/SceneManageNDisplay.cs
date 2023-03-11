@@ -11,6 +11,7 @@ public class SceneManageNDisplay : MonoBehaviour
 {
     private MapManager MM;
     private WarningGuide WG;
+    [SerializeField, BoxGroup("REF")]private Info ISF;
     [BoxGroup("REF"), ReadOnly]public GameObject player;
     [SerializeField, BoxGroup("General")] private GameObject TrainInfoGuide;
     [SerializeField, BoxGroup("General")] private TextMeshProUGUI TrainInfoGuide_Text;
@@ -55,6 +56,7 @@ public class SceneManageNDisplay : MonoBehaviour
     {
         MM = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
         WG = this.GetComponent<WarningGuide>();
+        ISF = GameObject.Find("GameManager").GetComponent<Info>();
         player = GameObject.FindGameObjectWithTag("Player");
         InfoDisplay.SetActive(false);
         mapIcon.SetActive(false);
@@ -218,6 +220,8 @@ public class SceneManageNDisplay : MonoBehaviour
         if(!PickedLocation){
             WarningGuideCall(3); //picked location
         }
+        MM.confirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
+        MM.ResetFuelNeedDisplay();
         Invoke("Pull", .5f);
     }
     void ConsumeFuel(){

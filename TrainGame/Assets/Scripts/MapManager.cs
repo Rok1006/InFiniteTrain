@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.UI;
+using TMPro;
 
 public class MapManager : MonoBehaviour
 {
@@ -17,12 +19,15 @@ public class MapManager : MonoBehaviour
     [BoxGroup("Status")]public bool playerTurn = false;
     [BoxGroup("Status")]public bool enemyTurn = false;
     [BoxGroup("Status")]public int id;
+    [BoxGroup("Status")]public int confirmedPlayerTrainLocal = 0;
 
     [BoxGroup("PointInfo")]public GameObject[] points;
     [BoxGroup("PointInfo")]public List<GameObject> availableDestination = new List<GameObject>();
     
     [BoxGroup("PointInfo")]public List<GameObject> PopUpPoint = new List<GameObject>();
     [SerializeField, BoxGroup("PointInfo")] List<GameObject> Intervals = new List<GameObject>();
+
+    [SerializeField, BoxGroup("Stuff")] TextMeshProUGUI requireText; 
 
     void Start()
     {
@@ -41,6 +46,7 @@ public class MapManager : MonoBehaviour
         enemyTrain.SetActive(false);
         //Debug.Log(InfoSC.CurrentPlayerTrainInterval.transform.localPosition);
         UpdateTrainLocation();
+        requireText.text = "Select a location.";
         // StartCoroutine(PlayerTrainMoveTowards());
     }
 
@@ -202,6 +208,18 @@ public class MapManager : MonoBehaviour
         if(this.player != null){
             player.gameObject.GetComponent<MapPopUp>().ReapperaFlagPt();
         }
+    }
+    public void GetTotalFuelNeeded(int index){
+        int sum = 0;
+        int currentLocal = confirmedPlayerTrainLocal;
+        for(int i = currentLocal+1; i<index+1;i++){
+            sum += points[i].GetComponent<Point>().fuelAmtNeeded;
+        }
+        requireText.text = "REQUIRE " + sum.ToString() + " FUEL";
+        SMD.fuelCost = sum;
+    }
+    public void ResetFuelNeedDisplay(){
+        requireText.text = "Select a location.";
     }
     
 }

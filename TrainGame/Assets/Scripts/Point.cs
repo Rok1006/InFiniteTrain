@@ -67,7 +67,6 @@ public class Point : MonoBehaviour
     {
 
     }
-
     public void ShuffleEnemyInfo()
     {
 
