@@ -47,6 +47,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [BoxGroup("TrainMoveStop")] public GameObject door;
     [SerializeField,BoxGroup("TrainMoveStop")] private Animator doorAnim;
     [SerializeField,BoxGroup("TrainMoveStop")] private AudioSource doorAudio;
+    [SerializeField,BoxGroup("TrainMoveStop")] private GameObject BGScroll;
     //private CinemachineBasicMultiChannelPerlin m_noise;
 //[HideInInspector]
 
@@ -74,6 +75,8 @@ public class SceneManageNDisplay : MonoBehaviour
         UpdateCamNoise(currentValue);
         door.SetActive(false);
         doorAnim.SetTrigger("Close");
+        BGScroll.SetActive(false);
+        //bgscroll = BGScroll.GetComponent<Animator>();
         //currentTrainStatusMessage = "S T A R T  T R A I N";
 //Listener ---
         FF_CloseButton.onClick.AddListener(Close_FF);
@@ -225,6 +228,7 @@ public class SceneManageNDisplay : MonoBehaviour
     IEnumerator TrainStartMotion(){
         yield return new WaitForSeconds(0f);
         MM.PTMT(IsMoving, 2f);
+        BGScroll.SetActive(true);
         //player do wtever
         yield return new WaitForSeconds(7f);
        //targetValue = 0f;
@@ -234,6 +238,7 @@ public class SceneManageNDisplay : MonoBehaviour
         doorAnim.SetBool("Close", false);
         doorAnim.SetTrigger("Open");
         doorAudio.Play();
+        BGScroll.SetActive(false);
         //the anim: moving of bg or foreground
         //object active
     }
