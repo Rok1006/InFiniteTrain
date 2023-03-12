@@ -174,6 +174,11 @@ public class MapManager : MonoBehaviour
             this.player.gameObject.GetComponent<MapPopUp>().ForceChange();
         }
     }
+    public void Reappear(){
+        if(this.player != null){
+            player.gameObject.GetComponent<MapPopUp>().ReapperaFlagPt();
+        }
+    }
     void CheckHaveFuel(int fuelNeeded){
             //check current selected point
             // take into account that what if player wanna skip some points, need to add up the accumulated fuel require
@@ -204,14 +209,9 @@ public class MapManager : MonoBehaviour
     public void PTMT(bool isMoving, float speed){
         StartCoroutine(PlayerTrainMoveTowards(isMoving,speed));
     }
-    public void Reappear(){
-        if(this.player != null){
-            player.gameObject.GetComponent<MapPopUp>().ReapperaFlagPt();
-        }
-    }
     public void GetTotalFuelNeeded(int index){
         int sum = 0;
-        int currentLocal = confirmedPlayerTrainLocal;
+        int currentLocal = InfoSC.ConfirmedPlayerTrainLocal;
         for(int i = currentLocal+1; i<index+1;i++){
             sum += points[i].GetComponent<Point>().fuelAmtNeeded;
         }

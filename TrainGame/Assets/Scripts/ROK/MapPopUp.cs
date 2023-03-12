@@ -8,7 +8,7 @@ using TMPro;
 
 public class MapPopUp : MonoBehaviour
 {
-    [SerializeField] private GameObject PopUpObj;
+    [SerializeField] private GameObject PopUpObj; //anim obj
     Animator PUAnim;
     private SceneManageNDisplay SceneManageNDisplay;
     public bool clicked = false;
@@ -21,10 +21,12 @@ public class MapPopUp : MonoBehaviour
     [SerializeField]private Info InfoSC;
     //[HideInInspector]public List<GameObject> PopUpPoint = new List<GameObject>();
 
+    void Awake() {
+        PUAnim = PopUpObj.GetComponent<Animator>();
+    }
     void Start()
     {
         point = GetComponent<Point>();
-        PUAnim = PopUpObj.GetComponent<Animator>();
         SceneManageNDisplay = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
         mm = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
         InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
@@ -41,9 +43,9 @@ public class MapPopUp : MonoBehaviour
         }
     }
     public void ReapperaFlagPt(){
-        if(this.clicked&&this.PUAnim!=null){
+        if(this.clicked&&this.GetComponent<Point>().id==InfoSC.CurrentSelectedPt){
             Debug.Log("bruh");
-            this.PUAnim.SetTrigger("SetLocation"); //this one not going
+            PUAnim.SetTrigger("SetLocation"); //this one not going why?
             //SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
             ResetAnim(0);
         }
@@ -59,8 +61,8 @@ public class MapPopUp : MonoBehaviour
     public void ForceChange() 
     {
         clicked = true;
-        if(clicked){
-            this.PUAnim.SetTrigger("SetLocation");
+        if(clicked&&this.GetComponent<Point>().id==InfoSC.CurrentSelectedPt){
+            PUAnim.SetTrigger("SetLocation");
             mm.PopUpPoint.Add(this.gameObject);
             ResetAnim(0);
         }
@@ -83,6 +85,7 @@ public class MapPopUp : MonoBehaviour
                 //SceneManageNDisplay.fuelCost = this.gameObject.GetComponent<Point>().fuelAmtNeeded;
                 SceneManageNDisplay.WarningGuideCall(4);
                 mm.GetTotalFuelNeeded(this.GetComponent<Point>().id);
+                //InfoSC.CurrentSelectedPtObj = this.PopUpObj;
            }
                 //MapManager.gameState = 1;  //turns related
             GetComponent<Point>().MovePlayer();

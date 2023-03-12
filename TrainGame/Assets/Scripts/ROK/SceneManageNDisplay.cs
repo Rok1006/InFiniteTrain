@@ -143,10 +143,10 @@ public class SceneManageNDisplay : MonoBehaviour
     }
     void CoreAppear(){
         mapCore.SetActive(true);
-    }
-    void MapCamSwitch(){
         MM.Reappear();
         MM.FFC();
+    }
+    void MapCamSwitch(){
         PanelOn = true;
         mapCam.SetActive(true);
     }
@@ -225,7 +225,7 @@ public class SceneManageNDisplay : MonoBehaviour
         if(!PickedLocation){
             WarningGuideCall(3); //picked location
         }
-        MM.confirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
+        ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
         MM.ResetFuelNeedDisplay();
         Invoke("Pull", .5f);
     }
