@@ -48,7 +48,7 @@ public class InventoryShowDetail : MonoBehaviour, MMEventListener<MMInventoryEve
     {
         Inventory targetInventory;
         switch (inventoryEvent.InventoryEventType) {
-            case MMInventoryEventType.Click:
+            case MMInventoryEventType.Select:
             targetInventory = inventoryEvent.Slot.ParentInventoryDisplay.TargetInventory;
             if (targetInventory.Content[inventoryEvent.Slot.Index] == null) return;
 

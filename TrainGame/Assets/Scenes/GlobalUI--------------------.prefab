@@ -24741,6 +24741,7 @@ GameObject:
   - component: {fileID: 3067406844653235643}
   - component: {fileID: 1278620444116846374}
   - component: {fileID: 5416381562136677593}
+  - component: {fileID: 6330157236342944247}
   m_Layer: 0
   m_Name: BakcpackDisplay
   m_TagString: Untagged
@@ -24988,7 +24989,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5908101552605544422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89d797f342c637a48a552a0f410bed46, type: 3}
   m_Name: 
@@ -25026,6 +25027,52 @@ MonoBehaviour:
     AltInputBinding: 0
     Action: 1
     Active: 1
+--- !u!114 &6330157236342944247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5908101552605544422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f57c65b33514874c819ea35cb218921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetInventoryName: BackpackInventory
+  PlayerID: Player1
+  InputBindings:
+  - SlotIndex: 0
+    InputBinding: 49
+    AltInputBinding: 0
+    Action: 1
+    Active: 1
+  - SlotIndex: 1
+    InputBinding: 50
+    AltInputBinding: 0
+    Action: 1
+    Active: 1
+  - SlotIndex: 2
+    InputBinding: 51
+    AltInputBinding: 0
+    Action: 1
+    Active: 1
+  - SlotIndex: 3
+    InputBinding: 52
+    AltInputBinding: 0
+    Action: 1
+    Active: 1
+  - SlotIndex: 4
+    InputBinding: 53
+    AltInputBinding: 0
+    Action: 1
+    Active: 1
+  - SlotIndex: 5
+    InputBinding: 54
+    AltInputBinding: 0
+    Action: 1
+    Active: 1
+  _inventoryDisplay: {fileID: 2030589621269525984}
 --- !u!1 &5963865225314091051
 GameObject:
   m_ObjectHideFlags: 0
@@ -30123,12 +30170,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5416381560620482115}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &4510748740977542797 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8481329513610066126, guid: d7aa124224af36241873e834dba2b039,
-    type: 3}
-  m_PrefabInstance: {fileID: 5416381560620482115}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3079120126620090755 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7030648046613446592, guid: d7aa124224af36241873e834dba2b039,
@@ -30141,6 +30182,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e863ef80d26f494daa08d762ebe9208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4510748740977542797 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8481329513610066126, guid: d7aa124224af36241873e834dba2b039,
+    type: 3}
+  m_PrefabInstance: {fileID: 5416381560620482115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5416381561834759748
 PrefabInstance:
   m_ObjectHideFlags: 0
