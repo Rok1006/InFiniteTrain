@@ -35,6 +35,7 @@ public class PlayerManager : MonoBehaviour
     private CharacterHandleWeapon handleWeapon, secondaryHandleWeapon;
     private PlayerWeaponController PWC;
     private CharacterOrientation2D ChOri_2D;
+    private CharacterMovement _characterMovement;
 
 //weapons----
     [SerializeField] private WeaponCollection weaponCollection;
@@ -77,6 +78,11 @@ public class PlayerManager : MonoBehaviour
             controller = GetComponent<TopDownController3D>();
         else    
             Debug.Log("Can't find top down controller 3d in " + name);
+        
+        if (GetComponent<CharacterMovement>() != null)
+            _characterMovement = GetComponent<CharacterMovement>();
+        else    
+            Debug.Log("Can't find CharacterMovement in " + name);
 
     //weapons
         secondaryWeapon = GetComponent<CharacterHandleSecondaryWeapon>().CurrentWeapon;
@@ -226,6 +232,14 @@ public class PlayerManager : MonoBehaviour
         // secondaryCombo.WeaponStarted(secondaryWeapon);
         // secondaryCombo.FlipUnusedWeapons();
         Debug.Log("Testing");
+    }
+
+    public IEnumerator MovementBoost(float lastingTime, float boostValue, float originalMovementSpeed) {
+        _characterMovement.WalkSpeed = _characterMovement.WalkSpeed + boostValue;
+        _characterMovement.ResetSpeed();
+        yield return new WaitForSeconds(lastingTime);
+        _characterMovement.WalkSpeed = originalMovementSpeed;
+        _characterMovement.ResetSpeed();
     }
 
     
