@@ -8,10 +8,10 @@ using UnityEngine.EventSystems;
 public class InventoryInputActionPlus : InventoryInputActions
 {
     public InventoryDisplay _inventoryDisplay;
+    private bool isPerformingAction = false;
 
     protected override void DetectInput()
     {
-        base.DetectInput();
         foreach (InventoryInputActionsBindings binding in InputBindings)
         {
             if (binding == null)
@@ -22,11 +22,32 @@ public class InventoryInputActionPlus : InventoryInputActions
             {
                 continue;
             }
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(binding.InputBinding) || Input.GetKeyDown(binding.AltInputBinding))
+            {
+                if (!_inventoryDisplay.CurrentlySelectedInventorySlot().Equals( _inventoryDisplay.SlotContainer[binding.SlotIndex])) {
+                    ExecuteAction(binding);
+                } else {
+                    if (isPerformingAction)
+                        return;
+                    
+                    InventoryItemPlus item = (InventoryItemPlus) _targetInventory.Content[binding.SlotIndex];
+                    if (item != null) {
+                        StartCoroutine(waitToAct(item.actionTime, binding));
+                    }
+                }
+            }
+            if (Input.GetMouseButton(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject())
                     return;
-                ExecuteAction(binding);
+                if (isPerformingAction)
+                    return;
+                
+                InventoryItemPlus item = (InventoryItemPlus) _targetInventory.Content[binding.SlotIndex];
+                if (item != null) {
+                    StartCoroutine(waitToAct(item.actionTime, binding));
+                }
+                
             }
         }
     }
@@ -68,5 +89,12 @@ public class InventoryInputActionPlus : InventoryInputActions
                 }
             }
         }
+    }
+
+    IEnumerator waitToAct(float actionTime, InventoryInputActionsBindings binding) {
+        isPerformingAction = true;
+        yield return new WaitForSeconds(actionTime);
+        ExecuteAction(binding);
+        isPerformingAction = false;
     }
 }

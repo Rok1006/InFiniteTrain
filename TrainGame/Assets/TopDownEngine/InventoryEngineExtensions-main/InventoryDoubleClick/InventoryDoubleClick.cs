@@ -36,7 +36,6 @@ namespace InventoryDoubleClick
                     for (int i = 0; i < targetInventory.Content.Length; i++) {
                         if (targetInventory.Content[i] == null) {
                             currentInventory.MoveItemToInventory(_slot.Index, targetInventory);
-                            Debug.Log("Moving " + targetInventory.name + "\n" +_slot.name);
                             return;
                         }
                     }

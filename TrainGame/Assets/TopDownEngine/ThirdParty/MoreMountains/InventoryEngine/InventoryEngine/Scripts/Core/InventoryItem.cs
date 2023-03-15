@@ -21,7 +21,7 @@ namespace MoreMountains.InventoryEngine
 	/// Base class for inventory items, meant to be extended.
 	/// Will handle base properties and drop spawn
 	/// </summary>
-	public class InventoryItem : ScriptableObject 
+	public class InventoryItem : ScriptableObject
 	{
 		[Header("ID and Target")]
 		/// the (unique) ID of the item

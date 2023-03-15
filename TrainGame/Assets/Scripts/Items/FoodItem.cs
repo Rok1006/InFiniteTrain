@@ -9,7 +9,7 @@ using MoreMountains.TopDownEngine;
 
 [CreateAssetMenu(fileName = "FoodItem", menuName = "InfiniteTrain/Inventory/FoodItem", order = 2)]
 [Serializable]
-public class FoodItem : InventoryItem
+public class FoodItem : InventoryItemPlus
 {
     [BoxGroup("Food")]
     public int FoodCount;
