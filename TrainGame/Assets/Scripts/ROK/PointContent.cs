@@ -52,7 +52,7 @@ public class PointContent : MonoBehaviour
         }
     }
     private void Start() {
-        minX = float.PositiveInfinity;
+        minX = float.PositiveInfinity; //min X always stay as the the first go
         maxX = float.NegativeInfinity;
         minZ = float.PositiveInfinity;
         maxZ = float.NegativeInfinity;
@@ -84,14 +84,14 @@ public class PointContent : MonoBehaviour
             Debug.Log("checked");
             for (int i = 0; i < BA.BoundaryPt.Count; i++) //Assign Min Max
             {
-                Debug.Log(BA.BoundaryPt[i] +" = "+ BA.BoundaryPt[i].transform.localPosition);
+                Debug.Log(BA.BoundaryPt[i] +" = "+ BA.BoundaryPt[i].transform.position);
                 FindMaxnMin(BA.BoundaryPt[i]);
             }
             Debug.Log(minX + ","+minZ + ","+maxX + ","+maxZ );
 //Enviroment Related-------------------------
             CurrentList = BA.BoundaryPt;
             SpawnGrass(count, BA.BoundaryPt);
-            //if(P_Data[count].haveTraps){SpawnTraps(count, BA.BoundaryPt);};
+            if(P_Data[count].haveTraps){SpawnTraps(count, BA.BoundaryPt);};
             if(P_Data[count].haveResources){
                 for(int a = 0; a<ResourcesBoxPoint.Count; a++){
                     IsPointFull.Add(false);
@@ -102,6 +102,10 @@ public class PointContent : MonoBehaviour
             if(P_Data[count].haveEnemy){SpawnEnemy();};
             count+=1; //Change Data files, make sure there is correct num of data
             // Debug.Log("Count: " + count);
+            minX = float.PositiveInfinity; //min X always stay as the the first go
+            maxX = float.NegativeInfinity;
+            minZ = float.PositiveInfinity;
+            maxZ = float.NegativeInfinity;
         }
     }
     void AssignDepthLayer(GameObject j){ //put this in a for loop check the spawned obj with the created list evertime if the Z is more front assign a higher number
@@ -157,7 +161,7 @@ public class PointContent : MonoBehaviour
         }
         return false;
     }
-    bool DetectGround(GameObject t, float raycastLength, string layer){  //Detect Scavenge Grd; For scavengegrd ONLY
+    bool DetectNONOGround(GameObject t, float raycastLength, string layer){  //Detect Scavenge Grd; For scavengegrd ONLY
         RaycastHit hit;
         int layerMask = LayerMask.GetMask(layer);
         Vector3 rayStartPos = new Vector3(t.transform.position.x, t.transform.position.y,t.transform.position.z);
@@ -171,6 +175,20 @@ public class PointContent : MonoBehaviour
         }
         return false;
     }
+    // bool DetectYESGround(GameObject t, float raycastLength, string layer){  //Detect Scavenge Grd; For scavengegrd ONLY
+    //     RaycastHit hit;
+    //     int layerMask = LayerMask.GetMask(layer);
+    //     Vector3 rayStartPos = new Vector3(t.transform.position.x, t.transform.position.y,t.transform.position.z);
+    //     if(Physics.BoxCast(rayStartPos,t.transform.localScale / 2f, Vector3.down, out hit, Quaternion.identity,  raycastLength, layerMask)){   //not detecting the tile but the ground
+    //         Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.green);
+    //         Debug.Log("There is ground below " + hit.collider.gameObject.name);
+    //         return true; //true
+    //     }else{
+    //         Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.red);
+    //         //Debug.Log("There is no ground below" +t.gameObject.name);
+    //     }
+    //     return false;
+    // }
     void SpawnGrass(int count, List<GameObject> BA){ //count is the spawned land, each data count is one land, each pt can have multiple land
         RandomPoint.TrimExcess(); //Reset list
         RandomPoint.Clear(); //Reset list
@@ -182,7 +200,7 @@ public class PointContent : MonoBehaviour
                 currentPt = GetRandomPt(BA);
                 currentPt = new Vector3(currentPt.x, currentPt.y+15, currentPt.z);
                 g = Instantiate (GrassType[Random.Range(0, GrassType.Length)], currentPt, Quaternion.identity);
-                if(DetectGround(g , 50f, "NONOGRD")||DetectUnderneath(g , 50f, "Environment")){ //Check if stuff underneath & on ground
+                if(DetectNONOGround(g , 50f, "NONOGRD")||DetectUnderneath(g , 50f, "Environment")){ //Check if stuff underneath & on ground
                     Destroy(g);
                     Debug.Log("in");
                 }
@@ -214,11 +232,11 @@ public class PointContent : MonoBehaviour
                 t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
                 t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
                 //Debug.Log(DetectGround(t , 100f, "ScavengeGround"));
-                if(DetectGround(t , 100f, "NONOGRD")||DetectUnderneath(t , 100f, "Environment")){ //Check if stuff underneath & on ground
+                if(DetectNONOGround(t , 100f, "NONOGRD")||DetectUnderneath(t , 100f, "Environment")){ //Check if stuff underneath & on ground
                     //Debug.Log(t.transform.position);
                     Destroy(t);
-                    Debug.Log("Destroy");
-                    Debug.Log("Count: "+ count);
+                    Debug.Log("Destroy: "+ t.transform.position);
+                    //Debug.Log("Count: "+ count);
                 }
                 else{
                     Debug.Log("Traps: out");
@@ -226,7 +244,7 @@ public class PointContent : MonoBehaviour
                 }
             }; 
                 t.transform.position = new Vector3(currentPt.x, currentPt.y-15, currentPt.z);
-                
+                RandomPoint.Add(t.transform.position);
         }
         
     }//saveable
