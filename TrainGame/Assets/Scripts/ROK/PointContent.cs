@@ -52,10 +52,10 @@ public class PointContent : MonoBehaviour
         }
     }
     private void Start() {
-        minX = Mathf.Infinity;
-        maxX = -Mathf.Infinity;
-        minZ = Mathf.Infinity;
-        maxZ = -Mathf.Infinity;
+        minX = float.PositiveInfinity;
+        maxX = float.NegativeInfinity;
+        minZ = float.PositiveInfinity;
+        maxZ = float.NegativeInfinity;
         
         GenerateContent();
         for(int i = 0; i<NONOSQUARE.Length; i++){
@@ -84,22 +84,24 @@ public class PointContent : MonoBehaviour
             Debug.Log("checked");
             for (int i = 0; i < BA.BoundaryPt.Count; i++) //Assign Min Max
             {
-                //Debug.Log(BA.BoundaryPt[i]);
+                Debug.Log(BA.BoundaryPt[i] +" = "+ BA.BoundaryPt[i].transform.localPosition);
                 FindMaxnMin(BA.BoundaryPt[i]);
             }
+            Debug.Log(minX + ","+minZ + ","+maxX + ","+maxZ );
 //Enviroment Related-------------------------
             CurrentList = BA.BoundaryPt;
             SpawnGrass(count, BA.BoundaryPt);
-            SpawnTraps(count, BA.BoundaryPt);
+            //if(P_Data[count].haveTraps){SpawnTraps(count, BA.BoundaryPt);};
             if(P_Data[count].haveResources){
                 for(int a = 0; a<ResourcesBoxPoint.Count; a++){
                     IsPointFull.Add(false);
                 }
                 SpawnResouceBox(count);
             };
-            if(P_Data[count].havePond){SpawnPond(BA.BoundaryPt);};
+            if(P_Data[count].havePond){SpawnPondTrap(BA.BoundaryPt);};
             if(P_Data[count].haveEnemy){SpawnEnemy();};
             count+=1; //Change Data files, make sure there is correct num of data
+            // Debug.Log("Count: " + count);
         }
     }
     void AssignDepthLayer(GameObject j){ //put this in a for loop check the spawned obj with the created list evertime if the Z is more front assign a higher number
@@ -139,10 +141,10 @@ public class PointContent : MonoBehaviour
         }
         //return false;   
     }
-    bool DetectUnderneath(GameObject t, float raycastLength){
-        Debug.Log("df");
+    bool DetectUnderneath(GameObject t, float raycastLength, string layer){  //Ray cast to check underneath
+        //Debug.Log("df");
         RaycastHit hit;
-        int layerMask = LayerMask.GetMask("Environment");
+        int layerMask = LayerMask.GetMask(layer);
         Vector3 rayStartPos = new Vector3(t.transform.position.x, t.transform.position.y,t.transform.position.z);
         if(Physics.BoxCast(rayStartPos,t.transform.localScale / 2.0f, Vector3.down, out hit, Quaternion.identity,  raycastLength, layerMask)){   //not detecting the tile but the ground
             Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.green);
@@ -155,25 +157,41 @@ public class PointContent : MonoBehaviour
         }
         return false;
     }
+    bool DetectGround(GameObject t, float raycastLength, string layer){  //Detect Scavenge Grd; For scavengegrd ONLY
+        RaycastHit hit;
+        int layerMask = LayerMask.GetMask(layer);
+        Vector3 rayStartPos = new Vector3(t.transform.position.x, t.transform.position.y,t.transform.position.z);
+        if(Physics.BoxCast(rayStartPos,t.transform.localScale / 2f, Vector3.down, out hit, Quaternion.identity,  raycastLength, layerMask)){   //not detecting the tile but the ground
+            Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.green);
+            Debug.Log("There is no no ground below " + hit.collider.gameObject.name);
+            return true; //true
+        }else{
+            Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.red);
+            //Debug.Log("There is no ground below" +t.gameObject.name);
+        }
+        return false;
+    }
     void SpawnGrass(int count, List<GameObject> BA){ //count is the spawned land, each data count is one land, each pt can have multiple land
         RandomPoint.TrimExcess(); //Reset list
         RandomPoint.Clear(); //Reset list
         for (int i = 0; i < P_Data[count].GrassAmt; i++){ //needa make sure that the generated pt is not the same
-                Vector3 currentPt = GetRandomPt(BA);
-                if(currentPt==previousPt){
-                    currentPt = GetRandomPt(BA);
-                }else{
-                    RandomPoint.Add(currentPt);
+            GameObject g;
+            Vector3 currentPt;
+            while(true){
+                Debug.Log(i);
+                currentPt = GetRandomPt(BA);
+                currentPt = new Vector3(currentPt.x, currentPt.y+15, currentPt.z);
+                g = Instantiate (GrassType[Random.Range(0, GrassType.Length)], currentPt, Quaternion.identity);
+                if(DetectGround(g , 50f, "NONOGRD")||DetectUnderneath(g , 50f, "Environment")){ //Check if stuff underneath & on ground
+                    Destroy(g);
+                    Debug.Log("in");
                 }
-                GameObject g = Instantiate (GrassType[Random.Range(0, GrassType.Length)], currentPt, Quaternion.identity);
-                var sc = g.GetComponent<SpawnedStuff>();
-                //g.transform.localScale = new Vector3(7f,7f,7f); //currently hard code if have more types gotta figure out a way
-                //g.transform.rotation = g.GetComponent<SpawnedStuff>().rotation;
-                
-                CreatedGrass.Add(g);
-                //if(i == P_Data[count].GrassAmt-1){ //wait until the last check
-                    canCheckOverlap = true;
-                // }
+                else{
+                    Debug.Log("out");
+                    break;
+                }
+            }; 
+                g.transform.position = new Vector3(currentPt.x, currentPt.y-15, currentPt.z);
                 DepthDetectStuff.Add(g); //add it to assign depth
                 AssignDepthLayer(g);
         }
@@ -183,45 +201,37 @@ public class PointContent : MonoBehaviour
         RandomPoint.Clear(); //Reset list
         CreatedStuff.TrimExcess(); //Reset list //to get new random pts
         CreatedStuff.Clear(); //Reset list
+        // Debug.Log("Count: " + count);
         for (int i = 0; i < P_Data[count].TrapAmt; i++){ //needa make sure that the generated pt is not the same
             GameObject t;
             Vector3 currentPt;
-            //currentPt = GetRandomPt(BA);
-                //previousPt = currentPt;
-                //RandomPoint.Add(currentPt);
-              //  currentPt = new Vector3(currentPt.x, currentPt.y+10, currentPt.z);
-               // t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
-                //t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
             while(true){
                 Debug.Log(i);
                 currentPt = GetRandomPt(BA);
-                 currentPt = new Vector3(currentPt.x, currentPt.y+10, currentPt.z);
+                //Debug.Log(currentPt);
+                Debug.Log("Traps: "+currentPt);
+                currentPt = new Vector3(currentPt.x, currentPt.y+15, currentPt.z);
                 t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
                 t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
-                if( DetectUnderneath(t , 100f)){
+                //Debug.Log(DetectGround(t , 100f, "ScavengeGround"));
+                if(DetectGround(t , 100f, "NONOGRD")||DetectUnderneath(t , 100f, "Environment")){ //Check if stuff underneath & on ground
+                    //Debug.Log(t.transform.position);
                     Destroy(t);
-                    Debug.Log("in");
+                    Debug.Log("Destroy");
+                    Debug.Log("Count: "+ count);
                 }
                 else{
-                    Debug.Log("out");
+                    Debug.Log("Traps: out");
                     break;
                 }
-            };
+            }; 
+                t.transform.position = new Vector3(currentPt.x, currentPt.y-15, currentPt.z);
                 
-                t.transform.position = new Vector3(currentPt.x, currentPt.y-10, currentPt.z);
-                //DetectUnderneath(t, 3f);
-                CreatedStuff.Add(t);
-                //if(i == P_Data[count].TrapAmt-1){ //wait until the last check
-                canCheckOverlap = true;
-                //}
-            //
-
-            
         }
-        //CheckIfOverlap();
+        
     }//saveable
 
-    void SpawnPond(List<GameObject> BA){
+    void SpawnPondTrap(List<GameObject> BA){
         Vector3 currentPt = GetRandomPt(BA);
         GameObject t = Instantiate (PondType[Random.Range(0, PondType.Length)], currentPt, Quaternion.identity);
         int ran = Random.Range(2,5);
@@ -239,7 +249,6 @@ public class PointContent : MonoBehaviour
             if (Random.Range(0,100) > 50)
                 TotalItemList.Add(BonusItems[i]);
         }
-
         //generate those resources boxes
         List<Inventory> boxes = new List<Inventory>();
         for(int x = 0; x < P_Data[count].resourceBoxNum; x++){
@@ -259,8 +268,6 @@ public class PointContent : MonoBehaviour
 
                     //add box into boxes list
                     boxes.Add(inventory);
-                    
-
                     IsPointFull[index]=true;
                     break;
                 }
@@ -284,22 +291,7 @@ public class PointContent : MonoBehaviour
             GameObject e = Instantiate (EnemyType[Random.Range(0, EnemyType.Length)], EnemyPoint[x].transform.position, Quaternion.identity);
         }
     }
-    // bool CheckIfSameLocation(Vector3 point, List<GameObject> ResourcePt){
-    //     int num = 0;
-    //     bool isConflict = false;
-    //     foreach(GameObject r in ResourcePt){
-    //         if(point == r.transform.position){ //this is not right cus it will always be true everyone of them
-    //             Debug.Log("overlapped");
-    //             isConflict = true;
-    //             //return false; //found overlap
-    //         }
-    //         // else{
-    //         //     num++;
-    //         // }
-    //     }
-    //     return isConflict;
-    //     //return num % 2 == 1; //after checked all and found no overlap
-    // }
+
     void FindMaxnMin(GameObject pt){
             Vector3 point = pt.transform.position;
             if (point.x < minX)
@@ -320,44 +312,45 @@ public class PointContent : MonoBehaviour
             }
     }
     Vector3 GetRandomPt(List<GameObject> boundaryPoints ){
-        Vector3 randomPoint;
-        do{
-            float randomX = Random.Range(minX, maxX);
-            float randomZ = Random.Range(minZ, maxZ);
-            randomPoint = new Vector3(randomX, 0f, randomZ);
-        } while (!IsPointInsideBoundary(randomPoint, boundaryPoints));
-        return randomPoint;
-    }
-    bool IsPointInsideBoundary(Vector3 point, List<GameObject> boundary){ // Define a function to check if a point is inside the boundary
-        int num = 0;
-        for (int i = 0; i < boundary.Count; i++)
-        {
-            Vector3 p1 = boundary[i].transform.position;
-            Vector3 p2 = boundary[(i + 1) % boundary.Count].transform.position;
-            if (IsPointOnLineSegment(point, p1, p2))
-            {
-                
-                return true;
-            }
-            if (IsPointToLeftOfLine(point, p1, p2))
-            {
-                //Debug.Log("jsehfjskdh");
-                num++;
-            }
-        }
-        return num % 2 == 1;
-    }
-    bool IsPointOnLineSegment(Vector3 point, Vector3 p1, Vector3 p2) // Define a function to check if a point is on a line segment
+    Vector3 randomPoint;
+    do{
+        float randomX = Random.Range(minX, maxX);
+        float randomZ = Random.Range(minZ, maxZ);
+        randomPoint = new Vector3(randomX, 0f, randomZ);
+    } while (!IsPointInsideBoundary(randomPoint, boundaryPoints));
+    return randomPoint;
+}
+
+bool IsPointInsideBoundary(Vector3 point, List<GameObject> boundary){
+    int num = 0;
+    for (int i = 0; i < boundary.Count; i++)
     {
-        float d = Vector3.Distance(p1, p2);
+        Vector3 p1 = boundary[i].transform.position;
+        Vector3 p2 = boundary[(i + 1) % boundary.Count].transform.position;
+        if (IsPointOnLineSegment(point, p1, p2))
+        {
+            return true;
+        }
+        if (IsPointToLeftOfLine(point, p1, p2))
+        {
+            num++;
+        }
+    }
+    return num % 2 == 1;
+}
+
+bool IsPointOnLineSegment(Vector3 point, Vector3 p1, Vector3 p2)
+{
+    float d = Vector3.Distance(p1, p2);
         float d1 = Vector3.Distance(point, p1);
         float d2 = Vector3.Distance(point, p2);
         return Mathf.Approximately(d, d1 + d2);
-    }
-    bool IsPointToLeftOfLine(Vector3 point, Vector3 p1, Vector3 p2) // Define a function to check if a point is to the left of a line
-    {
-        return ((p2.x - p1.x) * (point.z - p1.z) - (p2.z - p1.z) * (point.x - p1.x)) > 0;
-    }
+}
+
+bool IsPointToLeftOfLine(Vector3 point, Vector3 p1, Vector3 p2)
+{
+     return ((p2.x - p1.x) * (point.z - p1.z) - (p2.z - p1.z) * (point.x - p1.x)) > 0;
+}
 }
 
 [System.Serializable]
@@ -371,7 +364,8 @@ public class PointContent : MonoBehaviour
         public InventoryItem Item;
         public int Quantity;
     }
-    
+
+//DUMPSTER AREA
 /* Current Issue:
 - SomeTime Grass out of BoundaryPt, why?
 */
@@ -387,3 +381,29 @@ public class PointContent : MonoBehaviour
             //     g.transform.rotation = Quaternion.Euler(70f, 0f, 180f);
             //     CreatedStuff.Add(g);
             // }
+
+
+
+             //currentPt = GetRandomPt(BA);
+                //previousPt = currentPt;
+                //RandomPoint.Add(currentPt);
+              //  currentPt = new Vector3(currentPt.x, currentPt.y+10, currentPt.z);
+               // t = Instantiate (TrapTileType[Random.Range(0, TrapTileType.Length)], currentPt, Quaternion.identity);
+                //t.transform.rotation = Quaternion.Euler(90f, 0f, 0f); //only certain type is like that
+
+                // bool CheckIfSameLocation(Vector3 point, List<GameObject> ResourcePt){
+    //     int num = 0;
+    //     bool isConflict = false;
+    //     foreach(GameObject r in ResourcePt){
+    //         if(point == r.transform.position){ //this is not right cus it will always be true everyone of them
+    //             Debug.Log("overlapped");
+    //             isConflict = true;
+    //             //return false; //found overlap
+    //         }
+    //         // else{
+    //         //     num++;
+    //         // }
+    //     }
+    //     return isConflict;
+    //     //return num % 2 == 1; //after checked all and found no overlap
+    // }
