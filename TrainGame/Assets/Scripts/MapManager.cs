@@ -138,6 +138,7 @@ public class MapManager : MonoBehaviour
         {
             if(points[i].GetComponent<Point>().isPlayer == true)
             {
+                Debug.Log("fuckkkkkk");
                 player = points[i];
             }
         }

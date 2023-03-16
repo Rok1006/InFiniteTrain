@@ -85,11 +85,16 @@ public class MapPopUp : MonoBehaviour
                 //SceneManageNDisplay.fuelCost = this.gameObject.GetComponent<Point>().fuelAmtNeeded;
                 SceneManageNDisplay.WarningGuideCall(4);
                 mm.GetTotalFuelNeeded(this.GetComponent<Point>().id);
+                GetComponent<Point>().MovePlayer(); //new
+                GetComponent<Point>().isPlayer = true; //new
                 //InfoSC.CurrentSelectedPtObj = this.PopUpObj;
-           }
+            }
+            
+            mm.UpdatePlayer(); //new
+            
                 //MapManager.gameState = 1;  //turns related
-            GetComponent<Point>().MovePlayer();
-            mm.UpdatePlayer();
+            
+            
         //    if( mm.IsAvailableToMove(this.gameObject) == true) //available to move Accord to fuelAmt
         //    {
         //         SceneManageNDisplay.hasEnoughFuel = true; //have enoughfuel
