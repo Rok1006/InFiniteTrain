@@ -1070,6 +1070,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca318d663d0ae2c43a2364229bf58e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3225912563824559047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4244985448889784529}
+  - component: {fileID: 8215028317742951569}
+  m_Layer: 10
+  m_Name: Plant Feedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4244985448889784529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225912563824559047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5344269135325281431}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8215028317742951569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225912563824559047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Feedbacks: []
+  InitializationMode: 2
+  SafeMode: 3
+  Direction: 0
+  AutoChangeDirectionOnEnd: 0
+  AutoPlayOnStart: 0
+  AutoPlayOnEnable: 0
+  ForceTimescaleMode: 0
+  ForcedTimescaleMode: 1
+  DurationMultiplier: 1
+  DisplayFullDurationDetails: 0
+  PlayerTimescaleMode: 1
+  CooldownDuration: 0
+  InitialDelay: 0
+  CanPlay: 1
+  CanPlayWhileAlreadyPlaying: 1
+  ChanceToPlay: 100
+  FeedbacksIntensity: 1
+  Events:
+    TriggerMMFeedbacksEvents: 0
+    TriggerUnityEvents: 1
+    OnPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    OnPause:
+      m_PersistentCalls:
+        m_Calls: []
+    OnResume:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRevert:
+      m_PersistentCalls:
+        m_Calls: []
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  DebugActive: 0
 --- !u!1 &3726731102890860838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1284,7 @@ Transform:
   - {fileID: 8394198036976492847}
   - {fileID: 6795531152465098714}
   - {fileID: 5976853891568199901}
+  - {fileID: 4244985448889784529}
   m_Father: {fileID: 8827246564645167332}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1624,6 +1705,11 @@ MonoBehaviour:
   oldPositionX: 0
   oldPositionZ: 0
   down: 1
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  destination: {fileID: 5789097538514014753, guid: 6088a35e9ed4e0b4a95e7ea473247891,
+    type: 3}
   weaponCollection: {fileID: 11400000, guid: 3572839a7c49f704a984d1f1dd077a3d, type: 2}
 --- !u!114 &5370995265323137568
 MonoBehaviour:

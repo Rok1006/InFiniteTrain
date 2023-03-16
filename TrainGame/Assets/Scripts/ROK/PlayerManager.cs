@@ -4,6 +4,8 @@ using UnityEngine;
 using Cinemachine;
 using MoreMountains.TopDownEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using NaughtyAttributes;
 
 //This script handle wtever related to Player that is not related to topdown engine
 public class PlayerManager : MonoBehaviour
@@ -29,6 +31,10 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]public float oldPositionZ = 0.0f;
     private bool isAttacking = false;
     public bool down = true;
+
+//mouse control------------
+    [SerializeField, BoxGroup("Mouse Control")] private LayerMask TargetLayerMask;
+    [SerializeField, BoxGroup("Mouse Control")] private GameObject destination;
 
 //references------
     private TopDownController3D controller;
@@ -241,6 +247,34 @@ public class PlayerManager : MonoBehaviour
         _characterMovement.WalkSpeed = originalMovementSpeed;
         _characterMovement.ResetSpeed();
     }
+
+    public virtual GameObject CreateDestination()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return null;
+
+            if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButton(0)) return null;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+#if UNITY_EDITOR
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+#endif
+            if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, TargetLayerMask))
+            {   
+                GameObject Des = Instantiate(destination, Vector3.zero, Quaternion.identity);
+                Des.transform.position = hitInfo.point;
+                return Des;
+            }
+            return null;
+            
+            // _player.TargetNPC = null;
+            // _brain.Target = null;
+            // if (_brain.CurrentState != _initialState) _brain.TransitionToState(_initialState.StateName);
+            // if (!_playerPlane.Raycast(ray, out var distance)) return;
+            // Destination.transform.position = ray.GetPoint(distance);
+            // _characterPathfinder3D.SetNewDestination(Destination.transform);
+            // if (Input.GetMouseButtonDown(MouseButtonIndex))
+            //     OnClickFeedbacks?.PlayFeedbacks(Destination.transform.position);
+        }
 
     
 }
