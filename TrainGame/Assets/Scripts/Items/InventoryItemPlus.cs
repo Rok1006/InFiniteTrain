@@ -6,4 +6,5 @@ using MoreMountains.InventoryEngine;
 public class InventoryItemPlus : InventoryItem
 {
     public float actionTime;
+    public bool hasMovementRestriction = true;
 }

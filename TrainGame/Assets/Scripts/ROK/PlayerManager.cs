@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerWeaponController PWC;
     private CharacterOrientation2D ChOri_2D;
     private CharacterMovement _characterMovement;
+    private Character _character;
 
 //weapons----
     [SerializeField] private WeaponCollection weaponCollection;
@@ -85,10 +86,15 @@ public class PlayerManager : MonoBehaviour
         else    
             Debug.Log("Can't find top down controller 3d in " + name);
         
-        if (GetComponent<CharacterMovement>() != null)
+        if (GetComponent<CharacterMovement>() != null) {
             _characterMovement = GetComponent<CharacterMovement>();
-        else    
+        } else    
             Debug.Log("Can't find CharacterMovement in " + name);
+        
+        if (GetComponent<Character>() != null) {
+            _character = GetComponent<Character>();
+        } else
+            Debug.Log("Can't find Character in " + name);
 
     //weapons
         secondaryWeapon = GetComponent<CharacterHandleSecondaryWeapon>().CurrentWeapon;
@@ -246,6 +252,17 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(lastingTime);
         _characterMovement.WalkSpeed = originalMovementSpeed;
         _characterMovement.ResetSpeed();
+    }
+
+    public void RestrictMovement() {
+        // _characterMovement.SetMovement(Vector2.zero);
+        _character.Freeze();
+        _characterMovement.AbilityPermitted = false;
+    }
+
+    public void ReleaseMovement() {
+        _character.UnFreeze();
+        _characterMovement.AbilityPermitted = true;
     }
 
     public virtual GameObject CreateDestination()

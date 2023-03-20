@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.InventoryEngine;
 using UnityEngine.EventSystems;
+using MoreMountains.TopDownEngine;
 
 public class InventoryInputActionPlus : InventoryInputActions
 {
     public InventoryDisplay _inventoryDisplay;
     private bool isPerformingAction = false;
-    [SerializeField] private Animator _playerAnimator;
+    private Animator _playerAnimator;
+    private PlayerManager _playerManager;
 
     protected override void Start()
     {
         base.Start();
         _playerAnimator = FindObjectOfType<PlayerInformation>().PlayerAnimator;
+        _playerManager = FindObjectOfType<PlayerManager>();
     }
 
     protected override void DetectInput()
@@ -99,8 +102,14 @@ public class InventoryInputActionPlus : InventoryInputActions
     }
 
     IEnumerator waitToAct(float actionTime, InventoryInputActionsBindings binding) {
+        InventoryItemPlus item = _targetInventory.Content[binding.SlotIndex] as InventoryItemPlus;
+        if (item.hasMovementRestriction) {
+            _playerManager.RestrictMovement();
+        }
         isPerformingAction = true;
         yield return new WaitForSeconds(actionTime);
+        //release restricted movement
+        _playerManager.ReleaseMovement();
 
         //finish action animation
         _playerAnimator.SetTrigger("ActionFinished");
