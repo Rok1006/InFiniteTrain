@@ -266,32 +266,30 @@ public class PlayerManager : MonoBehaviour
     }
 
     public virtual GameObject CreateDestination()
-        {
-            if (EventSystem.current.IsPointerOverGameObject())
-                return null;
-
-            if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButton(0)) return null;
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-#if UNITY_EDITOR
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-#endif
-            if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, TargetLayerMask))
-            {   
-                GameObject Des = Instantiate(destination, Vector3.zero, Quaternion.identity);
-                Des.transform.position = hitInfo.point;
-                return Des;
-            }
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
             return null;
-            
-            // _player.TargetNPC = null;
-            // _brain.Target = null;
-            // if (_brain.CurrentState != _initialState) _brain.TransitionToState(_initialState.StateName);
-            // if (!_playerPlane.Raycast(ray, out var distance)) return;
-            // Destination.transform.position = ray.GetPoint(distance);
-            // _characterPathfinder3D.SetNewDestination(Destination.transform);
-            // if (Input.GetMouseButtonDown(MouseButtonIndex))
-            //     OnClickFeedbacks?.PlayFeedbacks(Destination.transform.position);
-        }
 
-    
+        if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButton(0)) return null;
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+#if UNITY_EDITOR
+        Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+#endif
+        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, TargetLayerMask))
+        {   
+            GameObject Des = Instantiate(destination, Vector3.zero, Quaternion.identity);
+            Des.transform.position = hitInfo.point;
+            return Des;
+        }
+        return null;
+        
+        // _player.TargetNPC = null;
+        // _brain.Target = null;
+        // if (_brain.CurrentState != _initialState) _brain.TransitionToState(_initialState.StateName);
+        // if (!_playerPlane.Raycast(ray, out var distance)) return;
+        // Destination.transform.position = ray.GetPoint(distance);
+        // _characterPathfinder3D.SetNewDestination(Destination.transform);
+        // if (Input.GetMouseButtonDown(MouseButtonIndex))
+        //     OnClickFeedbacks?.PlayFeedbacks(Destination.transform.position);
+    }
 }

@@ -46,7 +46,7 @@ public class InventoryInputActionPlus : InventoryInputActions
                     }
                 }
             }
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject())
                     return;
@@ -57,7 +57,15 @@ public class InventoryInputActionPlus : InventoryInputActions
                 if (item != null) {
                     StartCoroutine(waitToAct(item.actionTime, binding));
                 }
-                
+            }
+
+            //cancel work if player doesnt hold the key/mouse button
+            if (Input.GetKeyUp(binding.InputBinding) || Input.GetKeyUp(binding.AltInputBinding) || Input.GetMouseButtonUp(0)) {
+                if (isPerformingAction) {
+                    StopAllCoroutines();
+                    isPerformingAction = false;
+                    _playerManager.ReleaseMovement();
+                }
             }
         }
     }
