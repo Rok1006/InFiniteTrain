@@ -9,6 +9,13 @@ public class InventoryInputActionPlus : InventoryInputActions
 {
     public InventoryDisplay _inventoryDisplay;
     private bool isPerformingAction = false;
+    [SerializeField] private Animator _playerAnimator;
+
+    protected override void Start()
+    {
+        base.Start();
+        _playerAnimator = FindObjectOfType<PlayerInformation>().PlayerAnimator;
+    }
 
     protected override void DetectInput()
     {
@@ -94,6 +101,10 @@ public class InventoryInputActionPlus : InventoryInputActions
     IEnumerator waitToAct(float actionTime, InventoryInputActionsBindings binding) {
         isPerformingAction = true;
         yield return new WaitForSeconds(actionTime);
+
+        //finish action animation
+        _playerAnimator.SetTrigger("ActionFinished");
+
         ExecuteAction(binding);
         isPerformingAction = false;
     }

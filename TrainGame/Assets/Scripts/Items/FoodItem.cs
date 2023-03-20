@@ -49,6 +49,9 @@ public class FoodItem : InventoryItemPlus
         else
             originalMovementSpeed = _characterMovement.WalkSpeed;
         
+        //set animation
+        _playerInfo.PlayerAnimator.SetTrigger("Eating");
+
         _playerManager.StartCoroutine(_playerManager.MovementBoost(lastingTime, movementBoost, originalMovementSpeed));
         return true;
     }

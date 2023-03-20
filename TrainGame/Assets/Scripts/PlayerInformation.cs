@@ -13,6 +13,7 @@ public class PlayerInformation : MonoBehaviour
     [SerializeField, BoxGroup("Fuel")]private int fuelAmt;
     [SerializeField, BoxGroup("Inventory")] private string backpackName;
     [ShowNonSerializedField, BoxGroup("Inventory")] private Inventory backpackInven;
+    [SerializeField, BoxGroup("Animation")] private Animator playerAnimator;
      
 
     //getters & setters
@@ -21,6 +22,7 @@ public class PlayerInformation : MonoBehaviour
     public float MinRadiationValue {get=>minRadiationValue; set=>minRadiationValue=value;}
     public int FuelAmt {get=>fuelAmt; set=>fuelAmt=value;}
     public Inventory BackpackInven {get=>backpackInven;set=>backpackInven=value;}
+    public Animator PlayerAnimator {get=>playerAnimator;}
 
     void Update() {
         if (!SceneManager.GetActiveScene().name.Equals("LoadingScene") && !SceneManager.GetActiveScene().name.Equals("Start Screen")) {

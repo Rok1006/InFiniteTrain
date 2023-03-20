@@ -58,7 +58,6 @@ public class ResourceBox : MonoBehaviour
         //generate inventory items into inventory if there's any in the list
         info = FindObjectOfType<Info>();
         if (info.isNewGame) {
-            Debug.Log("adding items");
             foreach(InventoryItem item in itemsToGenerate) {
                 GetComponentInChildren<Inventory>().AddItem(item, 1);
             }
