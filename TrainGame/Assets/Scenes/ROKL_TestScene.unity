@@ -3352,7 +3352,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7776049, y: 1}
+    m_SensorSize: {x: 1.7772397, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4388,7 +4388,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7776049, y: 1}
+    m_SensorSize: {x: 1.7772397, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4784,7 +4784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1575049615
 Transform:
   m_ObjectHideFlags: 0
@@ -5633,12 +5633,12 @@ ParticleSystem:
   m_GameObject: {fileID: 1811305626}
   serializedVersion: 7
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 2.23
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5876,7 +5876,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.28
+      scalar: 0.94
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6034,7 +6034,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -6087,7 +6087,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -6140,8 +6140,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotation:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: 6.283185
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -6457,7 +6457,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.74
+      scalar: 2.11
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7081,7 +7081,8 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: d231e18e55f422349931d83925fdece0, type: 3}
+    - sprite: {fileID: -1934431512877505848, guid: d16e66d14a6c44932abe5eaaab9120a0,
+        type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -11642,7 +11643,7 @@ PrefabInstance:
     - target: {fileID: 6774373621328387198, guid: 3705590461bb94d6396c32f3cd873d9b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3705590461bb94d6396c32f3cd873d9b, type: 3}
@@ -12591,6 +12592,7 @@ MonoBehaviour:
   minRadiationValue: 0
   fuelAmt: 0
   backpackName: 
+  playerAnimator: {fileID: 0}
 --- !u!114 &5522988942245568861
 MonoBehaviour:
   m_ObjectHideFlags: 0
