@@ -10,7 +10,8 @@ public class MeleeEnemy : MonoBehaviour
     {
         PATROL,
         ATTACK,
-        STOP
+        STOP,
+        STUN
         
     }
     public LayerMask layermask;
@@ -57,9 +58,28 @@ public class MeleeEnemy : MonoBehaviour
             case State.STOP:
                 Detect();
                 break;
+            case State.STUN:
+                StartCoroutine(Stun());
+                break;
             
                 
         }
+    }
+
+    IEnumerator Stun()
+    {
+        float duration = 2f; // 2 seconds you can change this to
+                             //to whatever you want
+        float totalTime = 0;
+        while (totalTime <= duration)
+        {
+            rb.velocity = Vector3.zero;
+            totalTime += Time.deltaTime;
+            var integer = (int)totalTime; /* no need for now */
+            yield return null;
+        }
+
+        this.state = State.PATROL;
     }
     void MoveTowards()
     {
@@ -157,4 +177,11 @@ public class MeleeEnemy : MonoBehaviour
     }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "ThrowItem")
+        {
+            this.state = State.STUN;
+        }
+    }
 }
