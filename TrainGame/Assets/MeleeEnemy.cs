@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserDrone : MonoBehaviour
+public class MeleeEnemy : MonoBehaviour
 {
     public Transform[] wayPoints;
 
@@ -39,6 +39,7 @@ public class LaserDrone : MonoBehaviour
             case State.PATROL:
                 Move();
                 Detect();
+                
                 break;
             case State.ATTACK:
                 MoveTowards();
@@ -47,6 +48,10 @@ public class LaserDrone : MonoBehaviour
                     //attack here and disable canAttack
 
 
+                }
+                if(Vector3.Distance(this.transform.position ,player.transform.position) > 20)
+                {
+                    this.state = State.PATROL;
                 }
                 break;
             case State.STOP:
@@ -90,6 +95,7 @@ public class LaserDrone : MonoBehaviour
             return;
         }
         //transform.position = Vector3.MoveTowards(transform.position, wayPoints[destPoint].position, speed);
+        Debug.Log("dff");
         var direction = (wayPoints[destPoint].position - this.transform.position).normalized;
         
         rb.velocity = direction * speed;
@@ -129,7 +135,7 @@ public class LaserDrone : MonoBehaviour
     {
         if(player!=null){
         Vector3 dir = (player.transform.position + new Vector3(0 , 5 , 0) - transform.position).normalized;
-        float angle = Vector3.Angle(dir, transform.right);
+        float angle = Vector3.Angle(dir, transform.right * -1);
         RaycastHit r;
         
         if(angle < fovAngle / 2)
