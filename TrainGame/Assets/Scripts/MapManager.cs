@@ -39,7 +39,7 @@ public class MapManager : MonoBehaviour
         SMD = GameObject.Find("SceneManage&Interactions").GetComponent<SceneManageNDisplay>();
         UpdatePlayerIcon();
         UpdatePlayer();
-        triggerDoorToOutside.SetActive(false);
+        //triggerDoorToOutside.SetActive(false);
         //InitialState
         // InfoSC.CurrentPlayerTrainInterval = 0;
         // InfoSC.CurrentEnemyTrainInterval = 0;

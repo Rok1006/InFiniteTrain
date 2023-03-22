@@ -25966,7 +25966,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.777027, y: 1}
+    m_SensorSize: {x: 1.7774049, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -34406,6 +34406,7 @@ MonoBehaviour:
   playerTrainInterval: 0
   enemyTrainInterval: 0
   confirmedPlayerTrainLocal: 0
+  doorState: 0
   IsViewingInventory: 0
   isNewGame: 1
 --- !u!1 &1199380521
@@ -41840,11 +41841,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445022613}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9268889, y: 2.6767488, z: 1.6101402}
-  m_Center: {x: 0, y: 0.976794, z: -0.3050708}
+  m_Size: {x: 0.8618916, y: 2.8505845, z: 0.864898}
+  m_Center: {x: -0.25155702, y: 0.8898766, z: 1.6265283}
 --- !u!82 &1445022617
 AudioSource:
   m_ObjectHideFlags: 0
@@ -48465,7 +48466,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.777027, y: 1}
+    m_SensorSize: {x: 1.7774049, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -49514,7 +49515,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.777027, y: 1}
+    m_SensorSize: {x: 1.7774049, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -68018,6 +68019,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 585971654374930607, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 585971654374930607, guid: c3a9fa4bfa2306c478de67f26c08ab62,
+        type: 3}
       propertyPath: UseEntryPoints
       value: 0
       objectReference: {fileID: 0}
@@ -68103,6 +68109,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5012803582101684254, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012803582101684254, guid: c3a9fa4bfa2306c478de67f26c08ab62,
+        type: 3}
       propertyPath: mapManager
       value: 
       objectReference: {fileID: 1359651297}
@@ -68114,7 +68125,7 @@ PrefabInstance:
     - target: {fileID: 5012803582101684255, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
       propertyPath: m_Size.x
-      value: 10.808228
+      value: 11.212905
       objectReference: {fileID: 0}
     - target: {fileID: 5012803582101684255, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
@@ -68124,12 +68135,12 @@ PrefabInstance:
     - target: {fileID: 5012803582101684255, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
       propertyPath: m_Size.z
-      value: 2.2321014
+      value: 2.3130348
       objectReference: {fileID: 0}
     - target: {fileID: 5012803582101684255, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
       propertyPath: m_Center.x
-      value: -0.46232605
+      value: -3.0117564
       objectReference: {fileID: 0}
     - target: {fileID: 5012803582101684255, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
@@ -68139,7 +68150,7 @@ PrefabInstance:
     - target: {fileID: 5012803582101684255, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.87977314
+      value: 0.21283767
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3a9fa4bfa2306c478de67f26c08ab62, type: 3}
@@ -74088,7 +74099,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.777027, y: 1}
+    m_SensorSize: {x: 1.7774049, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

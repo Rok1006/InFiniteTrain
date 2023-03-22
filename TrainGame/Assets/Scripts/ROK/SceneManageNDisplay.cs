@@ -49,6 +49,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField,BoxGroup("TrainMoveStop")] private Animator doorAnim;
     [SerializeField,BoxGroup("TrainMoveStop")] private AudioSource doorAudio;
     [SerializeField,BoxGroup("TrainMoveStop")] private GameObject BGScroll;
+    private int doorIsOpen = 0; //0 = close, 1 = open
     //private CinemachineBasicMultiChannelPerlin m_noise;
 //[HideInInspector]
 
@@ -75,8 +76,14 @@ public class SceneManageNDisplay : MonoBehaviour
         currentValue = 0; //set initial
         targetValue = 1.5f;
         UpdateCamNoise(currentValue);
-        door.SetActive(false);
-        doorAnim.SetTrigger("Close");
+        if(ISF.doorState==0){
+            door.SetActive(false);
+            doorAnim.SetTrigger("Close");  
+        }else{
+            door.SetActive(true);
+            doorAnim.SetTrigger("Open");
+        }
+        
         BGScroll.SetActive(false);
         //bgscroll = BGScroll.GetComponent<Animator>();
         //currentTrainStatusMessage = "S T A R T  T R A I N";
@@ -260,6 +267,7 @@ public class SceneManageNDisplay : MonoBehaviour
             trainTrigger.guideDescript = "S T A R T  T R A I N";
             targetValue = 0f;
             door.SetActive(true);
+            ISF.doorState = 1;
         }
         IsOn = false;
         IsMoving = false;

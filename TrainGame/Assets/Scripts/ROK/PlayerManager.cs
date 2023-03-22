@@ -70,12 +70,6 @@ public class PlayerManager : MonoBehaviour
         }
         facingFront = true;
         playerCam = GameObject.FindGameObjectWithTag("PlayerCam");
-        // if(playerCam!=null){
-        //     var sc = SceneManage.Instance;
-        //     var confiner = playerCam.GetComponent<CinemachineConfiner>();
-        //     confiner.InvalidatePathCache();
-        //     confiner.m_BoundingVolume = sc.MCTrainConfiner[0].GetComponent<Collider>();
-        // }
 
         PWC = this.gameObject.GetComponent<PlayerWeaponController>();
         ChOri_2D = this.gameObject.GetComponent<CharacterOrientation2D>();
@@ -217,7 +211,6 @@ public class PlayerManager : MonoBehaviour
                 dust[i].GetComponent<ParticleSystemRenderer>().sortingOrder = order;
         }
     }
-
     void OnTriggerEnter(Collider col) {
         // var sc = SceneManage.Instance;
         // for(int i = 0; i<sc.MCTrainConfiner.Count;i++){
@@ -228,7 +221,6 @@ public class PlayerManager : MonoBehaviour
         //    }
         // }
     }
-
     public void DisableAllWeaponAnimation(){
         MCFrontAnim.SetBool("Switch_smallGun", false);
         MCFrontAnim.SetBool("Switch_bigGun", false);

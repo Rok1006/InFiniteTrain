@@ -27,7 +27,7 @@ public class SceneTransition : MonoBehaviour
     public void ToBattleScene()
     {
         Singleton.Instance.id = mapManager.player.GetComponent<Point>().id;
-        door.SetActive(false);
+        //door.SetActive(false);
         MMEventManager.TriggerEvent(new MMGameEvent("Save"));
         SceneManager.LoadScene("MapPoint");
     }
@@ -42,7 +42,7 @@ public class SceneTransition : MonoBehaviour
         {
             Singleton.Instance.id = mapManager.player.GetComponent<Point>().id;
         }
-        door.SetActive(false);
+        //door.SetActive(false);
         MMEventManager.TriggerEvent(new MMGameEvent("Save"));
         // SceneManager.LoadScene(otherScene);
         gotoLevelEntryPoint.GoToNextLevel();
