@@ -38,7 +38,7 @@ public class PointContent : MonoBehaviour
     [SerializeField, BoxGroup("Resources")]private ResourceBoxItem[] NecessaryItems, BonusItems;
     [ShowNonSerializedField, BoxGroup("Resources")]private List<ResourceBoxItem> TotalItemList = new List<ResourceBoxItem>();
     [SerializeField, BoxGroup("Resources")]private GameObject[] GrassType; //grass prefab for generating grass or interactable environemnt
-    [SerializeField, BoxGroup("Resources")]private GameObject[] PondType;
+    [SerializeField, BoxGroup("Resources")]private GameObject[] PuddleType;
     [SerializeField, BoxGroup("Resources")]private GameObject[] EnemyType;
     //[SerializeField, BoxGroup("GrassSetting")]private int GrassAmt;
     [ReadOnly]public float minX,maxX,minZ,maxZ = 0;
@@ -98,7 +98,7 @@ public class PointContent : MonoBehaviour
                 }
                 SpawnResouceBox(count);
             };
-            if(P_Data[count].havePond){SpawnPondTrap(BA.BoundaryPt);};
+            if(P_Data[count].havePuddle){SpawnPuddleTrap(count,BA.BoundaryPt);};
             if(P_Data[count].haveEnemy){SpawnEnemy();};
             count+=1; //Change Data files, make sure there is correct num of data
             // Debug.Log("Count: " + count);
@@ -249,13 +249,34 @@ public class PointContent : MonoBehaviour
         
     }//saveable
 
-    void SpawnPondTrap(List<GameObject> BA){
-        Vector3 currentPt = GetRandomPt(BA);
-        GameObject t = Instantiate (PondType[Random.Range(0, PondType.Length)], currentPt, Quaternion.identity);
-        int ran = Random.Range(2,5);
-        t.transform.localScale = new Vector3(ran,ran,ran);
-        CreatedStuff.Add(t);
-        canCheckOverlap = true;
+    void SpawnPuddleTrap(int count, List<GameObject> BA){
+        // Vector3 currentPt = GetRandomPt(BA);
+        // GameObject t = Instantiate (PuddleType[Random.Range(0, PuddleType.Length)], currentPt, Quaternion.identity);
+        for (int i = 0; i < P_Data[count].PuddleAmt; i++){ //needa make sure that the generated pt is not the same
+            GameObject p;
+            Vector3 currentPt;
+            while(true){
+                Debug.Log(i);
+                currentPt = GetRandomPt(BA);
+                currentPt = new Vector3(currentPt.x, currentPt.y+15, currentPt.z);
+                p = Instantiate (PuddleType[Random.Range(0, PuddleType.Length)], currentPt, Quaternion.identity);
+                p.transform.rotation = Quaternion.Euler(0f, 0f, 0f); //only certain type is like that
+                float ran = Random.Range(2,5);
+                p.transform.localScale = new Vector3(ran,ran,ran);
+                //Debug.Log(DetectGround(t , 100f, "ScavengeGround"));
+                if(DetectNONOGround(p , 100f, "NONOGRD")||DetectUnderneath(p , 100f, "Environment")){ //Check if stuff underneath & on ground
+                    Destroy(p);
+                }
+                else{
+                    break;
+                }
+            }; 
+                p.transform.position = new Vector3(currentPt.x, currentPt.y-15, currentPt.z);
+                RandomPoint.Add(p.transform.position);
+        }
+    
+        // CreatedStuff.Add(t);
+        // canCheckOverlap = true;
     }//saveable
     void SpawnResouceBox(int count){ //cannot spawn on the same pt
         Vector3 getAPt;

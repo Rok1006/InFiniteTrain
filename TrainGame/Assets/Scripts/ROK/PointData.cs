@@ -8,7 +8,7 @@ using NaughtyAttributes;
 public class PointData : ScriptableObject
 {
     [SerializeField, BoxGroup("Settings")] public bool isWetLand;
-    [SerializeField, BoxGroup("Settings")] public bool havePond;
+    
     [SerializeField, BoxGroup("Environment")] public int GrassAmt;
 //--------------------
     //the prefab land frm resource folder shd have similar names of number/id specific; Start land End Land or middle land
@@ -18,6 +18,8 @@ public class PointData : ScriptableObject
     [SerializeField, BoxGroup("TrapSetting")] public bool haveTraps;
     [SerializeField, BoxGroup("TrapSetting")] public int TrapAmt;
     //[SerializeField, BoxGroup("TrapSetting")] public string TrapType;
+    [SerializeField, BoxGroup("PuddleSetting")] public bool havePuddle;
+    [SerializeField, BoxGroup("PuddleSetting")] public int PuddleAmt;
 //--------------------
     [SerializeField, BoxGroup("EnemySetting")] public bool haveEnemy;
     [SerializeField, BoxGroup("EnemySetting")] public int NumberOfEnemy;
