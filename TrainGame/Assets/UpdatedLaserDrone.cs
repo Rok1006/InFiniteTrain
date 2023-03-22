@@ -5,15 +5,12 @@ using UnityEngine;
 public class UpdatedLaserDrone : MonoBehaviour
 {
     public Transform[] wayPoints;
+    [SerializeField] private GameObject[] laserPt;
+    [SerializeField] private GameObject LaserObj;
+    [SerializeField] private Animator lazerDAnim;
 
-    public enum State
-    {
-        PATROL,
-        ATTACK,
-        STOP,
-        STUN
+    public enum State { PATROL, ATTACK, STOP, STUN }
 
-    }
     public LayerMask layermask;
     public int destPoint = 0;
     public float speed;
@@ -24,16 +21,20 @@ public class UpdatedLaserDrone : MonoBehaviour
     public float range;
     public float fovAngle;
     private Rigidbody rb;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = this.gameObject.GetComponent<Rigidbody>();
+        LaserObj.SetActive(false);
+        lazerDAnim.SetTrigger("shoot");
+        // LR.SetPosition(0, new Vector3(laserPt[0].transform.position.x, laserPt[0].transform.position.y, laserPt[0].transform.position.z));
+        // LR.SetPosition(1, new Vector3(laserPt[1].transform.position.x, laserPt[1].transform.position.y, laserPt[1].transform.position.z));
     }
 
-    // Update is called once per frame
     void Update()
     {
+        LaserObj.transform.position = laserPt[0].transform.position;
         switch (state)
         {
             case State.PATROL:
@@ -41,9 +42,11 @@ public class UpdatedLaserDrone : MonoBehaviour
                 //Detect();
                 break;
             case State.ATTACK:
+                lazerDAnim.SetBool("moving", false);
                 Attack();
                 break;
             case State.STOP:
+                lazerDAnim.SetBool("moving", false);
                 //Detect();
                 break;
                 case State.STUN:
@@ -52,6 +55,11 @@ public class UpdatedLaserDrone : MonoBehaviour
 
 
         }
+        if (lazerDAnim.GetCurrentAnimatorStateInfo(0).IsName("LaserShoot"))
+        {
+            LaserObj.SetActive(true);
+        }
+
     }
 
     IEnumerator Stun()
@@ -74,7 +82,7 @@ public class UpdatedLaserDrone : MonoBehaviour
 
     void Move()
     {
-
+        lazerDAnim.SetBool("moving", true);
         if (rb.velocity.x > 0)
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
@@ -113,9 +121,7 @@ public class UpdatedLaserDrone : MonoBehaviour
         Debug.Log("Df");
         this.rb.velocity = Vector3.zero;
         //do whatever u want here
-
-
-        
+        lazerDAnim.SetTrigger("shoot");
     }
     IEnumerator Stop()
     {
