@@ -8,9 +8,11 @@ using TMPro;
 
 public class MapPopUp : MonoBehaviour
 {
+    [SerializeField]private Info InfoSC;
+    [SerializeField]private SceneManageNDisplay SceneManageNDisplay;
+
     [SerializeField] private GameObject PopUpObj; //anim obj
     Animator PUAnim;
-    private SceneManageNDisplay SceneManageNDisplay;
     public bool clicked = false;
     public bool blocked = false;   //every pt after selected point is blocked
     public Point point;
@@ -19,7 +21,7 @@ public class MapPopUp : MonoBehaviour
     private MapManager mm;
     [SerializeField] GameObject RequirementPanel;
     //public GameObject door;
-    [SerializeField]private Info InfoSC;
+    
 
     [SerializeField, BoxGroup("UI")] public Image HeadIcon;
 
@@ -92,6 +94,9 @@ public class MapPopUp : MonoBehaviour
                 mm.GetTotalFuelNeeded(this.GetComponent<Point>().id);
                 GetComponent<Point>().MovePlayer(); //new
                 GetComponent<Point>().isPlayer = true; //new
+                if(this.GetComponent<Point>().id == InfoSC.ConfirmedSelectedPt){
+                    SceneManageNDisplay.WarningGuideCall(5);
+                }
                 //InfoSC.CurrentSelectedPtObj = this.PopUpObj;
             }
             
