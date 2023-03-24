@@ -140,11 +140,11 @@ public class SceneManageNDisplay : MonoBehaviour
         theMap.SetActive(true);
         
         Invoke("MapCamSwitch",.5f);
-        Invoke("ChangePos",1f);
+        Invoke("ChangePos",.5f);
         TrainInfoGuide.SetActive(false);
     }
     void ChangePos(){
-        Invoke("CoreAppear",1.5f);
+        Invoke("CoreAppear",1f);
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = mapFuelLocation;
         TrainFuelBar.SetActive(true);
     }
@@ -233,6 +233,8 @@ public class SceneManageNDisplay : MonoBehaviour
             WarningGuideCall(3); //picked location
         }
         ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
+        ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
+        MM.UpdateMapPointState();
         MM.ResetFuelNeedDisplay();
         Invoke("Pull", .5f);
     }

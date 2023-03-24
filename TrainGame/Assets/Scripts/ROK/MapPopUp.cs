@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -12,6 +12,7 @@ public class MapPopUp : MonoBehaviour
     Animator PUAnim;
     private SceneManageNDisplay SceneManageNDisplay;
     public bool clicked = false;
+    public bool blocked = false;   //every pt after selected point is blocked
     public Point point;
     public GameObject icon;
     public GameObject text;
@@ -19,7 +20,8 @@ public class MapPopUp : MonoBehaviour
     [SerializeField] GameObject RequirementPanel;
     //public GameObject door;
     [SerializeField]private Info InfoSC;
-    //[HideInInspector]public List<GameObject> PopUpPoint = new List<GameObject>();
+
+    [SerializeField, BoxGroup("UI")] public Image HeadIcon;
 
     void Awake() {
         PUAnim = PopUpObj.GetComponent<Animator>();
@@ -51,12 +53,14 @@ public class MapPopUp : MonoBehaviour
         }
     }
     public void EnterPtIcon(){ //when player hover on green sq; on the Icon
-        //if(SceneManageNDisplay.PopUpPoint.Count==0)
+        if(!blocked){
             PUAnim.SetTrigger("Hover");
+        }
     }
     public void ExitPtIcon(){ //when player hover on green sq; on the Icon
-        //if(SceneManageNDisplay.PopUpPoint.Count==0)
+        if(!blocked){
             PUAnim.SetTrigger("Off");
+        }
     }
     public void ForceChange() 
     {
@@ -69,6 +73,7 @@ public class MapPopUp : MonoBehaviour
     }
     public void ClickPtIcon(){ //Click the Icon, set the destination; after this player go pull the lever
         //if(MapManager.gameState == 0) {
+        if(!blocked){
             if (mm.PopUpPoint.Count > 0){
                 ResetPoint();
             }
@@ -91,7 +96,7 @@ public class MapPopUp : MonoBehaviour
             }
             
             mm.UpdatePlayer(); //new
-            
+            //mm.UpdateMapPointState();
                 //MapManager.gameState = 1;  //turns related
             
             
@@ -104,6 +109,7 @@ public class MapPopUp : MonoBehaviour
         //         SceneManageNDisplay.WarningGuideCall(2);
         //    }
         //}
+        }
     }
     public void ResetPoint(){ //reset the status of point
         //PUAnim.SetTrigger("PlugFlag");

@@ -47,6 +47,7 @@ public class MapManager : MonoBehaviour
         //Debug.Log(InfoSC.CurrentPlayerTrainInterval.transform.localPosition);
         UpdateTrainLocation();
         requireText.text = "Select a location.";
+        UpdateMapPointState();
         // StartCoroutine(PlayerTrainMoveTowards());
     }
 
@@ -96,22 +97,15 @@ public class MapManager : MonoBehaviour
         var points = player.GetComponent<Point>();
         for (int i = 0; i < points.connectedPoints.Length ; i++)
         {
-            
             Debug.Log(playerResource.GetComponent<PlayerInformation>().FuelAmt);
             if (points.connectedPoints[i].Equals(gm)){
-                
-
                 if (playerResource.GetComponent<PlayerInformation>().FuelAmt >= gm.GetComponent<Point>().fuelAmtNeeded)
                 {
-                    
                     playerResource.GetComponent<PlayerInformation>().FuelAmt -= gm.GetComponent<Point>().fuelAmtNeeded;
                     return true;
                 }
-                
             }
-            
         }
-
         return false;
     }
     public bool IsAvailableToMove(GameObject gm) //Changed accord to new map system By Rok
@@ -227,6 +221,20 @@ public class MapManager : MonoBehaviour
         // for(int i = 0; i<currentLocal;i++){
         //     points[i].
         // }
+    }
+    public void UpdateMapPointState(){
+        for(int i = 0; i < InfoSC.ConfirmedSelectedPt;i++){
+            points[i].GetComponent<MapPopUp>().blocked = true;
+            var image = points[i].GetComponent<MapPopUp>().HeadIcon.GetComponent<Image>();
+            var tempColor = image.color;
+            tempColor.a = .2f;
+            points[i].GetComponent<MapPopUp>().HeadIcon.color = tempColor;
+
+            //other effect or sprite changes
+        }
+    }
+    public void ReEnterLoop(){
+        //open the poitns again
     }
     
 }

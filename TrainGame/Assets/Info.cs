@@ -9,6 +9,7 @@ public class Info : MMSingleton<Info>
 {
     public int pointID;
     public int CurrentSelectedPt;
+    public int ConfirmedSelectedPt;
     [SerializeField, BoxGroup("Map")]private int playerTrainInterval;
     [SerializeField, BoxGroup("Map")]private int enemyTrainInterval;
     [SerializeField, BoxGroup("Map")]private int confirmedPlayerTrainLocal;
