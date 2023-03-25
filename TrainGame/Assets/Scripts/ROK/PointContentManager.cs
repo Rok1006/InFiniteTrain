@@ -8,10 +8,14 @@ public class PointContentManager : MonoBehaviour
 {
     public Info InfoSC;
     public List<GameObject> PointScene = new List<GameObject>();
+    public List<GameObject> AllLand = new List<GameObject>();
     void Awake(){
         InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
         for(int i = 0; i<PointScene.Count;i++){
             PointScene[i].SetActive(false);
+        }
+        for(int i = 0; i<AllLand.Count;i++){
+            AllLand[i].SetActive(false);
         }
     }
 

@@ -54,8 +54,11 @@ public class WarningGuide : MonoBehaviour
                 message = "    Destination Set";
             break;
             case 5:
-                message = "    You are already here.";
+                message = "    You have already arrived.";
             break;
+            // case 6:
+            //     message = "    You are already here.";
+            // break;
         }
     }
 }

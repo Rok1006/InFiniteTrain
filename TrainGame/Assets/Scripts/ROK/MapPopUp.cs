@@ -99,23 +99,20 @@ public class MapPopUp : MonoBehaviour
                 }
                 //InfoSC.CurrentSelectedPtObj = this.PopUpObj;
             }
-            
             mm.UpdatePlayer(); //new
             //mm.UpdateMapPointState();
-                //MapManager.gameState = 1;  //turns related
-            
-            
-        //    if( mm.IsAvailableToMove(this.gameObject) == true) //available to move Accord to fuelAmt
-        //    {
-        //         SceneManageNDisplay.hasEnoughFuel = true; //have enoughfuel
-        //         Debug.Log("yehhhhh");
-        //    }else{
-        //         SceneManageNDisplay.hasEnoughFuel = false; //not enough fuel
-        //         SceneManageNDisplay.WarningGuideCall(2);
-        //    }
-        //}
+            //MapManager.gameState = 1;  //turns related
         }
     }
+    public void ClickedTurnPt(){ //assign this on TURN pt, need flip train
+        //wtever happen agter located turn pt
+        //reopen the all the turn pts
+        //there is sth in turn pt
+    }
+    public void ClickOnEXITPt(){  //assign this on EXIT pt
+        
+    }
+
     public void ResetPoint(){ //reset the status of point
         //PUAnim.SetTrigger("PlugFlag");
         //if(SceneManageNDisplay.PopUpPoint.Count==1)

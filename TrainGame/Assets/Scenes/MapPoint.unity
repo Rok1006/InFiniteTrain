@@ -372,7 +372,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1056401740}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7644822
 MonoBehaviour:
@@ -971,7 +971,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1056401740}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &37787390
 MonoBehaviour:
@@ -3340,7 +3340,7 @@ GameObject:
   - component: {fileID: 171064186}
   - component: {fileID: 171064188}
   - component: {fileID: 171064187}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3426,6 +3426,130 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &174226059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174226060}
+  - component: {fileID: 174226061}
+  m_Layer: 0
+  m_Name: TurnPt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &174226060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174226059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056401740}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &174226061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174226059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef708b493c936442da9711b26c1e913f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reminders: '1. The BoundaryArea List count shd equal to numberOfArea.
+
+'
+  numberOfArea: 3
+  ActiveLand:
+  - {fileID: 177226663}
+  - {fileID: 289228569}
+  - {fileID: 196922108}
+  RandomMidLand: []
+  P_Data:
+  - {fileID: 11400000, guid: 76bf07a4ff1c041ab84b886166abaac4, type: 2}
+  - {fileID: 11400000, guid: d1e9faed1ab2344f285a7df46b0ddbde, type: 2}
+  - {fileID: 11400000, guid: 84b35d24a8f594e28aebb9c7b5258ab3, type: 2}
+  ResourcesBoxPoint:
+  - {fileID: 464954851}
+  - {fileID: 966345698}
+  - {fileID: 1262846930}
+  - {fileID: 1225520498}
+  - {fileID: 120219486}
+  - {fileID: 1460495169}
+  - {fileID: 1035217757}
+  - {fileID: 293202690}
+  BoundaryArea:
+  - BoundaryPt:
+    - {fileID: 1465168077}
+    - {fileID: 308515652}
+    - {fileID: 487985139}
+    - {fileID: 617484168}
+  - BoundaryPt:
+    - {fileID: 1792043197}
+    - {fileID: 1954273221}
+    - {fileID: 1667859808}
+    - {fileID: 1050937948}
+  - BoundaryPt:
+    - {fileID: 1976148530}
+    - {fileID: 1029799869}
+    - {fileID: 1293276154}
+    - {fileID: 706948773}
+  EnemyPoint:
+  - {fileID: 812183087}
+  - {fileID: 1726295972}
+  - {fileID: 1613822020}
+  - {fileID: 129958046}
+  RandomPoint: []
+  NONOSQUARE: []
+  IsPointFull: 
+  TrapTileType:
+  - {fileID: 7681500954956085844, guid: a64f1b3c8473f4e62adebd95824bb51b, type: 3}
+  - {fileID: 4246254681969804221, guid: 93cbd9c591c224ad89b5e722b1b76b63, type: 3}
+  ResourceBoxType:
+  - {fileID: 315043451696005846, guid: d73a0ac1d0f5c08409e079a01e8cbbef, type: 3}
+  - {fileID: 4515798336559218550, guid: c3ab926f72b2545c09202dfab4900006, type: 3}
+  NecessaryItems:
+  - Item: {fileID: 11400000, guid: c8bea66fc0aba7d49b63f176cc36912a, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: 652d3f9742dc7b6469ed2a2937dbcc4d, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: fefbbb28547770b46a3b474a5a41a218, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: 1e6425005b3ce2c439be6860c8b7d9e2, type: 2}
+    Quantity: 1
+  BonusItems:
+  - Item: {fileID: 11400000, guid: a283d488efc8c364bbe66c1146e98dfb, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: 21d08512b76a31c4c9869ce6c8b90d58, type: 2}
+    Quantity: 1
+  - Item: {fileID: 11400000, guid: bab938ffbd4b844458edaad47ef5a053, type: 2}
+    Quantity: 1
+  GrassType:
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 6276835593191020488, guid: e6c461048fffa441781c98252c69ed83, type: 3}
+  - {fileID: 610295484283796435, guid: 2bdc43c025b2746c68cc1682408c79ca, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  - {fileID: 1823610795536324115, guid: 9fbf55f08822849389348160a095d209, type: 3}
+  PuddleType: []
+  EnemyType:
+  - {fileID: 7358651152949181842, guid: b8b9eb62a945c4606962d5bb820f607d, type: 3}
+  minX: 0
+  maxX: 0
+  minZ: 0
+  maxZ: 0
 --- !u!1001 &175420883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3532,7 +3656,7 @@ GameObject:
   - component: {fileID: 176397111}
   - component: {fileID: 176397113}
   - component: {fileID: 176397112}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6633,7 +6757,7 @@ GameObject:
   - component: {fileID: 362667808}
   - component: {fileID: 362667810}
   - component: {fileID: 362667809}
-  m_Layer: 27
+  m_Layer: 24
   m_Name: EntranceExit#
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12402,7 +12526,7 @@ GameObject:
   - component: {fileID: 650948902}
   - component: {fileID: 650948904}
   - component: {fileID: 650948903}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: 'EntranceExit  '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13193,7 +13317,7 @@ GameObject:
   - component: {fileID: 686060938}
   - component: {fileID: 686060940}
   - component: {fileID: 686060939}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14294,7 +14418,7 @@ GameObject:
   - component: {fileID: 735264078}
   - component: {fileID: 735264080}
   - component: {fileID: 735264079}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit#
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15217,7 +15341,7 @@ GameObject:
   - component: {fileID: 784324092}
   - component: {fileID: 784324094}
   - component: {fileID: 784324093}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: 'EntranceExit  '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20172,12 +20296,13 @@ Transform:
   - {fileID: 1105368979}
   - {fileID: 427459356}
   - {fileID: 1935271790}
+  - {fileID: 174226060}
+  - {fileID: 1369515749}
   - {fileID: 1688697215}
   - {fileID: 7644821}
   - {fileID: 37787389}
   - {fileID: 1533089095}
   - {fileID: 1550253053}
-  - {fileID: 1369515749}
   m_Father: {fileID: 2118592477}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20201,12 +20326,27 @@ MonoBehaviour:
   - {fileID: 1105368978}
   - {fileID: 427459355}
   - {fileID: 1935271789}
+  - {fileID: 1369515748}
+  - {fileID: 174226059}
   - {fileID: 1688697214}
   - {fileID: 7644820}
   - {fileID: 37787388}
   - {fileID: 1533089094}
   - {fileID: 1550253052}
-  - {fileID: 1369515748}
+  AllLand:
+  - {fileID: 1858846300}
+  - {fileID: 374073040}
+  - {fileID: 345601815}
+  - {fileID: 177226663}
+  - {fileID: 1860609413}
+  - {fileID: 2061404935}
+  - {fileID: 1515912868}
+  - {fileID: 1515407286}
+  - {fileID: 289228569}
+  - {fileID: 1115176559}
+  - {fileID: 1001596330}
+  - {fileID: 2145729044}
+  - {fileID: 196922108}
 --- !u!1 &1062739894
 GameObject:
   m_ObjectHideFlags: 0
@@ -22359,7 +22499,7 @@ GameObject:
   - component: {fileID: 1134678339}
   - component: {fileID: 1134678341}
   - component: {fileID: 1134678340}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: 'EntranceExit '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24719,7 +24859,7 @@ GameObject:
   - component: {fileID: 1244909340}
   - component: {fileID: 1244909342}
   - component: {fileID: 1244909341}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26618,7 +26758,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1056401740}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388339505
 GameObject:
@@ -29408,7 +29548,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1056401740}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1533089096
 MonoBehaviour:
@@ -29648,7 +29788,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1056401740}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1550253054
 MonoBehaviour:
@@ -30008,7 +30148,7 @@ GameObject:
   - component: {fileID: 1580649299}
   - component: {fileID: 1580649301}
   - component: {fileID: 1580649300}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: 'EntranceExit  '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30884,7 +31024,7 @@ GameObject:
   - component: {fileID: 1629387875}
   - component: {fileID: 1629387877}
   - component: {fileID: 1629387876}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31392,7 +31532,7 @@ GameObject:
   - component: {fileID: 1653285303}
   - component: {fileID: 1653285305}
   - component: {fileID: 1653285304}
-  m_Layer: 27
+  m_Layer: 24
   m_Name: EntranceExit#
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33037,7 +33177,7 @@ GameObject:
   - component: {fileID: 1658765372}
   - component: {fileID: 1658765374}
   - component: {fileID: 1658765373}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33670,7 +33810,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1056401740}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1688697216
 MonoBehaviour:
@@ -33999,7 +34139,7 @@ GameObject:
   - component: {fileID: 1697461315}
   - component: {fileID: 1697461317}
   - component: {fileID: 1697461316}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35524,7 +35664,7 @@ GameObject:
   - component: {fileID: 1768588585}
   - component: {fileID: 1768588587}
   - component: {fileID: 1768588586}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36467,7 +36607,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.777027, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -36999,7 +37139,7 @@ GameObject:
   - component: {fileID: 1839282281}
   - component: {fileID: 1839282283}
   - component: {fileID: 1839282282}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40176,7 +40316,7 @@ GameObject:
   - component: {fileID: 1973234019}
   - component: {fileID: 1973234021}
   - component: {fileID: 1973234020}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40273,7 +40413,7 @@ GameObject:
   - component: {fileID: 1974430944}
   - component: {fileID: 1974430946}
   - component: {fileID: 1974430945}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40370,7 +40510,7 @@ GameObject:
   - component: {fileID: 1975483755}
   - component: {fileID: 1975483757}
   - component: {fileID: 1975483756}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: 'EntranceExit  '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40936,7 +41076,7 @@ GameObject:
   - component: {fileID: 2003079859}
   - component: {fileID: 2003079861}
   - component: {fileID: 2003079860}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: EntranceExit#
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43172,7 +43312,7 @@ GameObject:
   - component: {fileID: 2087305286}
   - component: {fileID: 2087305288}
   - component: {fileID: 2087305287}
-  m_Layer: 23
+  m_Layer: 24
   m_Name: 'EntranceExit '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

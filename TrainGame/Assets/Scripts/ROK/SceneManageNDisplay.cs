@@ -111,16 +111,13 @@ public class SceneManageNDisplay : MonoBehaviour
             currentValue+=0.01f;
             UpdateCamNoise(currentValue);
         }
-        // if(player!=null){
-        //     if (player.GetComponent<PlayerInformation>().FuelAmt >= fuelCost)
-        //     {
-        //         //playerResource.GetComponent<PlayerInformation>().FuelAmt -= gm.GetComponent<Point>().fuelAmtNeeded;
-        //         hasEnoughFuel = true;
-        //     }else{
-        //         hasEnoughFuel = false;
-        //     }
+        // if(ISF.doorState==0){
+        //     door.SetActive(false);
+        //     doorAnim.SetTrigger("Close");  
+        // }else{
+        //     door.SetActive(true);
+        //     doorAnim.SetTrigger("Open");
         // }
-        //Debug.Log(currentTrainStatusMessage);
     }
     public void TrainInforGuide(){
         TrainInfoGuide.SetActive(true);
@@ -207,12 +204,9 @@ public class SceneManageNDisplay : MonoBehaviour
             //some enviromental change trigger: access to camera, plau audio, some foregrd backgrd
         // }else 
         if(!IsOn&&PickedLocation&&hasEnoughFuel){ //make the train move but need to pick a point
-            //doorAnim.SetTrigger("Close");  //close when train started
-            //Reduce num of fuel here
             ConsumeFuel();
             Debug.Log("Train is gonna move");
             leverAnim.SetTrigger("On");
-            //change icon image
             currentAccess = "T R A I N  M O V I N G";
             trainTrigger.guideDescript = "T R A I N  M O V I N G";
             targetValue = 1.5f;
@@ -223,20 +217,30 @@ public class SceneManageNDisplay : MonoBehaviour
         }
     }
     public void PullLever(){  //put this in actionCall
-        //StartCoroutine("Pull");
-        TrainInfoGuide.SetActive(false);
-        CheckIfEnoughFuel();
-        if(!hasEnoughFuel){
-            WarningGuideCall(2); //nt enough fuel
+        if(ISF.ConfirmedSelectedPt != ISF.CurrentPlayerTrainInterval){ //if player isnt already arrived 
+            doorAnim.SetTrigger("Close"); 
+            door.SetActive(false);
+            doorIsOpen = 0;
+            TrainInfoGuide.SetActive(false);
+            CheckIfEnoughFuel();
+            if(!hasEnoughFuel){
+                WarningGuideCall(2); //nt enough fuel
+            }
+            if(!PickedLocation){
+                WarningGuideCall(3); //picked location
+            }
+            ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
+            ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
+            if(ISF.ConfirmedSelectedPt==MM.TurnPtIndex){  //if now player is in turn pt, abt to go back in loop //curent pt id of turn is 7
+                MM.ReEnterLoop(); //reopen stuff
+            }else{
+            MM.UpdateMapPointState(); 
+            }
+            MM.ResetFuelNeedDisplay();
+            Invoke("Pull", .5f);
+        }else{
+            WarningGuideCall(5);
         }
-        if(!PickedLocation){
-            WarningGuideCall(3); //picked location
-        }
-        ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
-        ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
-        MM.UpdateMapPointState();
-        MM.ResetFuelNeedDisplay();
-        Invoke("Pull", .5f);
     }
     void ConsumeFuel(){
         if (player.GetComponent<PlayerInformation>().FuelAmt >= fuelCost){
@@ -255,8 +259,12 @@ public class SceneManageNDisplay : MonoBehaviour
         WarningGuideCall(0);
         doorAnim.SetBool("Close", false);
         doorAnim.SetTrigger("Open");
+        doorIsOpen = 1;
         doorAudio.Play();
         BGScroll.SetActive(false);
+            if(ISF.ConfirmedSelectedPt==7){
+                //pop up: reenter?
+            }
         //the anim: moving of bg or foreground
         //object active
     }
@@ -291,7 +299,7 @@ public class SceneManageNDisplay : MonoBehaviour
         WG.index = _index;
     }
     void CheckIfEnoughFuel(){
-        if (player.GetComponent<PlayerInformation>().FuelAmt >= fuelCost && fuelCost!=0)
+        if (player.GetComponent<PlayerInformation>().FuelAmt >= fuelCost )//&& fuelCost!=0
             {
                 //playerResource.GetComponent<PlayerInformation>().FuelAmt -= gm.GetComponent<Point>().fuelAmtNeeded;
                 hasEnoughFuel = true;

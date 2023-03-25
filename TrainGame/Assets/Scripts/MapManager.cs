@@ -28,6 +28,8 @@ public class MapManager : MonoBehaviour
     [SerializeField, BoxGroup("PointInfo")] List<GameObject> Intervals = new List<GameObject>();
 
     [SerializeField, BoxGroup("Stuff")] TextMeshProUGUI requireText; 
+    [BoxGroup("Stuff")] public int TurnPtIndex; 
+    [BoxGroup("Stuff")] public int ExitPtIndex;
 
     void Start()
     {
@@ -47,7 +49,9 @@ public class MapManager : MonoBehaviour
         //Debug.Log(InfoSC.CurrentPlayerTrainInterval.transform.localPosition);
         UpdateTrainLocation();
         requireText.text = "Select a location.";
-        UpdateMapPointState();
+        if(InfoSC.ConfirmedSelectedPt!=TurnPtIndex){  //now in turn pt
+            UpdateMapPointState();
+        }
         // StartCoroutine(PlayerTrainMoveTowards());
     }
 
@@ -223,18 +227,24 @@ public class MapManager : MonoBehaviour
         // }
     }
     public void UpdateMapPointState(){
-        for(int i = 0; i < InfoSC.ConfirmedSelectedPt;i++){
+        for(int i = 1; i < InfoSC.ConfirmedSelectedPt;i++){ //excluse start pt
             points[i].GetComponent<MapPopUp>().blocked = true;
             var image = points[i].GetComponent<MapPopUp>().HeadIcon.GetComponent<Image>();
             var tempColor = image.color;
             tempColor.a = .2f;
             points[i].GetComponent<MapPopUp>().HeadIcon.color = tempColor;
-
             //other effect or sprite changes
         }
     }
-    public void ReEnterLoop(){
-        //open the poitns again
+    public void ReEnterLoop(){ //call when player in turn pt confirm to reenter
+        for(int i = 3; i < points.Length;i++){
+            points[i].GetComponent<MapPopUp>().blocked = false;
+            var image = points[i].GetComponent<MapPopUp>().HeadIcon.GetComponent<Image>();
+            var tempColor = image.color;
+            tempColor.a =  1f;
+            points[i].GetComponent<MapPopUp>().HeadIcon.color = tempColor;
+        }
+
     }
     
 }
