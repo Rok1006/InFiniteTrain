@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dissolve
-  m_Shader: {fileID: -6465566751694194690, guid: b121ef5dafe7a4410aa187f7ed36b6a8,
+  m_Name: Sphere
+  m_Shader: {fileID: -6465566751694194690, guid: 667cba5b41eaf4b2085afce797581f2a,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,6 +20,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_7f0655d969ad4febaeb6b3bc9d973577:
+        m_Texture: {fileID: 2800000, guid: d02389852837a45f7802f3e814d2bbcd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_ae13024f385a43afb1bff938012bdf6d:
+        m_Texture: {fileID: 2800000, guid: b2ae57e82cd4b4d4ebfa9986f7c77c83, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_fe16c0b233414166ac20385a08cdab76:
         m_Texture: {fileID: 2800000, guid: 7aad8c583ef292e48b06af0d1f2fab97, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -41,17 +49,25 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_20a9c416719d4fa2a9e21a560f239e7d: -0.5
     - Vector1_2b4e2627d56d48309674e91e06e873af: 1
     - Vector1_688aea24b5f2485ea09d5f8ae2a41fc2: 1
+    - Vector1_a886b670538f43848ff2119f3123477f: 1
     - Vector1_cd23bd478c88449e80abc407f007b47f: 1.13
     - Vector1_cffa2365f05649d2b00478b3e82e9926: 0.14
     - _CutOff_Height: 0.24
     - _EdgeWidth: 0.03
     - _NoiseScale: 24.8
-    - _NoiseStrength: -0.98
+    - _NoiseStrength: 0.11
+    - _dissolveAtm: 0
+    - _noiseAmt: 0.14
+    - _noisePower: 2
+    - _noiseScale: 25
     m_Colors:
+    - Vector2_22a9bafade1f4f829350d5515e872fb8: {r: -0.7, g: 0, b: 0, a: 0}
     - Vector2_e0873eeb357645b197f873e0ebc81f47: {r: 1, g: 0, b: 0, a: 0}
     - Vector2_eca40e328ea4460593cba9ec3b5c15b1: {r: 1, g: 0, b: 0, a: 0}
-    - _Color: {r: 0, g: 0.5485013, b: 0.15523621, a: 1}
-    - _EdgeColor: {r: 0, g: 8.574187, b: 7.672667, a: 1}
+    - _Color: {r: 1.5084945, g: 0, b: 0, a: 1}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+    - _color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
