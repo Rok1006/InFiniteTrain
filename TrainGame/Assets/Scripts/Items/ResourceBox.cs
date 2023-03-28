@@ -30,6 +30,8 @@ public class ResourceBox : MonoBehaviour
     [SerializeField] GameObject miniGame;
     private bool isOpening = false, isPlayerNear = false, opened = false;
 
+    [SerializeField, BoxGroup("EFFECT")] private GameObject boxStun;
+
     [SerializeField] private bool useSkeletonMecanim = true;
     [SerializeField] private SkeletonMecanim B_Skin;
     [SpineSkin] public string[] boxLook = { "Normal", "Wood"};
@@ -72,6 +74,7 @@ public class ResourceBox : MonoBehaviour
         
         //things happens when loading scene
         SceneManager.sceneLoaded += OnSceneLoaded;
+        if (boxStun != null){boxStun.SetActive(false);}
 
     }
     
@@ -122,14 +125,15 @@ public class ResourceBox : MonoBehaviour
         }*/
 
         if (isLocked) { //if player need to open the lock
-            if (isOpening && miniGame.GetComponent<LockPickBar>().Complete == false)
+            if (isOpening && miniGame.GetComponent<LockPickBar>().Complete == false){
                 Invoke("DisplayMiniGame", .7f);
+                if (boxStun != null){boxStun.SetActive(true);}
                 //miniGame.gameObject.GetComponent<CanvasScaler>().scaleFactor = Mathf.Lerp(0.01f, 1f, 0.01f);
-            if (miniGame.GetComponent<LockPickBar>().Complete && isOpening && !opened) {
+            }
+            if (miniGame.GetComponent<LockPickBar>().Complete && isOpening && !opened) { //the box is ready to open
                 
                 miniGame.GetComponent<Animator>().SetTrigger("close");
                 Invoke("CloseMiniGame", 2f);
-                
                 ShowInventoryUI();
             }
         } else { //player are free to open it
@@ -144,6 +148,7 @@ public class ResourceBox : MonoBehaviour
     }
     void CloseMiniGame(){
         miniGame.gameObject.SetActive(false);
+        if (boxStun != null){boxStun.SetActive(false);}
     }
 
     /// when enter trigger area
