@@ -16,8 +16,8 @@ MonoBehaviour:
   TargetInventoryName: BackpackInventory
   ForceSlotIndex: 0
   TargetIndex: 0
-  Usable: 0
-  Consumable: 1
+  Usable: 1
+  Consumable: 0
   ConsumeQuantity: 1
   Equippable: 0
   MoveWhenEquipped: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
     DisplayCombineButton: 1
   Quantity: 1
   ItemName: Electric Part
-  ShortDescription: ' No particular use when alone.
+  ShortDescription: 'No particular use when alone.
 
 '
   Description: "Essential parts for all smart machines. World won\u2019t work without
@@ -91,3 +91,8 @@ MonoBehaviour:
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
+  actionTime: 1
+  hasMovementRestriction: 1
+  projectile: {fileID: 4405122699964661917, guid: e3340c1d9e8f5eb449ac20174bd75adf,
+    type: 3}
+  indicator: {fileID: 0}

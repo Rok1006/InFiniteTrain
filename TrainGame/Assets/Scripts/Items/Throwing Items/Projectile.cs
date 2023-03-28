@@ -6,7 +6,7 @@ using NaughtyAttributes;
 public class Projectile : MonoBehaviour
 {
     [ReadOnly, BoxGroup("Info")] public GameObject destination;
-    [ReadOnly, BoxGroup("Info")] public float timeToTake;
+    [ReadOnly, BoxGroup("Info")] public float timeToTake = 1.5f;
     private float currentTime = 0.0f;
     private bool isReachedDestination = false;
 
@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
             currentTime += Time.deltaTime;
             transform.position = Vector3.Lerp(transform.position, destination.transform.position, currentTime / timeToTake);
         } else {
-            Debug.Log("reached position");
+            Debug.Log("reached position " + "\nused " + timeToTake + " time");
         }
     }
 }

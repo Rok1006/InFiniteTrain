@@ -37,26 +37,14 @@ public class InventoryInputActionPlus : InventoryInputActions
                 if (!_inventoryDisplay.CurrentlySelectedInventorySlot().Equals( _inventoryDisplay.SlotContainer[binding.SlotIndex])) {
                     ExecuteAction(binding);
                 } else {
-                    if (isPerformingAction)
-                        return;
-                    
-                    InventoryItemPlus item = (InventoryItemPlus) _targetInventory.Content[binding.SlotIndex];
-                    if (item != null) {
-                        StartCoroutine(waitToAct(item.actionTime, binding));
-                    }
+                    StartUsingItem(binding);
                 }
             }
             if (Input.GetMouseButtonDown(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject())
                     return;
-                if (isPerformingAction)
-                    return;
-                
-                InventoryItemPlus item = (InventoryItemPlus) _targetInventory.Content[binding.SlotIndex];
-                if (item != null) {
-                    StartCoroutine(waitToAct(item.actionTime, binding));
-                }
+                StartUsingItem(binding);
             }
 
             //cancel work if player doesnt hold the key/mouse button
@@ -65,6 +53,10 @@ public class InventoryInputActionPlus : InventoryInputActions
                     StopAllCoroutines();
                     isPerformingAction = false;
                     _playerManager.ReleaseMovement();
+
+                    MechanismItem mech = _targetInventory.Content[binding.SlotIndex] as MechanismItem;
+                    if (mech != null)
+                        mech.indicator = null;
                 }
             }
         }
@@ -124,5 +116,21 @@ public class InventoryInputActionPlus : InventoryInputActions
 
         ExecuteAction(binding);
         isPerformingAction = false;
+    }
+
+    public void StartUsingItem(InventoryInputActionsBindings binding) {
+        if (isPerformingAction)
+            return;
+        
+        InventoryItemPlus item = (InventoryItemPlus) _targetInventory.Content[binding.SlotIndex];
+        if (item != null) {
+            //if item can be planted
+            MechanismItem mech = item as MechanismItem;
+            if (mech != null)
+                mech.PlantIndicator();
+                
+
+            StartCoroutine(waitToAct(item.actionTime, binding));
+        }
     }
 }

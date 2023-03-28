@@ -195,6 +195,7 @@ public class PlayerManager : MonoBehaviour
         // MCBackAnim.SetTrigger("UseSmallSword");
     }
 
+#region dust
     public void DustEmit(){
         if(Time.frameCount%10 == 0 && emitPt!=null){
             GameObject d = Instantiate(dustPrefab, emitPt.transform.position, Quaternion.identity) as GameObject;
@@ -208,9 +209,11 @@ public class PlayerManager : MonoBehaviour
     }
     private void DustLayerSort(int order){
         for(int i = 0; i < dust.Count; i++){
-                dust[i].GetComponent<ParticleSystemRenderer>().sortingOrder = order;
+            dust[i].GetComponent<ParticleSystemRenderer>().sortingOrder = order;
         }
     }
+#endregion
+
     void OnTriggerEnter(Collider col) {
         // var sc = SceneManage.Instance;
         // for(int i = 0; i<sc.MCTrainConfiner.Count;i++){
@@ -232,9 +235,6 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void test() {
-        // ComboWeapon secondaryCombo = secondaryWeapon.GetComponent<ComboWeapon>();
-        // secondaryCombo.WeaponStarted(secondaryWeapon);
-        // secondaryCombo.FlipUnusedWeapons();
         Debug.Log("Testing");
     }
 

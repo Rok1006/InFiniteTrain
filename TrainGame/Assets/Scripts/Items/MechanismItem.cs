@@ -11,11 +11,10 @@ public class MechanismItem : InventoryItemPlus
     //references
     PlayerInformation _playerInfo;
     PlayerManager _playerManager;
-    
-    public override bool Use(string playerID)
-    {
-        base.Use(playerID);
+    public Projectile projectile;
+    public GameObject indicator;
 
+    public bool PlantIndicator() {
         //decreases radiation
         _playerInfo = FindObjectOfType<PlayerInformation>();
         if (_playerInfo == null)
@@ -26,9 +25,41 @@ public class MechanismItem : InventoryItemPlus
         if (_playerManager == null)
             Debug.LogWarning("cant find playerManager");
 
-        Debug.Log("using " + name);
+        if (indicator == null) {
+            indicator = _playerManager.CreateDestination();
+            return true;
+        }
 
-        _playerManager.CreateDestination();
+        return false;
+    }
+    
+    public override bool Use(string playerID)
+    {
+        base.Use(playerID);
+
+        _playerInfo = FindObjectOfType<PlayerInformation>();
+        if (_playerInfo == null)
+            Debug.LogWarning("cant find playerInfomation");
+
+        Projectile project = Instantiate(projectile, _playerInfo.transform.position, Quaternion.identity);
+        if (indicator != null) {
+            project.destination = indicator;
+            project.timeToTake = 1.5f;
+        } else
+            Debug.Log("cant find indicator");
+        // //decreases radiation
+        // _playerInfo = FindObjectOfType<PlayerInformation>();
+        // if (_playerInfo == null)
+        //     Debug.LogWarning("cant find playerInfomation");
+
+        // //increase movement speed
+        // _playerManager = FindObjectOfType<PlayerManager>();
+        // if (_playerManager == null)
+        //     Debug.LogWarning("cant find playerManager");
+
+        // Debug.Log("using " + name);
+
+        // _playerManager.CreateDestination();
 
         return true;
     }
