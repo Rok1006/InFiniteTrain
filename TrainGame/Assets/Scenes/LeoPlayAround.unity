@@ -846,6 +846,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1662438721}
+    - target: {fileID: 1890839000798628863, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.20190623
+      objectReference: {fileID: 0}
     - target: {fileID: 1890839001045510083, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: m_IsActive
@@ -963,17 +968,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 184950751378207249, guid: 5a0505b582c00490a8f7147e067fd180,
+        type: 3}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
       propertyPath: text
       value: 'Wet Land
 
-        Scale: Small
+        Scale: SMALL
 
-        Danger level: Low
+        Danger level: LOW
 
         Main
         Resource: Fuel
-
-        Cost: Fuel X2
 
 '
       objectReference: {fileID: 0}
@@ -989,9 +998,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
+      propertyPath: RadiationLvl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
       propertyPath: fuelAmtNeeded
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: RadiationLvlHolder
+      value: 
+      objectReference: {fileID: 2065171074}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: connectedPoints.Array.size
@@ -1052,6 +1071,36 @@ PrefabInstance:
       propertyPath: connectedPoints.Array.data[10]
       value: 
       objectReference: {fileID: 412930393}
+    - target: {fileID: 9041188516717832525, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041188516717832525, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041188516717832525, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 5.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041188516717832525, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 19.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041188516717832525, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041188516717832525, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -11.73
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1, type: 3}
 --- !u!4 &51030074 stripped
@@ -1587,13 +1636,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 1202984965197363600, guid: 5a0505b582c00490a8f7147e067fd180,
+        type: 3}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
       propertyPath: text
       value: 'Abandoned Train Station
 
-        Scale: Small
+        Scale: SMALL
 
         Danger level:
-        Low
+        N/A
 
         Main Resource: Fuel
 
@@ -1608,6 +1663,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: RadiationLvl
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -26179,7 +26239,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.778808, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -48763,7 +48823,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.778808, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -49814,7 +49874,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.778808, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -52859,8 +52919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: -0.009999925
-  m_FrequencyGain: -0.009999925
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1765989829
 MonoBehaviour:
@@ -53524,12 +53584,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 184950751378207249, guid: 5a0505b582c00490a8f7147e067fd180,
+        type: 3}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
       propertyPath: text
-      value: 'Enemy Storage Base
+      value: 'WETLAND
 
-        Scale: Medium
+        Scale: MEDIUM
 
-        Danger level: High
+        Danger level: MEDIUM
 
         Main
         Resource: Fuel and Materials
@@ -53545,6 +53611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: RadiationLvl
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -62814,6 +62885,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058649891}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2065171074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5556101047585562299, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 51030073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2065909077
 GameObject:
   m_ObjectHideFlags: 0
@@ -63212,8 +63289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: -0.009999925
-  m_FrequencyGain: -0.009999925
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &2069941861
 MonoBehaviour:
@@ -64162,15 +64239,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 184950751378207249, guid: 5a0505b582c00490a8f7147e067fd180,
+        type: 3}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
       propertyPath: text
-      value: 'Gas Station
+      value: 'WETLAND
 
-        Scale: Medium
+        Scale: SMALL
 
-        Danger level: Medium
+        Danger level: LOW
 
         Main
-        Resource: Fuel and Food
+        Resource: Fuel, Food
 
 '
       objectReference: {fileID: 0}
@@ -64182,6 +64265,11 @@ PrefabInstance:
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: RadiationLvl
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
@@ -64442,13 +64530,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 184950751378207249, guid: 5a0505b582c00490a8f7147e067fd180,
+        type: 3}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
       propertyPath: text
-      value: 'Two-Dot City
+      value: 'WETLAND
 
-        Danger level: N/A
+        Scale: MEDIUM
 
-        Main Resource: Materials
-        and Mechanism
+        Danger level: MEDIUM
+
+        Main
+        Resource: Materials, Mechanism
 
 '
       objectReference: {fileID: 0}
@@ -64461,6 +64557,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: RadiationLvl
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -68576,7 +68677,7 @@ PrefabInstance:
     - target: {fileID: 4974460979476987180, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -28.000122
+      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 4974574279575304708, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
@@ -68651,7 +68752,7 @@ PrefabInstance:
     - target: {fileID: 5050083818741374471, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -18.999878
+      value: -18.999817
       objectReference: {fileID: 0}
     - target: {fileID: 5050083819073588801, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
@@ -68731,7 +68832,7 @@ PrefabInstance:
     - target: {fileID: 5774034426201652611, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.149536
+      value: -24.149414
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 029fa9527cb42f949beb33a59141bd7d, type: 3}
@@ -69561,6 +69662,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 790479577219290098, guid: 43ea37a9a945448cd947ee3df4ae8142,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1063146976381754497, guid: 43ea37a9a945448cd947ee3df4ae8142,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -69804,6 +69910,11 @@ PrefabInstance:
     - target: {fileID: 3644928986326477530, guid: 43ea37a9a945448cd947ee3df4ae8142,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105089809600212413, guid: 43ea37a9a945448cd947ee3df4ae8142,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4130528380979034693, guid: 43ea37a9a945448cd947ee3df4ae8142,
@@ -70491,6 +70602,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -21.000061
       objectReference: {fileID: 0}
+    - target: {fileID: 6922146218960413561, guid: 43ea37a9a945448cd947ee3df4ae8142,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7110750074502745695, guid: 43ea37a9a945448cd947ee3df4ae8142,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -70581,6 +70697,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7605214773098913008, guid: 43ea37a9a945448cd947ee3df4ae8142,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7608105531123426613, guid: 43ea37a9a945448cd947ee3df4ae8142,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -70609,6 +70730,11 @@ PrefabInstance:
     - target: {fileID: 7608105531123426613, guid: 43ea37a9a945448cd947ee3df4ae8142,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657885472978592066, guid: 43ea37a9a945448cd947ee3df4ae8142,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8279996534438072081, guid: 43ea37a9a945448cd947ee3df4ae8142,
@@ -70735,6 +70861,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973214016129124695, guid: 43ea37a9a945448cd947ee3df4ae8142,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9067709988120176337, guid: 43ea37a9a945448cd947ee3df4ae8142,
         type: 3}
@@ -74049,8 +74180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: -0.009999925
-  m_FrequencyGain: -0.009999925
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 896.7285, y: 814.3888, z: -647.95166}
 --- !u!114 &9152521495152902370
 MonoBehaviour:
@@ -74456,7 +74587,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.778808, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

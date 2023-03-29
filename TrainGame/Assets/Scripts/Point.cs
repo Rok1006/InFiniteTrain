@@ -1,21 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using NaughtyAttributes;
 
 public class Point : MonoBehaviour
 {
+    private Info InfoSC;
     public GameObject[] connectedPoints;
-    public Sprite icon;
+    [BoxGroup("InfoBox")] public Sprite icon;
+    [SerializeField,BoxGroup("InfoBox")] private int RadiationLvl; //1 skull is 0.05; How many skull
     [TextArea(15,20)] public string text;
-    public bool isPlayer = false;
-    public bool isEnemy = false;
-    public bool isMerchant = false;
-    public bool isEvent = false;
-    public bool isNull = false;
-    public int id;
-    public int fuelAmtNeeded;
-    public Info InfoSC;
+    
+    [BoxGroup("Status")] public bool isPlayer = false;
+    [BoxGroup("Status")] public bool isEnemy = false;
+    [BoxGroup("Status")] public bool isMerchant = false;
+    [BoxGroup("Status")] public bool isEvent = false;
+    [BoxGroup("Status")] public bool isNull = false;
+    [BoxGroup("Info")] public int id;
+    [BoxGroup("Info")] public int fuelAmtNeeded;
+
+    [SerializeField,BoxGroup("UI")] private GameObject RadiationLvlHolder;
+    [SerializeField,BoxGroup("UI")] private GameObject SkullImage;
+    
+    void Start() {
+        for(int i = 0; i < RadiationLvl; i++){
+            GameObject skull = Instantiate(SkullImage, RadiationLvlHolder.transform, false);
+        }
+    }
 
      void Update()
     {

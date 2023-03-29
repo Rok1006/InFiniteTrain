@@ -20,8 +20,6 @@ public class MapPopUp : MonoBehaviour
     public GameObject text;
     private MapManager mm;
     [SerializeField] GameObject RequirementPanel;
-    //public GameObject door;
-    
 
     [SerializeField, BoxGroup("UI")] public Image HeadIcon;
 
