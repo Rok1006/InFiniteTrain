@@ -7307,7 +7307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &374073041
 Transform:
   m_ObjectHideFlags: 0
@@ -18154,6 +18154,7 @@ GameObject:
   - component: {fileID: 959610138}
   - component: {fileID: 959610140}
   - component: {fileID: 959610139}
+  - component: {fileID: 959610141}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -18204,10 +18205,34 @@ MonoBehaviour:
       m_Calls: []
   OnPlayerEntersRoom:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 959610141}
+        m_TargetAssemblyTypeName: AbtLights, Assembly-CSharp
+        m_MethodName: OnLights
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnPlayerExitsRoom:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 959610141}
+        m_TargetAssemblyTypeName: AbtLights, Assembly-CSharp
+        m_MethodName: OffLights
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ActivationList: []
 --- !u!65 &959610140
 BoxCollider:
@@ -18222,6 +18247,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.449081, y: 1.7326148, z: 5.405949}
   m_Center: {x: 0.66399217, y: 0, z: 0.23740478}
+--- !u!114 &959610141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959610137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2680fa2806574303a01b944e5ed9f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lights:
+  - {fileID: 734291014}
+  - {fileID: 1584955489}
+  - {fileID: 1641161643}
+  - {fileID: 115261806}
+  - {fileID: 1797864395}
 --- !u!1 &960411889
 GameObject:
   m_ObjectHideFlags: 0
@@ -28998,7 +29041,7 @@ PrefabInstance:
     - target: {fileID: 4974460979476987180, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -28.000183
+      value: -28.000244
       objectReference: {fileID: 0}
     - target: {fileID: 5045360641484343200, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
@@ -29058,7 +29101,7 @@ PrefabInstance:
     - target: {fileID: 5050083818741374471, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -19.000183
+      value: -19.000244
       objectReference: {fileID: 0}
     - target: {fileID: 5050083819073588801, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
@@ -29129,7 +29172,7 @@ PrefabInstance:
     - target: {fileID: 5774034426201652611, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.149597
+      value: -24.149658
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 029fa9527cb42f949beb33a59141bd7d, type: 3}
@@ -36822,7 +36865,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765043, y: 1}
+    m_SensorSize: {x: 1.7776699, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -37992,7 +38035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1858846301
 Transform:
   m_ObjectHideFlags: 0
@@ -42878,7 +42921,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7789757, y: 1}
+    m_SensorSize: {x: 1.7797619, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -44244,7 +44287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2138720599}
   m_Layer: 0
-  m_Name: LightArea1
+  m_Name: 'LightArea '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
