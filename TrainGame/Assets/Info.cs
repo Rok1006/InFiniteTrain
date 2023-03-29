@@ -15,6 +15,7 @@ public class Info : MMSingleton<Info>
     [SerializeField, BoxGroup("Map")]private int confirmedPlayerTrainLocal;
 
     [BoxGroup("TrainGeneral")]public int doorState; //0=close, 1=open
+    [BoxGroup("Radiation")]public float radAmt;
     //public GameObject CurrentSelectedPtObj;
 
     [SerializeField, BoxGroup("UI Info")] public bool IsViewingInventory = false;

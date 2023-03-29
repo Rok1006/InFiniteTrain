@@ -18,6 +18,7 @@ public class Point : MonoBehaviour
     [BoxGroup("Status")] public bool isNull = false;
     [BoxGroup("Info")] public int id;
     [BoxGroup("Info")] public int fuelAmtNeeded;
+    [BoxGroup("Info")] public float _radAmt; //Radiation increase amt -0.3
 
     [SerializeField,BoxGroup("UI")] private GameObject RadiationLvlHolder;
     [SerializeField,BoxGroup("UI")] private GameObject SkullImage;

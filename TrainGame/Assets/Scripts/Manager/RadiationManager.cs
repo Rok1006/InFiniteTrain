@@ -9,6 +9,9 @@ using MoreMountains.Tools;
 
 public class RadiationManager : MMMonoBehaviour
 {
+    private PlayerInformation playerInfo;
+    private Info InfoSc;
+
     private int currentRadiationLevel = 0;
     [HorizontalLine(color: EColor.Red)]
     [Foldout("Level 0"), Label("Enter State")] public UnityEvent enterRad0;
@@ -27,9 +30,6 @@ public class RadiationManager : MMMonoBehaviour
     [SerializeField, BoxGroup("UI")] string RadiationBarName;
     [ShowNonSerializedField, BoxGroup("UI")] MMProgressBar radiationBar;
     [SerializeField] private bool isRadiated = false;
-    private PlayerInformation playerInfo;
-
-
     //getters & setters
     public int CurrentRadiationLevel {get=>currentRadiationLevel; set=>currentRadiationLevel = value;}
     public Health PlayerHealth {get=>playerHealth; set=>playerHealth=value;}
@@ -63,6 +63,7 @@ public class RadiationManager : MMMonoBehaviour
         currentState = radiationstate0;
 
         playerInfo = FindObjectOfType<PlayerInformation>();
+        InfoSc = GameObject.Find("GameManager").GetComponent<Info>();
         PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
         radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
     }
@@ -82,7 +83,7 @@ public class RadiationManager : MMMonoBehaviour
                 ChangeState(radiationstate1);
 
             if (IsRadiated) {
-                playerInfo.CurrentRadiationValue += 0.3f * Time.deltaTime;
+                playerInfo.CurrentRadiationValue += InfoSc.radAmt * Time.deltaTime;
             }
 
             radiationBar.UpdateBar(playerInfo.CurrentRadiationValue, playerInfo.MinRadiationValue, playerInfo.MaxRadiationValue);

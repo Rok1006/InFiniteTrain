@@ -95,6 +95,7 @@ public class MapPopUp : MonoBehaviour
                 if(this.GetComponent<Point>().id == InfoSC.ConfirmedSelectedPt){
                     SceneManageNDisplay.WarningGuideCall(5);
                 }
+                InfoSC.radAmt = this.GetComponent<Point>()._radAmt;
                 //InfoSC.CurrentSelectedPtObj = this.PopUpObj;
             }
             mm.UpdatePlayer(); //new
