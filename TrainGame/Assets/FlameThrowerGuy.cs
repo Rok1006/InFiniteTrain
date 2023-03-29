@@ -17,7 +17,9 @@ public class FlameThrowerGuy : MonoBehaviour
     public LayerMask layermask;
     public int destPoint = 0;
     public float speed;
+    public float speedWhenAttacking;
     private bool stop;
+    public float attackDuration;
     private float chance = 0.4f;
     public State state;
     public GameObject player;
@@ -25,6 +27,7 @@ public class FlameThrowerGuy : MonoBehaviour
     public float fovAngle;
     private Rigidbody rb;
     bool canAttack = false;
+    bool attacking = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +49,11 @@ public class FlameThrowerGuy : MonoBehaviour
                 MoveTowards();
                 if (canAttack == true)
                 {
-                    //attack here and disable canAttack
-
+                    attacking = true;
+                    canAttack = false;
+                    StartCoroutine("StartAttack");
+                    
+                    
 
                 }
                 if (Vector3.Distance(this.transform.position, player.transform.position) > 20)
@@ -64,6 +70,21 @@ public class FlameThrowerGuy : MonoBehaviour
 
 
         }
+    }
+    IEnumerator StartAttack()
+    {
+        
+        float totalTime = 0;
+        while(totalTime <= attackDuration)
+        {
+            totalTime += Time.deltaTime;
+            //set anim here and activate collider 
+            yield return null;
+        }
+
+        //set anim off and deactive collider
+        canAttack = true;
+      
     }
 
     IEnumerator Stun()
@@ -85,17 +106,33 @@ public class FlameThrowerGuy : MonoBehaviour
     {
         if (rb.velocity.x > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-45, 180, 0);
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
         }
-        var dir = (player.transform.position - this.transform.position).normalized;
-        rb.velocity = dir * speed;
-
-        if (Vector3.Distance(transform.position, player.transform.position) < 0.8f)
+        if (wayPoints.Length == 0)
         {
+            return;
+        }
+        if (attacking == false)
+        {
+            var dir = (player.transform.position - this.transform.position).normalized;
+            rb.velocity = dir * speed;
+        }
+        else
+        {
+            var dir = (player.transform.position - this.transform.position).normalized;
+            rb.velocity = dir * speedWhenAttacking;
+        }
+        
+
+        if (Vector3.Distance(transform.position, player.transform.position) < 2f)
+        {
+            Debug.Log("attacking");
             canAttack = true;
         }
     }
@@ -104,21 +141,30 @@ public class FlameThrowerGuy : MonoBehaviour
 
         if (rb.velocity.x > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-45, 180, 0);
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
         }
         if (wayPoints.Length == 0)
         {
             return;
         }
         //transform.position = Vector3.MoveTowards(transform.position, wayPoints[destPoint].position, speed);
-        Debug.Log("dff");
+    
         var direction = (wayPoints[destPoint].position - this.transform.position).normalized;
 
+        /*
+        var v = rb.velocity;
+        v.x = direction.x * speed;
+        v.z = direction.z * speed;
+        */
         rb.velocity = direction * speed;
+        var y = rb.velocity;
+        y.y = 0;
 
         var currentDestination = wayPoints[destPoint].position;
 
@@ -166,7 +212,7 @@ public class FlameThrowerGuy : MonoBehaviour
                 Debug.DrawRay(transform.position, dir);
                 if (Physics.Raycast(transform.position, dir, out r, range, layermask))
                 {
-                    Debug.Log("df");
+                   
 
                     if (r.collider.gameObject != null)
                     {
