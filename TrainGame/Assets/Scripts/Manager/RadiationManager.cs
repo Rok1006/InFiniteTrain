@@ -11,6 +11,8 @@ public class RadiationManager : MMMonoBehaviour
 {
     private PlayerInformation playerInfo;
     private Info InfoSc;
+    [ReadOnly, SerializeField]private GameObject MPTS;
+    //private MPTSceneManager MPT_SC;
 
     private int currentRadiationLevel = 0;
     [HorizontalLine(color: EColor.Red)]
@@ -64,6 +66,10 @@ public class RadiationManager : MMMonoBehaviour
 
         playerInfo = FindObjectOfType<PlayerInformation>();
         InfoSc = GameObject.Find("GameManager").GetComponent<Info>();
+        MPTS = GameObject.Find("MPT");
+        // if(MPTS!=null){
+        //     MPT_SC = MPTS.GetComponent<MPTSceneManager>();
+        // }
         PlayerHealth = FindObjectOfType<PlayerManager>().GetComponent<Health>();
         radiationBar = GameObject.Find(RadiationBarName).GetComponent<MMProgressBar>();
     }
@@ -91,6 +97,7 @@ public class RadiationManager : MMMonoBehaviour
             if (playerInfo.CurrentRadiationValue >= playerInfo.MaxRadiationValue) {
                 playerHealth.Damage(10000f, this.gameObject, 0, 0, Vector3.up, null);
             }
+
         }
     }
 
@@ -108,3 +115,5 @@ public class RadiationManager : MMMonoBehaviour
         MMEventManager.TriggerEvent(new MMGameEvent("Save"));
     }
 }
+
+
