@@ -45,6 +45,7 @@ public class MechanismItem : InventoryItemPlus
         if (indicator != null) {
             project.destination = indicator;
             project.timeToTake = 1.5f;
+            Debug.Log("Using mechanism item");
         } else
             Debug.Log("cant find indicator");
         // //decreases radiation

@@ -126,8 +126,12 @@ public class InventoryInputActionPlus : InventoryInputActions
         if (item != null) {
             //if item can be planted
             MechanismItem mech = item as MechanismItem;
-            if (mech != null)
+            if (mech != null) {
                 mech.PlantIndicator();
+                Debug.Log("Planting");
+            } else {
+                Debug.Log("mech is null");
+            }
                 
 
             StartCoroutine(waitToAct(item.actionTime, binding));
