@@ -50,7 +50,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField,BoxGroup("TrainMoveStop")] private AudioSource doorAudio;
     [SerializeField,BoxGroup("TrainMoveStop")] private GameObject BGScroll;
     private int doorIsOpen = 0; //0 = close, 1 = open
-    //private CinemachineBasicMultiChannelPerlin m_noise;
+    [BoxGroup("UI/Panel")]public GameObject GameOverScreen;
 //[HideInInspector]
 
     void Start()
@@ -75,6 +75,8 @@ public class SceneManageNDisplay : MonoBehaviour
         leverAnim = Lever.GetComponent<Animator>();
         currentValue = 0; //set initial
         targetValue = 1.5f;
+        GameOverScreen.SetActive(false);
+//---------
         UpdateCamNoise(currentValue);
         if(ISF.doorState==0){
             door.SetActive(false);

@@ -32,8 +32,6 @@ public class MapManager : MonoBehaviour
     [BoxGroup("Stuff")] public int ExitPtIndex;
     [BoxGroup("Stuff")] public int BossTrainAppearTriggerIndex;
 
-   
-
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -91,8 +89,12 @@ public class MapManager : MonoBehaviour
             enemyTrain.SetActive(true); //it appeared
             //do some visual anim stuff to obviously tell player boss is here
         }
-        if(InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
+        if(InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
             //GAME OVER
+            SMD.GameOverScreen.SetActive(true);
+        }
+        if(InfoSC.CurrentEnemyTrainInterval!= InfoSC.ConfirmedEnemyTrainLocal){
+            EnemyProceed();
         }
         if(Input.GetKeyDown(KeyCode.M)){ //Testing
             EnemyProceed();
@@ -265,10 +267,10 @@ public class MapManager : MonoBehaviour
     public void ETMT(float speed){ //Enemy Train interval: it will move based on the Current enemy interval
         StartCoroutine(EnemyTrainMoveTowards(speed));
     }
-    void EnemyProceed(){ //enemy proceed one point, trigger this when this need to be proceeded
+    public void EnemyProceed(){ //enemy proceed one point, trigger this when this need to be proceeded
         if(InfoSC.EnemyAppearState==1){
-            InfoSC.CurrentEnemyTrainInterval += 1;
             ETMT(.5f);
+            //have some animation bounce or sth to notify that enemy moved when open map
         }
         //trigger some snimation to let player know he is here some pop up box when he come back
     }

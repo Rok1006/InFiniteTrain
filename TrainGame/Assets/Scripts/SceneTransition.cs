@@ -10,6 +10,7 @@ using NaughtyAttributes;
 public class SceneTransition : MonoBehaviour
 {
     [SerializeField, BoxGroup("REF")]private Info InfoSC;
+    //[SerializeField, BoxGroup("REF")]private MapManager MM;
     public MapManager mapManager;
     private GameObject door;
     [SerializeField] private string otherSceneName;
@@ -19,6 +20,7 @@ public class SceneTransition : MonoBehaviour
     private void Start()
     {
         InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
+        //MM = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
         door = this.gameObject;
         gotoLevelEntryPoint = GetComponent<GoToLevelEntryPoint>();
     }
@@ -36,6 +38,7 @@ public class SceneTransition : MonoBehaviour
     }
 
     public void RespawnToPlayerScene() {
+        InfoSC.CurrentEnemyTrainInterval +=1;
         FindObjectOfType<RadiationManager>().DeathOfRadiation();
         MMSceneLoadingManager.LoadScene("LeoPlayAround");
     }
