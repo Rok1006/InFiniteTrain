@@ -8,6 +8,7 @@ public class UpdatedLaserDrone : MonoBehaviour
     [SerializeField] private GameObject[] laserPt;
     [SerializeField] private GameObject LaserObj;
     [SerializeField] private Animator lazerDAnim;
+    [SerializeField] private GameObject laserEffectSignal;
 
     public enum State { PATROL, ATTACK, STOP, STUN }
 
@@ -28,6 +29,7 @@ public class UpdatedLaserDrone : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
         LaserObj.SetActive(false);
         lazerDAnim.SetTrigger("shoot");
+        laserEffectSignal.SetActive(false);
         // LR.SetPosition(0, new Vector3(laserPt[0].transform.position.x, laserPt[0].transform.position.y, laserPt[0].transform.position.z));
         // LR.SetPosition(1, new Vector3(laserPt[1].transform.position.x, laserPt[1].transform.position.y, laserPt[1].transform.position.z));
     }
@@ -55,10 +57,19 @@ public class UpdatedLaserDrone : MonoBehaviour
 
 
         }
+        if (lazerDAnim.GetCurrentAnimatorStateInfo(0).IsName("PreShoot"))
+        {
+            laserEffectSignal.SetActive(true);
+        }
         if (lazerDAnim.GetCurrentAnimatorStateInfo(0).IsName("LaserShoot"))
         {
             LaserObj.SetActive(true);
+            laserEffectSignal.SetActive(false);
         }
+        // if (lazerDAnim.GetCurrentAnimatorStateInfo(0).IsName("LaserEnd"))
+        // {
+        //     laserEffectSignal.SetActive(false);
+        // }
 
     }
 
