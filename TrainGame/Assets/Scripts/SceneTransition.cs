@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 using MoreMountains.Tools;
 using MoreMountains.Feedbacks;
 using MoreMountains.TopDownEngine;
+using NaughtyAttributes;
 
 public class SceneTransition : MonoBehaviour
 {
+    [SerializeField, BoxGroup("REF")]private Info InfoSC;
     public MapManager mapManager;
     private GameObject door;
     [SerializeField] private string otherSceneName;
@@ -16,6 +18,7 @@ public class SceneTransition : MonoBehaviour
 
     private void Start()
     {
+        InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
         door = this.gameObject;
         gotoLevelEntryPoint = GetComponent<GoToLevelEntryPoint>();
     }
@@ -51,6 +54,7 @@ public class SceneTransition : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.GetComponent<PlayerManager>() != null) {
+            InfoSC.EnemyAppearState = 1;
             saveAndToOtherScene(otherSceneName);
             Info.Instance.isNewGame = false;
         }

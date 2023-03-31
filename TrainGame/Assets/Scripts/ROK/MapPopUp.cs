@@ -47,7 +47,7 @@ public class MapPopUp : MonoBehaviour
     public void ReapperaFlagPt(){
         if(this.clicked&&this.GetComponent<Point>().id==InfoSC.CurrentSelectedPt){
             Debug.Log("bruh");
-            PUAnim.SetTrigger("SetLocation"); //this one not going why?
+            this.PUAnim.SetTrigger("SetLocation"); //this one not going why?
             //SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
             ResetAnim(0);
         }
@@ -66,7 +66,7 @@ public class MapPopUp : MonoBehaviour
     {
         clicked = true;
         if(clicked&&this.GetComponent<Point>().id==InfoSC.CurrentSelectedPt){
-            PUAnim.SetTrigger("SetLocation");
+            this.PUAnim.SetTrigger("SetLocation");
             mm.PopUpPoint.Add(this.gameObject);
             ResetAnim(0);
         }

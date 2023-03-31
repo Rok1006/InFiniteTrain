@@ -30,6 +30,9 @@ public class MapManager : MonoBehaviour
     [SerializeField, BoxGroup("Stuff")] TextMeshProUGUI requireText; 
     [BoxGroup("Stuff")] public int TurnPtIndex; 
     [BoxGroup("Stuff")] public int ExitPtIndex;
+    [BoxGroup("Stuff")] public int BossTrainAppearTriggerIndex;
+
+   
 
     void Start()
     {
@@ -41,18 +44,16 @@ public class MapManager : MonoBehaviour
         SMD = GameObject.Find("SceneManage&Interactions").GetComponent<SceneManageNDisplay>();
         UpdatePlayerIcon();
         UpdatePlayer();
-        //triggerDoorToOutside.SetActive(false);
-        //InitialState
-        // InfoSC.CurrentPlayerTrainInterval = 0;
-        // InfoSC.CurrentEnemyTrainInterval = 0;
-        enemyTrain.SetActive(false);
-        //Debug.Log(InfoSC.CurrentPlayerTrainInterval.transform.localPosition);
-        UpdateTrainLocation();
+        UpdateTrainLocation(); //player and enemy
         requireText.text = "Select a location.";
         if(InfoSC.ConfirmedSelectedPt!=TurnPtIndex){  //now in turn pt
             UpdateMapPointState();
         }
-        // StartCoroutine(PlayerTrainMoveTowards());
+        if(InfoSC.EnemyAppearState==1){  //now in turn pt
+            enemyTrain.SetActive(true);
+        }else{
+            enemyTrain.SetActive(false);
+        }
     }
 
     void Update()
@@ -86,11 +87,16 @@ public class MapManager : MonoBehaviour
             Debug.Log("can pick again");
         }
 
-        // if(SMD.IsMoving){
-        //     //train sprite start moving slowly
-        //     //player train move to target pt
-        //     //takes several while (sec)
-        // }
+        if(InfoSC.EnemyAppearState == 1 && InfoSC.ConfirmedSelectedPt==BossTrainAppearTriggerIndex){  //& after player come back
+            enemyTrain.SetActive(true); //it appeared
+            //do some visual anim stuff to obviously tell player boss is here
+        }
+        if(InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
+            //GAME OVER
+        }
+        if(Input.GetKeyDown(KeyCode.M)){ //Testing
+            EnemyProceed();
+        }
     }
     private void FixedUpdate() {
         
@@ -178,10 +184,6 @@ public class MapManager : MonoBehaviour
             player.gameObject.GetComponent<MapPopUp>().ReapperaFlagPt();
         }
     }
-    void CheckHaveFuel(int fuelNeeded){
-            //check current selected point
-            // take into account that what if player wanna skip some points, need to add up the accumulated fuel require
-    }
     void UpdateTrainLocation(){ //For instant update when come back from map pt scene
         float pX = Intervals[InfoSC.CurrentPlayerTrainInterval].transform.localPosition.x;
         float pY = Intervals[InfoSC.CurrentPlayerTrainInterval].transform.localPosition.y;
@@ -205,9 +207,11 @@ public class MapManager : MonoBehaviour
        yield return new WaitUntil(() => !isMoving);
        ///StartCoroutine(PlayerTrainMoveTowards());
     }
-    public void PTMT(bool isMoving, float speed){
+    
+    public void PTMT(bool isMoving, float speed){ //Player Train interval
         StartCoroutine(PlayerTrainMoveTowards(isMoving,speed));
     }
+    
     public void GetTotalFuelNeeded(int index){
         int sum = 0;
         int currentLocal = InfoSC.ConfirmedPlayerTrainLocal;
@@ -219,12 +223,6 @@ public class MapManager : MonoBehaviour
     }
     public void ResetFuelNeedDisplay(){
         requireText.text = "Select a location.";
-    }
-    public void DisablePreviousLands(){
-        // int currentLocal = confirmedPlayerTrainLocal;
-        // for(int i = 0; i<currentLocal;i++){
-        //     points[i].
-        // }
     }
     public void UpdateMapPointState(){
         for(int i = 1; i < InfoSC.ConfirmedSelectedPt;i++){ //excluse start pt
@@ -246,7 +244,34 @@ public class MapManager : MonoBehaviour
         }
 
     }
-    
+
+//Enemy Monitoring Part------------------------
+/* 
+- Enemy only start moving when player arrived at thrid point after come back
+- Enemy everytime player get kick pack it will proceed one point forward, no more than that
+*/
+    IEnumerator EnemyTrainMoveTowards(float speed){ //movement for enemy train
+        bool isMoving = true;
+        GameObject targetPos = Intervals[InfoSC.CurrentEnemyTrainInterval];
+        while (enemyTrain.transform.localPosition != targetPos.transform.localPosition)
+       {
+           enemyTrain.transform.localPosition = Vector2.MoveTowards(enemyTrain.transform.localPosition, targetPos.transform.localPosition, speed * Time.deltaTime);
+           yield return null;
+       }
+       isMoving = false;
+       InfoSC.ConfirmedEnemyTrainLocal = InfoSC.CurrentEnemyTrainInterval;
+       yield return new WaitUntil(() => !isMoving);
+    }
+    public void ETMT(float speed){ //Enemy Train interval: it will move based on the Current enemy interval
+        StartCoroutine(EnemyTrainMoveTowards(speed));
+    }
+    void EnemyProceed(){ //enemy proceed one point, trigger this when this need to be proceeded
+        if(InfoSC.EnemyAppearState==1){
+            InfoSC.CurrentEnemyTrainInterval += 1;
+            ETMT(.5f);
+        }
+        //trigger some snimation to let player know he is here some pop up box when he come back
+    }
 }
 //order:
 //u select a point on the map, u go pull the lever, train start moving and arrive in a while

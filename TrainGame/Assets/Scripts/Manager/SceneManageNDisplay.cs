@@ -111,13 +111,6 @@ public class SceneManageNDisplay : MonoBehaviour
             currentValue+=0.01f;
             UpdateCamNoise(currentValue);
         }
-        // if(ISF.doorState==0){
-        //     door.SetActive(false);
-        //     doorAnim.SetTrigger("Close");  
-        // }else{
-        //     door.SetActive(true);
-        //     doorAnim.SetTrigger("Open");
-        // }
     }
     public void TrainInforGuide(){
         TrainInfoGuide.SetActive(true);
@@ -147,8 +140,8 @@ public class SceneManageNDisplay : MonoBehaviour
     }
     void CoreAppear(){
         mapCore.SetActive(true);
-        MM.Reappear();
         MM.FFC();
+        MM.Reappear();
     }
     void MapCamSwitch(){
         PanelOn = true;
@@ -191,18 +184,6 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainInfoGuide.SetActive(false);
     }
     void Pull(){
-        //yield return new WaitForSeconds(.5f);
-        // if(IsOn){ //make the train stop
-        //     Debug.Log("Train is gonna stop");
-        //     leverAnim.SetTrigger("Off");
-        //     currentAccess = "S T A R T  T R A I N";
-        //     trainTrigger.guideDescript = "S T A R T  T R A I N";
-        //     targetValue = 0f;
-        //     //TrainStopMotion();
-        //     IsOn = false;
-                //IsMoving = true;
-            //some enviromental change trigger: access to camera, plau audio, some foregrd backgrd
-        // }else 
         if(!IsOn&&PickedLocation&&hasEnoughFuel){ //make the train move but need to pick a point
             ConsumeFuel();
             Debug.Log("Train is gonna move");
@@ -310,3 +291,15 @@ public class SceneManageNDisplay : MonoBehaviour
 }
 //cannot move until fue is enough
 //fuel reduce when train pull not when click location
+// /        //yield return new WaitForSeconds(.5f);
+        // if(IsOn){ //make the train stop
+        //     Debug.Log("Train is gonna stop");
+        //     leverAnim.SetTrigger("Off");
+        //     currentAccess = "S T A R T  T R A I N";
+        //     trainTrigger.guideDescript = "S T A R T  T R A I N";
+        //     targetValue = 0f;
+        //     //TrainStopMotion();
+        //     IsOn = false;
+                //IsMoving = true;
+            //some enviromental change trigger: access to camera, plau audio, some foregrd backgrd
+        // }else 
