@@ -50,7 +50,8 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField,BoxGroup("TrainMoveStop")] private AudioSource doorAudio;
     [SerializeField,BoxGroup("TrainMoveStop")] private GameObject BGScroll;
     private int doorIsOpen = 0; //0 = close, 1 = open
-    [BoxGroup("UI/Panel")]public GameObject GameOverScreen;
+    [BoxGroup("UI/Others")]public GameObject GameOverScreen;
+    [BoxGroup("UI/Others")]public Animator TrainWindowLight;
 //[HideInInspector]
 
     void Start()
@@ -107,9 +108,11 @@ public class SceneManageNDisplay : MonoBehaviour
         }
         //Train Toggle
         if(!IsOn && currentValue >= targetValue){
+            TrainWindowLight.SetTrigger("LightStop");
             currentValue-=0.01f;
             UpdateCamNoise(currentValue);
         }else if(IsOn && currentValue <= targetValue){
+            TrainWindowLight.SetTrigger("LightMove");
             currentValue+=0.01f;
             UpdateCamNoise(currentValue);
         }
