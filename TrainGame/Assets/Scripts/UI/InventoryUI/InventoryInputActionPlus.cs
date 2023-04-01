@@ -34,16 +34,20 @@ public class InventoryInputActionPlus : InventoryInputActions
             }
             if (Input.GetKeyDown(binding.InputBinding) || Input.GetKeyDown(binding.AltInputBinding))
             {
-                if (!_inventoryDisplay.CurrentlySelectedInventorySlot().Equals( _inventoryDisplay.SlotContainer[binding.SlotIndex])) {
-                    ExecuteAction(binding);
-                } else {
-                    StartUsingItem(binding);
+                if (_inventoryDisplay.CurrentlySelectedInventorySlot() != null) {
+                    if (!_inventoryDisplay.CurrentlySelectedInventorySlot().Equals( _inventoryDisplay.SlotContainer[binding.SlotIndex])) {
+                        ExecuteAction(binding);
+                    } else {
+                        StartUsingItem(binding);
+                    }
                 }
             }
             if (Input.GetMouseButtonDown(0))
             {
-                if (EventSystem.current.IsPointerOverGameObject())
+                if (EventSystem.current.IsPointerOverGameObject()) {
+                    Debug.Log("Over UI");
                     return;
+                }
                 StartUsingItem(binding);
             }
 
