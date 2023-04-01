@@ -203,18 +203,19 @@ public class SceneManageNDisplay : MonoBehaviour
         }
     }
     public void PullLever(){  //put this in actionCall
-        if(ISF.ConfirmedSelectedPt != ISF.CurrentPlayerTrainInterval){ //if player isnt already arrived 
+        CheckIfEnoughFuel();
+        if(hasEnoughFuel){
+            if(ISF.CurrentSelectedPt != ISF.ConfirmedSelectedPt){ //if player isnt already arrived 
             doorAnim.SetTrigger("Close"); 
             door.SetActive(false);
             doorIsOpen = 0;
             TrainInfoGuide.SetActive(false);
-            CheckIfEnoughFuel();
-            if(!hasEnoughFuel){
-                WarningGuideCall(2); //nt enough fuel
-            }
+        
             if(!PickedLocation){
                 WarningGuideCall(3); //picked location
             }
+            Invoke("Pull", .5f);
+
             ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
             ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
             if(ISF.ConfirmedSelectedPt==MM.TurnPtIndex){  //if now player is in turn pt, abt to go back in loop //curent pt id of turn is 7
@@ -223,10 +224,14 @@ public class SceneManageNDisplay : MonoBehaviour
             MM.UpdateMapPointState(); 
             }
             MM.ResetFuelNeedDisplay();
-            Invoke("Pull", .5f);
+            
         }else{
             WarningGuideCall(5);
         }
+        }else{
+            WarningGuideCall(2); //nt enough fuel
+        }
+        
     }
     void ConsumeFuel(){
         if (player.GetComponent<PlayerInformation>().FuelAmt >= fuelCost){
