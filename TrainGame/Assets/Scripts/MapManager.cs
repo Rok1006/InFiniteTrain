@@ -89,10 +89,10 @@ public class MapManager : MonoBehaviour
             enemyTrain.SetActive(true); //it appeared
             //do some visual anim stuff to obviously tell player boss is here
         }
-        if(InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
-            //GAME OVER
-            SMD.GameOverScreen.SetActive(true);
-        }
+        // if(InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
+        //     //GAME OVER
+        //     SMD.GameOverScreen.SetActive(true);
+        // }
         if(InfoSC.CurrentEnemyTrainInterval!= InfoSC.ConfirmedEnemyTrainLocal){
             EnemyProceed();
         }
