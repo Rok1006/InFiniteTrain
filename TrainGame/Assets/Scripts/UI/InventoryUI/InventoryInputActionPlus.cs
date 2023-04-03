@@ -45,7 +45,6 @@ public class InventoryInputActionPlus : InventoryInputActions
             if (Input.GetMouseButtonDown(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject()) {
-                    Debug.Log("Over UI");
                     return;
                 }
                 StartUsingItem(binding);

@@ -11,4 +11,10 @@ public class SideInventoryDisplay : MonoBehaviour
 
     public CanvasGroup DisplayCanvasGroup {get=>displayCanvasGroup;}
     public InventoryDisplay InventoryDisplay {get=>inventoryDisplay;}
+
+    public void TakeAll() {
+        Inventory inventory = inventoryDisplay.TargetInventory;
+        for (int i = 0; i < inventory.Content.Length; i++)
+            inventory.MoveItemToInventory(startIndex : i, Inventory.FindInventory("BackpackInventory", "Player1"));
+    }
 }

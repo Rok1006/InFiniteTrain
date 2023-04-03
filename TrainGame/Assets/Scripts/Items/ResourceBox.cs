@@ -200,4 +200,6 @@ public class ResourceBox : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
     }
+
+    
 }
