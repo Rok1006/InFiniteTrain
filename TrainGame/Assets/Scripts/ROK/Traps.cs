@@ -6,7 +6,7 @@ using MoreMountains.Feedbacks;
 //This script shd be assigned on traps object 
 public class Traps : MonoBehaviour
 {
-    public enum TrapType { NONE, MINE, SPIKE, DEADLYBOUND, SHARDSHOOTER }
+    public enum TrapType { NONE, MINE, SPIKE, DEADLYBOUND, SHARDSHOOTER, DEADLYLASER }
     public TrapType currentType = TrapType.NONE;
     //public TrapType TT;
 
@@ -51,22 +51,14 @@ public class Traps : MonoBehaviour
             case TrapType.SHARDSHOOTER:
                 StartCoroutine("Trap_ShardShooter");
             break;
+            case TrapType.DEADLYLASER:
+                StartCoroutine("Trap_DeadlyLaser");
+            break;
         }
 
     }
 
     void Update(){
-        // RaycastHit hit;
-        // int layerMask = LayerMask.GetMask("Environment");
-        // Vector3 rayStartPos = new Vector3(transform.position.x, transform.position.y,transform.position.z);
-        // if(Physics.BoxCast(rayStartPos,this.transform.localScale / 2.0f, Vector3.down, out hit, Quaternion.identity,  10, layerMask)){   //not detecting the tile but the ground
-        //     Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.green);
-        //     //Debug.Log("yep");
-        //     Debug.Log("Object detected underneath: " + hit.collider.gameObject.name);
-        // }else{
-        //     Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.red);
-        // }
-        
         switch(currentType){
             case TrapType.MINE:
                 if(inZone){
@@ -167,16 +159,14 @@ public class Traps : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         StartCoroutine("Trap_ShardShooter");
     }
-    // IEnumerator ShardShoot(){
-    //     yield return new WaitForSeconds(0);
-    //     if(Projectile.Count>2){
-    //         for(int i = 0; i<3;i++){
-    //             Projectile[i].transform.Translate(Vector3.left * 100 * Time.deltaTime);
-    //             yield return new WaitForSeconds(5f);
-    //         }
-    //     }
-    //     yield return new WaitForSeconds(3f);
-    // }
+    IEnumerator Trap_DeadlyLaser(){
+        //yield return new WaitForSeconds(waitTime);
+        this.anim.SetTrigger("Shoot");
+        yield return new WaitForSeconds(duration);
+        this.anim.SetTrigger("EndShoot");
+        yield return new WaitForSeconds(waitTime);
+        StartCoroutine("Trap_DeadlyLaser");
+    }
     private void OnTriggerEnter(Collider col) { //cant detect
         if(col.gameObject.tag == "Player"){
             inZone = true;
@@ -191,5 +181,26 @@ public class Traps : MonoBehaviour
     }
 
 }
+//Dumpser---------
+//        // RaycastHit hit;
+        // int layerMask = LayerMask.GetMask("Environment");
+        // Vector3 rayStartPos = new Vector3(transform.position.x, transform.position.y,transform.position.z);
+        // if(Physics.BoxCast(rayStartPos,this.transform.localScale / 2.0f, Vector3.down, out hit, Quaternion.identity,  10, layerMask)){   //not detecting the tile but the ground
+        //     Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.green);
+        //     //Debug.Log("yep");
+        //     Debug.Log("Object detected underneath: " + hit.collider.gameObject.name);
+        // }else{
+        //     Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.red);
+        // }
+            // IEnumerator ShardShoot(){
+    //     yield return new WaitForSeconds(0);
+    //     if(Projectile.Count>2){
+    //         for(int i = 0; i<3;i++){
+    //             Projectile[i].transform.Translate(Vector3.left * 100 * Time.deltaTime);
+    //             yield return new WaitForSeconds(5f);
+    //         }
+    //     }
+    //     yield return new WaitForSeconds(3f);
+    // }
 
 
