@@ -85,11 +85,13 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (rb.velocity.x > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-45, 180, 0);
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
         }
         var dir = (player.transform.position - this.transform.position).normalized;
         rb.velocity = dir * speed;
@@ -102,15 +104,17 @@ public class MeleeEnemy : MonoBehaviour
     void Move()
     {
 
-        if(rb.velocity.x > 0)
+        if (rb.velocity.x > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-45, 180, 0);
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
         }
-        if(wayPoints.Length == 0)
+        if (wayPoints.Length == 0)
         {
             return;
         }
