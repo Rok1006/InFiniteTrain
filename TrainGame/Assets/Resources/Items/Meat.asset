@@ -33,11 +33,11 @@ MonoBehaviour:
     DisplayUseButton: 1
     DisplayUnequipButton: 1
     DisplayCombineButton: 1
-  Quantity: 1
+  Quantity: 0
   ItemName: Meat
   ShortDescription: 'Can make a person move faster.
 
-    
+
 
 '
   Description: "Awesome protein provider. \nCan make a person move faster."
@@ -92,5 +92,12 @@ MonoBehaviour:
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
+  actionTime: 0.5
+  hasMovementRestriction: 1
   FoodCount: 0
-  radiationDecrease: 3
+  radiationDecrease: 0
+  movementBoost: 8
+  lastingTime: 0
+  currentTime: 0
+  originalMovementSpeed: 0
+  score: 0

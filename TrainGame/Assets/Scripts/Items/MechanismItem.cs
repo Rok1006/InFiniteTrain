@@ -14,6 +14,11 @@ public class MechanismItem : InventoryItemPlus
     public Projectile projectile;
     public GameObject indicator;
 
+    [SerializeField] private float radiationDecrease;
+
+    //getters & setters
+    public float RadiationDecrease {get=>radiationDecrease;set=>radiationDecrease=value;}
+
     public bool PlantIndicator() {
         //decreases radiation
         _playerInfo = FindObjectOfType<PlayerInformation>();
@@ -37,6 +42,13 @@ public class MechanismItem : InventoryItemPlus
     {
         base.Use(playerID);
 
+        //decreases radiation
+        _playerInfo = FindObjectOfType<PlayerInformation>();
+        if (_playerInfo == null)
+            Debug.LogWarning("cant find playerInfomation");
+        _playerInfo.CurrentRadiationValue = Mathf.Max(_playerInfo.CurrentRadiationValue-radiationDecrease, 0.0f);
+
+        //throw items
         _playerInfo = FindObjectOfType<PlayerInformation>();
         if (_playerInfo == null)
             Debug.LogWarning("cant find playerInfomation");
