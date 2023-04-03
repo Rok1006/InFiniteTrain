@@ -1070,6 +1070,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1890839001869223808, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.504717
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890839001869223808, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.80211276
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890839001869223808, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1890839001869223809, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1756,7 +1771,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1202984965197363600, guid: 5a0505b582c00490a8f7147e067fd180,
+      objectReference: {fileID: 184950751378207249, guid: 5a0505b582c00490a8f7147e067fd180,
         type: 3}
     - target: {fileID: 1890839001950917536, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -1782,14 +1797,14 @@ PrefabInstance:
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: text
-      value: 'Abandoned Train Station
+      value: 'WETLAND
 
-        Scale: SMALL
+        Scale: MEDIUM
 
-        Danger level:
-        N/A
+        Danger level: MEDIUM
 
-        Main Resource: Fuel
+        Main
+        Resource: Materials, Mechanism
 
 '
       objectReference: {fileID: 0}
@@ -6331,7 +6346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &365815264
 Transform:
   m_ObjectHideFlags: 0
@@ -12334,6 +12349,11 @@ PrefabInstance:
       objectReference: {fileID: 1990180613}
     - target: {fileID: 1890839001232098788, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
+      propertyPath: HeadIcon
+      value: 
+      objectReference: {fileID: 475722474}
+    - target: {fileID: 1890839001232098788, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -12400,7 +12420,7 @@ PrefabInstance:
     - target: {fileID: 1890839001232098791, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1890839001950917536, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -12416,6 +12436,23 @@ PrefabInstance:
         type: 3}
       propertyPath: id
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: text
+      value: 'WETLAND
+
+        Scale: MEDIUM
+
+        Danger level: MEDIUM
+
+        Main
+        Resource: Fuel and Materials'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: _radAmt
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -12500,6 +12537,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 475722472}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &475722474 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1890839001869223808, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 475722472}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &480547179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26603,7 +26652,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.777592, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32697,7 +32746,14 @@ PrefabInstance:
     - target: {fileID: 1328118362184674883, guid: b5fdf3c46e50c499dac113d68a820088,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328118363304817697, guid: b5fdf3c46e50c499dac113d68a820088,
+        type: 3}
+      propertyPath: m_text
+      value: 'X3
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5fdf3c46e50c499dac113d68a820088, type: 3}
@@ -37289,6 +37345,7 @@ MonoBehaviour:
   - {fileID: 1484880108}
   - {fileID: 178623124}
   - {fileID: 1143699463}
+  - {fileID: 532006315}
   - {fileID: 1890839000642498529}
   - {fileID: 2127927689}
   availableDestination: []
@@ -37300,11 +37357,12 @@ MonoBehaviour:
   - {fileID: 243084378}
   - {fileID: 1819765623}
   - {fileID: 1716007679}
+  - {fileID: 365815263}
   - {fileID: 1785014295}
   - {fileID: 1717112386}
   requireText: {fileID: 819885537}
-  TurnPtIndex: 7
-  ExitPtIndex: 6
+  TurnPtIndex: 8
+  ExitPtIndex: 7
   BossTrainAppearTriggerIndex: 3
 --- !u!1 &1359996576
 GameObject:
@@ -49523,7 +49581,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.777592, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -50574,7 +50632,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.777592, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -54403,7 +54461,8 @@ PrefabInstance:
         Danger level: MEDIUM
 
         Main
-        Resource: Fuel and Materials
+        Resource: Materials, Mechanism
+
 
 '
       objectReference: {fileID: 0}
@@ -65010,6 +65069,21 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1890839001869223808, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
+      propertyPath: m_Color.b
+      value: 0.504717
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890839001869223808, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.80211276
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890839001869223808, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890839001869223808, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -65057,14 +65131,14 @@ PrefabInstance:
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: text
-      value: 'WETLAND
+      value: 'Wet Land
 
         Scale: SMALL
 
         Danger level: LOW
 
         Main
-        Resource: Fuel, Food
+        Resource: Fuel
 
 '
       objectReference: {fileID: 0}
@@ -65327,7 +65401,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 184950751378207249, guid: 5a0505b582c00490a8f7147e067fd180,
+      objectReference: {fileID: 1202984965197363600, guid: 5a0505b582c00490a8f7147e067fd180,
         type: 3}
     - target: {fileID: 1890839001950917536, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -65353,16 +65427,14 @@ PrefabInstance:
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
       propertyPath: text
-      value: 'WETLAND
+      value: 'Abandoned Train Station
 
-        Scale: MEDIUM
+        Scale: SMALL
 
-        Danger level: MEDIUM
+        Danger level:
+        N/A
 
-        Main
-        Resource: Materials, Mechanism
-
-'
+        Main Resource: Fuel'
       objectReference: {fileID: 0}
     - target: {fileID: 6274440913367811476, guid: 0a1e91ce179ad4e27b223cc75ebcf0e1,
         type: 3}
@@ -75421,7 +75493,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.777592, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
