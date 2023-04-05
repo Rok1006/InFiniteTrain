@@ -28,6 +28,7 @@ public class FlameThrowerGuy : MonoBehaviour
     private Rigidbody rb;
     bool canAttack = true;
     bool attacking = false;
+    public GameObject DetectObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -107,13 +108,15 @@ public class FlameThrowerGuy : MonoBehaviour
     {
         if (rb.velocity.x > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-45, 180, 0);
+            //enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(-1, 1, 1);
+            DetectObj.transform.eulerAngles = new Vector3(0, 90, 0);
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
+            //nemyChild.transform.eulerAngles = new Vector3(0, 0, 0);
+           this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
+           DetectObj.transform.eulerAngles = new Vector3(0, -90, 0);
         }
         if (wayPoints.Length == 0)
         {
@@ -142,13 +145,15 @@ public class FlameThrowerGuy : MonoBehaviour
 
         if (rb.velocity.x > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-45, 180, 0);
+            //enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(-1, 1, 1);
+            DetectObj.transform.eulerAngles = new Vector3(0, 90, 0);
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
+            //nemyChild.transform.eulerAngles = new Vector3(0, 0, 0);
+           this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
+           DetectObj.transform.eulerAngles = new Vector3(0, -90, 0);
         }
         if (wayPoints.Length == 0)
         {
@@ -203,7 +208,7 @@ public class FlameThrowerGuy : MonoBehaviour
         if (player != null)
         {
             Vector3 dir = (player.transform.position + new Vector3(0, 5, 0) - transform.position).normalized;
-            float angle = Vector3.Angle(dir, transform.right * -1);
+            float angle = Vector3.Angle(dir, DetectObj.transform.forward);
             RaycastHit r;
 
             if (angle < fovAngle / 2)

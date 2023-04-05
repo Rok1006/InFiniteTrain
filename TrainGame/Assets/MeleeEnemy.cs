@@ -27,11 +27,13 @@ public class MeleeEnemy : MonoBehaviour
     public float fovAngle;
     private Rigidbody rb;
     bool canAttack = false;
+    public GameObject DetectObj;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = this.gameObject.GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -87,13 +89,15 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (rb.velocity.x > 0)
         {
-            enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
-            //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-90, 0, 0);
+            //enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(-1, 1, 1);
+            DetectObj.transform.eulerAngles = new Vector3(0, 90, 0);
         }
         else
         {
-            enemyChild.transform.eulerAngles = new Vector3(0, 0, 0);
-            //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
+            //nemyChild.transform.eulerAngles = new Vector3(0, 0, 0);
+           this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
+           DetectObj.transform.eulerAngles = new Vector3(0, -90, 0);
         }
         var dir = (player.transform.position - this.transform.position).normalized;
         rb.velocity = dir * approachSpeed;
@@ -108,14 +112,17 @@ public class MeleeEnemy : MonoBehaviour
         Debug.Log(rb.velocity.x);
         if (rb.velocity.x > 0)
         {
-            enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
-            //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-90, 0, 0);
+            //enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(-1, 1, 1);
+            DetectObj.transform.eulerAngles = new Vector3(0, 90, 0);
         }
         else
         {
-            enemyChild.transform.eulerAngles = new Vector3(0, 0, 0);
-            //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
+            //nemyChild.transform.eulerAngles = new Vector3(0, 0, 0);
+           this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
+           DetectObj.transform.eulerAngles = new Vector3(0, -90, 0);
         }
+        
         if (wayPoints.Length == 0)
         {
             return;
@@ -163,7 +170,7 @@ public class MeleeEnemy : MonoBehaviour
         //angle = cone vision
         if(player!=null){
         Vector3 dir = (player.transform.position + new Vector3(0 , 5 , 0) - transform.position).normalized;
-        float angle = Vector3.Angle(dir, transform.right * -1);
+        float angle = Vector3.Angle(dir, DetectObj.transform.forward);
         RaycastHit r;
         
         if(angle < fovAngle / 2)
