@@ -62,8 +62,8 @@ public class Point : MonoBehaviour
                     Debug.Log("wow battle");
                 }
                 this.isPlayer = true;
-                this.icon = icon;
-                this.text = text;
+                //this.icon = icon;
+                //this.text = text;
 
                 x.GetComponent<Point>().Reset();
             }
