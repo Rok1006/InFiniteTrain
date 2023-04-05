@@ -14,6 +14,8 @@ public class MeleeEnemy : MonoBehaviour
         STUN
         
     }
+    public GameObject player;
+    public GameObject enemyChild;
     public LayerMask layermask;
     public int destPoint = 0;
     public float speed;
@@ -21,7 +23,6 @@ public class MeleeEnemy : MonoBehaviour
     private bool stop;
     private float chance = 0.4f;
     public State state;
-    public GameObject player;
     public float range;
     public float fovAngle;
     private Rigidbody rb;
@@ -86,13 +87,13 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (rb.velocity.x > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-90, 0, 0);
+            enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
+            //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-90, 0, 0);
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
+            enemyChild.transform.eulerAngles = new Vector3(0, 0, 0);
+            //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
         }
         var dir = (player.transform.position - this.transform.position).normalized;
         rb.velocity = dir * approachSpeed;
@@ -107,12 +108,12 @@ public class MeleeEnemy : MonoBehaviour
         Debug.Log(rb.velocity.x);
         if (rb.velocity.x > 0)
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+            enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
             //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-90, 0, 0);
         }
         else
         {
-            this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            enemyChild.transform.eulerAngles = new Vector3(0, 0, 0);
             //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
         }
         if (wayPoints.Length == 0)

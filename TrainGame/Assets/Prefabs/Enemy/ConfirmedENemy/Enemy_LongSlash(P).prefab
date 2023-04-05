@@ -43,8 +43,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.8313151, b: 0.5613208, a: 1}
-  m_Intensity: 4.44
-  m_Range: 4.9796333
+  m_Intensity: 3.1
+  m_Range: 19.22
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -77,12 +77,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 8192
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -143,13 +143,15 @@ MonoBehaviour:
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
+  player: {fileID: 0}
+  enemyChild: {fileID: 0}
   layermask:
     serializedVersion: 2
     m_Bits: 1024
   destPoint: 0
   speed: 5
+  approachSpeed: 0
   state: 0
-  player: {fileID: 0}
   range: 20
   fovAngle: 60
 --- !u!143 &2327011001136469568
