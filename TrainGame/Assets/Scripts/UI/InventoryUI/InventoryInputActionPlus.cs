@@ -42,13 +42,6 @@ public class InventoryInputActionPlus : InventoryInputActions
                     }
                 }
             }
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (EventSystem.current.IsPointerOverGameObject()) {
-                    return;
-                }
-                StartUsingItem(binding);
-            }
 
             //cancel work if player doesnt hold the key/mouse button
             if (Input.GetKeyUp(binding.InputBinding) || Input.GetKeyUp(binding.AltInputBinding) || Input.GetMouseButtonUp(0)) {
@@ -63,6 +56,21 @@ public class InventoryInputActionPlus : InventoryInputActions
                 }
             }
         }
+
+        if (Input.GetMouseButtonDown(0))
+            {
+                if (EventSystem.current.IsPointerOverGameObject()) {
+                    return;
+                }
+                if (_inventoryDisplay.CurrentlySelectedInventorySlot() != null) {
+                    
+                    if (!_inventoryDisplay.CurrentlySelectedInventorySlot().Equals( _inventoryDisplay.SlotContainer[_inventoryDisplay.CurrentlySelectedInventorySlot().Index])) {
+                        _inventoryDisplay.SlotContainer[_inventoryDisplay.CurrentlySelectedInventorySlot().Index].Select();
+                    } else {
+                        StartUsingItem(_inventoryDisplay.CurrentlySelectedInventorySlot().Index);
+                    }
+                }
+            }
     }
 
     protected override void ExecuteAction(InventoryInputActionsBindings binding)
@@ -116,8 +124,29 @@ public class InventoryInputActionPlus : InventoryInputActions
 
         //finish action animation
         _playerAnimator.SetTrigger("ActionFinished");
+        Debug.Log("action finished");
 
         ExecuteAction(binding);
+        isPerformingAction = false;
+    }
+
+    IEnumerator waitToAct(float actionTime, int slotIndex) {
+        InventoryItemPlus item = _targetInventory.Content[slotIndex] as InventoryItemPlus;
+        if (item.hasMovementRestriction) {
+            _playerManager.RestrictMovement();
+        }
+        isPerformingAction = true;
+        yield return new WaitForSeconds(actionTime);
+        //release restricted movement
+        _playerManager.ReleaseMovement();
+
+        //finish action animation
+        _playerAnimator.SetTrigger("ActionFinished");
+        Debug.Log("action finished");
+
+        MMInventoryEvent.Trigger(MMInventoryEventType.UseRequest, null, _targetInventory.name,
+                                            _targetInventory.Content[_inventoryDisplay.CurrentlySelectedInventorySlot().Index], 0,
+                                            _inventoryDisplay.CurrentlySelectedInventorySlot().Index, _targetInventory.PlayerID);
         isPerformingAction = false;
     }
 
@@ -132,12 +161,28 @@ public class InventoryInputActionPlus : InventoryInputActions
             if (mech != null) {
                 mech.PlantIndicator();
                 Debug.Log("Planting");
-            } else {
-                Debug.Log("mech is null");
             }
                 
 
             StartCoroutine(waitToAct(item.actionTime, binding));
+        }
+    }
+
+    public void StartUsingItem(int slotIndex) {
+        if (isPerformingAction)
+            return;
+        
+        InventoryItemPlus item = (InventoryItemPlus) _targetInventory.Content[slotIndex];
+        if (item != null) {
+            //if item can be planted
+            MechanismItem mech = item as MechanismItem;
+            if (mech != null) {
+                mech.PlantIndicator();
+                Debug.Log("Planting");
+            }
+                
+
+            StartCoroutine(waitToAct(item.actionTime, slotIndex));
         }
     }
 }
