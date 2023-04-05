@@ -32,6 +32,8 @@ public class MapManager : MonoBehaviour
     [BoxGroup("Stuff")] public int ExitPtIndex;
     [BoxGroup("Stuff")] public int BossTrainAppearTriggerIndex;
 
+    private int sum;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -43,11 +45,15 @@ public class MapManager : MonoBehaviour
         UpdatePlayerIcon();
         UpdatePlayer();
         UpdateTrainLocation(); //player and enemy
-        requireText.text = "Select a location.";
+        if(InfoSC.ConfirmedSelectedPt!=0){
+            requireText.text = "Select a new location.";
+        }else{
+            requireText.text = "Select a location.";
+        }
         if(InfoSC.ConfirmedSelectedPt!=TurnPtIndex){  //now in turn pt
             UpdateMapPointState();
         }
-        if(InfoSC.EnemyAppearState==1){  //now in turn pt
+        if(InfoSC.EnemyAppearState==1&& InfoSC.ConfirmedSelectedPt>=BossTrainAppearTriggerIndex){  //now in turn pt
             enemyTrain.SetActive(true);
         }else{
             enemyTrain.SetActive(false);
@@ -96,9 +102,14 @@ public class MapManager : MonoBehaviour
         if(InfoSC.CurrentEnemyTrainInterval!= InfoSC.ConfirmedEnemyTrainLocal){
             EnemyProceed();
         }
-        if(Input.GetKeyDown(KeyCode.M)){ //Testing
-            EnemyProceed();
+        if(InfoSC.CurrentSelectedPt!=0&&InfoSC.CurrentSelectedPt != InfoSC.ConfirmedSelectedPt){
+            MapInformationNotice(sum, SMD.player.GetComponent<PlayerInformation>().FuelAmt);
+        }else{
+            //requireText.text = "Select a new location.";
         }
+        // if(Input.GetKeyDown(KeyCode.M)){ //Testing
+        //     EnemyProceed();
+        // }
     }
     private void FixedUpdate() {
         
@@ -215,17 +226,16 @@ public class MapManager : MonoBehaviour
     }
     
     public void GetTotalFuelNeeded(int index){
-        int sum = 0;
+        sum = 0;
         int currentLocal = InfoSC.ConfirmedPlayerTrainLocal;
         for(int i = currentLocal+1; i<index+1;i++){
             sum += points[i].GetComponent<Point>().fuelAmtNeeded;
         }
-        requireText.text = "REQUIRE " + sum.ToString() + " FUEL";
+        MapInformationNotice(sum, SMD.player.GetComponent<PlayerInformation>().FuelAmt);
+        //requireText.text = "Insert " + sum.ToString() + " FUEL at the Fuel Depo. You currently have " + SMD.player.GetComponent<PlayerInformation>().FuelAmt;
         SMD.fuelCost = sum;
     }
-    public void ResetFuelNeedDisplay(){
-        requireText.text = "Select a location.";
-    }
+    
     public void UpdateMapPointState(){
         for(int i = 1; i < InfoSC.ConfirmedSelectedPt;i++){ //excluse start pt
             points[i].GetComponent<MapPopUp>().blocked = true;
@@ -245,6 +255,18 @@ public class MapManager : MonoBehaviour
             points[i].GetComponent<MapPopUp>().HeadIcon.color = tempColor;
         }
 
+    }
+    void MapInformationNotice(int fuelCost, int fuelOwn){ //front put the sum num //SMD.player.GetComponent<PlayerInformation>().FuelAmt
+        int diff = fuelCost - fuelOwn;
+        if(diff>0){
+            diff = diff;
+        }else{
+            diff = 0;
+        }
+        requireText.text = "Insert " + diff.ToString() + " FUEL at the Fuel Depo. You currently have " + fuelOwn;
+    }
+    public void ResetFuelNeedDisplay(){
+        requireText.text = "Select a new location.";
     }
 
 //Enemy Monitoring Part------------------------

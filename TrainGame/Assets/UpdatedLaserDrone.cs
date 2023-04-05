@@ -28,8 +28,8 @@ public class UpdatedLaserDrone : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rb = this.gameObject.GetComponent<Rigidbody>();
         LaserObj.SetActive(false);
-        lazerDAnim.SetTrigger("shoot");
         laserEffectSignal.SetActive(false);
+        //lazerDAnim.SetTrigger("shoot");
         // LR.SetPosition(0, new Vector3(laserPt[0].transform.position.x, laserPt[0].transform.position.y, laserPt[0].transform.position.z));
         // LR.SetPosition(1, new Vector3(laserPt[1].transform.position.x, laserPt[1].transform.position.y, laserPt[1].transform.position.z));
     }
@@ -66,10 +66,10 @@ public class UpdatedLaserDrone : MonoBehaviour
             LaserObj.SetActive(true);
             laserEffectSignal.SetActive(false);
         }
-        // if (lazerDAnim.GetCurrentAnimatorStateInfo(0).IsName("LaserEnd"))
-        // {
-        //     laserEffectSignal.SetActive(false);
-        // }
+        if (lazerDAnim.GetCurrentAnimatorStateInfo(0).IsName("LaserEnd"))
+        {
+            LaserObj.SetActive(false);
+        }
 
     }
 
@@ -154,8 +154,20 @@ public class UpdatedLaserDrone : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            this.state = State.ATTACK;
+            //this.state = State.ATTACK;
+            Attack();
         }
+    }
+    private void OnTriggerExit(Collider other) {
+        if(other.gameObject.tag == "Player")
+        {
+            this.state = State.PATROL;
+            //Invoke("Detect", .5f);
+        }
+    }
+    void Reset(){
+        LaserObj.SetActive(false);
+        laserEffectSignal.SetActive(false);
     }
     void Detect()
     {
