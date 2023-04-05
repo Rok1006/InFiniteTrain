@@ -16,6 +16,8 @@ public class MeleeEnemy : MonoBehaviour
     }
     public GameObject player;
     public GameObject enemyChild;
+    public GameObject DetectObj;
+    public Animator thisAnim;
     public LayerMask layermask;
     public int destPoint = 0;
     public float speed;
@@ -26,8 +28,8 @@ public class MeleeEnemy : MonoBehaviour
     public float range;
     public float fovAngle;
     private Rigidbody rb;
-    bool canAttack = false;
-    public GameObject DetectObj;
+    public bool canAttack = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -50,9 +52,9 @@ public class MeleeEnemy : MonoBehaviour
                 MoveTowards();
                 if(canAttack == true)
                 {
+                    thisAnim.SetBool("Walking", false);
+                    thisAnim.SetTrigger("Attack");
                     //attack here and disable canAttack
-
-
                 }
                 if(Vector3.Distance(this.transform.position ,player.transform.position) > 20)
                 {
@@ -72,6 +74,7 @@ public class MeleeEnemy : MonoBehaviour
 
     IEnumerator Stun()
     {
+        thisAnim.SetBool("Walking", false);
         float duration = 2f; // 2 seconds you can change this to
                              //to whatever you want
         float totalTime = 0;
@@ -85,8 +88,9 @@ public class MeleeEnemy : MonoBehaviour
 
         this.state = State.PATROL;
     }
-    void MoveTowards()
+    void MoveTowards() //Move towards enemy
     {
+        //thisAnim.SetBool("Walking", true);
         if (rb.velocity.x > 0)
         {
             //enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
@@ -100,14 +104,20 @@ public class MeleeEnemy : MonoBehaviour
            DetectObj.transform.eulerAngles = new Vector3(0, -90, 0);
         }
         var dir = (player.transform.position - this.transform.position).normalized;
-        rb.velocity = dir * approachSpeed;
+        
 
-        if (Vector3.Distance(transform.position, player.transform.position) < 0.8f)
+        if (Vector3.Distance(transform.position, player.transform.position) < .8f)
         {
             canAttack = true;
+            this.state = State.STOP;
+            StartCoroutine(Stop());
+            thisAnim.SetBool("Walking", false);
+        }else{
+            rb.velocity = dir * approachSpeed;
+            thisAnim.SetBool("Walking", true);
         }
     }
-    void Move()
+    void Move() //move frm waypt to waypt
     {
         Debug.Log(rb.velocity.x);
         if (rb.velocity.x > 0)
@@ -130,12 +140,9 @@ public class MeleeEnemy : MonoBehaviour
         //transform.position = Vector3.MoveTowards(transform.position, wayPoints[destPoint].position, speed);
         
         var direction = (wayPoints[destPoint].position - this.transform.position).normalized;
-        
-        rb.velocity = direction * speed;
-
         var currentDestination = wayPoints[destPoint].position;
 
-        if(Vector3.Distance(transform.position , currentDestination) < 0.8f)
+        if(Vector3.Distance(transform.position , currentDestination) < .8f)
         {
             destPoint = (destPoint + 1) % wayPoints.Length;
             var stopChance = Random.Range(0, 1f);
@@ -145,6 +152,10 @@ public class MeleeEnemy : MonoBehaviour
                 StartCoroutine(Stop());
                 
             }
+            thisAnim.SetBool("Walking", false);
+        }else{
+            thisAnim.SetBool("Walking", true);
+            rb.velocity = direction * speed;
         }
 
     }
@@ -162,34 +173,36 @@ public class MeleeEnemy : MonoBehaviour
         }
 
         this.state = State.PATROL;
+        //thisAnim.SetBool("Walking", false);
     }
 
     void Detect()
     {
         //range = distance
         //angle = cone vision
+       // thisAnim.SetBool("Walking", false);
         if(player!=null){
         Vector3 dir = (player.transform.position + new Vector3(0 , 5 , 0) - transform.position).normalized;
         float angle = Vector3.Angle(dir, DetectObj.transform.forward);
         RaycastHit r;
         
-        if(angle < fovAngle / 2)
-        {
-            
-            Debug.DrawLine(transform.position, dir, Color.green);
-            Debug.DrawRay(transform.position, dir);
-            if (Physics.Raycast(transform.position, dir, out r, range, layermask))
+            if(angle < fovAngle / 2)
             {
-                Debug.Log("df");
-
-                if (r.collider.gameObject != null)
+                
+                Debug.DrawLine(transform.position, dir, Color.green);
+                Debug.DrawRay(transform.position, dir);
+                if (Physics.Raycast(transform.position, dir, out r, range, layermask))
                 {
-                    Debug.Log(r.collider.gameObject.name);
-                    this.state = State.ATTACK;
+                    Debug.Log("df");
+
+                    if (r.collider.gameObject != null)
+                    {
+                        Debug.Log(r.collider.gameObject.name);
+                        this.state = State.ATTACK;
+                    }
                 }
-            }
-        }   
-    }
+            }   
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
