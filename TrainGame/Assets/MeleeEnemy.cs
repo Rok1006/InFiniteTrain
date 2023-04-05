@@ -17,6 +17,7 @@ public class MeleeEnemy : MonoBehaviour
     public LayerMask layermask;
     public int destPoint = 0;
     public float speed;
+    public float approachSpeed;
     private bool stop;
     private float chance = 0.4f;
     public State state;
@@ -86,7 +87,7 @@ public class MeleeEnemy : MonoBehaviour
         if (rb.velocity.x > 0)
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-45, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-90, 0, 0);
         }
         else
         {
@@ -94,7 +95,7 @@ public class MeleeEnemy : MonoBehaviour
             this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
         }
         var dir = (player.transform.position - this.transform.position).normalized;
-        rb.velocity = dir * speed;
+        rb.velocity = dir * approachSpeed;
 
         if (Vector3.Distance(transform.position, player.transform.position) < 0.8f)
         {
@@ -103,23 +104,23 @@ public class MeleeEnemy : MonoBehaviour
     }
     void Move()
     {
-
+        Debug.Log(rb.velocity.x);
         if (rb.velocity.x > 0)
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
-            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-45, 180, 0);
+            //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(-90, 0, 0);
         }
         else
         {
             this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-            this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
+            //this.gameObject.transform.GetChild(0).transform.eulerAngles = new Vector3(45, 0, 0);
         }
         if (wayPoints.Length == 0)
         {
             return;
         }
         //transform.position = Vector3.MoveTowards(transform.position, wayPoints[destPoint].position, speed);
-        Debug.Log("dff");
+        
         var direction = (wayPoints[destPoint].position - this.transform.position).normalized;
         
         rb.velocity = direction * speed;
@@ -157,6 +158,8 @@ public class MeleeEnemy : MonoBehaviour
 
     void Detect()
     {
+        //range = distance
+        //angle = cone vision
         if(player!=null){
         Vector3 dir = (player.transform.position + new Vector3(0 , 5 , 0) - transform.position).normalized;
         float angle = Vector3.Angle(dir, transform.right * -1);

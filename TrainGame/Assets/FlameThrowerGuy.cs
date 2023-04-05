@@ -26,7 +26,7 @@ public class FlameThrowerGuy : MonoBehaviour
     public float range;
     public float fovAngle;
     private Rigidbody rb;
-    bool canAttack = false;
+    bool canAttack = true;
     bool attacking = false;
     // Start is called before the first frame update
     void Start()
@@ -84,6 +84,7 @@ public class FlameThrowerGuy : MonoBehaviour
 
         //set anim off and deactive collider
         canAttack = true;
+        attacking = false;
       
     }
 
