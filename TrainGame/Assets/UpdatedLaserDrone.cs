@@ -22,6 +22,8 @@ public class UpdatedLaserDrone : MonoBehaviour
     public float range;
     public float fovAngle;
     private Rigidbody rb;
+    public GameObject DetectSign;
+    public bool popUp = false;
 
     void Start()
     {
@@ -29,9 +31,8 @@ public class UpdatedLaserDrone : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
         LaserObj.SetActive(false);
         laserEffectSignal.SetActive(false);
+        DetectSign.SetActive(false);
         //lazerDAnim.SetTrigger("shoot");
-        // LR.SetPosition(0, new Vector3(laserPt[0].transform.position.x, laserPt[0].transform.position.y, laserPt[0].transform.position.z));
-        // LR.SetPosition(1, new Vector3(laserPt[1].transform.position.x, laserPt[1].transform.position.y, laserPt[1].transform.position.z));
     }
 
     void Update()
@@ -42,10 +43,12 @@ public class UpdatedLaserDrone : MonoBehaviour
             case State.PATROL:
                 Move();
                 //Detect();
+                popUp = false;
                 break;
             case State.ATTACK:
                 lazerDAnim.SetBool("moving", false);
                 Attack();
+                popUp = true;
                 break;
             case State.STOP:
                 lazerDAnim.SetBool("moving", false);
@@ -70,6 +73,12 @@ public class UpdatedLaserDrone : MonoBehaviour
         {
             LaserObj.SetActive(false);
         }
+        // if(popUp){
+        //     DetectSign.SetActive(true);
+        //     popUp = false;
+        // }else{
+        //     DetectSign.SetActive(false);
+        // }
 
     }
 
@@ -96,10 +105,12 @@ public class UpdatedLaserDrone : MonoBehaviour
         lazerDAnim.SetBool("moving", true);
         if (rb.velocity.x > 0)
         {
+            this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(-1, 1, 1);
             this.gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else
         {
+            this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
             this.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
         }
         if (wayPoints.Length == 0)
@@ -156,13 +167,14 @@ public class UpdatedLaserDrone : MonoBehaviour
         {
             //this.state = State.ATTACK;
             Attack();
+            DetectSign.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Player")
         {
             this.state = State.PATROL;
-            //Invoke("Detect", .5f);
+            DetectSign.SetActive(false);
         }
     }
     void Reset(){

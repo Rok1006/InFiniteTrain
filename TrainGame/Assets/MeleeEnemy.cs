@@ -29,13 +29,15 @@ public class MeleeEnemy : MonoBehaviour
     public float fovAngle;
     private Rigidbody rb;
     public bool canAttack = false;
+    public GameObject DetectSign;
+    public bool popUp = false;
     
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = this.gameObject.GetComponent<Rigidbody>();
-        
+        DetectSign.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,10 +48,11 @@ public class MeleeEnemy : MonoBehaviour
             case State.PATROL:
                 Move();
                 Detect();
-                
+                popUp = false;
                 break;
             case State.ATTACK:
                 MoveTowards();
+                popUp = true;
                 if(canAttack == true)
                 {
                     thisAnim.SetBool("Walking", false);
@@ -66,9 +69,13 @@ public class MeleeEnemy : MonoBehaviour
                 break;
             case State.STUN:
                 StartCoroutine(Stun());
-                break;
-            
-                
+                break;     
+        }
+        if(popUp){
+            DetectSign.SetActive(true);
+            popUp = false;
+        }else{
+            DetectSign.SetActive(false);
         }
     }
 
@@ -119,6 +126,7 @@ public class MeleeEnemy : MonoBehaviour
     }
     void Move() //move frm waypt to waypt
     {
+        //DetectSign.SetActive(false);
         Debug.Log(rb.velocity.x);
         if (rb.velocity.x > 0)
         {
@@ -182,9 +190,10 @@ public class MeleeEnemy : MonoBehaviour
         //angle = cone vision
        // thisAnim.SetBool("Walking", false);
         if(player!=null){
-        Vector3 dir = (player.transform.position + new Vector3(0 , 5 , 0) - transform.position).normalized;
-        float angle = Vector3.Angle(dir, DetectObj.transform.forward);
-        RaycastHit r;
+            //popUp = true;
+            Vector3 dir = (player.transform.position + new Vector3(0 , 5 , 0) - transform.position).normalized;
+            float angle = Vector3.Angle(dir, DetectObj.transform.forward);
+            RaycastHit r;
         
             if(angle < fovAngle / 2)
             {
