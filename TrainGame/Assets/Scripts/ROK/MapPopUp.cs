@@ -67,7 +67,7 @@ public class MapPopUp : MonoBehaviour
         clicked = true;
         if(clicked&&this.GetComponent<Point>().id==InfoSC.CurrentSelectedPt){
             this.PUAnim.SetTrigger("SetLocation");
-            mm.PopUpPoint.Add(this.gameObject);
+            //mm.PopUpPoint.Add(this.gameObject);
             ResetAnim(0);
         }
     }
@@ -117,20 +117,21 @@ public class MapPopUp : MonoBehaviour
         //if(SceneManageNDisplay.PopUpPoint.Count==1)
             mm.PopUpPoint[0].GetComponent<MapPopUp>().clicked = false;
             mm.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetTrigger("PlugFlag");
-            if(mm.PopUpPoint.Count==2){
+            if(mm.PopUpPoint.Count==1){  //if added a new second pt, remove the first 1 to return 0
                 //ResetAnim(0);
                 // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", false);
                 // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", true);
                 mm.PopUpPoint.Remove(mm.PopUpPoint[0]);
                 //ResetAnim(0);
-            }else if(mm.PopUpPoint.Count==1){
-                // ResetAnim(0);
-                // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", false);
-                // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", true);
-                mm.PopUpPoint.TrimExcess();
-                mm.PopUpPoint.Clear();
-                //ResetAnim(0);
             }
+            // else if(mm.PopUpPoint.Count==1){
+            //     // ResetAnim(0);
+            //     // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", false);
+            //     // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", true);
+            //     mm.PopUpPoint.TrimExcess();
+            //     mm.PopUpPoint.Clear();
+            //     //ResetAnim(0);
+            // }
             //if(SceneManageNDisplay.PopUpPoint.Count>0)
             //ResetAnim(0);
     }

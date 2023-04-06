@@ -176,7 +176,7 @@ public class MapManager : MonoBehaviour
                 Debug.Log("df");
                 player = points[i];
                 points[i].GetComponent<Point>().isPlayer = true;
-                PopUpPoint.Add(points[i]);
+                //PopUpPoint.Add(points[i]);
             }
         }
         // if (this.player != null && this.player.GetComponent<Point>().id != 0) 
@@ -237,7 +237,7 @@ public class MapManager : MonoBehaviour
     }
     
     public void UpdateMapPointState(){
-        for(int i = 1; i < InfoSC.ConfirmedSelectedPt;i++){ //excluse start pt
+        for(int i = 1; i < InfoSC.ConfirmedSelectedPt+1;i++){ //excluse start pt
             points[i].GetComponent<MapPopUp>().blocked = true;
             var image = points[i].GetComponent<MapPopUp>().HeadIcon.GetComponent<Image>();
             var tempColor = image.color;
