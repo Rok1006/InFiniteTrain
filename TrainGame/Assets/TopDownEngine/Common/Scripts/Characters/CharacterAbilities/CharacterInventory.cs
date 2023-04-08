@@ -344,7 +344,30 @@ namespace MoreMountains.TopDownEngine
 
 		protected override void OnDeath()
 		{
+			
+			
+			
 			base.OnDeath();
+			if(MainInventory != null)
+            {
+				for(int i = 0; i < MainInventory.Content.Length; i++)
+                {
+					if(MainInventory.Content[i] != null)
+                    {
+						/*
+						var randomX = Random.Range(-1f, 1f);
+						var randomY = Random.Range(0.5f, 1f);
+						var randomZ = Random.Range(-1f, 1f);
+
+						var splashVector = new Vector3(randomX, randomY, randomZ);
+						var item = Instantiate(MainInventory.Content[i].Prefab) as GameObject;
+						item.GetComponent<Rigidbody>().AddForce(splashVector * 3, ForceMode.Impulse);
+						*/
+						Instantiate(MainInventory.Content[i].Prefab, transform.position, MainInventory.Content[i].Prefab.transform.rotation); 
+
+					}
+                }
+            }
 			if (WeaponInventory != null)
 			{
 				MMInventoryEvent.Trigger(MMInventoryEventType.UnEquipRequest, null, WeaponInventoryName, WeaponInventory.Content[0], 0, 0, PlayerID);

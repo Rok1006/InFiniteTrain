@@ -75,12 +75,31 @@ namespace MoreMountains.InventoryEngine
 
 			Pick(Item.TargetInventoryName, playerID);
 		}
+        private void OnCollisionEnter(Collision collider)
+        {
+			Debug.Log("df");
+			// if what's colliding with the picker ain't a characterBehavior, we do nothing and exit
+			if (!collider.gameObject.CompareTag("Player"))
+			{
+				
+				return;
+			}
 
-		/// <summary>
-		/// Triggered when something collides with the picker
-		/// </summary>
-		/// <param name="collider">Other.</param>
-		public virtual void OnTriggerEnter2D (Collider2D collider) 
+			string playerID = "Player1";
+			InventoryCharacterIdentifier identifier = collider.gameObject.GetComponent<InventoryCharacterIdentifier>();
+			if (identifier != null)
+			{
+				playerID = identifier.PlayerID;
+			}
+
+			Pick(Item.TargetInventoryName, playerID);
+		}
+
+        /// <summary>
+        /// Triggered when something collides with the picker
+        /// </summary>
+        /// <param name="collider">Other.</param>
+        public virtual void OnTriggerEnter2D (Collider2D collider) 
 		{
 			// if what's colliding with the picker ain't a characterBehavior, we do nothing and exit
 			if (!collider.CompareTag("Player"))
