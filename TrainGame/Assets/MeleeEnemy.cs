@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeleeEnemy : MonoBehaviour
 {
     public Transform[] wayPoints;
-
+    public ForceUpdate stun;
     public enum State
     {
         PATROL,
@@ -76,6 +76,11 @@ public class MeleeEnemy : MonoBehaviour
             popUp = false;
         }else{
             DetectSign.SetActive(false);
+        }
+        if (stun.stun == true)
+        {
+            this.state = State.STUN;
+            stun.stun = false;
         }
     }
 

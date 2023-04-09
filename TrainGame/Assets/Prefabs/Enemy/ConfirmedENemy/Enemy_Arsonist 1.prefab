@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 3927911555707367704}
   - component: {fileID: 3927911555707367705}
   - component: {fileID: 3927911555707367706}
+  - component: {fileID: 6908401017270855732}
   m_Layer: 13
   m_Name: Enemy_Arsonist 1
   m_TagString: Untagged
@@ -456,6 +457,7 @@ MonoBehaviour:
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
+  stun: {fileID: 6908401017270855732}
   layermask:
     serializedVersion: 2
     m_Bits: 1024
@@ -468,6 +470,19 @@ MonoBehaviour:
   range: 20
   fovAngle: 60
   DetectObj: {fileID: 3722620937815702821}
+--- !u!114 &6908401017270855732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2365720453574605975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d8c2b980709a344971da0e6fd36d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stun: 0
 --- !u!1 &3722620937815702821
 GameObject:
   m_ObjectHideFlags: 0

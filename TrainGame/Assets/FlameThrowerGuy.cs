@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlameThrowerGuy : MonoBehaviour
 {
     public Transform[] wayPoints;
-
+    public ForceUpdate stun;
     public enum State
     {
         PATROL,
@@ -69,7 +69,12 @@ public class FlameThrowerGuy : MonoBehaviour
                 StartCoroutine(Stun());
                 break;
 
-
+                
+        }
+        if (stun.stun == true)
+        {
+            this.state = State.STUN;
+            stun.stun = false;
         }
     }
     IEnumerator StartAttack()

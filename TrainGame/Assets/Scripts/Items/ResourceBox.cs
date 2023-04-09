@@ -93,6 +93,16 @@ public class ResourceBox : MonoBehaviour
 
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) { //open inventory
             isOpening = true;
+            var enemies = Physics.OverlapSphere(transform.position, 30);
+            foreach(var colliders in enemies)
+            {
+                if (colliders.gameObject.GetComponent<ForceUpdate>() != null)
+                {
+                    colliders.gameObject.GetComponent<ForceUpdate>().stun = true;
+                }
+               
+            }
+            
         } else if (isPlayerNear && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape)) && opened) { //close inventory
             HideInventoryUI();
         }
