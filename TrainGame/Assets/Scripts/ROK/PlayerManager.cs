@@ -54,11 +54,13 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     {
         this.MMEventStartListening<MMInventoryEvent>();
     }
+
     void OnDisable()
     {
         this.MMEventStopListening<MMInventoryEvent>();
     }
 
+    #region Start & Updates
     void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -106,6 +108,11 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             Debug.Log("Can't find backpack inventory for " + name);
 
     //item functions
+    GameObject radiationBar = GameObject.Find("RadiationBar");
+    if (radiationBar != null)
+        RadiationUIGroup = radiationBar.GetComponent<CanvasGroup>();
+    if (RadiationUIGroup != null && !canSeeRadiationUI)
+        RadiationUIGroup.alpha = 0;
 
     //weapons
         secondaryWeapon = GetComponent<CharacterHandleSecondaryWeapon>().CurrentWeapon;
@@ -200,8 +207,8 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             MCFrontAnim.SetTrigger("UseSmallSword");
             MCBackAnim.SetTrigger("UseSmallSword");
         }
-
     }
+    #endregion
 
     public void takeOutSword() {
         handleWeapon.ChangeWeapon(weaponCollection.MeleeWeapons[0], weaponCollection.MeleeWeapons[0].WeaponName, false);
@@ -311,6 +318,8 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
         canSeeRadiationUI = canSeeMapEnemy = canSeeMetal = canSeeMaterial = false;
 
         foreach (InventoryItem item in _backpackInventory.Content) {
+            if (item == null)
+                continue;
             if (item.ItemName.Equals("Metal Detector"))
                 canSeeMetal = true;
             else if (item.ItemName.Equals("Multi-Use Detector"))
@@ -343,11 +352,11 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     }
 
     public void StartShowingRadiationUI() {
-
+        RadiationUIGroup.alpha = 1;
     }
 
     public void EndShowingRadiationUI() {
-
+        RadiationUIGroup.alpha = 0;
     }
     #endregion
 }
