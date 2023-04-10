@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using MoreMountains.TopDownEngine;
+using MoreMountains.InventoryEngine;
+using MoreMountains.Tools;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using NaughtyAttributes;
 
 //This script handle wtever related to Player that is not related to topdown engine
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
 {
     [Header("Assignment")]
     [SerializeField] private GameObject FrontMC;
@@ -24,13 +26,12 @@ public class PlayerManager : MonoBehaviour
 
     Animator MCFrontAnim;
     Animator MCBackAnim;
-    float x;
-    float y;
-    float z;
     [HideInInspector]public float oldPositionX = 0.0f;
     [HideInInspector]public float oldPositionZ = 0.0f;
-    private bool isAttacking = false;
     public bool down = true;
+
+    [SerializeField, Foldout("Item Functions")] private bool canSeeRadiationUI, canSeeMapEnemy, canSeeMetal, canSeeMaterial;
+    [SerializeField, Foldout("Item Functions"), ReadOnly] private CanvasGroup RadiationUIGroup;
 
 //mouse control------------
     [SerializeField, BoxGroup("Mouse Control")] private LayerMask TargetLayerMask;
@@ -43,11 +44,20 @@ public class PlayerManager : MonoBehaviour
     private CharacterOrientation2D ChOri_2D;
     private CharacterMovement _characterMovement;
     private Character _character;
+    private Inventory _backpackInventory;
 
 //weapons----
     [SerializeField] private WeaponCollection weaponCollection;
     private Weapon secondaryWeapon;
 
+    void OnEnable()
+    {
+        this.MMEventStartListening<MMInventoryEvent>();
+    }
+    void OnDisable()
+    {
+        this.MMEventStopListening<MMInventoryEvent>();
+    }
 
     void Start()
     {
@@ -89,6 +99,13 @@ public class PlayerManager : MonoBehaviour
             _character = GetComponent<Character>();
         } else
             Debug.Log("Can't find Character in " + name);
+        
+        if (Inventory.FindInventory("BackpackInventory", "Player1") != null) {
+            _backpackInventory = Inventory.FindInventory("BackpackInventory", "Player1");
+        } else
+            Debug.Log("Can't find backpack inventory for " + name);
+
+    //item functions
 
     //weapons
         secondaryWeapon = GetComponent<CharacterHandleSecondaryWeapon>().CurrentWeapon;
@@ -284,4 +301,53 @@ public class PlayerManager : MonoBehaviour
         // if (Input.GetMouseButtonDown(MouseButtonIndex))
         //     OnClickFeedbacks?.PlayFeedbacks(Destination.transform.position);
     }
+
+    #region item functions
+    public virtual void OnMMEvent(MMInventoryEvent inventoryEvent)
+    {
+        if (_backpackInventory == null)
+            return;
+
+        canSeeRadiationUI = canSeeMapEnemy = canSeeMetal = canSeeMaterial = false;
+
+        foreach (InventoryItem item in _backpackInventory.Content) {
+            if (item.ItemName.Equals("Metal Detector"))
+                canSeeMetal = true;
+            else if (item.ItemName.Equals("Multi-Use Detector"))
+                StartDetectMetalAndMat();
+            else if (item.ItemName.Equals("Radiation Detector"))
+                canSeeRadiationUI = true;
+        }
+
+        if (canSeeRadiationUI)
+            StartShowingRadiationUI();
+        else
+            EndShowingRadiationUI();
+
+        if (canSeeMetal)
+            StartDetectMetal();
+        else
+            EndDetectMetal();
+    }
+
+    public void StartDetectMetal() {
+
+    }
+
+    public void EndDetectMetal() {
+
+    }
+
+    public void StartDetectMetalAndMat() {
+
+    }
+
+    public void StartShowingRadiationUI() {
+
+    }
+
+    public void EndShowingRadiationUI() {
+
+    }
+    #endregion
 }

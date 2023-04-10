@@ -60,20 +60,12 @@ public class MechanismItem : InventoryItemPlus
             Debug.Log("Using mechanism item");
         } else
             Debug.Log("cant find indicator");
-        // //decreases radiation
-        // _playerInfo = FindObjectOfType<PlayerInformation>();
-        // if (_playerInfo == null)
-        //     Debug.LogWarning("cant find playerInfomation");
-
-        // //increase movement speed
-        // _playerManager = FindObjectOfType<PlayerManager>();
-        // if (_playerManager == null)
-        //     Debug.LogWarning("cant find playerManager");
-
-        // Debug.Log("using " + name);
-
-        // _playerManager.CreateDestination();
-
         return true;
+    }
+
+    public override bool Pick(string playerID)
+    {
+        Debug.Log("picked " + ItemName);
+        return base.Pick(playerID);
     }
 }
