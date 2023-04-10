@@ -24,6 +24,7 @@ public class UpdatedLaserDrone : MonoBehaviour
     private Rigidbody rb;
     public GameObject DetectSign;
     public bool popUp = false;
+    public GameObject eletricObj;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class UpdatedLaserDrone : MonoBehaviour
         LaserObj.SetActive(false);
         laserEffectSignal.SetActive(false);
         DetectSign.SetActive(false);
+        eletricObj.SetActive(false);
         //lazerDAnim.SetTrigger("shoot");
     }
 
@@ -89,6 +91,7 @@ public class UpdatedLaserDrone : MonoBehaviour
         float totalTime = 0;
         while (totalTime <= duration)
         {
+            eletricObj.SetActive(true);
             rb.velocity = Vector3.zero;
             totalTime += Time.deltaTime;
             var integer = (int)totalTime; /* no need for now */

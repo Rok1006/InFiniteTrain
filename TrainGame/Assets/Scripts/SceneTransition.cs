@@ -38,9 +38,12 @@ public class SceneTransition : MonoBehaviour
     }
 
     public void RespawnToPlayerScene() {
-        InfoSC.CurrentEnemyTrainInterval +=1;
+         //this shd trigger when player die once
         FindObjectOfType<RadiationManager>().DeathOfRadiation();
         MMSceneLoadingManager.LoadScene("LeoPlayAround");
+    }
+    public void SimpleGetKicked(){
+        if(InfoSC.EnemyAppearState == 1){InfoSC.CurrentEnemyTrainInterval += 1;};
     }
 
     public void saveAndToOtherScene(string otherScene) {

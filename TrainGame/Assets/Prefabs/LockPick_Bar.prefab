@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &98741882803566466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7479951054258334426}
+  - component: {fileID: 81168300073332770}
+  - component: {fileID: 1964517952841634211}
+  m_Layer: 24
+  m_Name: BG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7479951054258334426
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98741882803566466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3153028985676276587}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 217.4, y: 0.84799194}
+  m_SizeDelta: {x: -449.313, y: 444.677}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &81168300073332770
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98741882803566466}
+  m_CullTransparentMesh: 1
+--- !u!114 &1964517952841634211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98741882803566466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6156863}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &931285882761791113
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 75, y: 1}
-  m_SizeDelta: {x: 39.85, y: 100}
+  m_AnchoredPosition: {x: 75.7, y: -0}
+  m_SizeDelta: {x: 25.513, y: 64.023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &931285882761791114
 CanvasRenderer:
@@ -65,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1636785368724435784, guid: 79ec94f6729fa4bd4a2d57e3e65dc384,
+  m_Sprite: {fileID: -727242227946012942, guid: d16e66d14a6c44932abe5eaaab9120a0,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -107,7 +182,7 @@ RectTransform:
   - {fileID: 931285884646176968}
   - {fileID: 931285882761791112}
   m_Father: {fileID: 3153028985676276587}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -465,8 +540,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 75, y: 1}
-  m_SizeDelta: {x: 39.85, y: 100}
+  m_AnchoredPosition: {x: 75, y: -2.257}
+  m_SizeDelta: {x: 39.85, y: 52.777}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &931285883263558326
 CanvasRenderer:
@@ -496,7 +571,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1636785368724435784, guid: 79ec94f6729fa4bd4a2d57e3e65dc384,
+  m_Sprite: {fileID: -727242227946012942, guid: d16e66d14a6c44932abe5eaaab9120a0,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -614,7 +689,7 @@ RectTransform:
   - {fileID: 931285883142596706}
   - {fileID: 931285883263558313}
   m_Father: {fileID: 3153028985676276587}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -727,7 +802,7 @@ RectTransform:
   - {fileID: 931285883370819773}
   - {fileID: 931285884346820135}
   m_Father: {fileID: 3153028985676276587}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -768,8 +843,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 75, y: 1}
-  m_SizeDelta: {x: 39.85, y: 100}
+  m_AnchoredPosition: {x: 75, y: -0.067}
+  m_SizeDelta: {x: 39.85, y: 67.966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &931285884346820121
 CanvasRenderer:
@@ -799,7 +874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1636785368724435784, guid: 79ec94f6729fa4bd4a2d57e3e65dc384,
+  m_Sprite: {fileID: -727242227946012942, guid: d16e66d14a6c44932abe5eaaab9120a0,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -838,7 +913,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3153028985676276587}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1134,6 +1209,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 7479951054258334426}
   - {fileID: 931285883805127067}
   - {fileID: 931285884264777829}
   - {fileID: 931285882841707578}
@@ -1220,9 +1296,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Top: {fileID: 931285883820413784}
-  TSpeed: 50
+  TSpeed: 200
   Mid: {fileID: 931285883023661731}
-  MSpeed: 100
+  MSpeed: 200
   Bottom: {fileID: 931285882874697847}
   BSpeed: 200
   PT: {fileID: 931285883263558324}

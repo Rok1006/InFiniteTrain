@@ -31,6 +31,7 @@ public class MeleeEnemy : MonoBehaviour
     public bool canAttack = false;
     public GameObject DetectSign;
     public bool popUp = false;
+    public GameObject eletricObj;
     
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class MeleeEnemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rb = this.gameObject.GetComponent<Rigidbody>();
         DetectSign.SetActive(false);
+        eletricObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -86,12 +88,14 @@ public class MeleeEnemy : MonoBehaviour
 
     IEnumerator Stun()
     {
-        thisAnim.SetBool("Walking", false);
+        
         float duration = 2f; // 2 seconds you can change this to
                              //to whatever you want
         float totalTime = 0;
         while (totalTime <= duration)
         {
+            thisAnim.SetBool("Walking", false);
+            eletricObj.SetActive(true);
             rb.velocity = Vector3.zero;
             totalTime += Time.deltaTime;
             var integer = (int)totalTime; /* no need for now */
