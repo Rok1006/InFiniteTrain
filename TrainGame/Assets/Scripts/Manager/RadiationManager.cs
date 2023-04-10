@@ -97,7 +97,6 @@ public class RadiationManager : MMMonoBehaviour
             if (playerInfo.CurrentRadiationValue >= playerInfo.MaxRadiationValue) {
                 playerHealth.Damage(10000f, this.gameObject, 0, 0, Vector3.up, null);
             }
-
         }
     }
 

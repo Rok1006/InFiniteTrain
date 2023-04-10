@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     [HideInInspector]public float oldPositionZ = 0.0f;
     public bool down = true;
 
-    [SerializeField, Foldout("Item Functions")] private bool canSeeRadiationUI, canSeeMapEnemy, canSeeMetal, canSeeMaterial;
+    [SerializeField, Foldout("Item Functions")] private bool canSeeRadiationUI, canSeeMapEnemy, canSeeMetal, canSeeMetalAndMat;
     [SerializeField, Foldout("Item Functions"), ReadOnly] private CanvasGroup RadiationUIGroup;
 
 //mouse control------------
@@ -315,7 +315,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
         if (_backpackInventory == null)
             return;
 
-        canSeeRadiationUI = canSeeMapEnemy = canSeeMetal = canSeeMaterial = false;
+        canSeeRadiationUI = canSeeMapEnemy = canSeeMetal = canSeeMetalAndMat = false;
 
         foreach (InventoryItem item in _backpackInventory.Content) {
             if (item == null)
@@ -323,7 +323,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             if (item.ItemName.Equals("Metal Detector"))
                 canSeeMetal = true;
             else if (item.ItemName.Equals("Multi-Use Detector"))
-                StartDetectMetalAndMat();
+                canSeeMetalAndMat = true;
             else if (item.ItemName.Equals("Radiation Detector"))
                 canSeeRadiationUI = true;
         }
@@ -337,18 +337,57 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             StartDetectMetal();
         else
             EndDetectMetal();
+        
+        if (canSeeMetalAndMat)
+            StartDetectMetalAndMat();
+        else if (canSeeMetalAndMat && !canSeeMetal)
+            EndDetectMetalAndMat();
     }
 
     public void StartDetectMetal() {
-
+        foreach (ResourceBox box in FindObjectsOfType<ResourceBox>()) {
+            if (!box.IsLocked)
+                continue;
+            foreach (InventoryItem item in Inventory.FindInventory(box.InventoryName, "Player1").Content) {
+                if (item as MechanismItem != null) {
+                    box.MetalIcon.SetActive(true);
+                    break;
+                }
+            }
+        }
     }
 
     public void EndDetectMetal() {
-
+        foreach (ResourceBox box in FindObjectsOfType<ResourceBox>()) {
+            if (!box.IsLocked)
+                continue;
+            box.MetalIcon.SetActive(false);
+        }
     }
 
     public void StartDetectMetalAndMat() {
+        foreach (ResourceBox box in FindObjectsOfType<ResourceBox>()) {
+            if (!box.IsLocked)
+                continue;
+            foreach (InventoryItem item in Inventory.FindInventory(box.InventoryName, "Player1").Content) {
+                Debug.Log(item.ItemName + " is checking");
+                if (item as MechanismItem != null) {
+                    box.MetalIcon.SetActive(true);
+                }
+                if (item as MaterialItem != null) {
+                    box.MaterialIcon.SetActive(true);
+                }
+            }
+        }
+    }
 
+    public void EndDetectMetalAndMat() {
+        foreach (ResourceBox box in FindObjectsOfType<ResourceBox>()) {
+            if (!box.IsLocked)
+                continue;
+            box.MetalIcon.SetActive(false);
+            box.MaterialIcon.SetActive(false);
+        }
     }
 
     public void StartShowingRadiationUI() {

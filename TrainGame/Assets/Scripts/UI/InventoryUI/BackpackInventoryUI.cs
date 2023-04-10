@@ -22,8 +22,9 @@ public class BackpackInventoryUI : MonoBehaviour, MMEventListener<MMInventoryEve
     }
 
     void Update() {
-        if (!inventoryInput.InventoryIsOpen)
+        if (!inventoryInput.InventoryIsOpen) {
             inventoryInput.OpenInventory();
+        }
     }
 
     public virtual void OnMMEvent(MMInventoryEvent inventoryEvent) {

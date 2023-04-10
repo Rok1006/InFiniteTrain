@@ -22,6 +22,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField, BoxGroup("TDE")] private InventoryDisplay inventoryDisplay;
     [SerializeField, BoxGroup("UI")] private Image radicalBar;
     [SerializeField, BoxGroup("UI")] private GameObject timer;
+    [SerializeField, BoxGroup("UI")] private GameObject metalIcon, materialIcon;
     [SerializeField, BoxGroup("Logic")] private bool isLocked = true;
     [SerializeField, BoxGroup("Logic"), ShowIf("isLocked")] private float openBoxSpeed = 0.35f;
     [SerializeField, BoxGroup("Invetory")] private List<InventoryItem> itemsToGenerate;
@@ -38,6 +39,9 @@ public class ResourceBox : MonoBehaviour
 
     //getters & setters
     public string InventoryName {get=>invnetoryName; set=>invnetoryName=value;}
+    public GameObject MetalIcon {get=>metalIcon;}
+    public GameObject MaterialIcon {get=>materialIcon;}
+    public bool IsLocked {get=>isLocked;}
 
     public virtual void Start()
     {
