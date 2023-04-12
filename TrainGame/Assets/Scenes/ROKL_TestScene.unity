@@ -26682,7 +26682,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7773788, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32998,6 +32998,7 @@ MonoBehaviour:
   fovAngle: 60
   DetectSign: {fileID: 0}
   popUp: 0
+  eletricObj: {fileID: 0}
 --- !u!65 &924246302
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33056,6 +33057,7 @@ MonoBehaviour:
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
+  stun: {fileID: 0}
   player: {fileID: 0}
   enemyChild: {fileID: 0}
   DetectObj: {fileID: 0}
@@ -33072,6 +33074,7 @@ MonoBehaviour:
   canAttack: 0
   DetectSign: {fileID: 0}
   popUp: 0
+  eletricObj: {fileID: 0}
 --- !u!4 &924246306
 Transform:
   m_ObjectHideFlags: 0
@@ -35389,7 +35392,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7773788, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -88823,6 +88826,11 @@ MonoBehaviour:
   oldPositionX: 0
   oldPositionZ: 0
   down: 1
+  canSeeRadiationUI: 0
+  canSeeMapEnemy: 0
+  canSeeMetal: 0
+  canSeeMetalAndMat: 0
+  RadiationUIGroup: {fileID: 0}
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 0

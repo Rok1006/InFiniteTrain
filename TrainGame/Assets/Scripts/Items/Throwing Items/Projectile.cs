@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     private float currentTime = 0.0f;
     private bool isReachedDestination = false;
     public Vector3 start;
+    private GameObject VFXObject;
 
     public Projectile(GameObject destination, float timeToTake)
     {
@@ -20,7 +21,11 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         start = this.transform.position;
-
+        VFXObject = GameObject.Find("StunBlast#Electrify");
+        if (VFXObject == null)
+            Debug.Log("cant find VFXObject for " + name);
+        else
+            VFXObject.SetActive(false);
     }
 
     void Update()
@@ -34,11 +39,12 @@ public class Projectile : MonoBehaviour
             transform.position = Vector3.Slerp(c1, c2, currentTime / timeToTake);
             transform.position += center;
         }
-        else
+        else //reached position
         {
+            VFXObject.transform.position = transform.position;
+            VFXObject.SetActive(true);
             Debug.Log("reached position " + "\nused " + timeToTake + " time");
+            Destroy(gameObject);
         }
     }
-}
-
-    
+}   
