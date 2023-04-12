@@ -19,6 +19,7 @@ public class LockPickBarV2 : MonoBehaviour
     [SerializeField] private Sprite lockImg;
     
     public bool InGame = false;
+    public bool InZone = false;
     public bool Complete;
     //[SerializeField] List<GameObject> list;
     public int iterator;
@@ -37,7 +38,7 @@ public class LockPickBarV2 : MonoBehaviour
 
     void Start()
     {
-        InGame = true;
+        // InGame = true;
         anim = this.GetComponent<Animator>();
         GeneratedLayer.TrimExcess();
         GeneratedLayer.Clear();
@@ -111,7 +112,7 @@ public class LockPickBarV2 : MonoBehaviour
         StartCoroutine(MoveBar(MB_rect, isMovingT, _speed)); //make it continue repeat
     }
     void CheckLockBar(int _current, RectTransform MovingBlockR, RectTransform DetectorR){
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)&&InZone)
             {
                 if (current == _current && CheckOverlap(MovingBlockR, DetectorR)) //We have to check the certain angle range of values, collisions will mess UI up, and sorry its the simplest way for now :(
                 {

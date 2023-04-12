@@ -160,6 +160,7 @@ public class ResourceBox : MonoBehaviour
     }
     void DisplayMiniGame(){
         //miniGame.GetComponent<LockPickBarV2>().enabled = true;
+        miniGame.GetComponent<LockPickBarV2>().InGame = true;
         miniGame.gameObject.SetActive(true);
         if(!restart){
             miniGame.GetComponent<LockPickBarV2>().Move();
@@ -184,6 +185,8 @@ public class ResourceBox : MonoBehaviour
             
             if (isLocked)
                 timer.SetActive(true);
+
+            miniGame.GetComponent<LockPickBarV2>().InZone = true;
         }
     }
 
@@ -194,14 +197,13 @@ public class ResourceBox : MonoBehaviour
         if (col.gameObject.tag ==("Player")) {
             HideInventoryUI();
             isPlayerNear = false;
+            miniGame.GetComponent<LockPickBarV2>().InZone = false;
             if(miniGame.GetComponent<LockPickBarV2>().InGame){
                 miniGame.GetComponent<Animator>().SetTrigger("complete");
                 miniGame.GetComponent<LockPickBarV2>().ResetMiniGame();
-                //miniGame.GetComponent<LockPickBarV2>().enabled = false;
                 miniGame.GetComponent<LockPickBarV2>().InGame = false;
                 Invoke("CloseMiniGame", 2f); 
             }
-            
         }
     }
 
