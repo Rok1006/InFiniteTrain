@@ -67,11 +67,15 @@ public class LockPickBarV2 : MonoBehaviour
 //-------- Set Size
         iterator = 0;
         for(int i = 0; i < MovingBlock_rect.Count; i++){
-            if(i>=0 || i<2){
-              MovingBlock_rect[i].sizeDelta = new Vector2(SetRandomBarWidth(30, 200), MovingBlock_rect[i].sizeDelta.y);  
-            }
-            
-            MovingBlock_rect[i].anchoredPosition = new Vector2(Random.Range(-151, 151), MovingBlock_rect[i].anchoredPosition.y);
+            if(i==0 || i==1){
+                MovingBlock_rect[i].sizeDelta = new Vector2(SetRandomBarWidth(30, 120), MovingBlock_rect[i].sizeDelta.y);  
+            }else if(i==2 || i==3){
+                MovingBlock_rect[i].sizeDelta = new Vector2(SetRandomBarWidth(100, 150), MovingBlock_rect[i].sizeDelta.y);
+            }else{
+                MovingBlock_rect[i].sizeDelta = new Vector2(SetRandomBarWidth(150, 200), MovingBlock_rect[i].sizeDelta.y);
+            }//
+           MovingBlock_rect[i].anchoredPosition = new Vector2(Random.Range(-151, 130), MovingBlock_rect[i].anchoredPosition.y); 
+            Detector_rect[i].anchoredPosition = new Vector2(Random.Range(-58.3f, 93.7f), MovingBlock_rect[i].anchoredPosition.y);
         }
 
         for(int i = 0; i < GeneratedLayer.Count; i++){
@@ -165,8 +169,10 @@ public class LockPickBarV2 : MonoBehaviour
     public void ResetMiniGame(){
         iterator = 0;
         for(int i = 0; i<GeneratedLayer.Count;i++){
-           Lock[i].GetComponent<Image>().sprite = lockImg;
-           MovingBlock[i].SetActive(true);
+            Lock[i].GetComponent<Image>().sprite = lockImg;
+            MovingBlock[i].SetActive(true);
+            MovingBlock_rect[i].anchoredPosition = new Vector2(Random.Range(-151, 130), MovingBlock_rect[i].anchoredPosition.y);
+            Detector_rect[i].anchoredPosition = new Vector2(Random.Range(-58.3f, 93.7f), MovingBlock_rect[i].anchoredPosition.y);
         }
         //Move();
         // GeneratedLayer.TrimExcess();
