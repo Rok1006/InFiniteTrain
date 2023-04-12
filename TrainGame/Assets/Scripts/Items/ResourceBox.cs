@@ -139,14 +139,14 @@ public class ResourceBox : MonoBehaviour
         }*/
 
         if (isLocked) { //if player need to open the lock
-            if (isOpening && miniGame.GetComponent<LockPickBar>().Complete == false){
+            if (isOpening && miniGame.GetComponent<LockPickBarV2>().Complete == false){
                 Invoke("DisplayMiniGame", .7f);
                 if (boxStun != null){boxStun.SetActive(true);}
                 //miniGame.gameObject.GetComponent<CanvasScaler>().scaleFactor = Mathf.Lerp(0.01f, 1f, 0.01f);
             }
-            if (miniGame.GetComponent<LockPickBar>().Complete && isOpening && !opened) { //the box is ready to open
+            if (miniGame.GetComponent<LockPickBarV2>().Complete && isOpening && !opened) { //the box is ready to open
                 
-                miniGame.GetComponent<Animator>().SetTrigger("close");
+                miniGame.GetComponent<Animator>().SetTrigger("complete");
                 Invoke("CloseMiniGame", 2f);
                 ShowInventoryUI();
             }

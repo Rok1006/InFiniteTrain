@@ -20,11 +20,6 @@ public class LockPickBar : MonoBehaviour
     [SerializeField, BoxGroup("REF")] GameObject PM;
     [SerializeField, BoxGroup("REF")] GameObject PB;
 
-    // public GameObject test1;
-    //  public GameObject test2;
-    // RectTransform t1;
-    // RectTransform t2;
-
     public bool Complete;
     [SerializeField] List<GameObject> list;
     public int iterator;
@@ -59,10 +54,6 @@ public class LockPickBar : MonoBehaviour
         pb = PB.GetComponent<RectTransform>();
 
         iterator = 0;
-
-        // T_S.value = 0;
-        // M_S.value = 0;
-        // B_S.value = 0; 
 
         t.sizeDelta = new Vector2(SetRandomBarWidth(150, 200), t.sizeDelta.y);
         m.sizeDelta = new Vector2(SetRandomBarWidth(100, 150), m.sizeDelta.y);
