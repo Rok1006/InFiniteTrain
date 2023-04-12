@@ -42,6 +42,7 @@ public class ResourceBox : MonoBehaviour
     public GameObject MetalIcon {get=>metalIcon;}
     public GameObject MaterialIcon {get=>materialIcon;}
     public bool IsLocked {get=>isLocked;}
+    private bool restart = false;
 
     public virtual void Start()
     {
@@ -158,11 +159,20 @@ public class ResourceBox : MonoBehaviour
 
     }
     void DisplayMiniGame(){
+        //miniGame.GetComponent<LockPickBarV2>().enabled = true;
         miniGame.gameObject.SetActive(true);
+        if(!restart){
+            miniGame.GetComponent<LockPickBarV2>().Move();
+            restart = true;
+        }
+        // miniGame.GetComponent<LockPickBarV2>().enabled = false;
+        // miniGame.GetComponent<LockPickBarV2>().enabled = true;
+        // //make it only do once
     }
     void CloseMiniGame(){
         miniGame.gameObject.SetActive(false);
         if (boxStun != null){boxStun.SetActive(false);}
+        restart = false;
     }
 
     /// when enter trigger area
@@ -184,6 +194,14 @@ public class ResourceBox : MonoBehaviour
         if (col.gameObject.tag ==("Player")) {
             HideInventoryUI();
             isPlayerNear = false;
+            if(miniGame.GetComponent<LockPickBarV2>().InGame){
+                miniGame.GetComponent<Animator>().SetTrigger("complete");
+                miniGame.GetComponent<LockPickBarV2>().ResetMiniGame();
+                //miniGame.GetComponent<LockPickBarV2>().enabled = false;
+                miniGame.GetComponent<LockPickBarV2>().InGame = false;
+                Invoke("CloseMiniGame", 2f); 
+            }
+            
         }
     }
 

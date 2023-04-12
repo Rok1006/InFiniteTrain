@@ -16,7 +16,9 @@ public class LockPickBarV2 : MonoBehaviour
     private List<GameObject> Detector = new List<GameObject>();  //the handle
     private List<GameObject> Lock = new List<GameObject>();  //the handle
     [SerializeField] private Sprite unlockImg;
+    [SerializeField] private Sprite lockImg;
     
+    public bool InGame = false;
     public bool Complete;
     //[SerializeField] List<GameObject> list;
     public int iterator;
@@ -35,7 +37,14 @@ public class LockPickBarV2 : MonoBehaviour
 
     void Start()
     {
+        InGame = true;
         anim = this.GetComponent<Animator>();
+        GeneratedLayer.TrimExcess();
+        GeneratedLayer.Clear();
+        IntiateBars();
+        
+    }
+    void IntiateBars(){
         for(int i = 0; i < LayerNum; i++){ //initatiate it
             GameObject l = Instantiate(LayerPrefab, LayerHolder.transform, false) as GameObject;
             l.transform.parent = LayerHolder.transform;
@@ -64,17 +73,9 @@ public class LockPickBarV2 : MonoBehaviour
             MovingBlock_rect[i].anchoredPosition = new Vector2(Random.Range(-151, 151), MovingBlock_rect[i].anchoredPosition.y);
         }
 
-        // t.sizeDelta = new Vector2(SetRandomBarWidth(150, 200), t.sizeDelta.y);
-        // m.sizeDelta = new Vector2(SetRandomBarWidth(100, 150), m.sizeDelta.y);
-        // b.sizeDelta = new Vector2(SetRandomBarWidth(30, 120), b.sizeDelta.y);
-
-        // t.anchoredPosition = new Vector2(Random.Range(-151, 151), t.anchoredPosition.y);
-        // m.anchoredPosition = new Vector2(Random.Range(-151, 151), m.anchoredPosition.y);
-        // b.anchoredPosition = new Vector2(Random.Range(-151, 151), b.anchoredPosition.y);
         for(int i = 0; i < GeneratedLayer.Count; i++){
            StartCoroutine(MoveBar(MovingBlock_rect[i], MovingBlock_IsMoving[i], SetRandomSpeed(150,300))); //later put this in for loop 
         }
-        
     }
 
     void Update()
@@ -84,6 +85,11 @@ public class LockPickBarV2 : MonoBehaviour
             CheckLockBar(i,MovingBlock_rect[i], Detector_rect[i]);
         }
         
+    }
+    public void Move(){
+        for(int i = 0; i < GeneratedLayer.Count; i++){
+           StartCoroutine(MoveBar(MovingBlock_rect[i], MovingBlock_IsMoving[i], SetRandomSpeed(150,300))); //later put this in for loop 
+        }
     }
 
     IEnumerator MoveBar(RectTransform MB_rect, bool isMovingT, float _speed)  //-151, 151
@@ -117,7 +123,10 @@ public class LockPickBarV2 : MonoBehaviour
                     unlockSound.Play();
                     iterator++;
                     Debug.Log("layer1");
-                    if(current==GeneratedLayer.Count-1){Complete = true;};
+                    if(current==GeneratedLayer.Count-1){
+                        Complete = true;
+                        InGame = false;
+                    };
                 } else{
                     GeneratedLayer[_current].GetComponent<Animator>().SetTrigger("Click");
                 }
@@ -152,5 +161,23 @@ public class LockPickBarV2 : MonoBehaviour
     //     _lock.SetActive(false);
     //     //particles
     // }
+    public void ResetMiniGame(){
+        iterator = 0;
+        for(int i = 0; i<GeneratedLayer.Count;i++){
+           Lock[i].GetComponent<Image>().sprite = lockImg;
+           MovingBlock[i].SetActive(true);
+        }
+        //Move();
+        // GeneratedLayer.TrimExcess();
+        // GeneratedLayer.Clear();
+    }
 }
+
+// // t.sizeDelta = new Vector2(SetRandomBarWidth(150, 200), t.sizeDelta.y);
+        // m.sizeDelta = new Vector2(SetRandomBarWidth(100, 150), m.sizeDelta.y);
+        // b.sizeDelta = new Vector2(SetRandomBarWidth(30, 120), b.sizeDelta.y);
+
+        // t.anchoredPosition = new Vector2(Random.Range(-151, 151), t.anchoredPosition.y);
+        // m.anchoredPosition = new Vector2(Random.Range(-151, 151), m.anchoredPosition.y);
+        // b.anchoredPosition = new Vector2(Random.Range(-151, 151), b.anchoredPosition.y);
 
