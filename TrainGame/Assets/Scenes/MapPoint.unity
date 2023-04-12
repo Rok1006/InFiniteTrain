@@ -4730,7 +4730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &184800863
 Transform:
   m_ObjectHideFlags: 0
@@ -8146,17 +8146,17 @@ PrefabInstance:
     - target: {fileID: 2581161468251579180, guid: 7dc879665407b46318fefff314fec708,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.349335
+      value: 238.96072
       objectReference: {fileID: 0}
     - target: {fileID: 2581161468251579180, guid: 7dc879665407b46318fefff314fec708,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41.94864
+      value: 40.361618
       objectReference: {fileID: 0}
     - target: {fileID: 2581161468251579180, guid: 7dc879665407b46318fefff314fec708,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -31.987305
+      value: -59.1019
       objectReference: {fileID: 0}
     - target: {fileID: 2581161468251579180, guid: 7dc879665407b46318fefff314fec708,
         type: 3}
@@ -34222,6 +34222,7 @@ GameObject:
   - component: {fileID: 1330589298}
   - component: {fileID: 1330589297}
   - component: {fileID: 1330589296}
+  - component: {fileID: 1330589306}
   m_Layer: 8
   m_Name: Wall2
   m_TagString: Untagged
@@ -34373,6 +34374,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1248243, y: 1.6563052, z: 0.40305927}
   m_Center: {x: 2.4950519, y: 0.6981003, z: 3.8308446}
+--- !u!65 &1330589306
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330589294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5834983, y: 1.6410842, z: 0.80925757}
+  m_Center: {x: -1.6190355, y: 0.69353616, z: -3.531391}
 --- !u!1 &1331777200
 GameObject:
   m_ObjectHideFlags: 0
@@ -35255,7 +35269,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7792208, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -38625,7 +38639,7 @@ PrefabInstance:
     - target: {fileID: 4974460979476987180, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -28.000748
+      value: -28.000732
       objectReference: {fileID: 0}
     - target: {fileID: 4976262255747248198, guid: 029fa9527cb42f949beb33a59141bd7d,
         type: 3}
@@ -46303,7 +46317,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7792208, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

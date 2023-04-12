@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInformation : MonoBehaviour
 {
+    private Info InfoSC;
     public Transform back;
     [ShowNonSerializedField, BoxGroup("Radiation")] private float currentRadiationValue = 0f; 
     [SerializeField, BoxGroup("Radiation")] private float maxRadiationValue = 10f, minRadiationValue = 0f;
@@ -24,10 +25,15 @@ public class PlayerInformation : MonoBehaviour
     public Inventory BackpackInven {get=>backpackInven;set=>backpackInven=value;}
     public Animator PlayerAnimator {get=>playerAnimator;}
 
+    void Start() {
+        InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
+        FuelAmt = InfoSC.FuelStorageAmt;
+    }
     void Update() {
         if (!SceneManager.GetActiveScene().name.Equals("LoadingScene") && !SceneManager.GetActiveScene().name.Equals("Start Screen")) {
             if (backpackInven == null)
                 backpackInven = GameObject.Find(backpackName).GetComponent<Inventory>();
         }
+        InfoSC.FuelStorageAmt = FuelAmt;
     }
 }

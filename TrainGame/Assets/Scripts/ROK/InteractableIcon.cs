@@ -37,7 +37,7 @@ public class InteractableIcon : MonoBehaviour
 
     void Update()
     {
-        if(SceneMD.PanelOn){
+        if(SceneMD.PanelOn||Info.Instance.IsViewingInventory){
             TrainInfoGuide.SetActive(false);
         }
         guideDescriptTextObj.text = SceneMD.currentAccess.ToString();
@@ -52,12 +52,13 @@ public class InteractableIcon : MonoBehaviour
     private void OnTriggerStay(Collider col) {
         if(col.gameObject.tag == "Player"){
             if(!thisIcon.activeSelf){thisIcon.SetActive(true);}
-            if(!TrainInfoGuide.activeSelf){TrainInfoGuide.SetActive(true);}
+            if(!TrainInfoGuide.activeSelf&&!SceneMD.PanelOn){TrainInfoGuide.SetActive(true);}
             //TrainInfoGuideCall.Invoke();  //need more edit
-            if(Input.GetKeyUp(input_interact)&&!SceneMD.PanelOn){
+            if(Input.GetKeyUp(input_interact)&&!SceneMD.PanelOn){            
                 DisplayFunction_Active.Invoke();
                 ActionCall.Invoke();
                 iconAnim.SetTrigger("disappear");
+                //TrainInfoGuide.SetActive(false);
                 //Debug.Log("yes");
             }
         }

@@ -18,6 +18,7 @@ public class Info : MMSingleton<Info>
     [BoxGroup("State")]public int doorState; //0=close, 1=open
     [BoxGroup("State")]public int EnemyAppearState; //0=close, 1=open
     [BoxGroup("Radiation")]public float radAmt;
+    [SerializeField, BoxGroup("FUEL")]private int fuelStorageAmt; //saved interval
     //public GameObject CurrentSelectedPtObj;
 
     [SerializeField, BoxGroup("UI Info")] public bool IsViewingInventory = false;
@@ -28,4 +29,5 @@ public class Info : MMSingleton<Info>
     public int ConfirmedPlayerTrainLocal {get=>confirmedPlayerTrainLocal; set=>confirmedPlayerTrainLocal = value;}
     public int CurrentEnemyTrainInterval {get=>enemyTrainInterval; set=>enemyTrainInterval = value;}
     public int ConfirmedEnemyTrainLocal {get=>confirmedEnemyTrainLocal; set=>confirmedEnemyTrainLocal = value;}
+    public int FuelStorageAmt {get=>fuelStorageAmt; set=>fuelStorageAmt = value;}
 }

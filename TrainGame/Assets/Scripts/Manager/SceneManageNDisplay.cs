@@ -52,6 +52,7 @@ public class SceneManageNDisplay : MonoBehaviour
     private int doorIsOpen = 0; //0 = close, 1 = open
     [BoxGroup("UI/Others")]public GameObject GameOverScreen;
     [BoxGroup("UI/Others")]public Animator TrainWindowLight;
+    [BoxGroup("UI/Others")]public CanvasGroup BackpackInventoryCanvasGroup;
 //[HideInInspector]
 
     void Start()
@@ -137,6 +138,8 @@ public class SceneManageNDisplay : MonoBehaviour
         Invoke("MapCamSwitch",.5f);
         Invoke("ChangePos",.5f);
         TrainInfoGuide.SetActive(false);
+        BackpackInventoryCanvasGroup.alpha = 0;
+        BackpackInventoryCanvasGroup.interactable = false;
     }
     void ChangePos(){
         Invoke("CoreAppear",1f);
@@ -157,6 +160,8 @@ public class SceneManageNDisplay : MonoBehaviour
         mapCam.SetActive(false);
         TrainFuelBar.SetActive(false);
         mapCore.SetActive(false);
+        BackpackInventoryCanvasGroup.alpha = 1;
+        BackpackInventoryCanvasGroup.interactable = true;
     }
 //Fuel Machine Part ---------
     public void Close_FF(){
