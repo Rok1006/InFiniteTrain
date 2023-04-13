@@ -288,9 +288,9 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
 
         if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButton(0)) return null;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-#endif
+    #endif
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, TargetLayerMask))
         {   
             GameObject Des = Instantiate(destination, Vector3.zero, Quaternion.identity);

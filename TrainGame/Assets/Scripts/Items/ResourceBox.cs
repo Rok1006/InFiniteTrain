@@ -183,10 +183,12 @@ public class ResourceBox : MonoBehaviour
         if (col.gameObject.tag == ("Player")) {
             isPlayerNear = true;
             
-            if (isLocked)
+            if (isLocked) {
                 timer.SetActive(true);
-
-            miniGame.GetComponent<LockPickBarV2>().InZone = true;
+            }
+             
+            if (miniGame != null) 
+                miniGame.GetComponent<LockPickBarV2>().InZone = true;
         }
     }
 
@@ -197,12 +199,14 @@ public class ResourceBox : MonoBehaviour
         if (col.gameObject.tag ==("Player")) {
             HideInventoryUI();
             isPlayerNear = false;
-            miniGame.GetComponent<LockPickBarV2>().InZone = false;
-            if(miniGame.GetComponent<LockPickBarV2>().InGame){
-                miniGame.GetComponent<Animator>().SetTrigger("complete");
-                miniGame.GetComponent<LockPickBarV2>().ResetMiniGame();
-                miniGame.GetComponent<LockPickBarV2>().InGame = false;
-                Invoke("CloseMiniGame", 2f); 
+            if (miniGame != null) {
+                miniGame.GetComponent<LockPickBarV2>().InZone = false;
+                if(miniGame.GetComponent<LockPickBarV2>().InGame){
+                    miniGame.GetComponent<Animator>().SetTrigger("complete");
+                    miniGame.GetComponent<LockPickBarV2>().ResetMiniGame();
+                    miniGame.GetComponent<LockPickBarV2>().InGame = false;
+                    Invoke("CloseMiniGame", 2f); 
+                }
             }
         }
     }

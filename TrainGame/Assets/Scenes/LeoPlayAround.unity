@@ -941,6 +941,7 @@ GameObject:
   - component: {fileID: 37296939}
   - component: {fileID: 37296941}
   - component: {fileID: 37296940}
+  - component: {fileID: 37296942}
   m_Layer: 0
   m_Name: pasted__Main_Wall14 (2)
   m_TagString: Untagged
@@ -1010,6 +1011,20 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37296938}
+  m_Mesh: {fileID: 6244520850249950638, guid: 13190621e570f4d6883980ef2ed45c5f, type: 3}
+--- !u!64 &37296942
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37296938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 6244520850249950638, guid: 13190621e570f4d6883980ef2ed45c5f, type: 3}
 --- !u!1 &44503437
 GameObject:
@@ -4590,7 +4605,7 @@ Transform:
   m_LocalScale: {x: 1.374, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1696449250}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &264447334
 MonoBehaviour:
@@ -25984,7 +25999,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776913, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -26004,12 +26019,12 @@ GameObject:
   - component: {fileID: 707730268}
   - component: {fileID: 707730269}
   m_Layer: 0
-  m_Name: ShelfInventory2
+  m_Name: ShelfInventory3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &707730268
 Transform:
   m_ObjectHideFlags: 0
@@ -26959,7 +26974,7 @@ Transform:
   m_Children:
   - {fileID: 707730268}
   m_Father: {fileID: 1696449250}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &766808808
 MonoBehaviour:
@@ -26974,7 +26989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: Player1
-  invnetoryName: ShelfInventory2
+  invnetoryName: ShelfInventory3
   autoSelectInventoryDisplay: 0
   inventoryCanvas: {fileID: 5416381562136677593}
   inventoryDisplay: {fileID: 5416381562136677592}
@@ -26985,10 +27000,7 @@ MonoBehaviour:
   isLocked: 0
   openBoxSpeed: 0.35
   itemsToGenerate:
-  - {fileID: 11400000, guid: 652d3f9742dc7b6469ed2a2937dbcc4d, type: 2}
-  - {fileID: 11400000, guid: 652d3f9742dc7b6469ed2a2937dbcc4d, type: 2}
-  - {fileID: 11400000, guid: 9278c13c8eb4d7540a5398565a608513, type: 2}
-  - {fileID: 11400000, guid: a0afa6b9327304ebf9846ff045106a1f, type: 2}
+  - {fileID: 11400000, guid: 366ee8b52ea324f5496d3916beb0d07a, type: 2}
   info: {fileID: 0}
   boxAnim: {fileID: 0}
   miniGame: {fileID: 0}
@@ -30790,7 +30802,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 1e6425005b3ce2c439be6860c8b7d9e2, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   InventoryType: 0
   TargetTransform: {fileID: 0}
@@ -42950,7 +42962,7 @@ Transform:
   m_Children:
   - {fileID: 1990180616}
   m_Father: {fileID: 1696449250}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1445022615
 MonoBehaviour:
@@ -49508,7 +49520,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776913, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -49638,8 +49650,8 @@ MonoBehaviour:
   itemsToGenerate:
   - {fileID: 11400000, guid: 652d3f9742dc7b6469ed2a2937dbcc4d, type: 2}
   - {fileID: 11400000, guid: 652d3f9742dc7b6469ed2a2937dbcc4d, type: 2}
+  - {fileID: 11400000, guid: 652d3f9742dc7b6469ed2a2937dbcc4d, type: 2}
   - {fileID: 11400000, guid: 9278c13c8eb4d7540a5398565a608513, type: 2}
-  - {fileID: 11400000, guid: a0afa6b9327304ebf9846ff045106a1f, type: 2}
   info: {fileID: 0}
   boxAnim: {fileID: 0}
   miniGame: {fileID: 0}
@@ -50657,7 +50669,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776913, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -52574,9 +52586,9 @@ Transform:
   - {fileID: 1976879600}
   - {fileID: 2087916246}
   - {fileID: 1582129592}
+  - {fileID: 766808807}
   - {fileID: 1445022614}
   - {fileID: 264447333}
-  - {fileID: 766808807}
   m_Father: {fileID: 1752999504}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -67963,6 +67975,7 @@ GameObject:
   - component: {fileID: 6645823804828236397}
   - component: {fileID: 5366159436180248601}
   - component: {fileID: 7202271454673081987}
+  - component: {fileID: 3655000510589775453}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -67970,6 +67983,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &3655000510589775453
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655000510589775452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: febce9e53efb74c5383021dd19fb2853, type: 3}
 --- !u!1 &3664535010342581157
 GameObject:
   m_ObjectHideFlags: 0
@@ -70420,6 +70447,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 790479577219290098, guid: 43ea37a9a945448cd947ee3df4ae8142,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038970572967466514, guid: 43ea37a9a945448cd947ee3df4ae8142,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -75481,7 +75513,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776913, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

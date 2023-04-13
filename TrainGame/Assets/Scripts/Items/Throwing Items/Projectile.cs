@@ -11,12 +11,7 @@ public class Projectile : MonoBehaviour
     private bool isReachedDestination = false;
     public Vector3 start;
     private GameObject VFXObject;
-
-    public Projectile(GameObject destination, float timeToTake)
-    {
-        this.destination = destination;
-        this.timeToTake = timeToTake;
-    }
+    private Animator VFXObjectAnim;
 
     void Start()
     {
@@ -24,8 +19,10 @@ public class Projectile : MonoBehaviour
         VFXObject = GameObject.Find("StunBlast#Electrify");
         if (VFXObject == null)
             Debug.Log("cant find VFXObject for " + name);
-        else
+        else {
             VFXObject.SetActive(false);
+            VFXObjectAnim = VFXObject.GetComponent<Animator>();
+        }
     }
 
     void Update()
@@ -44,7 +41,18 @@ public class Projectile : MonoBehaviour
             VFXObject.transform.position = transform.position;
             VFXObject.SetActive(true);
             Debug.Log("reached position " + "\nused " + timeToTake + " time");
-            Destroy(gameObject);
+            StartCoroutine(WaitToDestroySelf());
         }
+    }
+
+    /*wait until all animation played,
+      then destroy self*/
+    IEnumerator WaitToDestroySelf() {
+        while (VFXObjectAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.5f);
+        VFXObject.transform.position = new Vector3(-100,-100,-100);
+        Destroy(gameObject);
     }
 }   

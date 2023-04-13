@@ -9,7 +9,7 @@ public class PlayerInformation : MonoBehaviour
 {
     private Info InfoSC;
     public Transform back;
-    [ShowNonSerializedField, BoxGroup("Radiation")] private float currentRadiationValue = 0f; 
+    [ReadOnly, SerializeField, BoxGroup("Radiation")] private float currentRadiationValue = 0f; 
     [SerializeField, BoxGroup("Radiation")] private float maxRadiationValue = 10f, minRadiationValue = 0f;
     [SerializeField, BoxGroup("Fuel")]private int fuelAmt;
     [SerializeField, BoxGroup("Inventory")] private string backpackName;
