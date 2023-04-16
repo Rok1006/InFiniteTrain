@@ -60,7 +60,9 @@ public class SceneTransition : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.GetComponent<PlayerManager>() != null) {
-            InfoSC.EnemyAppearState = 1;
+            if(InfoSC.ConfirmedSelectedPt == 3){
+                InfoSC.EnemyAppearState = 1;
+            }
             saveAndToOtherScene(otherSceneName);
             Info.Instance.isNewGame = false;
         }

@@ -39,7 +39,7 @@ public class Point : MonoBehaviour
     }
    
     public void SendInfo(){
-        InfoSC.pointID = id;
+        //InfoSC.pointID = id;
         InfoSC.CurrentSelectedPt = id;
     }
 

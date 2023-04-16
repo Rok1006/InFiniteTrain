@@ -62,8 +62,7 @@ public class MapManager : MonoBehaviour
 
     void Update()
     {
-        //UpdateTrainLocation();
-        //Debug.Log(id);
+        InfoSC.pointID = InfoSC.ConfirmedSelectedPt;
         if(gameState == 0)
         {
             playerTurn = true;
@@ -95,10 +94,10 @@ public class MapManager : MonoBehaviour
             enemyTrain.SetActive(true); //it appeared
             //do some visual anim stuff to obviously tell player boss is here
         }
-        // if(InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
-        //     //GAME OVER
-        //     SMD.GameOverScreen.SetActive(true);
-        // }
+        if(InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
+            //GAME OVER
+            SMD.GameOverScreen.SetActive(true);
+        }
         if(InfoSC.CurrentEnemyTrainInterval!= InfoSC.ConfirmedEnemyTrainLocal){
             EnemyProceed();
         }
@@ -106,6 +105,11 @@ public class MapManager : MonoBehaviour
             MapInformationNotice(sum, SMD.player.GetComponent<PlayerInformation>().FuelAmt);
         }else{
             //requireText.text = "Select a new location.";
+        }
+        if(InfoSC.EnemyAppearState==1&& InfoSC.ConfirmedSelectedPt>=BossTrainAppearTriggerIndex){  //now in turn pt
+            enemyTrain.SetActive(true);
+        }else{
+            enemyTrain.SetActive(false);
         }
         // if(Input.GetKeyDown(KeyCode.M)){ //Testing
         //     EnemyProceed();
@@ -198,8 +202,8 @@ public class MapManager : MonoBehaviour
         }
     }
     void UpdateTrainLocation(){ //For instant update when come back from map pt scene
-        float pX = Intervals[InfoSC.CurrentPlayerTrainInterval].transform.localPosition.x;
-        float pY = Intervals[InfoSC.CurrentPlayerTrainInterval].transform.localPosition.y;
+        float pX = Intervals[InfoSC.ConfirmedPlayerTrainLocal].transform.localPosition.x;
+        float pY = Intervals[InfoSC.ConfirmedPlayerTrainLocal].transform.localPosition.y;
         float eX = Intervals[InfoSC.CurrentEnemyTrainInterval].transform.localPosition.x;
         float eY = Intervals[InfoSC.CurrentEnemyTrainInterval].transform.localPosition.y;
         playerTrain.transform.localPosition = new Vector3(pX,pY,0);  //set theit location
@@ -210,7 +214,7 @@ public class MapManager : MonoBehaviour
     
     IEnumerator PlayerTrainMoveTowards(bool isMoving, float speed){ //this will be trigger to move player train when ever the currentplayerinterval changes
         //bool isMoving = true;
-        GameObject targetPos = Intervals[InfoSC.CurrentPlayerTrainInterval];
+        GameObject targetPos = Intervals[InfoSC.ConfirmedPlayerTrainLocal];
         while (playerTrain.transform.localPosition != targetPos.transform.localPosition)
        {
            playerTrain.transform.localPosition = Vector2.MoveTowards(playerTrain.transform.localPosition, targetPos.transform.localPosition, speed * Time.deltaTime);
@@ -263,7 +267,7 @@ public class MapManager : MonoBehaviour
         }else{
             diff = 0;
         }
-        requireText.text = "Insert " + diff.ToString() + " FUEL at the Fuel Depo. You currently have " + fuelOwn;
+        requireText.text = "Insert " + diff.ToString() + " more FUEL at the Fuel Depo. You currently have " + fuelOwn;
     }
     public void ResetFuelNeedDisplay(){
         requireText.text = "Select a new location.";
