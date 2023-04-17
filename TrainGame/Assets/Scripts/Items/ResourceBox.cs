@@ -37,6 +37,8 @@ public class ResourceBox : MonoBehaviour
     [SerializeField] private SkeletonMecanim B_Skin;
     [SpineSkin] public string[] boxLook = { "Normal", "Wood"};
 
+    private InventoryDisplay backpackInventoryDisplay;
+
     //getters & setters
     public string InventoryName {get=>invnetoryName; set=>invnetoryName=value;}
     public GameObject MetalIcon {get=>metalIcon;}
@@ -46,6 +48,11 @@ public class ResourceBox : MonoBehaviour
 
     public virtual void Start()
     {
+        //set up
+        backpackInventoryDisplay = FindObjectOfType<BackpackInventoryUI>().InventoryDisplay;
+        if (backpackInventoryDisplay == null)
+            Debug.Log("Can't find backpack inventory display for " + name);
+
         if (useSkeletonMecanim) {
             B_Skin = this.transform.GetChild(0).gameObject.GetComponent<SkeletonMecanim>();     
             B_Skin.skeleton.SetSkin(boxLook[Random.Range(0,boxLook.Length)]);
@@ -221,6 +228,9 @@ public class ResourceBox : MonoBehaviour
         opened = false;
         Info.Instance.IsViewingInventory = false;
         GameObject.Find("BakcpackDisplay").GetComponent<InventoryDisplay>().SlotContainer[0].Select();
+
+        //let backpack's "target inventory" to be null
+        backpackInventoryDisplay.NextInventory = null;
     }
 
     public void ShowInventoryUI() {
@@ -234,6 +244,9 @@ public class ResourceBox : MonoBehaviour
             boxAnim.SetTrigger("open");
         opened = true;
         Info.Instance.IsViewingInventory = true;
+
+        //let backpack's "target inventory" to be this one, so player can double click to move items to this inventory
+        backpackInventoryDisplay.NextInventory = this.inventoryDisplay;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {

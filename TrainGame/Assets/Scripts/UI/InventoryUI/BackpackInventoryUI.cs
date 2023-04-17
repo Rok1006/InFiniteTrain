@@ -9,6 +9,10 @@ public class BackpackInventoryUI : MonoBehaviour, MMEventListener<MMInventoryEve
 {
     [SerializeField] InventoryInputManager inventoryInput;
     [SerializeField] InventoryDisplay inventoryDisplay;
+
+    //getters & setters
+    public InventoryDisplay InventoryDisplay {get=>inventoryDisplay;}
+
     void OnEnable() {
         this.MMEventStartListening<MMInventoryEvent>();
     }
