@@ -223,6 +223,7 @@ public class SceneManageNDisplay : MonoBehaviour
 
             ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
             ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
+            MM.points[ISF.CurrentSelectedPt].GetComponent<MapPopUp>().clicked = false; //when player pull lever and confirm, flag is plugged
             if(ISF.ConfirmedSelectedPt==MM.TurnPtIndex){  //if now player is in turn pt, abt to go back in loop //curent pt id of turn is 7
                 MM.ReEnterLoop(); //reopen stuff
             }else{

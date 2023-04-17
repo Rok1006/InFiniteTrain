@@ -32,6 +32,7 @@ public class ResourceBox : MonoBehaviour
     private bool isOpening = false, isPlayerNear = false, opened = false;
 
     [SerializeField, BoxGroup("EFFECT")] private GameObject boxStun;
+    [SerializeField, BoxGroup("EFFECT")] private GameObject boxOpenEffect;
 
     [SerializeField] private bool useSkeletonMecanim = true;
     [SerializeField] private SkeletonMecanim B_Skin;
@@ -87,6 +88,7 @@ public class ResourceBox : MonoBehaviour
         //things happens when loading scene
         SceneManager.sceneLoaded += OnSceneLoaded;
         if (boxStun != null){boxStun.SetActive(false);}
+        if (boxOpenEffect != null){boxOpenEffect.SetActive(false);};
 
     }
     
@@ -119,9 +121,6 @@ public class ResourceBox : MonoBehaviour
             HideInventoryUI();
         }
 
-        
-
-
         /*if (isLocked) { //if player need to open the lock
             if (isOpening)
                 radicalBar.fillAmount = Mathf.Min(radicalBar.fillAmount + openBoxSpeed * Time.deltaTime, 1.0f);
@@ -150,11 +149,15 @@ public class ResourceBox : MonoBehaviour
             if (isOpening && miniGame.GetComponent<LockPickBarV2>().Complete == false){
                 Invoke("DisplayMiniGame", .7f);
                 if (boxStun != null){boxStun.SetActive(true);}
+                boxAnim.SetTrigger("opening");
                 //miniGame.gameObject.GetComponent<CanvasScaler>().scaleFactor = Mathf.Lerp(0.01f, 1f, 0.01f);
             }
             if (miniGame.GetComponent<LockPickBarV2>().Complete && isOpening && !opened) { //the box is ready to open
                 
                 miniGame.GetComponent<Animator>().SetTrigger("complete");
+                boxAnim.SetTrigger("open");
+                if (boxOpenEffect != null){boxOpenEffect.SetActive(true);};
+                //add sparkles after open
                 Invoke("CloseMiniGame", 2f);
                 ShowInventoryUI();
             }
@@ -209,6 +212,7 @@ public class ResourceBox : MonoBehaviour
             if (miniGame != null) {
                 miniGame.GetComponent<LockPickBarV2>().InZone = false;
                 if(miniGame.GetComponent<LockPickBarV2>().InGame){
+                    boxAnim.SetTrigger("leave");
                     miniGame.GetComponent<Animator>().SetTrigger("complete");
                     miniGame.GetComponent<LockPickBarV2>().ResetMiniGame();
                     miniGame.GetComponent<LockPickBarV2>().InGame = false;

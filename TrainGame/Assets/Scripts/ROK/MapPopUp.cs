@@ -64,7 +64,7 @@ public class MapPopUp : MonoBehaviour
     }
     public void ForceChange() 
     {
-        clicked = true;
+        //clicked = true; //disabled this so that it wont automatically true
         if(clicked&&this.GetComponent<Point>().id==InfoSC.CurrentSelectedPt){
             this.PUAnim.SetTrigger("SetLocation");
             //mm.PopUpPoint.Add(this.gameObject);
