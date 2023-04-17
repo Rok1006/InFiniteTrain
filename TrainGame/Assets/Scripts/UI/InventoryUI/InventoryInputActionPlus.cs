@@ -49,6 +49,7 @@ public class InventoryInputActionPlus : InventoryInputActions
                     StopAllCoroutines();
                     isPerformingAction = false;
                     _playerManager.ReleaseMovement();
+                    _playerManager.IsUsingItem = false;
 
                     MechanismItem mech = _targetInventory.Content[binding.SlotIndex] as MechanismItem;
                     if (mech != null)
@@ -64,7 +65,7 @@ public class InventoryInputActionPlus : InventoryInputActions
                 }
                 if (_inventoryDisplay.CurrentlySelectedInventorySlot() != null) {
                     
-                    if (!_inventoryDisplay.CurrentlySelectedInventorySlot().Equals( _inventoryDisplay.SlotContainer[_inventoryDisplay.CurrentlySelectedInventorySlot().Index])) {
+                    if (!_inventoryDisplay.CurrentlySelectedInventorySlot().Equals(_inventoryDisplay.SlotContainer[_inventoryDisplay.CurrentlySelectedInventorySlot().Index])) {
                         _inventoryDisplay.SlotContainer[_inventoryDisplay.CurrentlySelectedInventorySlot().Index].Select();
                     } else {
                         StartUsingItem(_inventoryDisplay.CurrentlySelectedInventorySlot().Index);
@@ -128,6 +129,7 @@ public class InventoryInputActionPlus : InventoryInputActions
 
         ExecuteAction(binding);
         isPerformingAction = false;
+        _playerManager.IsUsingItem = false;
     }
 
     IEnumerator waitToAct(float actionTime, int slotIndex) {
@@ -148,6 +150,7 @@ public class InventoryInputActionPlus : InventoryInputActions
                                             _targetInventory.Content[_inventoryDisplay.CurrentlySelectedInventorySlot().Index], 0,
                                             _inventoryDisplay.CurrentlySelectedInventorySlot().Index, _targetInventory.PlayerID);
         isPerformingAction = false;
+        _playerManager.IsUsingItem = false;
     }
 
     public void StartUsingItem(InventoryInputActionsBindings binding) {
@@ -162,8 +165,9 @@ public class InventoryInputActionPlus : InventoryInputActions
                 mech.PlantIndicator();
                 Debug.Log("Planting");
             }
-                
 
+            _playerManager.TotalActionTime = item.actionTime;
+            _playerManager.IsUsingItem = true;
             StartCoroutine(waitToAct(item.actionTime, binding));
         }
     }
@@ -181,7 +185,8 @@ public class InventoryInputActionPlus : InventoryInputActions
                 Debug.Log("Planting");
             }
                 
-
+            _playerManager.TotalActionTime = item.actionTime;
+            _playerManager.IsUsingItem = true;
             StartCoroutine(waitToAct(item.actionTime, slotIndex));
         }
     }

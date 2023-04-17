@@ -30,6 +30,10 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     [HideInInspector]public float oldPositionZ = 0.0f;
     public bool down = true;
 
+//item using
+    [ReadOnly, SerializeField, BoxGroup("Item Using")] private float currentActionTime = 0.0f, totalActionTime = 0.0f;
+    [ReadOnly, SerializeField, BoxGroup("Item Using")] private bool isUsingItem = false;
+
     [SerializeField, Foldout("Item Functions")] private bool canSeeRadiationUI, canSeeMapEnemy, canSeeMetal, canSeeMetalAndMat;
     [SerializeField, Foldout("Item Functions"), ReadOnly] private CanvasGroup RadiationUIGroup;
 
@@ -50,6 +54,12 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     [SerializeField] private WeaponCollection weaponCollection;
     private Weapon secondaryWeapon;
 
+//getters & setters
+    public bool IsUsingItem {get=>isUsingItem;set=>isUsingItem=value;}
+    public float TotalActionTime {get=>totalActionTime;set=>totalActionTime=value;}
+    public float CurrentActionTime {get=>currentActionTime;private set=> currentActionTime=value;}
+
+    #region OnEnable,disable, Start & Updates
     void OnEnable()
     {
         this.MMEventStartListening<MMInventoryEvent>();
@@ -60,7 +70,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
         this.MMEventStopListening<MMInventoryEvent>();
     }
 
-    #region Start & Updates
+    
     void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -131,6 +141,12 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             SpotLight.SetActive(true);
         }else{
             SpotLight.SetActive(false);
+        }
+
+        if (IsUsingItem) {
+            if (CurrentActionTime < TotalActionTime) {
+                CurrentActionTime += Time.deltaTime;
+            }
         }
     }
 
