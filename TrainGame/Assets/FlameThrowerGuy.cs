@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlameThrowerGuy : MonoBehaviour
+public class FlameThrowerGuy : GeneralEnemy
 {
     public Transform[] wayPoints;
     public ForceUpdate stun;
@@ -16,7 +16,6 @@ public class FlameThrowerGuy : MonoBehaviour
     }
     public LayerMask layermask;
     public int destPoint = 0;
-    public float speed;
     public float speedWhenAttacking;
     private bool stop;
     public float attackDuration;

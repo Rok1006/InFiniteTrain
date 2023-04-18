@@ -173,10 +173,18 @@ public class Traps : MonoBehaviour
             Player = col.gameObject;
             Debug.Log("yes");
         }
+        if(col.gameObject.tag == "Enemy")
+        {
+            col.GetComponent<GeneralEnemy>().speed = col.GetComponent<GeneralEnemy>().speed / 3;
+        }
     }
     private void OnTriggerExit(Collider col) {
         if(col.gameObject.tag == "Player"){
             inZone = false;
+        }
+        if (col.gameObject.tag == "Enemy")
+        {
+            col.GetComponent<GeneralEnemy>().speed = col.GetComponent<GeneralEnemy>().speed * 3 ;
         }
     }
 

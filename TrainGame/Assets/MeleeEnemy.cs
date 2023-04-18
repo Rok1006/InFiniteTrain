@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemy : MonoBehaviour
+public class MeleeEnemy : GeneralEnemy
 {
     public Transform[] wayPoints;
     public ForceUpdate stun;
@@ -20,7 +20,6 @@ public class MeleeEnemy : MonoBehaviour
     public Animator thisAnim;
     public LayerMask layermask;
     public int destPoint = 0;
-    public float speed;
     public float approachSpeed;
     private bool stop;
     private float chance = 0.4f;
