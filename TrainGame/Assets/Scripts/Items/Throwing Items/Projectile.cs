@@ -55,4 +55,10 @@ public class Projectile : MonoBehaviour
         VFXObject.transform.position = new Vector3(-100,-100,-100);
         Destroy(gameObject);
     }
+
+    void OnTriggerEnter(Collider collider) {
+        if (collider.gameObject.CompareTag("Indicator")) {
+            Destroy(collider.gameObject);
+        }
+    }
 }   

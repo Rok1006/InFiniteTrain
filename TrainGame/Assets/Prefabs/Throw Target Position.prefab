@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5789097538514014748}
   - component: {fileID: 5789097538514014751}
   - component: {fileID: 3043275334775481350}
+  - component: {fileID: 6099102015982128950}
   m_Layer: 0
-  m_Name: TargetPosition
-  m_TagString: Untagged
+  m_Name: Throw Target Position
+  m_TagString: Indicator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +98,22 @@ CapsuleCollider:
   m_Height: 0
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6099102015982128950
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5789097538514014753}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &8056471698886590667
 PrefabInstance:
   m_ObjectHideFlags: 0

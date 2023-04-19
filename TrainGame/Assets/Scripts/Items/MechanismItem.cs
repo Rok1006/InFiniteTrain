@@ -15,6 +15,7 @@ public class MechanismItem : InventoryItemPlus
     public GameObject indicator;
 
     [SerializeField] private float radiationDecrease;
+    [SerializeField] private float indicatorExistingTime = 1.0f; 
 
     //getters & setters
     public float RadiationDecrease {get=>radiationDecrease;set=>radiationDecrease=value;}
@@ -31,7 +32,11 @@ public class MechanismItem : InventoryItemPlus
             Debug.LogWarning("cant find playerManager");
 
         if (indicator == null) {
-            indicator = _playerManager.CreateDestination();
+            if (isThrowable) {
+                indicator = _playerManager.CreateThrowDestination();
+            } else if (isPlantable) {
+                indicator = _playerManager.CreatePlantDestination();
+            }
             return true;
         }
 
@@ -49,17 +54,19 @@ public class MechanismItem : InventoryItemPlus
         _playerInfo.CurrentRadiationValue = Mathf.Max(_playerInfo.CurrentRadiationValue-radiationDecrease, 0.0f);
 
         //throw items
-        _playerInfo = FindObjectOfType<PlayerInformation>();
-        if (_playerInfo == null)
-            Debug.LogWarning("cant find playerInfomation");
+        if (isThrowable || isPlantable) {
+            _playerInfo = FindObjectOfType<PlayerInformation>();
+            if (_playerInfo == null)
+                Debug.LogWarning("cant find playerInfomation");
 
-        Projectile project = Instantiate(projectile, _playerInfo.transform.position, Quaternion.identity);
-        if (indicator != null) {
-            project.destination = indicator;
-            project.timeToTake = 1.5f;
-            Debug.Log("Using mechanism item");
-        } else
-            Debug.Log("cant find indicator");
+            Projectile project = Instantiate(projectile, _playerInfo.transform.position, Quaternion.identity);
+            if (indicator != null) {
+                project.destination = indicator;
+                project.timeToTake = 1.5f;
+                Debug.Log("Using mechanism item");
+            } else
+                Debug.Log("cant find indicator");
+        }
         return true;
     }
 

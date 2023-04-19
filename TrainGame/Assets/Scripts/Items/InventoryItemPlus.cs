@@ -7,4 +7,5 @@ public class InventoryItemPlus : InventoryItem
 {
     public float actionTime;
     public bool hasMovementRestriction = true;
+    public bool isPlantable = false, isThrowable = false;
 }
