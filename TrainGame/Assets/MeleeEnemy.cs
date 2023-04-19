@@ -11,7 +11,10 @@ public class MeleeEnemy : GeneralEnemy
         PATROL,
         ATTACK,
         STOP,
-        STUN
+        STUN,
+        GOBACK
+
+           
         
     }
     public GameObject player;
@@ -31,6 +34,7 @@ public class MeleeEnemy : GeneralEnemy
     public GameObject DetectSign;
     public bool popUp = false;
     public GameObject eletricObj;
+    private bool goingBack = false;
     
     // Start is called before the first frame update
     void Start()
@@ -63,6 +67,7 @@ public class MeleeEnemy : GeneralEnemy
                 if(Vector3.Distance(this.transform.position ,player.transform.position) > 20)
                 {
                     this.state = State.PATROL;
+                    goingBack = true;
                 }
                 break;
             case State.STOP:
@@ -70,7 +75,10 @@ public class MeleeEnemy : GeneralEnemy
                 break;
             case State.STUN:
                 StartCoroutine(Stun());
-                break;     
+                break;
+            case State.GOBACK:
+                WalkBack();
+                break;
         }
         if(popUp){
             DetectSign.SetActive(true);
@@ -82,6 +90,35 @@ public class MeleeEnemy : GeneralEnemy
         {
             this.state = State.STUN;
             stun.stun = false;
+        }
+    }
+    void WalkBack()
+    {
+        if (rb.velocity.x > 0)
+        {
+            //enemyChild.transform.eulerAngles = new Vector3(0, 180, 0);
+            this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(-1, 1, 1);
+            DetectObj.transform.eulerAngles = new Vector3(0, 90, 0);
+        }
+        else
+        {
+            //nemyChild.transform.eulerAngles = new Vector3(0, 0, 0);
+            this.gameObject.transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
+            DetectObj.transform.eulerAngles = new Vector3(0, -90, 0);
+        }
+
+        if (wayPoints.Length == 0)
+        {
+            return;
+        }
+        //transform.position = Vector3.MoveTowards(transform.position, wayPoints[destPoint].position, speed);
+
+        var direction = (wayPoints[destPoint].position - this.transform.position).normalized;
+        var currentDestination = wayPoints[destPoint].position;
+
+        if (Vector3.Distance(transform.position, currentDestination) < .8f)
+        {
+            this.state = State.PATROL;
         }
     }
 
@@ -160,6 +197,8 @@ public class MeleeEnemy : GeneralEnemy
 
         if(Vector3.Distance(transform.position , currentDestination) < .8f)
         {
+            goingBack = false;
+            Debug.Log("stoppp");
             destPoint = (destPoint + 1) % wayPoints.Length;
             var stopChance = Random.Range(0, 1f);
             if(stopChance < chance)
@@ -198,6 +237,8 @@ public class MeleeEnemy : GeneralEnemy
         //angle = cone vision
        // thisAnim.SetBool("Walking", false);
         if(player!=null){
+            if(goingBack == false)
+            {
             //popUp = true;
             Vector3 dir = (player.transform.position + new Vector3(0 , 5 , 0) - transform.position).normalized;
             float angle = Vector3.Angle(dir, DetectObj.transform.forward);
@@ -219,6 +260,8 @@ public class MeleeEnemy : GeneralEnemy
                     }
                 }
             }   
+
+            }
         }
     }
 
