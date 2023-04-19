@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 3630260744273829756}
   - component: {fileID: 3630260744273829757}
   - component: {fileID: 8488205631818008271}
-  m_Layer: 25
+  - component: {fileID: 3801424413095369032}
+  m_Layer: 24
   m_Name: Meat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3630260744273829638}
-  m_LocalRotation: {x: 0.08135581, y: 0, z: 0, w: 0.99668515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7316, y: 1.7316, z: 1.7316}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 9.333, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3630260744273829755
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -163,3 +164,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefsKey: 
+--- !u!114 &3801424413095369032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630260744273829638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e9b0613a9f9544580c1644719392dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrabMainCameraOnStart: 1
+  NestObject: 0
+  OffsetDirection: {x: 0, y: 0, z: 1}
+  Up: {x: 0, y: 1, z: 0}
