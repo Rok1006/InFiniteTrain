@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using NaughtyAttributes;
+using MoreMountains.Feedbacks;
+//This script is only on Laser drone laser and Deadly laser trap
 public class DamageSource : MonoBehaviour
 {
     public float dmg;
-    // Start is called before the first frame update
+    [ReadOnly]public GameObject Player;
+
     void Start()
     {
-        
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -21,7 +23,10 @@ public class DamageSource : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            Debug.Log("shit");
             other.gameObject.GetComponent<PlayerInformation>().CurrentRadiationValue += this.dmg;
+            Player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("Damage");
+            MMFlashEvent.Trigger(Color.red, 0.3f, 0.6f, 0, 0, TimescaleModes.Unscaled);
         }
     }
 }

@@ -70,6 +70,7 @@ public class Traps : MonoBehaviour
                     inZone = false;
                     audioSource.Play();
                     MMFlashEvent.Trigger(Color.red, 0.3f, 0.6f, 0, 0, TimescaleModes.Unscaled);
+                    Player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("Damage");
                     //Effects[0].SetActive(false);
                     //destroy itself
                 }
@@ -83,9 +84,10 @@ public class Traps : MonoBehaviour
                     inZone = false;
                     audioSource.Play();
                     MMFlashEvent.Trigger(Color.red, 0.3f, 0.6f, 0, 0, TimescaleModes.Unscaled);
+                    Player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("Damage");
                 }
             break;
-            case TrapType.DEADLYBOUND:
+            case TrapType.DEADLYBOUND: //not using
                 LR.SetPosition(0, new Vector3(Point[0].transform.position.x, Point[0].transform.position.y, Point[0].transform.position.z));
                 LR.SetPosition(1, new Vector3(Point[1].transform.position.x, Point[1].transform.position.y, Point[1].transform.position.z));
                 if(inZone){

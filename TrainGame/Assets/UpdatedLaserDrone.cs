@@ -97,7 +97,7 @@ public class UpdatedLaserDrone : MonoBehaviour
             var integer = (int)totalTime; /* no need for now */
             yield return null;
         }
-
+        eletricObj.SetActive(false);
         this.state = State.PATROL;
     }
 

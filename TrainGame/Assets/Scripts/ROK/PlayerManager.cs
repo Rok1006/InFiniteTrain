@@ -24,8 +24,8 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     public bool facingFront = true;   //or side
     [HideInInspector] public List<GameObject> dust = new List<GameObject>();
 
-    Animator MCFrontAnim;
-    Animator MCBackAnim;
+    [ReadOnly]public Animator MCFrontAnim;
+    [ReadOnly]public Animator MCBackAnim;
     [HideInInspector]public float oldPositionX = 0.0f;
     [HideInInspector]public float oldPositionZ = 0.0f;
     public bool down = true;

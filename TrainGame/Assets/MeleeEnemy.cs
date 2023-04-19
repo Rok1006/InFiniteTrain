@@ -100,7 +100,7 @@ public class MeleeEnemy : GeneralEnemy
             var integer = (int)totalTime; /* no need for now */
             yield return null;
         }
-
+        eletricObj.SetActive(false);
         this.state = State.PATROL;
     }
     void MoveTowards() //Move towards enemy
