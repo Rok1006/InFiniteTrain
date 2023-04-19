@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpdatedLaserDrone : MonoBehaviour
+public class UpdatedLaserDrone : GeneralEnemy
 {
     public Transform[] wayPoints;
     [SerializeField] private GameObject[] laserPt;
@@ -84,7 +84,7 @@ public class UpdatedLaserDrone : MonoBehaviour
 
     }
 
-    IEnumerator Stun()
+    public override IEnumerator Stun()
     {
         float duration = 2f; // 2 seconds you can change this to
                              //to whatever you want
