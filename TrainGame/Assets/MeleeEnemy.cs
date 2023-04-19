@@ -56,10 +56,12 @@ public class MeleeEnemy : GeneralEnemy
                 popUp = false;
                 break;
             case State.ATTACK:
+                
                 MoveTowards();
                 popUp = true;
                 if(canAttack == true)
                 {
+                    
                     thisAnim.SetBool("Walking", false);
                     thisAnim.SetTrigger("Attack");
                     //attack here and disable canAttack
@@ -156,10 +158,11 @@ public class MeleeEnemy : GeneralEnemy
            DetectObj.transform.eulerAngles = new Vector3(0, -90, 0);
         }
         var dir = (player.transform.position - this.transform.position).normalized;
-        
 
-        if (Vector3.Distance(transform.position, player.transform.position) < .8f)
+        Debug.Log("approaching");
+        if (Vector3.Distance(transform.position, player.transform.position) < 3f)
         {
+            Debug.Log("ready to attack");
             canAttack = true;
             this.state = State.STOP;
             StartCoroutine(Stop());
