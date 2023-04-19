@@ -119,6 +119,8 @@ public class InventoryInputActionPlus : InventoryInputActions
             _playerManager.RestrictMovement();
         }
         isPerformingAction = true;
+        _playerManager.TotalActionTime = item.actionTime;
+        _playerManager.IsUsingItem = true;
         yield return new WaitForSeconds(actionTime);
         //release restricted movement
         _playerManager.ReleaseMovement();
@@ -138,6 +140,8 @@ public class InventoryInputActionPlus : InventoryInputActions
             _playerManager.RestrictMovement();
         }
         isPerformingAction = true;
+        _playerManager.TotalActionTime = item.actionTime;
+        _playerManager.IsUsingItem = true;
         yield return new WaitForSeconds(actionTime);
         //release restricted movement
         _playerManager.ReleaseMovement();
@@ -166,8 +170,6 @@ public class InventoryInputActionPlus : InventoryInputActions
                 Debug.Log("Planting");
             }
 
-            _playerManager.TotalActionTime = item.actionTime;
-            _playerManager.IsUsingItem = true;
             StartCoroutine(waitToAct(item.actionTime, binding));
         }
     }
@@ -185,8 +187,6 @@ public class InventoryInputActionPlus : InventoryInputActions
                 Debug.Log("Planting");
             }
                 
-            _playerManager.TotalActionTime = item.actionTime;
-            _playerManager.IsUsingItem = true;
             StartCoroutine(waitToAct(item.actionTime, slotIndex));
         }
     }

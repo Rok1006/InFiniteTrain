@@ -8,6 +8,7 @@ using MoreMountains.Tools;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using NaughtyAttributes;
+using UnityEngine.UI;
 
 //This script handle wtever related to Player that is not related to topdown engine
 public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
@@ -40,6 +41,10 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
 //mouse control------------
     [SerializeField, BoxGroup("Mouse Control")] private LayerMask TargetLayerMask;
     [SerializeField, BoxGroup("Mouse Control")] private GameObject destination;
+
+//ui
+    [SerializeField, Foldout("UI")] private GameObject itemUsingContainer;
+    [SerializeField, Foldout("UI")] private Image itemUsingBar;
 
 //references------
     private TopDownController3D controller;
@@ -146,7 +151,13 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
         if (IsUsingItem) {
             if (CurrentActionTime < TotalActionTime) {
                 CurrentActionTime += Time.deltaTime;
+                itemUsingContainer.SetActive(true);
+                itemUsingBar.fillAmount = CurrentActionTime / TotalActionTime;
             }
+        } else {
+            CurrentActionTime = 0;
+            itemUsingContainer.SetActive(false);
+            itemUsingBar.fillAmount = 0;
         }
     }
 
