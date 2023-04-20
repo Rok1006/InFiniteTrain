@@ -17,6 +17,9 @@ public class Info : MMSingleton<Info>
 
     [BoxGroup("State")]public int doorState; //0=close, 1=open
     [BoxGroup("State")]public int EnemyAppearState; //0=close, 1=open
+    [BoxGroup("State")]public bool DeadCountDownStart; //0=close, 1=open
+    [BoxGroup("State")]public float DeadTime; //first set time given, 120
+
     [BoxGroup("Radiation")]public float radAmt;
     [SerializeField, BoxGroup("FUEL")]private int fuelStorageAmt; //saved interval
     //public GameObject CurrentSelectedPtObj;

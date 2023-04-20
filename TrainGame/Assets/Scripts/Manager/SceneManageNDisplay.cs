@@ -24,7 +24,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField, BoxGroup("InteractableMap")] private GameObject mapCam;
     [SerializeField, BoxGroup("InteractableMap")] private GameObject mapIcon;
     [SerializeField, BoxGroup("InteractableMap")] private GameObject theMap;
-    [SerializeField, BoxGroup("InteractableMap")] private GameObject mapCore;
+    [BoxGroup("InteractableMap")] public GameObject mapCore;
     [SerializeField, BoxGroup("InteractableMap")] private Vector3 mapFuelLocation;
     public bool PanelOn = false;
     [SerializeField, BoxGroup("FuelMachine")] private CanvasGroup FF_Panel; //the whole ui panel

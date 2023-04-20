@@ -11,7 +11,11 @@ public class ItemSpecificFuntion : MonoBehaviour
 
     void Start()
     {
-        
+        switch(currentItem){
+            case Item.EnemyDetector:
+                //arrows appear within given time
+            break;
+        }
     }
 
     void Update()

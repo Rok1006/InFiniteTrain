@@ -13,8 +13,17 @@ public class MapManager : MonoBehaviour
     [BoxGroup("REF")]public GameObject player;
     [BoxGroup("REF")]public GameObject playerResource;
     [SerializeField,BoxGroup("REF")]private GameObject playerTrain;
-    [SerializeField,BoxGroup("REF")]private GameObject enemyTrain;
+    Animator playerTrainAnim;
     [SerializeField,BoxGroup("REF")]private GameObject triggerDoorToOutside;
+
+    [SerializeField,BoxGroup("Enemy")]private GameObject enemyTrain;
+    Animator enemyTrainAnim;
+    [SerializeField,BoxGroup("Enemy")]private GameObject DeadlyTimer;
+    [SerializeField,BoxGroup("Enemy")]private TextMeshProUGUI timeCountDown;
+
+    [SerializeField,BoxGroup("MAP")]private Animator MapFrame;
+    [SerializeField,BoxGroup("MAP")]private Animator MapCam;
+    [SerializeField,BoxGroup("MAP")]private Animator MapCore;
 
     [BoxGroup("Status")]public bool playerTurn = false;
     [BoxGroup("Status")]public bool enemyTurn = false;
@@ -42,6 +51,9 @@ public class MapManager : MonoBehaviour
         id = Singleton.Instance.id;
         InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
         SMD = GameObject.Find("SceneManage&Interactions").GetComponent<SceneManageNDisplay>();
+        playerTrainAnim = playerTrain.GetComponent<Animator>();
+        enemyTrainAnim = enemyTrain.GetComponent<Animator>();
+//Check and initializtion------
         UpdatePlayerIcon();
         UpdatePlayer();
         UpdateTrainLocation(); //player and enemy
@@ -58,6 +70,7 @@ public class MapManager : MonoBehaviour
         }else{
             enemyTrain.SetActive(false);
         }
+        DeadlyTimer.SetActive(false);
     }
 
     void Update()
@@ -92,28 +105,48 @@ public class MapManager : MonoBehaviour
 
         if(InfoSC.EnemyAppearState == 1 && InfoSC.ConfirmedSelectedPt==BossTrainAppearTriggerIndex){  //& after player come back
             enemyTrain.SetActive(true); //it appeared
-            //do some visual anim stuff to obviously tell player boss is here
         }
-        if(InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
-            //GAME OVER
-            SMD.GameOverScreen.SetActive(true);
+        if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&InfoSC.EnemyAppearState == 1){
+            Debug.Log("apear");
+            StartCoroutine(EnemyAppear()); 
+            InfoSC.EnemyAppearState = 2;
         }
         if(InfoSC.CurrentEnemyTrainInterval!= InfoSC.ConfirmedEnemyTrainLocal){
             EnemyProceed();
         }
         if(InfoSC.CurrentSelectedPt!=0&&InfoSC.CurrentSelectedPt != InfoSC.ConfirmedSelectedPt){
             MapInformationNotice(sum, SMD.player.GetComponent<PlayerInformation>().FuelAmt);
-        }else{
-            //requireText.text = "Select a new location.";
+        }else{//requireText.text = "Select a new location.";
         }
-        if(InfoSC.EnemyAppearState==1&& InfoSC.ConfirmedSelectedPt>=BossTrainAppearTriggerIndex){  //now in turn pt
+        if(InfoSC.EnemyAppearState>0&& InfoSC.ConfirmedSelectedPt>=BossTrainAppearTriggerIndex){  //now in turn pt
             enemyTrain.SetActive(true);
         }else{
             enemyTrain.SetActive(false);
         }
-        // if(Input.GetKeyDown(KeyCode.M)){ //Testing
-        //     EnemyProceed();
-        // }
+
+//GAME OVER
+        if(InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
+            
+            SMD.GameOverScreen.SetActive(true);
+        }
+        
+//If Enmy is one unit away frm player
+        if(InfoSC.EnemyAppearState == 2 && InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal-1){
+            InfoSC.DeadCountDownStart = true;
+            DeadlyTimer.SetActive(true);
+            //InfoSC.DeadTime = 120; //2 min
+        }
+        // timeCountDown.text = InfoSC.DeadTime.ToString();
+        EnemyDeadlyCountDownDisplay(InfoSC.DeadTime);
+        if(InfoSC.DeadCountDownStart){
+            if(InfoSC.DeadTime>0){
+                InfoSC.DeadTime-=Time.deltaTime;
+            }else{
+                InfoSC.DeadTime+=5;
+                InfoSC.DeadCountDownStart = false;
+                SMD.GameOverScreen.SetActive(true);
+            }
+        }
     }
     private void FixedUpdate() {
         
@@ -294,12 +327,29 @@ public class MapManager : MonoBehaviour
         StartCoroutine(EnemyTrainMoveTowards(speed));
     }
     public void EnemyProceed(){ //enemy proceed one point, trigger this when this need to be proceeded
-        if(InfoSC.EnemyAppearState==1){
+        if(InfoSC.EnemyAppearState>0){
             ETMT(.5f);
-            //have some animation bounce or sth to notify that enemy moved when open map
+            enemyTrainAnim.SetTrigger("Moved");
         }
         //trigger some snimation to let player know he is here some pop up box when he come back
+    }
+    IEnumerator EnemyAppear(){
+        yield return new WaitForSeconds(.7f);
+        enemyTrainAnim.SetTrigger("Appear");
+        yield return new WaitForSeconds(.3f);
+        MapFrame.SetTrigger("Shake");
+        MapCam.SetTrigger("Shake");
+        MapCore.SetTrigger("Shake");
+    }
+    public void EnemyDeadlyCountDownDisplay(float displayTime){//If enemy is one unit away frm player
+        if(displayTime<0){
+            displayTime = 0;
+        }
+        float minutes = Mathf.FloorToInt(displayTime/60);
+        float seconds = Mathf.FloorToInt(displayTime%60);
+        timeCountDown.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
 //order:
 //u select a point on the map, u go pull the lever, train start moving and arrive in a while
+//if enemy moved compare to last time, make it so that it will bounce when player open map
