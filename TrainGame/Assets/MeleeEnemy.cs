@@ -124,7 +124,7 @@ public class MeleeEnemy : GeneralEnemy
         }
     }
 
-    IEnumerator Stun()
+   public override IEnumerator Stun()
     {
         
         float duration = 2f; // 2 seconds you can change this to
