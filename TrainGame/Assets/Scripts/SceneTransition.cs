@@ -43,7 +43,7 @@ public class SceneTransition : MonoBehaviour
         MMSceneLoadingManager.LoadScene("LeoPlayAround");
     }
     public void SimpleGetKicked(){
-        if(InfoSC.EnemyAppearState == 1){InfoSC.CurrentEnemyTrainInterval += 1;};
+        if(InfoSC.EnemyAppearState >= 1){InfoSC.CurrentEnemyTrainInterval += 1;};
     }
 
     public void saveAndToOtherScene(string otherScene) {
@@ -60,7 +60,7 @@ public class SceneTransition : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.GetComponent<PlayerManager>() != null) {
-            if(InfoSC.ConfirmedSelectedPt == 3){
+            if(InfoSC.ConfirmedSelectedPt == 3 && InfoSC.EnemyAppearState < 1){
                 InfoSC.EnemyAppearState = 1;
             }
             saveAndToOtherScene(otherSceneName);

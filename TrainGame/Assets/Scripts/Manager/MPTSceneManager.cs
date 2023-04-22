@@ -2,20 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.UI;
+using TMPro;
 
 public class MPTSceneManager : MonoBehaviour
 {
 
     private PlayerInformation playerInfo;
+    private Info InfoSC;
     [SerializeField, BoxGroup("Effect")]private GameObject ScreenEffect;
-    public Animator SeAnim;
+    [SerializeField, BoxGroup("Effect")] public Animator SeAnim;
+
+    [SerializeField, BoxGroup("Others")] private GameObject MP_deadlyTimer;
+    [SerializeField, BoxGroup("Others")] private TextMeshProUGUI timeCountDown;
 
     void Start()
     {
         playerInfo = FindObjectOfType<PlayerInformation>();
+        InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
         if (playerInfo == null){Debug.Log("player info is null");}
         // SEAnim = ScreenEffect.GetComponent<Animator>();
         ScreenEffect.SetActive(true);
+        if(InfoSC.DeadCountDownStart){
+            MP_deadlyTimer.SetActive(true);  
+        }else{
+            MP_deadlyTimer.SetActive(false);  
+        }
+        
     }
 
     void FixedUpdate()
@@ -41,15 +54,24 @@ public class MPTSceneManager : MonoBehaviour
         if(playerInfo.CurrentRadiationValue > playerInfo.MaxRadiationValue){
             ScreenEffect.SetActive(false);  
         }
+        if(InfoSC.DeadCountDownStart){
+            if(InfoSC.DeadTime>0){
+                InfoSC.DeadTime-=Time.deltaTime;
+            }else{
+                //InfoSC.DeadTime+=DeadCounterTime;
+                //SMD.GameOverScreen.SetActive(true);
+                //InfoSC.DeadCountDownStart = false;
+            }
+        }
+        EnemyDeadlyCountDownDisplay(InfoSC.DeadTime);
     }
-
-    // public void RadiationWarning(){
-    //     ScreenEffect.SetActive(true);
-    //     SeAnim.SetTrigger("appear");
-    // }
-    // public void RadiationWarningOff(){
-    //     ScreenEffect.SetActive(false);
-    //     SeAnim.SetTrigger("disappear");
-    // }
+    public void EnemyDeadlyCountDownDisplay(float displayTime){//If enemy is one unit away frm player
+        if(displayTime<0){
+            displayTime = 0;
+        }
+        float minutes = Mathf.FloorToInt(displayTime/60);
+        float seconds = Mathf.FloorToInt(displayTime%60);
+        timeCountDown.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
     
 }

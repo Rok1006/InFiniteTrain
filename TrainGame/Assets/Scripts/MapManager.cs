@@ -20,6 +20,7 @@ public class MapManager : MonoBehaviour
     Animator enemyTrainAnim;
     [SerializeField,BoxGroup("Enemy")]private GameObject DeadlyTimer;
     [SerializeField,BoxGroup("Enemy")]private TextMeshProUGUI timeCountDown;
+    [SerializeField,BoxGroup("Enemy")]private int DeadCounterTime;
 
     [SerializeField,BoxGroup("MAP")]private Animator MapFrame;
     [SerializeField,BoxGroup("MAP")]private Animator MapCam;
@@ -106,10 +107,16 @@ public class MapManager : MonoBehaviour
         if(InfoSC.EnemyAppearState == 1 && InfoSC.ConfirmedSelectedPt==BossTrainAppearTriggerIndex){  //& after player come back
             enemyTrain.SetActive(true); //it appeared
         }
-        if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&InfoSC.EnemyAppearState == 1){
+//FirstAppear
+        if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&InfoSC.EnemyAppearState == 1){ //FirstAppear
             Debug.Log("apear");
             StartCoroutine(EnemyAppear()); 
             InfoSC.EnemyAppearState = 2;
+        }
+//Everytime after appear
+        if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&InfoSC.EnemyAppearState > 1){ //FirstAppear
+            //Enemy train bounce
+            //enemyTrainAnim.SetTrigger("Moved");
         }
         if(InfoSC.CurrentEnemyTrainInterval!= InfoSC.ConfirmedEnemyTrainLocal){
             EnemyProceed();
@@ -133,18 +140,24 @@ public class MapManager : MonoBehaviour
 //If Enmy is one unit away frm player
         if(InfoSC.EnemyAppearState == 2 && InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal-1){
             InfoSC.DeadCountDownStart = true;
+            //InfoSC.DeadTime = DeadCounterTime;
             DeadlyTimer.SetActive(true);
             //InfoSC.DeadTime = 120; //2 min
+        }else if(InfoSC.ConfirmedEnemyTrainLocal != InfoSC.ConfirmedPlayerTrainLocal-1){ //once player moved
+            InfoSC.DeadCountDownStart = false;
+            InfoSC.DeadTime = DeadCounterTime; //reset
+            DeadlyTimer.SetActive(false);
         }
         // timeCountDown.text = InfoSC.DeadTime.ToString();
         EnemyDeadlyCountDownDisplay(InfoSC.DeadTime);
         if(InfoSC.DeadCountDownStart){
+            Debug.Log("Start dead count");
             if(InfoSC.DeadTime>0){
                 InfoSC.DeadTime-=Time.deltaTime;
             }else{
-                InfoSC.DeadTime+=5;
-                InfoSC.DeadCountDownStart = false;
+                //InfoSC.DeadTime+=DeadCounterTime;
                 SMD.GameOverScreen.SetActive(true);
+                InfoSC.DeadCountDownStart = false;
             }
         }
     }
