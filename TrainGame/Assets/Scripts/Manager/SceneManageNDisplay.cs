@@ -33,6 +33,8 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField, BoxGroup("FuelMachine")] private GameObject TrainFuelBar; //this will also appear in map scene
     [SerializeField, BoxGroup("FuelMachine")] private Vector3 FuelMachineFuelLocation;
 
+    [SerializeField, BoxGroup("DwskView")] private GameObject DeskViewPanel;
+
     [SerializeField, BoxGroup("TrainMoveStop")] private GameObject Lever; //still a placeholder
     Animator leverAnim;
     [SerializeField, BoxGroup("TrainMoveStop")] private bool IsOn; //train will move, else it stop
@@ -78,6 +80,7 @@ public class SceneManageNDisplay : MonoBehaviour
         currentValue = 0; //set initial
         targetValue = 1.5f;
         GameOverScreen.SetActive(false);
+        DeskViewPanel.SetActive(false);
 //---------
         UpdateCamNoise(currentValue);
         if(ISF.doorState==0){
@@ -182,6 +185,16 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
         TrainFuelBar.SetActive(true);
         TrainInfoGuide.SetActive(false);
+    }
+//Item Craft View Desk
+    public void Open_ViewDesk(){
+        PanelOn = true;
+        Debug.Log("opened Desk View");
+        DeskViewPanel.SetActive(true);
+        TrainInfoGuide.SetActive(false);
+    }
+    public void Close_ViewDesk(){
+        DeskViewPanel.SetActive(false);
     }
 //Train Move Stop Toggle --------------
     public void OnToggle(){
