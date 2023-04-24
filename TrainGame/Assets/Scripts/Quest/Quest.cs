@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Quest : ScriptableObject
 {
+    
    [System.Serializable]
    public struct Info
     {

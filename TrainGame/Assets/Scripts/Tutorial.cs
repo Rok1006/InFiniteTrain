@@ -7,10 +7,11 @@ public class Tutorial : MonoBehaviour
     public enum GameState { Tutorial, TutorialEnd }
     public GameState currentState;
     public int stepIndex;
+    private GameObject player;
 
     void Start()
     {
-        
+        player = GameObject.Find("PlayerMC");
     }
 
     void Update()
