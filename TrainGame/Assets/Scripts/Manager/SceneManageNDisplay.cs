@@ -16,10 +16,12 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField, BoxGroup("General")] private GameObject TrainInfoGuide;
     [SerializeField, BoxGroup("General")] private TextMeshProUGUI TrainInfoGuide_Text;
     [SerializeField, BoxGroup("General")] private GameObject WarningGuide;
+    [SerializeField, BoxGroup("General")] private GameObject LocationInfoDisplay;
+    [SerializeField, BoxGroup("General")] private TextMeshProUGUI LocationInfoDisplay_Text;
 
-    public string currentCartName;
-    [SerializeField, BoxGroup("Train Info")] private TextMeshProUGUI roomName;
-    [SerializeField, BoxGroup("Train Info")] private GameObject InfoDisplay;
+    public string currentCartName; //nt using
+    [SerializeField, BoxGroup("Train Info")] private TextMeshProUGUI roomName; //nt using
+    [SerializeField, BoxGroup("Train Info")] private GameObject InfoDisplay; //nt using
     //[SerializeField] private GameObject TrainINfoGuide;
     [SerializeField, BoxGroup("InteractableMap")] private GameObject mapCam;
     [SerializeField, BoxGroup("InteractableMap")] private GameObject mapIcon;
@@ -81,6 +83,7 @@ public class SceneManageNDisplay : MonoBehaviour
         targetValue = 1.5f;
         GameOverScreen.SetActive(false);
         DeskViewPanel.SetActive(false);
+        LocationInfoDisplay.SetActive(false);
 //---------
         UpdateCamNoise(currentValue);
         if(ISF.doorState==0){
@@ -92,8 +95,7 @@ public class SceneManageNDisplay : MonoBehaviour
         }
         
         BGScroll.SetActive(false);
-        //bgscroll = BGScroll.GetComponent<Animator>();
-        //currentTrainStatusMessage = "S T A R T  T R A I N";
+        DisplayLocationInfo("I N S I D E  T R A I N");
 //Listener ---
         FF_CloseButton.onClick.AddListener(Close_FF);
     }
@@ -124,9 +126,13 @@ public class SceneManageNDisplay : MonoBehaviour
     public void TrainInforGuide(){
         TrainInfoGuide.SetActive(true);
     }
+    public void DisplayLocationInfo(string location){
+        LocationInfoDisplay_Text.text = location.ToString();
+        LocationInfoDisplay.SetActive(true);
+    }
     public void DisplayCartName(){
-        InfoDisplay.SetActive(false);
-        InfoDisplay.SetActive(true);
+        // InfoDisplay.SetActive(false);
+        // InfoDisplay.SetActive(true);
     }
 // The Map Part ---------
     public void DisplayMapIcons(){
@@ -134,7 +140,6 @@ public class SceneManageNDisplay : MonoBehaviour
         mapIcon.SetActive(true);
     }
     public void Open_Map(){
-        //
         mapIcon.SetActive(false);
         theMap.SetActive(true);
         
@@ -304,7 +309,7 @@ public class SceneManageNDisplay : MonoBehaviour
         }
     }
     public void WarningGuideCall(int _index){
-        WarningGuide.SetActive(false);
+        //WarningGuide.SetActive(false);
         WarningGuide.SetActive(true);
         WG.index = _index;
     }
@@ -318,17 +323,3 @@ public class SceneManageNDisplay : MonoBehaviour
         }
     }
 }
-//cannot move until fue is enough
-//fuel reduce when train pull not when click location
-// /        //yield return new WaitForSeconds(.5f);
-        // if(IsOn){ //make the train stop
-        //     Debug.Log("Train is gonna stop");
-        //     leverAnim.SetTrigger("Off");
-        //     currentAccess = "S T A R T  T R A I N";
-        //     trainTrigger.guideDescript = "S T A R T  T R A I N";
-        //     targetValue = 0f;
-        //     //TrainStopMotion();
-        //     IsOn = false;
-                //IsMoving = true;
-            //some enviromental change trigger: access to camera, plau audio, some foregrd backgrd
-        // }else 

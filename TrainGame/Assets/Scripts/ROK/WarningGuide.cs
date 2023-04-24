@@ -10,6 +10,7 @@ public class WarningGuide : MonoBehaviour
 {
    public int index;
    [SerializeField, BoxGroup("General")] private GameObject WarningGuideUI;
+   [SerializeField, BoxGroup("General")] private Animator WGAnim;
    [SerializeField, BoxGroup("General")] private TextMeshProUGUI guideText;
 
    private string message;
@@ -28,8 +29,9 @@ public class WarningGuide : MonoBehaviour
         GuideState();
         guideText.text = message;
 
-        if(WarningGuideUI.activeSelf){
-            Invoke("OFFThis", 10f);
+        if(WGAnim.GetCurrentAnimatorStateInfo(0).IsName("WarningInfoOut_Stay")){
+            WarningGuideUI.SetActive(false);
+            //Invoke("OFFThis", 5f);
         }
     }
     void OFFThis(){

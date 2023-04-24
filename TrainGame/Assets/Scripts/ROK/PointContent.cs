@@ -14,6 +14,7 @@ using MoreMountains.Tools;
 //For each pt it shd always end with land that have one entrance/exit
 public class PointContent : MonoBehaviour
 {
+    public string LandTitle;
     [Space(10)][TextArea(3, 10)]public string Reminders;
     //1. The BoundaryArea List count shd equal to numberOfArea.
     [Tooltip("For Display Purpose")][SerializeField, BoxGroup("PointInfo")] private int numberOfArea;

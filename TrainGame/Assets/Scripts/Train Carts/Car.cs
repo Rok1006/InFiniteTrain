@@ -55,7 +55,7 @@ public class Car : MonoBehaviour
     public virtual void Start() {
         setConnectedRooms();
         if (SceneMD != null)
-            DisplayCartName();
+            //DisplayCartName();
         
         roomManager = FindObjectOfType<RoomManager>();
         if (roomManager==null)
@@ -70,7 +70,7 @@ public class Car : MonoBehaviour
     public virtual void EnterRoom() {
         Debug.Log("entered " + name);
         if (SceneMD != null)
-            DisplayCartName();
+            //DisplayCartName();
         
         //set current room to the room player just entered
         roomManager.CurrentCar = this;

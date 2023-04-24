@@ -10,16 +10,21 @@ public class MPTSceneManager : MonoBehaviour
 
     private PlayerInformation playerInfo;
     private Info InfoSC;
+    private PointContentManager PCM;
     [SerializeField, BoxGroup("Effect")]private GameObject ScreenEffect;
     [SerializeField, BoxGroup("Effect")] public Animator SeAnim;
 
     [SerializeField, BoxGroup("Others")] private GameObject MP_deadlyTimer;
     [SerializeField, BoxGroup("Others")] private TextMeshProUGUI timeCountDown;
 
+    [SerializeField, BoxGroup("General")] private GameObject LocationInfoDisplay;
+    [SerializeField, BoxGroup("General")] private TextMeshProUGUI LocationInfoDisplay_Text;
+
     void Start()
     {
         playerInfo = FindObjectOfType<PlayerInformation>();
         InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
+        PCM = FindObjectOfType<PointContentManager>();
         if (playerInfo == null){Debug.Log("player info is null");}
         // SEAnim = ScreenEffect.GetComponent<Animator>();
         ScreenEffect.SetActive(true);
@@ -28,7 +33,9 @@ public class MPTSceneManager : MonoBehaviour
         }else{
             MP_deadlyTimer.SetActive(false);  
         }
-        
+        LocationInfoDisplay.SetActive(false);
+
+        DisplayLocationInfo(PCM.PointScene[InfoSC.pointID].GetComponent<PointContent>().LandTitle);
     }
 
     void FixedUpdate()
@@ -72,6 +79,11 @@ public class MPTSceneManager : MonoBehaviour
         float minutes = Mathf.FloorToInt(displayTime/60);
         float seconds = Mathf.FloorToInt(displayTime%60);
         timeCountDown.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void DisplayLocationInfo(string location){
+        LocationInfoDisplay_Text.text = location.ToString();
+        LocationInfoDisplay.SetActive(true);
     }
     
 }
