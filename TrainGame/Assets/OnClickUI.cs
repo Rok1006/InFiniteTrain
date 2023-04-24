@@ -16,5 +16,6 @@ public class OnClickUI : MonoBehaviour
     {
         // Set the global image's sprite to the sprite for this button
         globalImage.sprite = spriteToShow;
+      
     }
 }
