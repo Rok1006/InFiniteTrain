@@ -56,9 +56,14 @@ public class SceneTransition : MonoBehaviour
         // SceneManager.LoadScene(otherScene);
         gotoLevelEntryPoint.GoToNextLevel();
         MapManager.gameState = 0;
+
     }
 
     void OnTriggerEnter(Collider other) {
+        if (Tutorial.instance.stepIndex == 1)
+        {
+            Tutorial.instance.stepIndex++;
+        }
         if (other.GetComponent<PlayerManager>() != null) {
             if(InfoSC.ConfirmedSelectedPt == 3 && InfoSC.EnemyAppearState < 1){
                 InfoSC.EnemyAppearState = 1;

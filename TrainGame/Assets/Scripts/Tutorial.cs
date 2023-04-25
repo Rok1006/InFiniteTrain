@@ -13,40 +13,59 @@ public class Tutorial : MonoBehaviour
     public TextMeshProUGUI text;
     public static Tutorial instance;
     public TargetIndicator arrow;
-
+    public GameObject UIShit;
+    public InventoryItemPlus carrot;
 
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
+            
         }
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void Start()
     {
-        player = GameObject.Find("PlayerMC");
+        
         arrow.player = player;
         arrow.gameObject.SetActive(false);
-
+       
+        
+       
     }
 
     void Update()
     {
+        if(text == null)
+        {
+            //hilary find the text!!! 
+        }
         switch (stepIndex)
         {
             case 0:
                 //Player woke up
                 //player radiation reduce, screen effect come up
                 //dialouge box appear: I must have fainted....lower radiation level...
-                text.text = "Lower your radiation level by consuming a food.";
-                player.GetComponent<Character>().enabled = false;
-
-                if (Input.GetKeyDown(KeyCode.Alpha1))
+                if(player == null)
                 {
-                    //when we start the level player spanws with 1 carrot or food in inventory position 1
-                    stepIndex++;
-                    player.GetComponent<Character>().enabled = true;
+                    player = GameObject.Find("PlayerMC");
+
+                }
+                else
+                {
+
+                     text.text = "Lower your radiation level by consuming a food.";
+                    player.GetComponent<Character>().enabled = false;
+                    player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(carrot, 1, 0);
+
+                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    {
+                        //when we start the level player spanws with 1 carrot or food in inventory position 1
+                        stepIndex++;
+                        player.GetComponent<Character>().enabled = true;
+                    }
                 }
                
                 

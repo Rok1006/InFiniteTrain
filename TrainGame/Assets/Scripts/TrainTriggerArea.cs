@@ -26,6 +26,7 @@ public class TrainTriggerArea : MonoBehaviour
     void OnTriggerEnter(Collider collider) {
         if (collider.tag.Equals("Player")) {
             radiationManager.IsRadiated = false;
+         
         }
     }
 
