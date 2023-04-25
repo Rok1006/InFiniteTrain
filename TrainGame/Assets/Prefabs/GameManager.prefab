@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3864020986089951360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3864020986089951374}
+  - component: {fileID: 3864020986089951375}
+  - component: {fileID: 3864020986089951373}
+  - component: {fileID: 3864020986089951372}
+  - component: {fileID: 3864020986089951371}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3864020986089951374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864020986089951360}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -144.25963, y: 26.774057, z: 99.63167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3864020986089951375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864020986089951360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfad200c8782a3449dfd49ea310c909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutomaticallyUnparentOnAwake: 1
+  TargetFrameRate: 60
+  MaximumLives: 0
+  CurrentLives: 0
+  GameOverScene: 
+  Points: 0
+  PauseGameWhenInventoryOpens: 0
+--- !u!114 &3864020986089951373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864020986089951360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba4043dc4ea38b4d89587edaae72a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MPTS: {fileID: 0}
+  enterRad0:
+    m_PersistentCalls:
+      m_Calls: []
+  updateRad0:
+    m_PersistentCalls:
+      m_Calls: []
+  leaveRad0:
+    m_PersistentCalls:
+      m_Calls: []
+  enterRad1:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3864020986089951373}
+        m_TargetAssemblyTypeName: RadiationManager, Assembly-CSharp
+        m_MethodName: showRadiationLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: entered rad 1
+          m_BoolArgument: 0
+        m_CallState: 2
+  updateRad1:
+    m_PersistentCalls:
+      m_Calls: []
+  leaveRad1:
+    m_PersistentCalls:
+      m_Calls: []
+  enterRad2:
+    m_PersistentCalls:
+      m_Calls: []
+  updateRad2:
+    m_PersistentCalls:
+      m_Calls: []
+  leaveRad2:
+    m_PersistentCalls:
+      m_Calls: []
+  RadiationBarName: RadiationBar
+  isRadiated: 0
+--- !u!114 &3864020986089951372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864020986089951360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2375eb698262f49824ead2997b04e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveFolderName: InventoryEngine
+--- !u!114 &3864020986089951371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864020986089951360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953d60ee1e1064decaf7ccabdc7fa8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointID: 0
+  CurrentSelectedPt: 0
+  ConfirmedSelectedPt: 0
+  playerTrainInterval: 0
+  confirmedPlayerTrainLocal: 0
+  enemyTrainInterval: 0
+  confirmedEnemyTrainLocal: 0
+  doorState: 0
+  EnemyAppearState: 0
+  DeadCountDownStart: 0
+  DeadTime: 120
+  radAmt: 0
+  fuelStorageAmt: 0
+  IsViewingInventory: 0
+  isNewGame: 1
