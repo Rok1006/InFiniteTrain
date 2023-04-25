@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using MoreMountains.TopDownEngine;
 //This script is for handling tutorial, attached on scene obj, calling frm GAme manager INFO
 public class Tutorial : MonoBehaviour
 {
@@ -8,32 +10,69 @@ public class Tutorial : MonoBehaviour
     public GameState currentState;
     public int stepIndex;
     private GameObject player;
+    public TextMeshProUGUI text;
+    public static Tutorial instance;
+    public TargetIndicator arrow;
+
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
 
     void Start()
     {
         player = GameObject.Find("PlayerMC");
+        arrow.player = player;
+        arrow.gameObject.SetActive(false);
+
     }
 
     void Update()
     {
         switch (stepIndex)
         {
-            case 0: //Player woke up
+            case 0:
+                //Player woke up
                 //player radiation reduce, screen effect come up
                 //dialouge box appear: I must have fainted....lower radiation level...
-                //after dialogue: quest 1 display: go back to the train
-                //player pick up the scatter items around him: could be fuel
+                text.text = "Lower your radiation level by consuming a food.";
+                player.GetComponent<Character>().enabled = false;
+
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    //when we start the level player spanws with 1 carrot or food in inventory position 1
+                    stepIndex++;
+                    player.GetComponent<Character>().enabled = true;
+                }
+               
+                
             break;
-            case 1: //player prepare to leave
-                //walking ui show nect to player
-                //arrows appear to points toward the exit
+            case 1: //Going back to train
+                text.text = "Find your way back to the train";
+                //im checking this from Train Trigger Area. you don't need to do anything here
+
             break;
             case 2:
+                text.text = "Check the storage.";
+                arrow.gameObject.SetActive(true);
+               
+                arrow.target = GameObject.Find("Shelf3").transform;
+                arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
+
+
                 // Perform running actions
             break;
             case 3:
+                text.text = "Head to the Engine and add fuel";
+               
+                arrow.target = GameObject.Find("FuelEngine#(P)").transform;
+                arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
                 // Perform jumping actions
-            break;
+                break;
             case 4:
                 // Perform attacking actions
             break;
@@ -43,5 +82,17 @@ public class Tutorial : MonoBehaviour
     public void NextStep(int step)
     {
         stepIndex = step;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Shelf" && this.stepIndex == 2)
+        {
+            stepIndex++;
+        }
+    }
+
+    public void OnButtonPress()
+    {
+
     }
 }
