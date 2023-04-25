@@ -38,7 +38,12 @@ public class Tutorial : MonoBehaviour
 
     void Update()
     {
-        if(text == null)
+        if (player == null)
+        {
+            player = GameObject.Find("PlayerMC");
+
+        }
+        if (text == null)
         {
             //hilary find the text!!! 
         }
@@ -76,13 +81,16 @@ public class Tutorial : MonoBehaviour
 
             break;
             case 2:
-                text.text = "Check the storage.";
+               // text.text = "Check the storage.";
                 arrow.gameObject.SetActive(true);
-               
-                arrow.target = GameObject.Find("Shelf3").transform;
                 arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
+                arrow.player = this.player;
 
-
+                if(Vector3.Distance(player.transform.position , arrow.target.position ) < 2f)
+                {
+                    arrow.gameObject.SetActive(false);
+                    stepIndex++;
+                }
                 // Perform running actions
             break;
             case 3:

@@ -27,6 +27,10 @@ public class TargetIndicator : MonoBehaviour
 
     void Update()
     {
+        if(Tutorial.instance.arrow == null)
+        {
+            Tutorial.instance.arrow = this;
+        }
         var playertransform =  mainCamera.WorldToViewportPoint(player.transform.position);
         var CanvasPosition = new Vector3(playertransform.x * width/2, playertransform.y * height/2, 0);
         Vector2 viewportPos = Camera.main.WorldToViewportPoint(player.transform.position);
