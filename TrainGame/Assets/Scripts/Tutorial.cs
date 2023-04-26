@@ -15,6 +15,10 @@ public class Tutorial : MonoBehaviour
     public TargetIndicator arrow;
     public GameObject UIShit;
     public InventoryItemPlus carrot;
+    public GameObject wasdUI;
+    public GameObject inventoryUI;
+    public GameObject inventoryUI2;
+    public GameObject pointAtInventory;
 
     private void Awake()
     {
@@ -49,6 +53,12 @@ public class Tutorial : MonoBehaviour
         }
         switch (stepIndex)
         {
+
+            case -1:
+
+
+                break;
+
             case 0:
                 //Player woke up
                 //player radiation reduce, screen effect come up
@@ -67,6 +77,7 @@ public class Tutorial : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.Alpha1))
                     {
+                        wasdUI.SetActive(true);
                         //when we start the level player spanws with 1 carrot or food in inventory position 1
                         stepIndex++;
                         player.GetComponent<Character>().enabled = true;
@@ -81,6 +92,14 @@ public class Tutorial : MonoBehaviour
 
             break;
             case 2:
+                if(wasdUI != null)
+                {
+                    wasdUI.SetActive(false);
+                }
+                else
+                {
+                   
+                }
                 if(text == null)
                 {
                     text = GameObject.Find("Quest").transform.GetChild(2).GetComponent<TextMeshProUGUI>();
@@ -92,6 +111,7 @@ public class Tutorial : MonoBehaviour
 
                 if(Vector3.Distance(player.transform.position , arrow.target.position ) < 5f)
                 {
+                    
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
                         arrow.gameObject.SetActive(false);
@@ -132,12 +152,20 @@ public class Tutorial : MonoBehaviour
                 // Perform attacking actions
                 break;
             case 5:
+                
 
 
 
                 break;
         }
 
+    }
+    public void config()
+    {
+        pointAtInventory.SetActive(true);
+        inventoryUI.SetActive(true);
+        inventoryUI2.SetActive(true);
+        stepIndex++;
     }
     public void NextStep(int step)
     {
