@@ -118,8 +118,24 @@ public class Tutorial : MonoBehaviour
                 // Perform jumping actions
                 break;
             case 4:
+                text.text = "You must continue moving..";
+                arrow.gameObject.SetActive(true);
+                arrow.target = GameObject.Find("Desk_low (1)").transform;
+                {
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        arrow.gameObject.SetActive(false);
+                        stepIndex++;
+                    }
+
+                }
                 // Perform attacking actions
-            break;
+                break;
+            case 5:
+
+
+
+                break;
         }
 
     }
