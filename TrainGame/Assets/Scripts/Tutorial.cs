@@ -81,23 +81,40 @@ public class Tutorial : MonoBehaviour
 
             break;
             case 2:
-               // text.text = "Check the storage.";
+                if(text == null)
+                {
+                    text = GameObject.Find("Quest").transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+                }
+                text.text = "Check the storage.";
                 arrow.gameObject.SetActive(true);
                 arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
                 arrow.player = this.player;
 
-                if(Vector3.Distance(player.transform.position , arrow.target.position ) < 2f)
+                if(Vector3.Distance(player.transform.position , arrow.target.position ) < 5f)
                 {
-                    arrow.gameObject.SetActive(false);
-                    stepIndex++;
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        arrow.gameObject.SetActive(false);
+                        stepIndex++;
+                    }
+                    
                 }
                 // Perform running actions
             break;
             case 3:
                 text.text = "Head to the Engine and add fuel";
-               
+                arrow.gameObject.SetActive(true);
                 arrow.target = GameObject.Find("FuelEngine#(P)").transform;
                 arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
+                if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
+                {
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        arrow.gameObject.SetActive(false);
+                        stepIndex++;
+                    }
+
+                }
                 // Perform jumping actions
                 break;
             case 4:
