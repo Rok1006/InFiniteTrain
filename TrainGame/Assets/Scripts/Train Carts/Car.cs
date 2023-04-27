@@ -19,7 +19,7 @@ public class Car : MonoBehaviour
     [SerializeField] private GameObject SceneMD;
 
     //Managers
-    private RoomManager roomManager;
+    [ReadOnly, SerializeField] private RoomManager roomManager;
     private UIControl uiControl;
 
     //UI Stuff
@@ -54,23 +54,27 @@ public class Car : MonoBehaviour
     /*search for reference that every train cart need*/
     public virtual void Start() {
         setConnectedRooms();
-        if (SceneMD != null)
+        if (SceneMD != null) {
             //DisplayCartName();
-        
-        roomManager = FindObjectOfType<RoomManager>();
-        if (roomManager==null)
-            Debug.Log("cant find room manager in this scene");
+        }
         
         uiControl = FindObjectOfType<UIControl>();
-        if (uiControl==null)
+        if (uiControl==null) {
             Debug.Log("cant find ui control in this scene");
+        }
+
+        roomManager = FindObjectOfType<RoomManager>();
+        if (roomManager==null) {
+            Debug.Log("cant find room manager in this scene");
+        }
     }
 
     /*triggers when player enter the room*/
     public virtual void EnterRoom() {
         Debug.Log("entered " + name);
-        if (SceneMD != null)
+        if (SceneMD != null) {
             //DisplayCartName();
+        }
         
         //set current room to the room player just entered
         roomManager.CurrentCar = this;
