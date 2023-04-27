@@ -35,5 +35,6 @@ public class PlayerInformation : MonoBehaviour
                 backpackInven = GameObject.Find(backpackName).GetComponent<Inventory>();
         }
         InfoSC.FuelStorageAmt = FuelAmt;
+        
     }
 }

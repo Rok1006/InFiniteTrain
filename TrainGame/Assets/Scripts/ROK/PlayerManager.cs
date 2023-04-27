@@ -353,6 +353,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             return;
 
         canSeeRadiationUI = canSeeMapEnemy = canSeeMetal = canSeeMetalAndMat = false;
+        canSeeRadiationUI = true;
 
         foreach (InventoryItem item in _backpackInventory.Content) {
             if (item == null)

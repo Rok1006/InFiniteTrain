@@ -92,6 +92,11 @@ public class RadiationManager : MMMonoBehaviour
                 playerInfo.CurrentRadiationValue += InfoSc.radAmt * Time.deltaTime;
             }
 
+            if (Input.GetKeyDown(KeyCode.N)) {
+                Debug.Log("changed");
+                playerInfo.CurrentRadiationValue += 0.5f;
+            }
+
             radiationBar.UpdateBar(playerInfo.CurrentRadiationValue, playerInfo.MinRadiationValue, playerInfo.MaxRadiationValue);
 
             if (playerInfo.CurrentRadiationValue >= playerInfo.MaxRadiationValue) {

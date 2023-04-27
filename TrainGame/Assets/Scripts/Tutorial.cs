@@ -51,12 +51,6 @@ public class Tutorial : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
-        
-
-
-
-
-
     }
 
     void Update()
