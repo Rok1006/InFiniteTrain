@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using MoreMountains.TopDownEngine;
+using Yarn.Unity;
 //This script is for handling tutorial, attached on scene obj, calling frm GAme manager INFO
 public class Tutorial : MonoBehaviour
 {
@@ -21,6 +22,13 @@ public class Tutorial : MonoBehaviour
     public GameObject pointAtInventory;
     public Animator radioAnim;
     public MPTSceneManager msm;
+    public DialogueRunner dr;
+    private bool gameStarted = false;
+    private int state = 0;
+
+
+    private bool dialoguePlayed = false;
+    private float initialDelay = 2.5f;
     private void Awake()
     {
         if(instance == null)
@@ -38,8 +46,12 @@ public class Tutorial : MonoBehaviour
         arrow.gameObject.SetActive(false);
 
         radioAnim.Play("ScreenEffect_Bad");
-       
-       
+
+        if (MPTSceneManager.state == 1)
+        {
+            this.gameObject.SetActive(false);
+        }
+        
 
 
 
@@ -49,124 +61,190 @@ public class Tutorial : MonoBehaviour
 
     void Update()
     {
-      
         if (player == null)
         {
             player = GameObject.Find("PlayerMC");
 
         }
-        if (text == null)
+        if(gameStarted == false)
         {
-            //hilary find the text!!! 
+            player.GetComponent<Character>().enabled = false;
         }
-        switch (stepIndex)
+        
+        if (MPTSceneManager.state == 1)
+        {
+            this.gameObject.SetActive(false);
+        }
+        initialDelay -= Time.deltaTime;
+        if(initialDelay < 0)
         {
 
-            case -1:
+          
+            if (text == null)
+            {
+                //hilary find the text!!! 
+            }
+            switch (stepIndex)
+            {
 
-
-                break;
-
-            case 0:
-                //Player woke up
-                //player radiation reduce, screen effect come up
-                //dialouge box appear: I must have fainted....lower radiation level...
-                if(player == null)
-                {
-                    player = GameObject.Find("PlayerMC");
-
-                }
-                else
-                {
-
-                     text.text = "Lower your radiation level by consuming a food.";
-                    player.GetComponent<Character>().enabled = false;
-                    player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(carrot, 1, 0);
-
-                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                case -1:
+                    dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
+                    dr.onDialogueComplete.AddListener(DialogueConfig);
+                    if (dialoguePlayed == false)
                     {
-                        wasdUI.SetActive(true);
-                        //when we start the level player spanws with 1 carrot or food in inventory position 1
-                        stepIndex++;
-                        player.GetComponent<Character>().enabled = true;
+
+                        dr.StartDialogue("test2");
+                        player.GetComponent<Character>().enabled = false;
+
+
                     }
-                }
+
+
+                    break;
+
+                case 0:
+                    //Player woke up
+                    //player radiation reduce, screen effect come up
+                    //dialouge box appear: I must have fainted....lower radiation level...
+                  
+                    if (player == null)
+                    {
+                        player = GameObject.Find("PlayerMC");
+
+                    }
+                    else
+                    {
+                        UIShit.SetActive(true);
+                         text.text = "Lower your radiation level by consuming a food.";
+                        player.GetComponent<Character>().enabled = false;
+                        player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(carrot, 1, 0);
+
+                        if (Input.GetKeyDown(KeyCode.Alpha1))
+                        {
+                            wasdUI.SetActive(true);
+                            //when we start the level player spanws with 1 carrot or food in inventory position 1
+                            stepIndex++;
+                            player.GetComponent<Character>().enabled = true;
+                            dialoguePlayed = false;
+                        }
+                    }
                
                 
-            break;
-            case 1: //Going back to train
-                text.text = "Find your way back to the train";
-                //im checking this from Train Trigger Area. you don't need to do anything here
+                break;
+                case 1: //Going back to train
+                    text.text = "Find your way back to the train";
+                    //im checking this from Train Trigger Area. you don't need to do anything here
 
-            break;
-            case 2:
-                if(wasdUI != null)
-                {
-                    wasdUI.SetActive(false);
-                }
-                else
-                {
+                break;
+                case 2:
+                    dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
+                    dr.onDialogueComplete.AddListener(DialogueConfig);
+                    if(dialoguePlayed == false)
+                    {
+                        dr.StartDialogue("test3");
+                        player.GetComponent<Character>().enabled = false;
+                    
+
+                    }
+                    if(wasdUI != null)
+                    {
+                        wasdUI.SetActive(false);
+                    }
+                    else
+                    {
                    
-                }
-                if(text == null)
-                {
-                    text = GameObject.Find("Quest").transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-                }
-                text.text = "Check the storage.";
-                arrow.gameObject.SetActive(true);
-                arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
-                arrow.player = this.player;
+                    }
+                    if(text == null)
+                    {
+                        text = GameObject.Find("Quest").transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+                    }
+                    text.text = "Check the storage.";
+                    arrow.gameObject.SetActive(true);
+                    arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
+                    arrow.player = this.player;
 
-                if(Vector3.Distance(player.transform.position , arrow.target.position ) < 5f)
-                {
+                    if(Vector3.Distance(player.transform.position , arrow.target.position ) < 5f)
+                    {
                     
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        arrow.gameObject.SetActive(false);
-                        stepIndex++;
-                    }
+                        if (Input.GetKeyDown(KeyCode.Space))
+                        {
+                            arrow.gameObject.SetActive(false);
+                            stepIndex++;
+                            dialoguePlayed = false;
+                        }
                     
-                }
-                // Perform running actions
-            break;
-            case 3:
-                text.text = "Head to the Engine and add fuel";
-                arrow.gameObject.SetActive(true);
-                arrow.target = GameObject.Find("FuelEngine#(P)").transform;
-                arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
-                if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
-                {
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        arrow.gameObject.SetActive(false);
-                        stepIndex++;
                     }
-
-                }
-                // Perform jumping actions
+                    // Perform running actions
                 break;
-            case 4:
-                text.text = "You must continue moving..";
-                arrow.gameObject.SetActive(true);
-                arrow.target = GameObject.Find("Desk_low (1)").transform;
-                {
-                    if (Input.GetKeyDown(KeyCode.Space))
+                case 3:
+                    
+                    dr.onDialogueComplete.AddListener(DialogueConfig);
+                    if (dialoguePlayed == false)
                     {
-                        arrow.gameObject.SetActive(false);
-                        stepIndex++;
+                        
+                        dr.StartDialogue("test4");
+                        player.GetComponent<Character>().enabled = false;
+
+
                     }
+                    text.text = "Head to the Engine and add fuel";
+                    arrow.gameObject.SetActive(true);
+                    arrow.target = GameObject.Find("FuelEngine#(P)").transform;
+                    arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
+                    if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Space))
+                        {
+                            arrow.gameObject.SetActive(false);
+                            stepIndex++;
+                        }
 
-                }
-                // Perform attacking actions
-                break;
-            case 5:
-                
+                    }
+                    // Perform jumping actions
+                    break;
+                case 4:
+                    dr.onDialogueComplete.AddListener(DialogueConfig);
+                    if (dialoguePlayed == false)
+                    {
+
+                        dr.StartDialogue("test5");
 
 
 
-                break;
+                    }
+                    text.text = "You must continue moving..";
+                    arrow.gameObject.SetActive(true);
+                    arrow.target = GameObject.Find("Desk_low (1)").transform;
+                    {
+                        if (Input.GetKeyDown(KeyCode.Space))
+                        {
+                            arrow.gameObject.SetActive(false);
+                            stepIndex++;
+                            dialoguePlayed = false;
+                        }
+
+                    }
+                    // Perform attacking actions
+                    break;
+                case 5:
+
+
+                    MPTSceneManager.state = 1;
+
+
+                    break;
+            }
         }
 
+    }
+    public void DialogueConfig()
+    {
+        dialoguePlayed = true;
+        player.GetComponent<Character>().enabled = true;
+        if(gameStarted == false)
+        {
+            gameStarted = true;
+        }
     }
     public void config()
     {

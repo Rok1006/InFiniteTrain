@@ -8,6 +8,7 @@ using TMPro;
 public class MPTSceneManager : MonoBehaviour
 {
 
+    public static int state = 0;
     public PlayerInformation playerInfo;
     private Info InfoSC;
     private PointContentManager PCM;
