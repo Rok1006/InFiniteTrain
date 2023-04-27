@@ -19,7 +19,8 @@ public class Tutorial : MonoBehaviour
     public GameObject inventoryUI;
     public GameObject inventoryUI2;
     public GameObject pointAtInventory;
-
+    public Animator radioAnim;
+    public MPTSceneManager msm;
     private void Awake()
     {
         if(instance == null)
@@ -35,13 +36,20 @@ public class Tutorial : MonoBehaviour
         
         arrow.player = player;
         arrow.gameObject.SetActive(false);
+
+        radioAnim.Play("ScreenEffect_Bad");
        
-        
        
+
+
+
+
+
     }
 
     void Update()
     {
+      
         if (player == null)
         {
             player = GameObject.Find("PlayerMC");

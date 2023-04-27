@@ -8,7 +8,7 @@ using TMPro;
 public class MPTSceneManager : MonoBehaviour
 {
 
-    private PlayerInformation playerInfo;
+    public PlayerInformation playerInfo;
     private Info InfoSC;
     private PointContentManager PCM;
     [SerializeField, BoxGroup("Effect")]private GameObject ScreenEffect;
