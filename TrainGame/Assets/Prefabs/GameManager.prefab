@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3864020986089951374}
   - component: {fileID: 3864020986089951375}
-  - component: {fileID: 3864020986089951373}
   - component: {fileID: 3864020986089951372}
   - component: {fileID: 3864020986089951371}
+  - component: {fileID: 44842892484732350}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -53,60 +53,6 @@ MonoBehaviour:
   GameOverScene: 
   Points: 0
   PauseGameWhenInventoryOpens: 0
---- !u!114 &3864020986089951373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3864020986089951360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba4043dc4ea38b4d89587edaae72a2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MPTS: {fileID: 0}
-  enterRad0:
-    m_PersistentCalls:
-      m_Calls: []
-  updateRad0:
-    m_PersistentCalls:
-      m_Calls: []
-  leaveRad0:
-    m_PersistentCalls:
-      m_Calls: []
-  enterRad1:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3864020986089951373}
-        m_TargetAssemblyTypeName: RadiationManager, Assembly-CSharp
-        m_MethodName: showRadiationLevel
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: entered rad 1
-          m_BoolArgument: 0
-        m_CallState: 2
-  updateRad1:
-    m_PersistentCalls:
-      m_Calls: []
-  leaveRad1:
-    m_PersistentCalls:
-      m_Calls: []
-  enterRad2:
-    m_PersistentCalls:
-      m_Calls: []
-  updateRad2:
-    m_PersistentCalls:
-      m_Calls: []
-  leaveRad2:
-    m_PersistentCalls:
-      m_Calls: []
-  RadiationBarName: RadiationBar
-  isRadiated: 0
 --- !u!114 &3864020986089951372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +93,45 @@ MonoBehaviour:
   fuelStorageAmt: 0
   IsViewingInventory: 0
   isNewGame: 1
+--- !u!114 &44842892484732350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864020986089951360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8eac9248afc48246a4870940fa3635f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MPTS: {fileID: 0}
+  enterRad0:
+    m_PersistentCalls:
+      m_Calls: []
+  updateRad0:
+    m_PersistentCalls:
+      m_Calls: []
+  leaveRad0:
+    m_PersistentCalls:
+      m_Calls: []
+  enterRad1:
+    m_PersistentCalls:
+      m_Calls: []
+  updateRad1:
+    m_PersistentCalls:
+      m_Calls: []
+  leaveRad1:
+    m_PersistentCalls:
+      m_Calls: []
+  enterRad2:
+    m_PersistentCalls:
+      m_Calls: []
+  updateRad2:
+    m_PersistentCalls:
+      m_Calls: []
+  leaveRad2:
+    m_PersistentCalls:
+      m_Calls: []
+  RadiationBarName: RadiationBar
+  isRadiated: 0
