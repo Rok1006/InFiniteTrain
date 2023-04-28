@@ -22,7 +22,7 @@ public class ApplicationManager : MMSingleton<ApplicationManager>
         GameManager gameManager = FindObjectOfType<GameManager>();
         if (gameManager != null)
             Destroy(gameManager.gameObject);
-        MMSceneLoadingManager.LoadScene ("LeoPlayAround");
+        MMSceneLoadingManager.LoadScene ("Start");
     }
 
     public void ContinueGame() {

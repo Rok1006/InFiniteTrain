@@ -97,6 +97,11 @@ public class MapPopUp : MonoBehaviour
                 }
                 InfoSC.radAmt = this.GetComponent<Point>()._radAmt;
                 //InfoSC.CurrentSelectedPtObj = this.PopUpObj;
+                if(Tutorial.instance.stepIndex == 4)
+                {
+                    Tutorial.instance.stepIndex = 5;
+                    Tutorial.instance.dialoguePlayed = false;
+                }
             }
             mm.UpdatePlayer(); //new
             //mm.UpdateMapPointState();

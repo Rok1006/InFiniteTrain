@@ -27,7 +27,7 @@ public class Tutorial : MonoBehaviour
     private int state = 0;
 
 
-    private bool dialoguePlayed = false;
+    public bool dialoguePlayed = false;
     private float initialDelay = 2.5f;
     private void Awake()
     {
@@ -111,7 +111,7 @@ public class Tutorial : MonoBehaviour
                         UIShit.SetActive(true);
                          text.text = "Lower your radiation level by consuming a food.";
                         player.GetComponent<Character>().enabled = false;
-                        player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(carrot, 1, 0);
+                        player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(carrot, 2, 0);
 
                         if (Input.GetKeyDown(KeyCode.Alpha1))
                         {
@@ -209,24 +209,52 @@ public class Tutorial : MonoBehaviour
                     text.text = "You must continue moving..";
                     arrow.gameObject.SetActive(true);
                     arrow.target = GameObject.Find("Desk_low (1)").transform;
+                    if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
                     {
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
-                            dialoguePlayed = false;
                         }
 
                     }
                     // Perform attacking actions
                     break;
                 case 5:
+                    
+                    dr.onDialogueComplete.AddListener(DialogueConfig);
+                    if (dialoguePlayed == false)
+                    {
+
+                        dr.StartDialogue("test6");
 
 
-                    MPTSceneManager.state = 1;
+
+                    }
+                    text.text = "Start the train";
+                    arrow.gameObject.SetActive(true);
+                    arrow.target = GameObject.Find("lever_bot").transform;
+                    if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Space))
+                        {
+                            arrow.gameObject.SetActive(false);
+                            stepIndex++;
+                        }
+
+                    }
+
+
+                    // MPTSceneManager.state = 1;
 
 
                     break;
+                case 6:
+
+
+
+                    break;
+
             }
         }
 
