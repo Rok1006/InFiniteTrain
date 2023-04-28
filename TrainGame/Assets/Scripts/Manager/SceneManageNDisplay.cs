@@ -47,7 +47,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField,BoxGroup("TrainMoveStop")] private InteractableIcon trainTrigger;
     [SerializeField, BoxGroup("TrainMoveStop")] private List<GameObject> CMCam = new List<GameObject>();
     [SerializeField, BoxGroup("TrainMoveStop")] private float trainNoiseV;
-    private float currentValue, targetValue;
+    public float currentValue, targetValue;
     [BoxGroup("TrainMoveStop"), ReadOnly] public string currentAccess;
     [BoxGroup("TrainMoveStop")] public GameObject door;
     [SerializeField,BoxGroup("TrainMoveStop")] private Animator doorAnim;
@@ -57,6 +57,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [BoxGroup("UI/Others")]public GameObject GameOverScreen;
     [BoxGroup("UI/Others")]public Animator TrainWindowLight;
     [BoxGroup("UI/Others")]public CanvasGroup BackpackInventoryCanvasGroup;
+    [BoxGroup("UI/Others")]public GameObject ExitRequest;
 //[HideInInspector]
 
     void Start()
@@ -84,6 +85,7 @@ public class SceneManageNDisplay : MonoBehaviour
         GameOverScreen.SetActive(false);
         DeskViewPanel.SetActive(false);
         LocationInfoDisplay.SetActive(false);
+        ExitRequest.SetActive(false);
 //---------
         UpdateCamNoise(currentValue);
         if(ISF.doorState==0){
@@ -177,7 +179,7 @@ public class SceneManageNDisplay : MonoBehaviour
         FF_Panel.alpha = 0;
         FF_AddButton.gameObject.SetActive(false);
         TrainFuelBar.SetActive(false);
-        //TrainInfoGuide.SetActive(false);
+        //player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("ActionFinished");
     }
     public void Open_FuelPanel(){
         PanelOn = true;
@@ -186,6 +188,7 @@ public class SceneManageNDisplay : MonoBehaviour
         FF_Panel.alpha = 1;
         FF_AddButton.gameObject.SetActive(true);
         Debug.Log("opened fuel panel");
+        //player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("Think");
         
         TrainFuelBar.GetComponent<RectTransform>().anchoredPosition = FuelMachineFuelLocation;
         TrainFuelBar.SetActive(true);
@@ -227,8 +230,17 @@ public class SceneManageNDisplay : MonoBehaviour
     }
     public void PullLever(){  //put this in actionCall
         CheckIfEnoughFuel();
+        player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("InsertFlip");
+        if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&CheckFinalRequiredItem()){  //if now player is in turn pt, abt to go back in loop //curent pt id of turn is 7
+            //TrainTowardExit();
+            //Then Trigger Dialogue
+        }else if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&!CheckFinalRequiredItem()){ //nt fulfilling requirment
+            //ExitRequest.SetActive(true);
+            //Then Trigger Dialogue
+        }
+
         if(hasEnoughFuel){
-            if(ISF.CurrentSelectedPt != ISF.ConfirmedSelectedPt){ //if player isnt already arrived 
+            if(ISF.CurrentSelectedPt != ISF.ConfirmedSelectedPt && ISF.CurrentSelectedPt!=MM.ExitPtIndex){ //if player isnt already arrived 
             doorAnim.SetTrigger("Close"); 
             door.SetActive(false);
             doorIsOpen = 0;
@@ -238,20 +250,15 @@ public class SceneManageNDisplay : MonoBehaviour
                 WarningGuideCall(3); //picked location
             }
             Invoke("Pull", .5f);
-
             ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
             ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
             MM.points[ISF.CurrentSelectedPt].GetComponent<MapPopUp>().clicked = false; //when player pull lever and confirm, flag is plugged
-            if(ISF.ConfirmedSelectedPt==MM.TurnPtIndex){  //if now player is in turn pt, abt to go back in loop //curent pt id of turn is 7
-                MM.ReEnterLoop(); //reopen stuff
-            }else{
-            MM.UpdateMapPointState(); 
-            }
+            MM.UpdateMapPointState();
             MM.ResetFuelNeedDisplay();
             
-        }else{
-            WarningGuideCall(5);
-        }
+            }else{
+                WarningGuideCall(5);
+            }
         }else{
             WarningGuideCall(2); //nt enough fuel
         }
@@ -266,6 +273,7 @@ public class SceneManageNDisplay : MonoBehaviour
         yield return new WaitForSeconds(0f);
         MM.PTMT(IsMoving, 2f);
         BGScroll.SetActive(true);
+        Debug.Log("BDScroll");
         //player do wtever
         yield return new WaitForSeconds(7f);
        //targetValue = 0f;
@@ -277,11 +285,9 @@ public class SceneManageNDisplay : MonoBehaviour
         doorIsOpen = 1;
         doorAudio.Play();
         BGScroll.SetActive(false);
-            if(ISF.ConfirmedSelectedPt==7){
-                //pop up: reenter?
-            }
-        //the anim: moving of bg or foreground
-        //object active
+            // if(ISF.ConfirmedSelectedPt==7){
+            //     //pop up: reenter?
+            // }
     }
     void TrainStopMotion(){  //When train arrive at the location, do this after player click pt and on train
         //yield return new WaitForSeconds(0f);
@@ -321,5 +327,25 @@ public class SceneManageNDisplay : MonoBehaviour
             }else{
                 hasEnoughFuel = false;
         }
+    }
+//Check Re Entering --------
+    public bool CheckFinalRequiredItem(){ //if player have these items , constantly checking
+        //check
+        return true;
+    }
+    public void ClickReEnter(){ //its either cant exit or u can exit
+        MM.ReEnterLoop();
+    }
+    void TrainTowardExit(){
+        doorAnim.SetTrigger("Close"); 
+        door.SetActive(false);
+        doorIsOpen = 0;
+        TrainInfoGuide.SetActive(false);
+        Invoke("Pull", .5f);
+        ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
+        ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
+        MM.points[ISF.CurrentSelectedPt].GetComponent<MapPopUp>().clicked = false; //when player pull lever and confirm, flag is plugged
+        MM.UpdateMapPointState();
+        MM.ResetFuelNeedDisplay();
     }
 }

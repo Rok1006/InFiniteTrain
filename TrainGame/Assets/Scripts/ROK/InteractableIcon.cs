@@ -7,6 +7,7 @@ using UnityEngine.Events;
 //This script is for handling the display of icons and openign of relevant pannels when player approach an object/itel
 public class InteractableIcon : MonoBehaviour
 {
+    private GameObject Player;
     [SerializeField] private string PanelName;
     [SerializeField] private KeyCode input_interact;
 
@@ -29,6 +30,7 @@ public class InteractableIcon : MonoBehaviour
 
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         thisIcon.SetActive(false);
         iconAnim = thisIcon.GetComponent<Animator>();
         TrainInfoGuide.SetActive(false);
@@ -54,7 +56,8 @@ public class InteractableIcon : MonoBehaviour
             if(!thisIcon.activeSelf){thisIcon.SetActive(true);}
             if(!TrainInfoGuide.activeSelf&&!SceneMD.PanelOn){TrainInfoGuide.SetActive(true);}
             //TrainInfoGuideCall.Invoke();  //need more edit
-            if(Input.GetKeyUp(input_interact)&&!SceneMD.PanelOn){            
+            if(Input.GetKeyUp(input_interact)&&!SceneMD.PanelOn){   
+                // Player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("Think");
                 DisplayFunction_Active.Invoke();
                 ActionCall.Invoke();
                 iconAnim.SetTrigger("disappear");

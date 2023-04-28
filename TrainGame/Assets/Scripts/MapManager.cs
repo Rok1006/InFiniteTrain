@@ -38,7 +38,8 @@ public class MapManager : MonoBehaviour
     [SerializeField, BoxGroup("PointInfo")] List<GameObject> Intervals = new List<GameObject>();
 
     [SerializeField, BoxGroup("Stuff")] TextMeshProUGUI requireText; 
-    [BoxGroup("Stuff")] public int TurnPtIndex; 
+    [BoxGroup("Stuff")] public int PlayerReenterIndex; 
+    [BoxGroup("Stuff")] public int TurnPtIndex;  //Exit is now the turn point
     [BoxGroup("Stuff")] public int ExitPtIndex;
     [BoxGroup("Stuff")] public int BossTrainAppearTriggerIndex;
 
@@ -296,8 +297,9 @@ public class MapManager : MonoBehaviour
             //other effect or sprite changes
         }
     }
+//REENTERING------
     public void ReEnterLoop(){ //call when player in turn pt confirm to reenter
-        for(int i = 3; i < points.Length;i++){
+        for(int i = PlayerReenterIndex; i < points.Length;i++){
             points[i].GetComponent<MapPopUp>().blocked = false;
             var image = points[i].GetComponent<MapPopUp>().HeadIcon.GetComponent<Image>();
             var tempColor = image.color;
@@ -306,6 +308,7 @@ public class MapManager : MonoBehaviour
         }
 
     }
+
     void MapInformationNotice(int fuelCost, int fuelOwn){ //front put the sum num //SMD.player.GetComponent<PlayerInformation>().FuelAmt
         int diff = fuelCost - fuelOwn;
         if(diff>0){
