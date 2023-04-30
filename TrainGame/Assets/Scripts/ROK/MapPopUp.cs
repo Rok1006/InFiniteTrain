@@ -101,6 +101,8 @@ public class MapPopUp : MonoBehaviour
                 {
                     Tutorial.instance.stepIndex = 5;
                     Tutorial.instance.dialoguePlayed = false;
+                    Tutorial.instance.arrow.gameObject.SetActive(true);
+                    Tutorial.instance.arrow.target = GameObject.Find("lever_bot").transform;
                 }
             }
             mm.UpdatePlayer(); //new

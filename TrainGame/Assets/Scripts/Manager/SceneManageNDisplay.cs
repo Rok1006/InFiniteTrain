@@ -57,7 +57,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [BoxGroup("UI/Others")]public GameObject GameOverScreen;
     [BoxGroup("UI/Others")]public Animator TrainWindowLight;
     [BoxGroup("UI/Others")]public CanvasGroup BackpackInventoryCanvasGroup;
-    [BoxGroup("UI/Others")]public GameObject ExitRequest;
+  
 //[HideInInspector]
 
     void Start()
@@ -85,7 +85,7 @@ public class SceneManageNDisplay : MonoBehaviour
         GameOverScreen.SetActive(false);
         DeskViewPanel.SetActive(false);
         LocationInfoDisplay.SetActive(false);
-        ExitRequest.SetActive(false);
+      
 //---------
         UpdateCamNoise(currentValue);
         if(ISF.doorState==0){

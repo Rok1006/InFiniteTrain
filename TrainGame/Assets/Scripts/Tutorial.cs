@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using MoreMountains.TopDownEngine;
 using Yarn.Unity;
+using UnityEngine.SceneManagement;
 //This script is for handling tutorial, attached on scene obj, calling frm GAme manager INFO
 public class Tutorial : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Tutorial : MonoBehaviour
     public DialogueRunner dr;
     private bool gameStarted = false;
     private int state = 0;
-
+    public ResourceBox rb;
 
     public bool dialoguePlayed = false;
     private float initialDelay = 2.5f;
@@ -111,6 +112,11 @@ public class Tutorial : MonoBehaviour
                         UIShit.SetActive(true);
                          text.text = "Lower your radiation level by consuming a food.";
                         player.GetComponent<Character>().enabled = false;
+                        if (FindObjectOfType<BackpackInventoryUI>().InventoryDisplay != null)
+                        {
+                           rb.backpackInventoryDisplay = FindObjectOfType<BackpackInventoryUI>().InventoryDisplay;
+
+                        }
                         player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(carrot, 2, 0);
 
                         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -131,10 +137,15 @@ public class Tutorial : MonoBehaviour
 
                 break;
                 case 2:
-                    dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
-                    dr.onDialogueComplete.AddListener(DialogueConfig);
+                    if(dr == null)
+                    {
+                        dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
+                        
+                    }
+                   
                     if(dialoguePlayed == false)
                     {
+                        dr.onDialogueComplete.AddListener(DialogueConfig);
                         dr.StartDialogue("test3");
                         player.GetComponent<Character>().enabled = false;
                     
@@ -162,6 +173,7 @@ public class Tutorial : MonoBehaviour
                     
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
+                            arrow.target = null;
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
                             dialoguePlayed = false;
@@ -172,10 +184,10 @@ public class Tutorial : MonoBehaviour
                 break;
                 case 3:
                     
-                    dr.onDialogueComplete.AddListener(DialogueConfig);
+                   
                     if (dialoguePlayed == false)
                     {
-                        
+                        dr.onDialogueComplete.AddListener(DialogueConfig);
                         dr.StartDialogue("test4");
                         player.GetComponent<Character>().enabled = false;
 
@@ -183,12 +195,17 @@ public class Tutorial : MonoBehaviour
                     }
                     text.text = "Head to the Engine and add fuel";
                     arrow.gameObject.SetActive(true);
+                    if(arrow.target == null)
+                    {
+
                     arrow.target = GameObject.Find("FuelEngine#(P)").transform;
+                    }
                     arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
                     if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
                     {
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
+                            arrow.target = null;
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
                         }
@@ -197,10 +214,10 @@ public class Tutorial : MonoBehaviour
                     // Perform jumping actions
                     break;
                 case 4:
-                    dr.onDialogueComplete.AddListener(DialogueConfig);
+                   
                     if (dialoguePlayed == false)
                     {
-
+                        dr.onDialogueComplete.AddListener(DialogueConfig);
                         dr.StartDialogue("test5");
 
 
@@ -208,11 +225,16 @@ public class Tutorial : MonoBehaviour
                     }
                     text.text = "You must continue moving..";
                     arrow.gameObject.SetActive(true);
+                    if(arrow.target == null)
+                    {
+
                     arrow.target = GameObject.Find("Desk_low (1)").transform;
+                    }
                     if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
                     {
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
+                            arrow.target = null;
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
                         }
@@ -221,25 +243,26 @@ public class Tutorial : MonoBehaviour
                     // Perform attacking actions
                     break;
                 case 5:
-                    
-                    dr.onDialogueComplete.AddListener(DialogueConfig);
+                   
+
                     if (dialoguePlayed == false)
                     {
-
+                        dr.onDialogueComplete.AddListener(DialogueConfig);
                         dr.StartDialogue("test6");
 
 
 
                     }
                     text.text = "Start the train";
-                    arrow.gameObject.SetActive(true);
-                    arrow.target = GameObject.Find("lever_bot").transform;
+                    
+                    
                     if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
                     {
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
+                            dialoguePlayed = false;
                         }
 
                     }
@@ -250,6 +273,28 @@ public class Tutorial : MonoBehaviour
 
                     break;
                 case 6:
+                    if(SceneManager.GetActiveScene().name == "MapPoint")
+                    {
+                        if(dr == null)
+                        {
+                         dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
+                         
+
+                        }
+                        if (text == null)
+                        {
+                            text = GameObject.Find("Quest").transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+                        }
+                        if (dialoguePlayed == false)
+                        {
+                            dr.onDialogueComplete.AddListener(DialogueConfig);
+                            dr.StartDialogue("test7");
+
+
+
+                        }
+                        text.text = "Scavenge for resources";
+                    }
 
 
 

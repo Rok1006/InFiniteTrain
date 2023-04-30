@@ -31,17 +31,21 @@ public class TargetIndicator : MonoBehaviour
         {
             Tutorial.instance.arrow = this;
         }
-        var playertransform =  mainCamera.WorldToViewportPoint(player.transform.position);
-        var CanvasPosition = new Vector3(playertransform.x * width/2, playertransform.y * height/2, 0);
-        Vector2 viewportPos = Camera.main.WorldToViewportPoint(player.transform.position);
-        Vector2 pixelPos = new Vector2(viewportPos.x * width, viewportPos.y * height);
+        if(player != null)
+        {
+            var playertransform = mainCamera.WorldToViewportPoint(player.transform.position);
+            var CanvasPosition = new Vector3(playertransform.x * width / 2, playertransform.y * height / 2, 0);
+            Vector2 viewportPos = Camera.main.WorldToViewportPoint(player.transform.position);
+            Vector2 pixelPos = new Vector2(viewportPos.x * width, viewportPos.y * height);
 
-        // Map the pixel position to the canvas coordinates
-        float canvasX = (pixelPos.x / width) * width - (width * 0.5f);
-        float canvasY = (pixelPos.y / height) * height - (height * 0.5f);
+            // Map the pixel position to the canvas coordinates
+            float canvasX = (pixelPos.x / width) * width - (width * 0.5f);
+            float canvasY = (pixelPos.y / height) * height - (height * 0.5f);
 
-        // Set the player's position on the canvas
-        uiObject.anchoredPosition = new Vector2(canvasX, canvasY);
+            // Set the player's position on the canvas
+            uiObject.anchoredPosition = new Vector2(canvasX, canvasY);
+        }
+      
         
         if(target != null)
         {

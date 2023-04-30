@@ -38,7 +38,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField] private SkeletonMecanim B_Skin;
     [SpineSkin] public string[] boxLook = { "Normal", "Wood"};
 
-    private InventoryDisplay backpackInventoryDisplay;
+    public InventoryDisplay backpackInventoryDisplay;
 
     //getters & setters
     public string InventoryName {get=>invnetoryName; set=>invnetoryName=value;}
@@ -50,7 +50,11 @@ public class ResourceBox : MonoBehaviour
     public virtual void Start()
     {
         //set up
+        if(FindObjectOfType<BackpackInventoryUI>().InventoryDisplay != null)
+        {
         backpackInventoryDisplay = FindObjectOfType<BackpackInventoryUI>().InventoryDisplay;
+
+        }
         if (backpackInventoryDisplay == null)
             Debug.Log("Can't find backpack inventory display for " + name);
 
@@ -99,10 +103,20 @@ public class ResourceBox : MonoBehaviour
             sideInventoryDisplay = FindObjectOfType<SideInventoryDisplay>();
             
             if (sideInventoryDisplay == null)
-                Debug.LogWarning("Cannot find side inventory display");
+                //Debug.LogWarning("Cannot find side inventory display");
+                if(sideInventoryDisplay != null)
+                {
+
+                    if(sideInventoryDisplay.DisplayCanvasGroup != null)
+                    {
+
+                    inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
+                    inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
+                    }
+                }
+               
+           
             
-                inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
-                inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
         }
 
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Space) && !isOpening) { //open inventory
