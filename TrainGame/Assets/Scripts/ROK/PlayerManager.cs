@@ -159,6 +159,25 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             itemUsingContainer.SetActive(false);
             itemUsingBar.fillAmount = 0;
         }
+
+        /// get wut mouse is hover over
+        // // Create a pointer event
+        // PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+
+        // // Set the pointer event position to the mouse position
+        // pointerEventData.position = Input.mousePosition;
+
+        // // Raycast using the pointer event
+        // List<RaycastResult> results = new List<RaycastResult>();
+        // EventSystem.current.RaycastAll(pointerEventData, results);
+
+        // // Check if the mouse is hovering over a UI element
+        // if (results.Count > 0)
+        // {
+        //     // Get the name of the UI object
+        //     string objectName = results[0].gameObject.name;
+        //     Debug.Log("Mouse is hovering over UI object named: " + objectName);
+        // }
     }
 
     void FixedUpdate()
