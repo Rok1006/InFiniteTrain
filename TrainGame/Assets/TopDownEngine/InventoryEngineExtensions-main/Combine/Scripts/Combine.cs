@@ -39,6 +39,13 @@ namespace Combine
         {
             var item1ID = item1Inventory.Content[item1Index].ItemID;
             var item2ID = item2Inventory.Content[item2Index].ItemID;
+
+            //see if anything require blueprint
+            if (item1ID.Equals("Enemy Chip") || item2ID.Equals("Enemy Chip")) {
+                if (!FindObjectOfType<PlayerManager>().CanCombineEnemyDetector)
+                    return false;
+            }
+
             if (!_combinationResult.TryGetValue((item1ID, item2ID), out var result) &&
                 !_combinationResult.TryGetValue((item2ID, item1ID), out result)) return false;
             item1Inventory.RemoveItem(item1Index, 1);

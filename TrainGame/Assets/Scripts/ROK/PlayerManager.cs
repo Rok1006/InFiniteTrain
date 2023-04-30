@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     [ReadOnly, SerializeField, BoxGroup("Item Using")] private float currentActionTime = 0.0f, totalActionTime = 0.0f;
     [ReadOnly, SerializeField, BoxGroup("Item Using")] private bool isUsingItem = false;
 
-    [SerializeField, Foldout("Item Functions")] private bool canSeeRadiationUI, canSeeMapEnemy, canSeeMetal, canSeeMetalAndMat;
+    [SerializeField, Foldout("Item Functions")] private bool canSeeRadiationUI, canSeeMapEnemy, canSeeMetal, canSeeMetalAndMat, canCombineEnemyDetector, canCombineStunner, canCombineSignaler;
     [SerializeField, Foldout("Item Functions"), ReadOnly] private CanvasGroup RadiationUIGroup;
 
 //mouse control------------
@@ -63,6 +63,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     public bool IsUsingItem {get=>isUsingItem;set=>isUsingItem=value;}
     public float TotalActionTime {get=>totalActionTime;set=>totalActionTime=value;}
     public float CurrentActionTime {get=>currentActionTime;private set=> currentActionTime=value;}
+    public bool CanCombineEnemyDetector {get=>canCombineEnemyDetector;}
 
     #region OnEnable,disable, Start & Updates
     void OnEnable()
@@ -372,7 +373,6 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             return;
 
         canSeeRadiationUI = canSeeMapEnemy = canSeeMetal = canSeeMetalAndMat = false;
-        canSeeRadiationUI = true;
 
         foreach (InventoryItem item in _backpackInventory.Content) {
             if (item == null)
@@ -383,6 +383,13 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
                 canSeeMetalAndMat = true;
             else if (item.ItemName.Equals("Radiation Detector"))
                 canSeeRadiationUI = true;
+            else if (item.ItemID.Equals("Stunner_Blueprint"))
+                canCombineStunner = true;
+            else if (item.ItemID.Equals("Signaler_Blueprint"))
+                canCombineSignaler = true;
+            else if (item.ItemID.Equals("Radiation_Eliminator_Blueprint"))
+                canCombineEnemyDetector = true;
+            
         }
 
         if (canSeeRadiationUI)
