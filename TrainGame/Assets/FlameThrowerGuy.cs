@@ -6,25 +6,18 @@ public class FlameThrowerGuy : GeneralEnemy
 {
     public Transform[] wayPoints;
     public ForceUpdate stun;
-    public enum State
-    {
-        PATROL,
-        ATTACK,
-        STOP,
-        STUN
-
-    }
+  
     public LayerMask layermask;
     public int destPoint = 0;
     public float speedWhenAttacking;
     private bool stop;
     public float attackDuration;
     private float chance = 0.4f;
-    public State state;
+ 
     public GameObject player;
     public float range;
     public float fovAngle;
-    private Rigidbody rb;
+    
     bool canAttack = true;
     bool attacking = false;
     public GameObject DetectObj;
@@ -93,21 +86,7 @@ public class FlameThrowerGuy : GeneralEnemy
       
     }
 
-    IEnumerator Stun()
-    {
-        float duration = 2f; // 2 seconds you can change this to
-                             //to whatever you want
-        float totalTime = 0;
-        while (totalTime <= duration)
-        {
-            rb.velocity = Vector3.zero;
-            totalTime += Time.deltaTime;
-            var integer = (int)totalTime; /* no need for now */
-            yield return null;
-        }
-
-        this.state = State.PATROL;
-    }
+   
     void MoveTowards()
     {
         if (rb.velocity.x > 0)

@@ -10,22 +10,21 @@ public class UpdatedLaserDrone : GeneralEnemy
     [SerializeField] private Animator lazerDAnim;
     [SerializeField] private GameObject laserEffectSignal;
 
-    public enum State { PATROL, ATTACK, STOP, STUN }
+
 
     public LayerMask layermask;
     public int destPoint = 0;
-    public float speed;
+ 
     private bool stop;
     private float chance = 0.4f;
-    public State state;
+ 
     public GameObject player;
     public float range;
     public float fovAngle;
-    private Rigidbody rb;
+  
     public GameObject DetectSign;
     public bool popUp = false;
-    public GameObject eletricObj;
-
+    
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

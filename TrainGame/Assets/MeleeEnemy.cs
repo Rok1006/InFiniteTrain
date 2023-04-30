@@ -6,34 +6,23 @@ public class MeleeEnemy : GeneralEnemy
 {
     public Transform[] wayPoints;
     public ForceUpdate stun;
-    public enum State
-    {
-        PATROL,
-        ATTACK,
-        STOP,
-        STUN,
-        GOBACK
-
-           
-        
-    }
     public GameObject player;
     public GameObject enemyChild;
     public GameObject DetectObj;
-    public Animator thisAnim;
+   
     public LayerMask layermask;
     public int destPoint = 0;
     public float approachSpeed;
     private bool stop;
     private float chance = 0.4f;
-    public State state;
+   
     public float range;
     public float fovAngle;
-    private Rigidbody rb;
+   
     public bool canAttack = false;
     public GameObject DetectSign;
     public bool popUp = false;
-    public GameObject eletricObj;
+    
     private bool goingBack = false;
     
     // Start is called before the first frame update
