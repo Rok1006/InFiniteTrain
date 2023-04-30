@@ -122,8 +122,7 @@ namespace Combine
 
                 return;
             }
-            Debug.Log("Dropping");
-            _slot.Drop();
+            // _slot.Drop();
         }
     }
 }
