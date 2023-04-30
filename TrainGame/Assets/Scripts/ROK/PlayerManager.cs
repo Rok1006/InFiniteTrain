@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     [SerializeField] private GameObject depthDetect;
     [SerializeField] private GameObject SpotLight; //assign the player spotlight obj
     [SerializeField] private GameObject PlayerLight;
+    public GameObject AttackBlast;
     public bool facingFront = true;   //or side
     [HideInInspector] public List<GameObject> dust = new List<GameObject>();
 
@@ -137,7 +138,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
 
         handleWeapon = GetComponent<CharacterHandleWeapon>();
         secondaryHandleWeapon = GetComponent<CharacterHandleSecondaryWeapon>();
-    
+        AttackBlast.SetActive(false);
     }
     private void Update() {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -161,6 +162,9 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             itemUsingBar.fillAmount = 0;
         }
 
+        if(AttackBlast.activeSelf){
+            Invoke("DisableAttackBlast", 1.5f);
+        }
         /// get wut mouse is hover over
         // // Create a pointer event
         // PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
@@ -283,17 +287,13 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             dust[i].GetComponent<ParticleSystemRenderer>().sortingOrder = order;
         }
     }
+    public void DisableAttackBlast(){
+        AttackBlast.SetActive(false);
+    }
 #endregion
 
     void OnTriggerEnter(Collider col) {
-        // var sc = SceneManage.Instance;
-        // for(int i = 0; i<sc.MCTrainConfiner.Count;i++){
-        //    if(col.gameObject.name == "TrainCar"+i && playerCam!=null){ 
-        //     var confiner = playerCam.GetComponent<CinemachineConfiner>();
-        //     confiner.InvalidatePathCache();
-        //     confiner.m_BoundingVolume = sc.MCTrainConfiner[i].GetComponent<Collider>();
-        //    }
-        // }
+
     }
     public void DisableAllWeaponAnimation(){
         MCFrontAnim.SetBool("Switch_smallGun", false);
@@ -302,7 +302,6 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
         // MCBackAnim.SetBool("Switch_smallGun", false);
         // MCBackAnim.SetBool("Switch_bigGun", false);
         // MCBackAnim.SetBool("Switch_bigSword", false);
-        
     }
 
     public void test() {

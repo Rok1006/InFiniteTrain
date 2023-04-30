@@ -26,6 +26,7 @@ public class DamageSource : MonoBehaviour
             Debug.Log("shit");
             other.gameObject.GetComponent<PlayerInformation>().CurrentRadiationValue += this.dmg;
             Player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("Damage");
+            Player.GetComponent<PlayerManager>().AttackBlast.SetActive(true);
             MMFlashEvent.Trigger(Color.red, 0.3f, 0.6f, 0, 0, TimescaleModes.Unscaled);
         }
     }

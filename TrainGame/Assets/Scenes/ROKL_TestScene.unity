@@ -6143,6 +6143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 0
+  Player: {fileID: 0}
 --- !u!65 &402847163
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26682,7 +26683,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7793428, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32980,6 +32981,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ece4c828c56c1548a623b73ce7d84f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  thisAnim: {fileID: 0}
+  eletricObj: {fileID: 0}
+  rb: {fileID: 0}
+  state: 0
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -32991,14 +32997,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   destPoint: 0
-  speed: 1
-  state: 0
   player: {fileID: 0}
   range: 20
   fovAngle: 60
   DetectSign: {fileID: 0}
   popUp: 0
-  eletricObj: {fileID: 0}
 --- !u!65 &924246302
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33054,6 +33057,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4245c5bacb65de241af50c954a093ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  thisAnim: {fileID: 0}
+  eletricObj: {fileID: 0}
+  rb: {fileID: 0}
+  state: 0
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -33061,20 +33069,16 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyChild: {fileID: 0}
   DetectObj: {fileID: 0}
-  thisAnim: {fileID: 0}
   layermask:
     serializedVersion: 2
     m_Bits: 1024
   destPoint: 0
-  speed: 1
   approachSpeed: 0
-  state: 0
   range: 20
   fovAngle: 60
   canAttack: 0
   DetectSign: {fileID: 0}
   popUp: 0
-  eletricObj: {fileID: 0}
 --- !u!4 &924246306
 Transform:
   m_ObjectHideFlags: 0
@@ -35392,7 +35396,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7793428, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -88677,6 +88681,80 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &4172979962767879555
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 204.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 29.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077117, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077118, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_Name
+      value: AttackBlast
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172979962070077118, guid: e18d525e272184282a3f691948ddfb3c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e18d525e272184282a3f691948ddfb3c, type: 3}
 --- !u!114 &4177996191018048907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88823,18 +88901,29 @@ MonoBehaviour:
   PlayerLight: {fileID: 1859747418}
   facingFront: 1
   dust: []
+  MCFrontAnim: {fileID: 0}
+  MCBackAnim: {fileID: 0}
   oldPositionX: 0
   oldPositionZ: 0
   down: 1
+  currentActionTime: 0
+  totalActionTime: 0
+  isUsingItem: 0
   canSeeRadiationUI: 0
   canSeeMapEnemy: 0
   canSeeMetal: 0
   canSeeMetalAndMat: 0
+  canCombineEnemyDetector: 0
+  canCombineStunner: 0
+  canCombineSignaler: 0
   RadiationUIGroup: {fileID: 0}
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  destination: {fileID: 0}
+  throwDestination: {fileID: 0}
+  plantDestination: {fileID: 0}
+  itemUsingContainer: {fileID: 0}
+  itemUsingBar: {fileID: 0}
   weaponCollection: {fileID: 11400000, guid: 3572839a7c49f704a984d1f1dd077a3d, type: 2}
 --- !u!114 &4988325307922729768
 MonoBehaviour:
@@ -88999,6 +89088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   back: {fileID: 6186103379643908360}
+  currentRadiationValue: 0
   maxRadiationValue: 10
   minRadiationValue: 0
   fuelAmt: 0

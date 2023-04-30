@@ -71,6 +71,7 @@ public class Traps : MonoBehaviour
                     audioSource.Play();
                     MMFlashEvent.Trigger(Color.red, 0.3f, 0.6f, 0, 0, TimescaleModes.Unscaled);
                     Player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("Damage");
+                    Player.GetComponent<PlayerManager>().AttackBlast.SetActive(true);
                     //Effects[0].SetActive(false);
                     //destroy itself
                 }
@@ -85,6 +86,7 @@ public class Traps : MonoBehaviour
                     audioSource.Play();
                     MMFlashEvent.Trigger(Color.red, 0.3f, 0.6f, 0, 0, TimescaleModes.Unscaled);
                     Player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("Damage");
+                    Player.GetComponent<PlayerManager>().AttackBlast.SetActive(true);
                 }
             break;
             case TrapType.DEADLYBOUND: //not using
