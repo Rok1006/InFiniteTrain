@@ -41,6 +41,9 @@ public class SceneTransition : MonoBehaviour
          //this shd trigger when player die once
         FindObjectOfType<RadiationManager>().DeathOfRadiation();
         MMSceneLoadingManager.LoadScene("LeoPlayAround");
+        if(InfoSC.EnemyAppearState >=2){ //ever after boss appear, every go out enemy move forward
+                InfoSC.CurrentEnemyTrainInterval += 1;
+        }
     }
     public void SimpleGetKicked(){
         if(InfoSC.EnemyAppearState >= 1){InfoSC.CurrentEnemyTrainInterval += 1;};
