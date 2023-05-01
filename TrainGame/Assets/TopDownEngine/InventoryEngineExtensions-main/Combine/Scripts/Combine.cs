@@ -46,8 +46,19 @@ namespace Combine
                     return false;
             }
 
+            Debug.Log("try combine " + item1ID + " and " + item2ID);
+
             if (!_combinationResult.TryGetValue((item1ID, item2ID), out var result) &&
                 !_combinationResult.TryGetValue((item2ID, item1ID), out result)) return false;
+
+            Debug.Log(result.ItemID + " is the result");
+
+            //see if the result requires blueprint
+            if (result.ItemID.Equals("Stunner")) {
+                if (!FindObjectOfType<PlayerManager>().CanCombineStunner)
+                    return false;
+            }
+
             item1Inventory.RemoveItem(item1Index, 1);
             item2Inventory.RemoveItem(item2Index, 1);
             item1Inventory.AddItem(result, 1);
