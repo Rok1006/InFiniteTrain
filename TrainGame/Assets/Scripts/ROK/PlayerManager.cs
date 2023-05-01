@@ -65,6 +65,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     public float TotalActionTime {get=>totalActionTime;set=>totalActionTime=value;}
     public float CurrentActionTime {get=>currentActionTime;private set=> currentActionTime=value;}
     public bool CanCombineEnemyDetector {get=>canCombineEnemyDetector;}
+    public bool CanCombineStunner {get=>canCombineStunner;}
 
     #region OnEnable,disable, Start & Updates
     void OnEnable()
