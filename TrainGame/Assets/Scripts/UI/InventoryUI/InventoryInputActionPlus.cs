@@ -54,6 +54,9 @@ public class InventoryInputActionPlus : InventoryInputActions
                     MechanismItem mech = _targetInventory.Content[binding.SlotIndex] as MechanismItem;
                     if (mech != null)
                         mech.indicator = null;
+                    
+                    //cancel animation
+                    _playerAnimator.SetTrigger("ActionCancelled");
                 }
             }
         }
@@ -168,6 +171,9 @@ public class InventoryInputActionPlus : InventoryInputActions
             if (mech != null) {
                 mech.PlantIndicator();
                 Debug.Log("Planting");
+
+                //ready throw animation
+                _playerAnimator.SetTrigger("ReadyThrow");
             }
 
             StartCoroutine(waitToAct(item.actionTime, binding));
@@ -185,6 +191,9 @@ public class InventoryInputActionPlus : InventoryInputActions
             if (mech != null) {
                 mech.PlantIndicator();
                 Debug.Log("Planting");
+
+                //ready throw animation
+                _playerAnimator.SetTrigger("ReadyThrow");
             }
                 
             StartCoroutine(waitToAct(item.actionTime, slotIndex));

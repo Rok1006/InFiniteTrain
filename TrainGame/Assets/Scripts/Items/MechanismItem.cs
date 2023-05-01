@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using MoreMountains.InventoryEngine;
+using NaughtyAttributes;
 
 [CreateAssetMenu(fileName = "MechanismItem", menuName = "InfiniteTrain/Inventory/MechanismItem", order = 4)]
 [Serializable]
@@ -12,7 +13,7 @@ public class MechanismItem : InventoryItemPlus
     PlayerInformation _playerInfo;
     PlayerManager _playerManager;
     public Projectile projectile;
-    public GameObject indicator;
+    [ReadOnly] public GameObject indicator;
 
     [SerializeField] private float radiationDecrease;
     [SerializeField] private float indicatorExistingTime = 1.0f; 
@@ -66,6 +67,10 @@ public class MechanismItem : InventoryItemPlus
                 Debug.Log("Using mechanism item");
             } else
                 Debug.Log("cant find indicator");
+            
+
+            //throw animation
+            _playerInfo.PlayerAnimator.SetTrigger("Throw");
         }
         return true;
     }

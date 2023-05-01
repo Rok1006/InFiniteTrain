@@ -340,6 +340,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, TargetLayerMask))
         {   
             GameObject Des = Instantiate(throwDestination, Vector3.zero, Quaternion.identity);
+            Debug.Log("des " + Des.name);
             Des.transform.position = hitInfo.point;
             return Des;
         }
