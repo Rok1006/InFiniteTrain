@@ -47,22 +47,10 @@ public class MeleeEnemy : GeneralEnemy
             case State.ATTACK:
                 
                 MoveTowards();
-                popUp = true;
-                if(canAttack == true)
-                {
-                    
-                    thisAnim.SetBool("Walking", false);
-                    thisAnim.SetTrigger("Attack");
-                    //attack here and disable canAttack
-                }
-                if(Vector3.Distance(this.transform.position ,player.transform.position) > 20)
-                {
-                    this.state = State.PATROL;
-                    goingBack = true;
-                }
+             
                 break;
             case State.STOP:
-                Detect();
+                //Detect();
                 break;
             case State.STUN:
                 StartCoroutine(Stun());
@@ -148,17 +136,32 @@ public class MeleeEnemy : GeneralEnemy
         }
         var dir = (player.transform.position - this.transform.position).normalized;
 
-        Debug.Log("approaching");
-        if (Vector3.Distance(transform.position, player.transform.position) < 3f)
+        Debug.Log(Vector3.Distance(transform.position , player.transform.position));
+        if (Vector3.Distance(transform.position, player.transform.position) < 5f)
         {
             Debug.Log("ready to attack");
             canAttack = true;
             this.state = State.STOP;
             StartCoroutine(Stop());
             thisAnim.SetBool("Walking", false);
-        }else{
+        }
+        else
+        {
             rb.velocity = dir * approachSpeed;
             thisAnim.SetBool("Walking", true);
+        }
+        popUp = true;
+        if (canAttack == true)
+        {
+
+            thisAnim.SetBool("Walking", false);
+            thisAnim.SetTrigger("Attack");
+            //attack here and disable canAttack
+        }
+        if (Vector3.Distance(this.transform.position, player.transform.position) > 20)
+        {
+            this.state = State.PATROL;
+            goingBack = true;
         }
     }
     void Move() //move frm waypt to waypt
