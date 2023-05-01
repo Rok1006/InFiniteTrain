@@ -16,7 +16,7 @@ public class MechanismItem : InventoryItemPlus
     [ReadOnly] public GameObject indicator;
 
     [SerializeField] private float radiationDecrease;
-    [SerializeField] private float indicatorExistingTime = 1.0f; 
+    [SerializeField] private float indicatorExistingTime = 1.0f;
 
     //getters & setters
     public float RadiationDecrease {get=>radiationDecrease;set=>radiationDecrease=value;}
