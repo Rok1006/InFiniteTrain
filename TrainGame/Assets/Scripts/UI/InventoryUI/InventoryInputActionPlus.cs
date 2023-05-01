@@ -51,9 +51,9 @@ public class InventoryInputActionPlus : InventoryInputActions
                     _playerManager.ReleaseMovement();
                     _playerManager.IsUsingItem = false;
 
-                    MechanismItem mech = _targetInventory.Content[binding.SlotIndex] as MechanismItem;
-                    if (mech != null)
-                        mech.indicator = null;
+                    ThrowItem throwItem = _targetInventory.Content[binding.SlotIndex] as ThrowItem;
+                    if (throwItem != null)
+                        throwItem.indicator = null;
                     
                     //cancel animation
                     _playerAnimator.SetTrigger("ActionCancelled");
@@ -167,9 +167,9 @@ public class InventoryInputActionPlus : InventoryInputActions
         InventoryItemPlus item = (InventoryItemPlus) _targetInventory.Content[binding.SlotIndex];
         if (item != null) {
             //if item can be planted
-            MechanismItem mech = item as MechanismItem;
-            if (mech != null) {
-                mech.PlantIndicator();
+            ThrowItem throwItem = item as ThrowItem;
+            if (throwItem != null) {
+                throwItem.PlantIndicator();
                 Debug.Log("Planting");
 
                 //ready throw animation
@@ -187,9 +187,9 @@ public class InventoryInputActionPlus : InventoryInputActions
         InventoryItemPlus item = (InventoryItemPlus) _targetInventory.Content[slotIndex];
         if (item != null) {
             //if item can be planted
-            MechanismItem mech = item as MechanismItem;
-            if (mech != null) {
-                mech.PlantIndicator();
+            ThrowItem throwItem = item as ThrowItem;
+            if (throwItem != null) {
+                throwItem.PlantIndicator();
                 Debug.Log("Planting");
 
                 //ready throw animation
