@@ -1,0 +1,99 @@
+﻿title: Merchant_Second
+tags:
+position: -632,-168
+---
+<<set $choice1 to 0>>
+<<set $choice2 to 0>>
+Merchant: Ah, it's you, my friend. I'm glad you are still alive.
+Merchant: Need my help?
+-> Any Interesting Information?
+    <<jump SChoice1_1>>
+-> Where is this place?
+    <<jump SChoice1_2>>
+-> I need no help
+===
+title: SChoice1_1
+position: -422,-322
+---
+Merchant: Well, depends on what you mean by interesting.
+Merchant: I do have some interesting news you might need.
+Merchant: But what can I get back? I'm a merchant, not a charity. 
+-> What's the price?
+    <<jump SChoice2_1>>
+-> I'm not interested.
+===
+title: SChoice1_2
+position: -368,-102
+---
+Merchant: Here? It was Two Dot's test base. 
+Merchant: But after the Mush Rain, people simply call it Hunting Resort. Lovely, right?
+-> Two Dots? Mush Rain? What are those?
+    <<jump SChoice2_2>>
+===
+title: SChoice2_1
+position: -172,-321
+---
+Merchant: As I said last time, a favor.
+Merchant: I need you to find something for me, nothing dangerous.
+Merchant: I'm in trouble with another thing; otherwise, I should retrieve that thing myself.
+-> I want to know the information first.
+    <<jump SChoice3_1>>
+===
+title: SChoice3_1
+position: 36,-475
+---
+Merchant: Fair play. I will need to tell you anyway.
+Merchant: One of my guys found the blueprint for Signaller. The thing that can attract people and drones. Will be extremely helpful for scavengers like you.
+Merchant: My favor is simply to find the blueprint and bring it to me. In return, you can have a copy of it.
+Merchant: How's that? Good value for good money, right?
+-> Sounds good. I'll take it.
+    <<jump SChoice4_1>>
+-> I'm not interested.
+===
+title: SChoice4_1
+position: 336,-327
+---
+<<set $choice1 to 1>>
+Merchant: Great! I'm glad you can help me! The blueprint is in the west wetland of the tunnel.
+Merchant: Find me here when you get the thing. You can copy the blueprint yourself.
+Merchant: Good Luck, Doctor.
+<<if $choice2 == 0>>
+-> Talk about other things.
+    -> Where is this place
+        <<jump SChoice1_2>>
+-> I have nothing to say
+<<endif>>
+-> I have nothing to say
+===
+title: SChoice2_2
+position: -165,77
+---
+Merchant: ......
+Merchant: What do you mean? The Two Dots Corporation and The Mushroom.
+Merchant: ...You seriously don't know it? It's impossible anyone has never heard it nowadays.
+-> I can't remember many things…I awoke with a serious concussion...
+    <<jump SChoice3_2>>
+===
+title: SChoice3_2
+position: 76,-52
+---
+Merchant: Huh, I see. No wonder you can't remember who you are, especially you…
+Merchant: If that's the case, you should definitely go to Two Dots City. A friend of mine can offer some help there.
+Merchant: He called himself E. Also, a merchant. He knows everything quite well, including you. I'll let him know you are there.
+-> You know who I am?
+    <<jump SChoice4_2>>
+===
+title: SChoice4_2
+position: 342,-55
+---
+<<set $choice2 to 1>>
+Merchant: I just did. Wasn't sure when first saw you. I only knew you through papers and news, after all.
+Merchant: But E knows you a lot better. Trust me, he can answer most of your questions.
+<<if $choice1 == 0>>
+-> Talk about other things.
+    -> Any Interesting Information?
+        <<jump SChoice1_1>>
+-> I have nothing to say
+<<endif>>
+-> I have nothing to say
+===

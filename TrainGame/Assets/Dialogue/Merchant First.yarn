@@ -1,0 +1,87 @@
+﻿title: Merchant_First
+tags:
+position: -348,-40
+---
+<<set $choice4_1 to 0>>
+<<set $choice4_2 to 0>>
+???: Greetings, my friend.
+???: Huh, a new face. It must be rough to be here.
+???: What can I do for you?
+-> Who are you?
+    <<jump Choice1_1>>
+===
+title: Choice1_1
+position: -76,-42
+---
+Merchant: You can call me Mr. Merchant.
+Merchant: As my name, I'm a merchant. Trying to survive here.
+-> Where are the things you sell?
+    <<jump Choice2_1>>
+===
+title: Choice2_1
+position: 203,-39
+---
+Merchant: Well, I don't sell any physical goods.
+Merchant: We all need resources to survive in these days.
+Merchant: But I sell something more important than just goods.
+Merchant: I sell information.
+-> Information?
+    <<jump Choice3_1>>
+===
+title: Choice3_1
+position: -299,225
+---
+Merchant: Yes. Information. A lot more important than plain resources nowadays.
+Merchant: I can give information about anything you want: resources, locations, enemy locations, blueprints. 
+Merchant: Anything you want to know, I can tell you. 
+-> What should I pay you? 
+    <<jump Choice4_1>>
+-> Why are you doing this?
+    <<jump Choice4_2>>
+===
+title: Choice4_1
+position: 94,137
+---
+<<set $choice4_1 to 1>>
+M: Well, I need your help.
+M: As you can see, for some reasons, I'm not able to leave here.
+M: So, from time to time, I will ask you to bring me something.
+M: And that's it. That's all I need.
+<<if $choice4_2 == 0>>
+-> Why are you doing this?
+    <<jump Choice4_2>>
+<<endif>>
+<<if $choice4_1 == 1 && $choice4_2 == 1>>
+-> I'm leaving
+    <<jump Choice5_1>>
+<<endif>>
+
+===
+title: Choice4_2
+position: 86,338
+---
+<<set $choice4_2 to 1>>
+Merchant: Well, I have my reasons. 
+Merchant: The disaster happened quickly, too quickly, before many of us could react.
+Merchant: I'm one of the lucky people. You too. But there are many people who aren't lucky enough like us.
+Merchant: …It's a long story. Maybe one day I will tell you. But not right now.
+<<if $choice4_1 == 0>>
+-> What should I pay you? 
+    <<jump Choice4_1>>
+<<endif>>
+<<if $choice4_1 == 1 && $choice4_2 == 1>>
+-> I'm leaving
+    <<jump Choice5_1>>
+<<endif>>
+===
+title: Choice5_1
+position: 86,338
+---
+Merchant: Before you go. I will give you something for free.
+Merchant: Think of it as a discount for new customers. A new face is always welcome for me. 
+Merchant: To the very east, there's a tunnel that connects the Two-Dot city. There are more living people and resources there—more chances to survive. 
+Merchant: But to get there, you must have enough fuel, at least ten, for long-distance traveling. 
+Merchant: You will also need a map-detection patch to guide you—plus two batteries as the entry fee. 
+Merchant: Now, good luck. Come back to me if you want to know anything. But if won't be free next time. 
+
+===
