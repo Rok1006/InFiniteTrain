@@ -10,6 +10,7 @@ public class Tutorial : MonoBehaviour
 {
     public enum GameState { Tutorial, TutorialEnd }
     public GameState currentState;
+    public GameObject informationUI;
     public int stepIndex;
     private GameObject player;
     public TextMeshProUGUI text;
@@ -110,6 +111,7 @@ public class Tutorial : MonoBehaviour
                     else
                     {
                         UIShit.SetActive(true);
+                        informationUI.SetActive(true);
                          text.text = "Lower your radiation level by consuming a food.";
                         player.GetComponent<Character>().enabled = false;
                         if (FindObjectOfType<BackpackInventoryUI>().InventoryDisplay != null)
@@ -133,6 +135,7 @@ public class Tutorial : MonoBehaviour
                 break;
                 case 1: //Going back to train
                     text.text = "Find your way back to the train";
+
                     //im checking this from Train Trigger Area. you don't need to do anything here
 
                 break;
