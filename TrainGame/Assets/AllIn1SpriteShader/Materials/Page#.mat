@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlackOutline
+  m_Name: Page#
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: CHROMABERR_ON OUTBASE8DIR_ON OUTBASE_ON OUTDIST_ON SHINE_ON WAVEUV_ON
+  m_ShaderKeywords: DOODLE_ON POSTERIZE_ON WAVEUV_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -70,17 +70,17 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _AlphaCutoffValue: 0.25
-    - _AlphaOutlineBlend: 0.207
+    - _AlphaOutlineBlend: 1
     - _AlphaOutlineGlow: 5
     - _AlphaOutlineMinAlpha: 0
-    - _AlphaOutlinePower: 3.38
+    - _AlphaOutlinePower: 1
     - _AlphaRoundThreshold: 0.5
     - _BillboardY: 0
     - _BlurHD: 0
     - _BlurIntensity: 10
     - _Brightness: 0
     - _ChromAberrAlpha: 0.4
-    - _ChromAberrAmount: 0.021
+    - _ChromAberrAmount: 1
     - _ClipUvDown: 0
     - _ClipUvLeft: 0
     - _ClipUvRight: 0
@@ -90,7 +90,7 @@ Material:
     - _ColorChangeTolerance2: 0.25
     - _ColorChangeTolerance3: 0.25
     - _ColorRampBlend: 1
-    - _ColorRampLuminosity: 0.16
+    - _ColorRampLuminosity: 0
     - _ColorRampOutline: 0
     - _ColorSwapBlend: 1
     - _ColorSwapBlueLuminosity: 0.5
@@ -101,7 +101,7 @@ Material:
     - _DistortAmount: 0.5
     - _DistortTexXSpeed: 5
     - _DistortTexYSpeed: 5
-    - _EditorDrawers: 7
+    - _EditorDrawers: 6
     - _FadeAmount: -0.1
     - _FadeBurnGlow: 2
     - _FadeBurnTransition: 0.075
@@ -129,8 +129,8 @@ Material:
     - _GreyscaleBlend: 1
     - _GreyscaleLuminosity: 0
     - _GreyscaleOutline: 0
-    - _HandDrawnAmount: 2
-    - _HandDrawnSpeed: 3.8
+    - _HandDrawnAmount: 2.2
+    - _HandDrawnSpeed: 2.6
     - _HitEffectBlend: 1
     - _HitEffectGlow: 5
     - _HologramBlend: 1
@@ -139,12 +139,12 @@ Material:
     - _HologramStripesAmount: 0.1
     - _HologramStripesSpeed: 4.5
     - _HologramUnmodAmount: 0
-    - _HsvBright: 1.19
+    - _HsvBright: 1
     - _HsvSaturation: 1
     - _HsvShift: 180
     - _InnerOutlineAlpha: 1
-    - _InnerOutlineGlow: 1
-    - _InnerOutlineThickness: 2.54
+    - _InnerOutlineGlow: 4
+    - _InnerOutlineThickness: 1
     - _MaxXUV: 1
     - _MaxYUV: 1
     - _MinXUV: 0
@@ -159,20 +159,20 @@ Material:
     - _OnlyInnerOutline: 0
     - _OnlyOutline: 0
     - _OutlineAlpha: 1
-    - _OutlineDistortAmount: 0.07
-    - _OutlineDistortTexXSpeed: -38.8
-    - _OutlineDistortTexYSpeed: -36.2
-    - _OutlineGlow: 1
-    - _OutlinePixelWidth: 5.03
+    - _OutlineDistortAmount: 0.5
+    - _OutlineDistortTexXSpeed: 5
+    - _OutlineDistortTexYSpeed: 5
+    - _OutlineGlow: 1.5
+    - _OutlinePixelWidth: 1
     - _OutlineTexXSpeed: 10
     - _OutlineTexYSpeed: 0
-    - _OutlineWidth: 0.017
+    - _OutlineWidth: 0.004
     - _OverlayBlend: 1
     - _OverlayGlow: 1
     - _PinchUvAmount: 0.35
     - _PixelateSize: 32
-    - _PosterizeGamma: 0.75
-    - _PosterizeNumColors: 8
+    - _PosterizeGamma: 1.6
+    - _PosterizeNumColors: 9
     - _PosterizeOutline: 0
     - _RandomSeed: 0
     - _RectSize: 1
@@ -185,22 +185,22 @@ Material:
     - _ShakeUvSpeed: 2.5
     - _ShakeUvX: 1.5
     - _ShakeUvY: 1
-    - _ShineGlow: 0.5
-    - _ShineLocation: 0.57
-    - _ShineRotate: 0.03
-    - _ShineWidth: 0.127
+    - _ShineGlow: 1
+    - _ShineLocation: 0.5
+    - _ShineRotate: 0
+    - _ShineWidth: 0.1
     - _TextureScrollXSpeed: 1
     - _TextureScrollYSpeed: 0
     - _TwistUvAmount: 1
     - _TwistUvPosX: 0.5
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75
-    - _WaveAmount: 3.3
-    - _WaveSpeed: 1.8
-    - _WaveStrength: 1.8
-    - _WaveX: 0.173
-    - _WaveY: 0.167
-    - _ZTestMode: 8
+    - _WaveAmount: 7
+    - _WaveSpeed: 6.6
+    - _WaveStrength: 2.9
+    - _WaveX: 0.45
+    - _WaveY: 0.5
+    - _ZTestMode: 4
     - _ZWrite: 0
     - _ZoomUvAmount: 0.5
     m_Colors:
@@ -224,9 +224,9 @@ Material:
     - _GreyscaleTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _HitEffectColor: {r: 1, g: 1, b: 1, a: 1}
     - _HologramStripeColor: {r: 0, g: 1, b: 1, a: 1}
-    - _InnerOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _InnerOutlineColor: {r: 1, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _OverlayColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ShineColor: {r: 0.6320754, g: 0.40403253, b: 0, a: 1}
+    - _ShineColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
