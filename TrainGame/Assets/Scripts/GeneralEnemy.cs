@@ -31,6 +31,7 @@ public class GeneralEnemy : MonoBehaviour
         while (totalTime <= duration)
         {
             thisAnim.SetBool("Walking", false);
+            thisAnim.SetTrigger("STUNNED");
             eletricObj.SetActive(true);
             rb.velocity = Vector3.zero;
             totalTime += Time.deltaTime;

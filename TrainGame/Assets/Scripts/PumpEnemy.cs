@@ -35,13 +35,14 @@ public class PumpEnemy : MonoBehaviour
 
     private float timer = 0;
     private Vector3 direction;
+    public GameObject eletricObj;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = this.gameObject.GetComponent<Rigidbody>();
-       
+       eletricObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -97,13 +98,14 @@ public class PumpEnemy : MonoBehaviour
         while (totalTime <= duration)
         {
             thisAnim.SetBool("Walking", false);
-          //  eletricObj.SetActive(true);
+            thisAnim.SetTrigger("STUNNED");
+            eletricObj.SetActive(true);
             rb.velocity = Vector3.zero;
             totalTime += Time.deltaTime;
             var integer = (int)totalTime; /* no need for now */
             yield return null;
         }
-
+        eletricObj.SetActive(false);
         this.state = State.PATROL;
     }
     void MoveTowards() //Move towards enemy
