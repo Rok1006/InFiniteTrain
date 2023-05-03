@@ -22,7 +22,7 @@ public class ApplicationManager : MMSingleton<ApplicationManager>
         GameManager gameManager = FindObjectOfType<GameManager>();
         if (gameManager != null)
             Destroy(gameManager.gameObject);
-        MMSceneLoadingManager.LoadScene ("Start");
+        MMSceneLoadingManager.LoadScene ("Tutorial");
     }
 
     public void ContinueGame() {

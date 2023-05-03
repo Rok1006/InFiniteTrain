@@ -28,7 +28,9 @@ public class Tutorial : MonoBehaviour
     private bool gameStarted = false;
     private int state = 0;
     public ResourceBox rb;
-
+    public GameObject fuelbutton;
+    public GameObject shelfUI;
+    public GameObject deskUI;
     public bool dialoguePlayed = false;
     private float initialDelay = 2.5f;
     private void Awake()
@@ -123,6 +125,7 @@ public class Tutorial : MonoBehaviour
 
                         if (Input.GetKeyDown(KeyCode.Alpha1))
                         {
+                            pointAtInventory.SetActive(false);
                             wasdUI.SetActive(true);
                             //when we start the level player spanws with 1 carrot or food in inventory position 1
                             stepIndex++;
@@ -143,6 +146,9 @@ public class Tutorial : MonoBehaviour
                     if(dr == null)
                     {
                         dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
+                        shelfUI = ItemHolder.instance.shelf;
+                        fuelbutton = ItemHolder.instance.fuel;
+                        deskUI = ItemHolder.instance.desk;
                         
                     }
                    
@@ -170,9 +176,9 @@ public class Tutorial : MonoBehaviour
                     arrow.gameObject.SetActive(true);
                     arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
                     arrow.player = this.player;
-                    arrow.target = GameObject.Find("Shelf2").transform;
+                    arrow.target = GameObject.Find("ShelfParent").transform;
 
-                    if(Vector3.Distance(player.transform.position , arrow.target.position ) < 5f)
+                    if(shelfUI.activeSelf == true)
                     {
                     
                         if (Input.GetKeyDown(KeyCode.Space))
@@ -202,17 +208,16 @@ public class Tutorial : MonoBehaviour
                     if(arrow.target == null)
                     {
 
-                    arrow.target = GameObject.Find("FuelEngine#(P)").transform;
+                    arrow.target = GameObject.Find("FuelDepo").transform;
                     }
                     arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
-                    if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
+                    if (fuelbutton.activeSelf == true)
                     {
-                        if (Input.GetKeyDown(KeyCode.Space))
-                        {
+                        
                             arrow.target = null;
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
-                        }
+                        
 
                     }
                     // Perform jumping actions
@@ -234,7 +239,7 @@ public class Tutorial : MonoBehaviour
 
                     arrow.target = GameObject.Find("Desk_low (1)").transform;
                     }
-                    if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
+                    if (deskUI.activeSelf == true)
                     {
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
@@ -260,7 +265,7 @@ public class Tutorial : MonoBehaviour
                     text.text = "Start the train";
                     
                     
-                    if (Vector3.Distance(player.transform.position, arrow.target.position) < 5f)
+                    if (Vector3.Distance(arrow.target.position , player.transform.position) < 7)
                     {
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
