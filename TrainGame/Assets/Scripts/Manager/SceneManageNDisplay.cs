@@ -54,7 +54,9 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField,BoxGroup("TrainMoveStop")] private AudioSource doorAudio;
     [SerializeField,BoxGroup("TrainMoveStop")] private GameObject BGScroll;
     private int doorIsOpen = 0; //0 = close, 1 = open
-    [BoxGroup("UI/Others")]public GameObject GameOverScreen;
+    [BoxGroup("UI/Others")]public GameObject GameOverScreen; //when boss catch u
+    [BoxGroup("UI/Others")]public Animator EngineRoomCam;
+    [BoxGroup("UI/Others")]public GameObject CutSceneObj;
     [BoxGroup("UI/Others")]public Animator TrainWindowLight;
     [BoxGroup("UI/Others")]public CanvasGroup BackpackInventoryCanvasGroup;
   
@@ -232,9 +234,11 @@ public class SceneManageNDisplay : MonoBehaviour
         CheckIfEnoughFuel();
         player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("InsertFlip");
         if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&CheckFinalRequiredItem()){  //if now player is in turn pt, abt to go back in loop //curent pt id of turn is 7
+            //call cut scene
             //TrainTowardExit();
             //Then Trigger Dialogue
         }else if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&!CheckFinalRequiredItem()){ //nt fulfilling requirment
+            //call cut scene
             //ExitRequest.SetActive(true);
             //Then Trigger Dialogue
         }
@@ -347,5 +351,22 @@ public class SceneManageNDisplay : MonoBehaviour
         MM.points[ISF.CurrentSelectedPt].GetComponent<MapPopUp>().clicked = false; //when player pull lever and confirm, flag is plugged
         MM.UpdateMapPointState();
         MM.ResetFuelNeedDisplay();
+    }
+    public void TriggerGameOver(){
+        StartCoroutine(GameOverFlow());
+    }
+    IEnumerator GameOverFlow(){ //This will be called in Map manager when dead counter elapsed
+        yield return new WaitForSeconds(0f);
+        //on a special camera shake + anim
+        CutSceneObj.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        EngineRoomCam.SetTrigger("BossArrive");
+        //trigger small dialogue
+        yield return new WaitForSeconds(15f);
+        CutSceneObj.GetComponent<Animator>().SetTrigger("Out");
+        GameOverScreen.SetActive(true);
+    }
+    public void GameOverRestart(){
+        //REload the game or whatever
     }
 }

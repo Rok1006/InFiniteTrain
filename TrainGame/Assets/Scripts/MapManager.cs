@@ -157,7 +157,7 @@ public class MapManager : MonoBehaviour
                 InfoSC.DeadTime-=Time.deltaTime;
             }else{
                 //InfoSC.DeadTime+=DeadCounterTime;
-                SMD.GameOverScreen.SetActive(true);
+                SMD.TriggerGameOver();
                 InfoSC.DeadCountDownStart = false;
             }
         }
