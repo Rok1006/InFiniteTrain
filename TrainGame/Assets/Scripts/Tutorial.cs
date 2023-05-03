@@ -170,6 +170,7 @@ public class Tutorial : MonoBehaviour
                     arrow.gameObject.SetActive(true);
                     arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
                     arrow.player = this.player;
+                    arrow.target = GameObject.Find("Shelf2").transform;
 
                     if(Vector3.Distance(player.transform.position , arrow.target.position ) < 5f)
                     {
