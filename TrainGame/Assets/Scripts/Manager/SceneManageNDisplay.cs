@@ -6,6 +6,7 @@ using TMPro;
 using MoreMountains.InventoryEngine;
 using NaughtyAttributes;
 using Cinemachine;
+using Yarn.Unity;
 //THis script is for function of pannels and triggering events
 public class SceneManageNDisplay : MonoBehaviour
 {
@@ -59,6 +60,8 @@ public class SceneManageNDisplay : MonoBehaviour
     [BoxGroup("UI/Others")]public GameObject CutSceneObj;
     [BoxGroup("UI/Others")]public Animator TrainWindowLight;
     [BoxGroup("UI/Others")]public CanvasGroup BackpackInventoryCanvasGroup;
+
+    public DialogueRunner dr;
   
 //[HideInInspector]
 
@@ -68,6 +71,8 @@ public class SceneManageNDisplay : MonoBehaviour
         WG = this.GetComponent<WarningGuide>();
         ISF = GameObject.Find("GameManager").GetComponent<Info>();
         player = GameObject.FindGameObjectWithTag("Player");
+        dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
+
         InfoDisplay.SetActive(false);
         mapIcon.SetActive(false);
         theMap.SetActive(false);
@@ -99,6 +104,7 @@ public class SceneManageNDisplay : MonoBehaviour
         }
         
         BGScroll.SetActive(false);
+        CutSceneObj.SetActive(false);
         DisplayLocationInfo("I N S I D E  T R A I N");
 //Listener ---
         FF_CloseButton.onClick.AddListener(Close_FF);
@@ -138,7 +144,7 @@ public class SceneManageNDisplay : MonoBehaviour
         // InfoDisplay.SetActive(false);
         // InfoDisplay.SetActive(true);
     }
-// The Map Part ---------
+#region Map Stuff
     public void DisplayMapIcons(){
         mapIcon.SetActive(false);
         mapIcon.SetActive(true);
@@ -175,7 +181,8 @@ public class SceneManageNDisplay : MonoBehaviour
         BackpackInventoryCanvasGroup.alpha = 1;
         BackpackInventoryCanvasGroup.interactable = true;
     }
-//Fuel Machine Part ---------
+#endregion
+#region FuelEngine
     public void Close_FF(){
         FF_Panel.interactable = false;
         FF_Panel.alpha = 0;
@@ -196,7 +203,8 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainFuelBar.SetActive(true);
         TrainInfoGuide.SetActive(false);
     }
-//Item Craft View Desk
+#endregion
+#region ItemDesk
     public void Open_ViewDesk(){
         PanelOn = true;
         Debug.Log("opened Desk View");
@@ -206,7 +214,8 @@ public class SceneManageNDisplay : MonoBehaviour
     public void Close_ViewDesk(){
         DeskViewPanel.SetActive(false);
     }
-//Train Move Stop Toggle --------------
+#endregion
+#region TrainStartStop
     public void OnToggle(){
         // if(!IsOn){
         PanelOn = true; 
@@ -234,11 +243,9 @@ public class SceneManageNDisplay : MonoBehaviour
     public void PullLever(){  //put this in actionCall
         CheckIfEnoughFuel();
         player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("InsertFlip");
-        if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&CheckFinalRequiredItem()){  //if now player is in turn pt, abt to go back in loop //curent pt id of turn is 7
-            //call cut scene
-            //TrainTowardExit();
-            //Then Trigger Dialogue
-        }else if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&!CheckFinalRequiredItem()){ //nt fulfilling requirment
+        if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&CheckFinalRequiredItem()){  //player can exit
+            TriggerExitEnding();
+        }else if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&!CheckFinalRequiredItem()){ //nt fulfilling requirment, reenter loop
             //call cut scene
             //ExitRequest.SetActive(true);
             //Then Trigger Dialogue
@@ -314,6 +321,7 @@ public class SceneManageNDisplay : MonoBehaviour
         CheckIfEnoughFuel();
         //yield return new WaitForSeconds(5f);
     }
+#endregion
     void UpdateCamNoise(float value){
         for(int i = 0; i < CMCam.Count; i++){
             //REf: https://stackoverflow.com/questions/66091697/how-to-access-cinemachine-basic-mutlichannel-perlin-noise
@@ -339,7 +347,13 @@ public class SceneManageNDisplay : MonoBehaviour
     }
 //Check Re Entering --------
     public bool CheckFinalRequiredItem(){ //if player have these items , constantly checking
-        //check
+        // player.GetComponent<CharacterInventory>().MainInventory.FindInventory();
+        // List<InventoryItem> backpackItems = Inventory.Find("BackpackInventory", "Player1").Content;
+        // for (int i = 0; i < bakcpackItems.Count; i++) {
+        //     if (backpackItems[i].ItemID.Equals("")) {
+        //         //level design
+        //     }
+        // }
         return true;
     }
     public void ClickReEnter(){ //its either cant exit or u can exit
@@ -357,21 +371,40 @@ public class SceneManageNDisplay : MonoBehaviour
         MM.UpdateMapPointState();
         MM.ResetFuelNeedDisplay();
     }
+#region Ending Sequences
+//Boss Caught Ending 1 ------------
     public void TriggerGameOver(){
         StartCoroutine(GameOverFlow());
     }
     IEnumerator GameOverFlow(){ //This will be called in Map manager when dead counter elapsed
         yield return new WaitForSeconds(0f);
-        //on a special camera shake + anim
-        CutSceneObj.SetActive(false);
+        CutSceneObj.SetActive(true);
         yield return new WaitForSeconds(2f);
         EngineRoomCam.SetTrigger("BossArrive");
-        //trigger small dialogue
-        yield return new WaitForSeconds(15f);
+        dr.onDialogueComplete.AddListener(AfterBossCaught);
+        dr.StartDialogue("BossCaught");
+    }
+    void AfterBossCaught(){
         CutSceneObj.GetComponent<Animator>().SetTrigger("Out");
         GameOverScreen.SetActive(true);
     }
     public void GameOverRestart(){
         //REload the game or whatever
     }
+//Exit Map: Ending 2 ------------
+    public void TriggerExitEnding(){
+        StartCoroutine(Ending2Flow());
+    }
+    IEnumerator Ending2Flow(){ //This will be called in Map manager when dead counter elapsed
+        yield return new WaitForSeconds(0f);
+        CutSceneObj.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        // EngineRoomCam.SetTrigger("BossArrive");
+        dr.onDialogueComplete.AddListener(Ending2);
+        dr.StartDialogue("ExitSuccess");
+    }
+    void Ending2(){
+        //Display ending 2 screen
+    }
+#endregion
 }
