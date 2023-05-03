@@ -10,7 +10,6 @@ public class MPTSceneManager : MonoBehaviour
 
     public static int state = 0;
     public PlayerInformation playerInfo;
-    private Info InfoSC;
     private PointContentManager PCM;
     [SerializeField, BoxGroup("Effect")]private GameObject ScreenEffect;
     [SerializeField, BoxGroup("Effect")] public Animator SeAnim;
@@ -24,19 +23,18 @@ public class MPTSceneManager : MonoBehaviour
     void Start()
     {
         playerInfo = FindObjectOfType<PlayerInformation>();
-        InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
         PCM = FindObjectOfType<PointContentManager>();
         if (playerInfo == null){Debug.Log("player info is null");}
         // SEAnim = ScreenEffect.GetComponent<Animator>();
         ScreenEffect.SetActive(true);
-        if(InfoSC.DeadCountDownStart){
+        if(Info.Instance.DeadCountDownStart){
             MP_deadlyTimer.SetActive(true);  
         }else{
             MP_deadlyTimer.SetActive(false);  
         }
         LocationInfoDisplay.SetActive(false);
 
-        DisplayLocationInfo(PCM.PointScene[InfoSC.pointID].GetComponent<PointContent>().LandTitle);
+        DisplayLocationInfo(PCM.PointScene[Info.Instance.pointID].GetComponent<PointContent>().LandTitle);
     }
 
     void FixedUpdate()
@@ -62,16 +60,16 @@ public class MPTSceneManager : MonoBehaviour
         if(playerInfo.CurrentRadiationValue > playerInfo.MaxRadiationValue){
             ScreenEffect.SetActive(false);  
         }
-        if(InfoSC.DeadCountDownStart){
-            if(InfoSC.DeadTime>0){
-                InfoSC.DeadTime-=Time.deltaTime;
+        if(Info.Instance.DeadCountDownStart){
+            if(Info.Instance.DeadTime>0){
+                Info.Instance.DeadTime-=Time.deltaTime;
             }else{
-                //InfoSC.DeadTime+=DeadCounterTime;
+                //Info.Instance.DeadTime+=DeadCounterTime;
                 //SMD.GameOverScreen.SetActive(true);
-                //InfoSC.DeadCountDownStart = false;
+                //Info.Instance.DeadCountDownStart = false;
             }
         }
-        EnemyDeadlyCountDownDisplay(InfoSC.DeadTime);
+        EnemyDeadlyCountDownDisplay(Info.Instance.DeadTime);
     }
     public void EnemyDeadlyCountDownDisplay(float displayTime){//If enemy is one unit away frm player
         if(displayTime<0){

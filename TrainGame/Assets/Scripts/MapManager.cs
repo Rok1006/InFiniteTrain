@@ -7,7 +7,6 @@ using TMPro;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField, BoxGroup("REF")]private Info InfoSC;
     [SerializeField, BoxGroup("REF")]private SceneManageNDisplay SMD;
     public static int gameState = 0;
     [BoxGroup("REF")]public GameObject player;
@@ -51,7 +50,6 @@ public class MapManager : MonoBehaviour
         if (Singleton.Instance == null)
             Debug.Log("singlton is null");
         id = Singleton.Instance.id;
-        InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
         SMD = GameObject.Find("SceneManage&Interactions").GetComponent<SceneManageNDisplay>();
         playerTrainAnim = playerTrain.GetComponent<Animator>();
         enemyTrainAnim = enemyTrain.GetComponent<Animator>();
@@ -59,15 +57,15 @@ public class MapManager : MonoBehaviour
         UpdatePlayerIcon();
         UpdatePlayer();
         UpdateTrainLocation(); //player and enemy
-        if(InfoSC.ConfirmedSelectedPt!=0){
+        if(Info.Instance.ConfirmedSelectedPt!=0){
             requireText.text = "Select a new location.";
         }else{
             requireText.text = "Select a location.";
         }
-        if(InfoSC.ConfirmedSelectedPt!=TurnPtIndex){  //now in turn pt
+        if(Info.Instance.ConfirmedSelectedPt!=TurnPtIndex){  //now in turn pt
             UpdateMapPointState();
         }
-        if(InfoSC.EnemyAppearState==1&& InfoSC.ConfirmedSelectedPt>=BossTrainAppearTriggerIndex){  //now in turn pt
+        if(Info.Instance.EnemyAppearState==1&& Info.Instance.ConfirmedSelectedPt>=BossTrainAppearTriggerIndex){  //now in turn pt
             enemyTrain.SetActive(true);
         }else{
             enemyTrain.SetActive(false);
@@ -77,7 +75,7 @@ public class MapManager : MonoBehaviour
 
     void Update()
     {
-        InfoSC.pointID = InfoSC.ConfirmedSelectedPt;
+        Info.Instance.pointID = Info.Instance.ConfirmedSelectedPt;
         if(gameState == 0)
         {
             playerTurn = true;
@@ -105,60 +103,60 @@ public class MapManager : MonoBehaviour
             Debug.Log("can pick again");
         }
 
-        if(InfoSC.EnemyAppearState == 1 && InfoSC.ConfirmedSelectedPt==BossTrainAppearTriggerIndex){  //& after player come back
+        if(Info.Instance.EnemyAppearState == 1 && Info.Instance.ConfirmedSelectedPt==BossTrainAppearTriggerIndex){  //& after player come back
             enemyTrain.SetActive(true); //it appeared
         }
 //FirstAppear
-        if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&InfoSC.EnemyAppearState == 1){ //FirstAppear
+        if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&Info.Instance.EnemyAppearState == 1){ //FirstAppear
             Debug.Log("apear");
             StartCoroutine(EnemyAppear()); 
-            InfoSC.EnemyAppearState = 2;
+            Info.Instance.EnemyAppearState = 2;
         }
 //Everytime after appear
-        if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&InfoSC.EnemyAppearState > 1){ //FirstAppear
+        if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&Info.Instance.EnemyAppearState > 1){ //FirstAppear
             //Enemy train bounce
             //enemyTrainAnim.SetTrigger("Moved");
         }
-        if(InfoSC.CurrentEnemyTrainInterval!= InfoSC.ConfirmedEnemyTrainLocal){
+        if(Info.Instance.CurrentEnemyTrainInterval!= Info.Instance.ConfirmedEnemyTrainLocal){
             EnemyProceed();
         }
-        if(InfoSC.CurrentSelectedPt!=0&&InfoSC.CurrentSelectedPt != InfoSC.ConfirmedSelectedPt){
+        if(Info.Instance.CurrentSelectedPt!=0&&Info.Instance.CurrentSelectedPt != Info.Instance.ConfirmedSelectedPt){
             MapInformationNotice(sum, SMD.player.GetComponent<PlayerInformation>().FuelAmt);
         }else{//requireText.text = "Select a new location.";
         }
-        if(InfoSC.EnemyAppearState>0&& InfoSC.ConfirmedSelectedPt>=BossTrainAppearTriggerIndex){  //now in turn pt
+        if(Info.Instance.EnemyAppearState>0&& Info.Instance.ConfirmedSelectedPt>=BossTrainAppearTriggerIndex){  //now in turn pt
             enemyTrain.SetActive(true);
         }else{
             enemyTrain.SetActive(false);
         }
 
 //GAME OVER
-        if(InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
+        if(Info.Instance.ConfirmedEnemyTrainLocal!= 0 && Info.Instance.ConfirmedEnemyTrainLocal == Info.Instance.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
             
             SMD.GameOverScreen.SetActive(true);
         }
         
 //If Enmy is one unit away frm player
-        if(InfoSC.EnemyAppearState == 2 && InfoSC.ConfirmedEnemyTrainLocal!= 0 && InfoSC.ConfirmedEnemyTrainLocal == InfoSC.ConfirmedPlayerTrainLocal-1){
-            InfoSC.DeadCountDownStart = true;
-            //InfoSC.DeadTime = DeadCounterTime;
+        if(Info.Instance.EnemyAppearState == 2 && Info.Instance.ConfirmedEnemyTrainLocal!= 0 && Info.Instance.ConfirmedEnemyTrainLocal == Info.Instance.ConfirmedPlayerTrainLocal-1){
+            Info.Instance.DeadCountDownStart = true;
+            //Info.Instance.DeadTime = DeadCounterTime;
             DeadlyTimer.SetActive(true);
-            //InfoSC.DeadTime = 120; //2 min
-        }else if(InfoSC.ConfirmedEnemyTrainLocal != InfoSC.ConfirmedPlayerTrainLocal-1){ //once player moved
-            InfoSC.DeadCountDownStart = false;
-            InfoSC.DeadTime = DeadCounterTime; //reset
+            //Info.Instance.DeadTime = 120; //2 min
+        }else if(Info.Instance.ConfirmedEnemyTrainLocal != Info.Instance.ConfirmedPlayerTrainLocal-1){ //once player moved
+            Info.Instance.DeadCountDownStart = false;
+            Info.Instance.DeadTime = DeadCounterTime; //reset
             DeadlyTimer.SetActive(false);
         }
-        // timeCountDown.text = InfoSC.DeadTime.ToString();
-        EnemyDeadlyCountDownDisplay(InfoSC.DeadTime);
-        if(InfoSC.DeadCountDownStart){
+        // timeCountDown.text = Info.Instance.DeadTime.ToString();
+        EnemyDeadlyCountDownDisplay(Info.Instance.DeadTime);
+        if(Info.Instance.DeadCountDownStart){
             Debug.Log("Start dead count");
-            if(InfoSC.DeadTime>0){
-                InfoSC.DeadTime-=Time.deltaTime;
+            if(Info.Instance.DeadTime>0){
+                Info.Instance.DeadTime-=Time.deltaTime;
             }else{
-                //InfoSC.DeadTime+=DeadCounterTime;
+                //Info.Instance.DeadTime+=DeadCounterTime;
                 SMD.TriggerGameOver();
-                InfoSC.DeadCountDownStart = false;
+                Info.Instance.DeadCountDownStart = false;
             }
         }
     }
@@ -222,7 +220,7 @@ public class MapManager : MonoBehaviour
         for(int i = 0; i < points.Length; i++)
         {
             points[i].GetComponent<Point>().isPlayer = false;
-            if ( points[i].GetComponent<Point>().id == InfoSC.pointID)
+            if ( points[i].GetComponent<Point>().id == Info.Instance.pointID)
             {
                 Debug.Log("df");
                 player = points[i];
@@ -249,19 +247,19 @@ public class MapManager : MonoBehaviour
         }
     }
     void UpdateTrainLocation(){ //For instant update when come back from map pt scene
-        float pX = Intervals[InfoSC.ConfirmedPlayerTrainLocal].transform.localPosition.x;
-        float pY = Intervals[InfoSC.ConfirmedPlayerTrainLocal].transform.localPosition.y;
-        float eX = Intervals[InfoSC.CurrentEnemyTrainInterval].transform.localPosition.x;
-        float eY = Intervals[InfoSC.CurrentEnemyTrainInterval].transform.localPosition.y;
+        float pX = Intervals[Info.Instance.ConfirmedPlayerTrainLocal].transform.localPosition.x;
+        float pY = Intervals[Info.Instance.ConfirmedPlayerTrainLocal].transform.localPosition.y;
+        float eX = Intervals[Info.Instance.CurrentEnemyTrainInterval].transform.localPosition.x;
+        float eY = Intervals[Info.Instance.CurrentEnemyTrainInterval].transform.localPosition.y;
         playerTrain.transform.localPosition = new Vector3(pX,pY,0);  //set theit location
         enemyTrain.transform.localPosition = new Vector3(eX, eY, 0);
     }
-    void EnemyMove(int ToPoint){ InfoSC.CurrentEnemyTrainInterval = ToPoint;} //put the num of destination pt
-    public void PlayerMove(int ToPoint){ InfoSC.CurrentPlayerTrainInterval = ToPoint;} //insert the currentSetected Pt
+    void EnemyMove(int ToPoint){ Info.Instance.CurrentEnemyTrainInterval = ToPoint;} //put the num of destination pt
+    public void PlayerMove(int ToPoint){ Info.Instance.CurrentPlayerTrainInterval = ToPoint;} //insert the currentSetected Pt
     
     IEnumerator PlayerTrainMoveTowards(bool isMoving, float speed){ //this will be trigger to move player train when ever the currentplayerinterval changes
         //bool isMoving = true;
-        GameObject targetPos = Intervals[InfoSC.ConfirmedPlayerTrainLocal];
+        GameObject targetPos = Intervals[Info.Instance.ConfirmedPlayerTrainLocal];
         while (playerTrain.transform.localPosition != targetPos.transform.localPosition)
        {
            playerTrain.transform.localPosition = Vector2.MoveTowards(playerTrain.transform.localPosition, targetPos.transform.localPosition, speed * Time.deltaTime);
@@ -278,7 +276,7 @@ public class MapManager : MonoBehaviour
     
     public void GetTotalFuelNeeded(int index){
         sum = 0;
-        int currentLocal = InfoSC.ConfirmedPlayerTrainLocal;
+        int currentLocal = Info.Instance.ConfirmedPlayerTrainLocal;
         for(int i = currentLocal+1; i<index+1;i++){
             sum += points[i].GetComponent<Point>().fuelAmtNeeded;
         }
@@ -288,7 +286,7 @@ public class MapManager : MonoBehaviour
     }
     
     public void UpdateMapPointState(){
-        for(int i = 1; i < InfoSC.ConfirmedSelectedPt+1;i++){ //excluse start pt
+        for(int i = 1; i < Info.Instance.ConfirmedSelectedPt+1;i++){ //excluse start pt
             points[i].GetComponent<MapPopUp>().blocked = true;
             var image = points[i].GetComponent<MapPopUp>().HeadIcon.GetComponent<Image>();
             var tempColor = image.color;
@@ -329,21 +327,21 @@ public class MapManager : MonoBehaviour
 */
     IEnumerator EnemyTrainMoveTowards(float speed){ //movement for enemy train
         bool isMoving = true;
-        GameObject targetPos = Intervals[InfoSC.CurrentEnemyTrainInterval];
+        GameObject targetPos = Intervals[Info.Instance.CurrentEnemyTrainInterval];
         while (enemyTrain.transform.localPosition != targetPos.transform.localPosition)
        {
            enemyTrain.transform.localPosition = Vector2.MoveTowards(enemyTrain.transform.localPosition, targetPos.transform.localPosition, speed * Time.deltaTime);
            yield return null;
        }
        isMoving = false;
-       InfoSC.ConfirmedEnemyTrainLocal = InfoSC.CurrentEnemyTrainInterval;
+       Info.Instance.ConfirmedEnemyTrainLocal = Info.Instance.CurrentEnemyTrainInterval;
        yield return new WaitUntil(() => !isMoving);
     }
     public void ETMT(float speed){ //Enemy Train interval: it will move based on the Current enemy interval
         StartCoroutine(EnemyTrainMoveTowards(speed));
     }
     public void EnemyProceed(){ //enemy proceed one point, trigger this when this need to be proceeded
-        if(InfoSC.EnemyAppearState>0){
+        if(Info.Instance.EnemyAppearState>0){
             ETMT(.5f);
             enemyTrainAnim.SetTrigger("Moved");
         }
