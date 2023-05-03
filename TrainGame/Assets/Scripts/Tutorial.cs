@@ -125,6 +125,7 @@ public class Tutorial : MonoBehaviour
 
                         if (Input.GetKeyDown(KeyCode.Alpha1))
                         {
+                            informationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Return to the train";
                             pointAtInventory.SetActive(false);
                             wasdUI.SetActive(true);
                             //when we start the level player spanws with 1 carrot or food in inventory position 1
@@ -137,6 +138,7 @@ public class Tutorial : MonoBehaviour
                 
                 break;
                 case 1: //Going back to train
+                    
                     text.text = "Find your way back to the train";
 
                     //im checking this from Train Trigger Area. you don't need to do anything here
