@@ -13,6 +13,7 @@ public class TeleporterSetter : MonoBehaviour
         myTeleporter = GetComponentInChildren<Teleporter>();
         foreach (TargetTeleporters targetTeleporter in targetTeleporters) {
             if (targetTeleporter.PointID == Info.Instance.pointID) {
+                
                 myTeleporter.Destination = targetTeleporter.Target;
                 myTeleporter.TargetRoom = targetTeleporter.Target.GetComponentInParent<Room>();
             }
