@@ -5,7 +5,6 @@ using NaughtyAttributes;
 
 public class Point : MonoBehaviour
 {
-    private Info InfoSC;
     public GameObject[] connectedPoints;
     [BoxGroup("InfoBox")] public Sprite icon;
     [SerializeField,BoxGroup("InfoBox")] private int RadiationLvl; //1 skull is 0.05; How many skull
@@ -35,12 +34,11 @@ public class Point : MonoBehaviour
         {
             isNull = true;
         }
-        InfoSC = GameObject.Find("GameManager").GetComponent<Info>();
     }
    
     public void SendInfo(){
         //InfoSC.pointID = id;
-        InfoSC.CurrentSelectedPt = id;
+        Info.Instance.CurrentSelectedPt = id;
     }
 
     public void MovePlayer()
