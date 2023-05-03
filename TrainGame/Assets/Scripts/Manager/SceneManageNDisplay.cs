@@ -51,7 +51,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [BoxGroup("TrainMoveStop"), ReadOnly] public string currentAccess;
     [BoxGroup("TrainMoveStop")] public GameObject door;
     [SerializeField,BoxGroup("TrainMoveStop")] private Animator doorAnim;
-    [SerializeField,BoxGroup("TrainMoveStop")] private AudioSource doorAudio;
+    [SerializeField,BoxGroup("TrainMoveStop")] private AudioSource doorAudio, leverAudio, trainAudio;
     [SerializeField,BoxGroup("TrainMoveStop")] private GameObject BGScroll;
     private int doorIsOpen = 0; //0 = close, 1 = open
     [BoxGroup("UI/Others")]public GameObject GameOverScreen; //when boss catch u
@@ -226,8 +226,9 @@ public class SceneManageNDisplay : MonoBehaviour
             targetValue = 1.5f;
             IsMoving = true;
             StartCoroutine(TrainStartMotion());
-            IsOn = true;    
-            //some enviromental change trigger: access to camera, plau audio
+            IsOn = true;
+            //some enviromental change trigger: access to camera, play audio
+            trainAudio.Play();
         }
     }
     public void PullLever(){  //put this in actionCall
@@ -253,13 +254,16 @@ public class SceneManageNDisplay : MonoBehaviour
             if(!PickedLocation){
                 WarningGuideCall(3); //picked location
             }
-            Invoke("Pull", .5f);
+            Invoke("Pull", .25f);
             ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
             ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
             MM.points[ISF.CurrentSelectedPt].GetComponent<MapPopUp>().clicked = false; //when player pull lever and confirm, flag is plugged
             MM.UpdateMapPointState();
             MM.ResetFuelNeedDisplay();
             
+            //play pull lever audio
+            leverAudio.Play();
+
             }else{
                 WarningGuideCall(5);
             }
@@ -288,6 +292,7 @@ public class SceneManageNDisplay : MonoBehaviour
         doorAnim.SetTrigger("Open");
         doorIsOpen = 1;
         doorAudio.Play();
+        trainAudio.Stop();
         BGScroll.SetActive(false);
             // if(ISF.ConfirmedSelectedPt==7){
             //     //pop up: reenter?
