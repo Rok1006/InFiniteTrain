@@ -21,6 +21,9 @@ public class FuelMachine : MonoBehaviour
     [SerializeField, Tooltip("add some fuel to inventory")] private int fuelAmt;
     [SerializeField] private InventoryItem fuel;
 
+    [SerializeField, BoxGroup("Audio")] private AudioClip addFuelClip;
+    [SerializeField, BoxGroup("Audio")] private AudioSource audioSource;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -41,5 +44,8 @@ public class FuelMachine : MonoBehaviour
         player.GetComponent<PlayerInformation>().FuelAmt += addAmt;
         TrainWheel.SetTrigger("pulse");
         GameObject f = Instantiate(displayFuelPrefab, AppearPt.transform.position, Quaternion.identity);  
+
+        //play audio
+        audioSource.PlayOneShot(addFuelClip);
     }
 }
