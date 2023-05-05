@@ -36,7 +36,7 @@ public class FuelMachine : MonoBehaviour
     void Update()
     {
         FuelBar.value = player.GetComponent<PlayerInformation>().FuelAmt;
-        fuelNumDisplay.text = player.GetComponent<PlayerInformation>().FuelAmt + "/ 50 MAX";
+        fuelNumDisplay.text = player.GetComponent<PlayerInformation>().FuelAmt + "/ 10 MAX";
     }   
 
     /*add fuel only if there's fuel in fuel inventory*/
