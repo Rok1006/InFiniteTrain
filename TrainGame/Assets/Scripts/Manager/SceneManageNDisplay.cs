@@ -245,13 +245,11 @@ public class SceneManageNDisplay : MonoBehaviour
     public void PullLever(){  //put this in actionCall
         CheckIfEnoughFuel();
         player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("InsertFlip");
-        if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&CheckFinalRequiredItem()){  //player can exit
-            TriggerExitEnding();
-        }else if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&!CheckFinalRequiredItem()){ //nt fulfilling requirment, reenter loop
-            //call cut scene
-            //ExitRequest.SetActive(true);
-            //Then Trigger Dialogue
-        }
+        // if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&CheckFinalRequiredItem()){  //player can exit
+        //     TriggerExitEnding();
+        // }else if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&!CheckFinalRequiredItem()){ //nt fulfilling requirment, reenter loop
+        //     TriggerPreReEnter();
+        // }
 
         if(hasEnoughFuel){
             if(ISF.CurrentSelectedPt != ISF.ConfirmedSelectedPt && ISF.CurrentSelectedPt!=MM.ExitPtIndex){ //if player isnt already arrived 
@@ -308,7 +306,13 @@ public class SceneManageNDisplay : MonoBehaviour
             // }
     }
     void TrainStopMotion(){  //When train arrive at the location, do this after player click pt and on train
-        //yield return new WaitForSeconds(0f);
+        if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&CheckFinalRequiredItem()){  //player can exit
+            TriggerExitEnding();
+            ISF.doorState = 0;
+        }else if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&!CheckFinalRequiredItem()){ //nt fulfilling requirment, reenter loop
+            TriggerPreReEnter();
+            ISF.doorState = 0;
+        }
         if(IsOn){ //make the train stop
             Debug.Log("Train is gonna stop");
             leverAnim.SetTrigger("Off");
@@ -321,6 +325,7 @@ public class SceneManageNDisplay : MonoBehaviour
         IsOn = false;
         IsMoving = false;
         CheckIfEnoughFuel();
+        
         //yield return new WaitForSeconds(5f);
     }
 #endregion
@@ -356,12 +361,9 @@ public class SceneManageNDisplay : MonoBehaviour
         //         //level design
         //     }
         // }
-        return true;
+        return false;
     }
-    public void ClickReEnter(){ //its either cant exit or u can exit
-        MM.ReEnterLoop();
-    }
-    void TrainTowardExit(){
+    void TrainTowardExit(){ //not calling
         doorAnim.SetTrigger("Close"); 
         door.SetActive(false);
         doorIsOpen = 0;
@@ -373,6 +375,28 @@ public class SceneManageNDisplay : MonoBehaviour
         MM.UpdateMapPointState();
         MM.ResetFuelNeedDisplay();
     }
+    public void TriggerPreReEnter(){
+        StartCoroutine(PreReEnter());
+    }
+    IEnumerator PreReEnter(){ 
+        yield return new WaitForSeconds(0f);
+        CutSceneObj.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        dr.onDialogueComplete.AddListener(ReEnter);
+        dr.StartDialogue("ExitFail");
+    }
+    public void ReEnter(){ //its either cant exit or u can exit
+        StartCoroutine(ReEnterSequence());
+    }
+    IEnumerator ReEnterSequence(){ 
+        yield return new WaitForSeconds(0f);
+        Open_Map();
+        MM.playerTrain.GetComponent<Animator>().SetTrigger("Reenter");
+        yield return new WaitForSeconds(3f);
+        CloseMap();
+        MM.ReEnterLoop(); //reopen the map pts
+    }
+    
 #region Ending Sequences
 //Boss Caught Ending 1 ------------
     public void TriggerGameOver(){

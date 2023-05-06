@@ -11,7 +11,7 @@ public class MapManager : MonoBehaviour
     public static int gameState = 0;
     [BoxGroup("REF")]public GameObject player;
     [BoxGroup("REF")]public GameObject playerResource;
-    [SerializeField,BoxGroup("REF")]private GameObject playerTrain;
+    [BoxGroup("REF")]public GameObject playerTrain;
     Animator playerTrainAnim;
     [SerializeField,BoxGroup("REF")]private GameObject triggerDoorToOutside;
 
