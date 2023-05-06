@@ -55,7 +55,8 @@ public class SceneManageNDisplay : MonoBehaviour
     [SerializeField,BoxGroup("TrainMoveStop")] private AudioSource doorAudio, leverAudio, trainAudio;
     [SerializeField,BoxGroup("TrainMoveStop")] private GameObject BGScroll;
     private int doorIsOpen = 0; //0 = close, 1 = open
-    [BoxGroup("UI/Others")]public GameObject GameOverScreen; //when boss catch u
+    [BoxGroup("UI/Others")]public GameObject GameOverScreen_PlayerCaught; //when boss catch u
+    [BoxGroup("UI/Others")]public GameObject GameOverScreen_ExitMap;
     [BoxGroup("UI/Others")]public Animator EngineRoomCam;
     [BoxGroup("UI/Others")]public GameObject CutSceneObj;
     [BoxGroup("UI/Others")]public Animator TrainWindowLight;
@@ -89,7 +90,8 @@ public class SceneManageNDisplay : MonoBehaviour
         leverAnim = Lever.GetComponent<Animator>();
         currentValue = 0; //set initial
         targetValue = 1.5f;
-        GameOverScreen.SetActive(false);
+        GameOverScreen_PlayerCaught.SetActive(false);
+        GameOverScreen_ExitMap.SetActive(false);
         DeskViewPanel.SetActive(false);
         LocationInfoDisplay.SetActive(false);
       
@@ -386,7 +388,7 @@ public class SceneManageNDisplay : MonoBehaviour
     }
     void AfterBossCaught(){
         CutSceneObj.GetComponent<Animator>().SetTrigger("Out");
-        GameOverScreen.SetActive(true);
+        GameOverScreen_PlayerCaught.SetActive(true);
     }
     public void GameOverRestart(){
         //REload the game or whatever
@@ -404,7 +406,7 @@ public class SceneManageNDisplay : MonoBehaviour
         dr.StartDialogue("ExitSuccess");
     }
     void Ending2(){
-        //Display ending 2 screen
+        GameOverScreen_ExitMap.SetActive(true);
     }
 #endregion
 }

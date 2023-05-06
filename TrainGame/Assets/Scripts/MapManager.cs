@@ -130,11 +130,11 @@ public class MapManager : MonoBehaviour
             enemyTrain.SetActive(false);
         }
 
-//GAME OVER
-        if(Info.Instance.ConfirmedEnemyTrainLocal!= 0 && Info.Instance.ConfirmedEnemyTrainLocal == Info.Instance.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
+// //GAME OVER
+//         if(Info.Instance.ConfirmedEnemyTrainLocal!= 0 && Info.Instance.ConfirmedEnemyTrainLocal == Info.Instance.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
             
-            SMD.GameOverScreen.SetActive(true);
-        }
+//             SMD.GameOverScreen.SetActive(true);
+//         }
         
 //If Enmy is one unit away frm player
         if(Info.Instance.EnemyAppearState == 2 && Info.Instance.ConfirmedEnemyTrainLocal!= 0 && Info.Instance.ConfirmedEnemyTrainLocal == Info.Instance.ConfirmedPlayerTrainLocal-1){
