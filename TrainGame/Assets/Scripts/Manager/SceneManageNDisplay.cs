@@ -406,6 +406,7 @@ public class SceneManageNDisplay : MonoBehaviour
         dr.StartDialogue("ExitSuccess");
     }
     void Ending2(){
+        CutSceneObj.GetComponent<Animator>().SetTrigger("Out");
         GameOverScreen_ExitMap.SetActive(true);
     }
 #endregion
