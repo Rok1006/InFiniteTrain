@@ -7,6 +7,7 @@ using MoreMountains.InventoryEngine;
 using NaughtyAttributes;
 using Cinemachine;
 using Yarn.Unity;
+using MoreMountains.TopDownEngine;
 //THis script is for function of pannels and triggering events
 public class SceneManageNDisplay : MonoBehaviour
 {
@@ -252,7 +253,7 @@ public class SceneManageNDisplay : MonoBehaviour
         // }
 
         if(hasEnoughFuel){
-            if(ISF.CurrentSelectedPt != ISF.ConfirmedSelectedPt && ISF.CurrentSelectedPt!=MM.ExitPtIndex){ //if player isnt already arrived 
+            if(ISF.CurrentSelectedPt != ISF.ConfirmedSelectedPt){ //if player isnt already arrived  && ISF.CurrentSelectedPt!=MM.ExitPtIndex
             doorAnim.SetTrigger("Close"); 
             door.SetActive(false);
             doorIsOpen = 0;
@@ -301,17 +302,14 @@ public class SceneManageNDisplay : MonoBehaviour
         doorAudio.Play();
         trainAudio.Stop();
         BGScroll.SetActive(false);
-            // if(ISF.ConfirmedSelectedPt==7){
-            //     //pop up: reenter?
-            // }
     }
     void TrainStopMotion(){  //When train arrive at the location, do this after player click pt and on train
         if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&CheckFinalRequiredItem()){  //player can exit
             TriggerExitEnding();
-            ISF.doorState = 0;
+            player.GetComponent<Character>().enabled = false;
         }else if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&!CheckFinalRequiredItem()){ //nt fulfilling requirment, reenter loop
             TriggerPreReEnter();
-            ISF.doorState = 0;
+            player.GetComponent<Character>().enabled = false;
         }
         if(IsOn){ //make the train stop
             Debug.Log("Train is gonna stop");
@@ -325,8 +323,7 @@ public class SceneManageNDisplay : MonoBehaviour
         IsOn = false;
         IsMoving = false;
         CheckIfEnoughFuel();
-        
-        //yield return new WaitForSeconds(5f);
+        //yield return new WaitForSeconds(5f); its still moving the train and map show too short
     }
 #endregion
     void UpdateCamNoise(float value){
@@ -363,14 +360,18 @@ public class SceneManageNDisplay : MonoBehaviour
         // }
         return false;
     }
-    void TrainTowardExit(){ //not calling
+    void TrainTowardReenterPt(){ //not calling
         doorAnim.SetTrigger("Close"); 
         door.SetActive(false);
         doorIsOpen = 0;
         TrainInfoGuide.SetActive(false);
         Invoke("Pull", .5f);
-        ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
-        ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
+        ISF.ConfirmedPlayerTrainLocal = MM.PlayerReenterIndex;
+        ISF.CurrentSelectedPt = MM.PlayerReenterIndex;
+        ISF.ConfirmedSelectedPt = MM.PlayerReenterIndex;
+        ISF.CurrentPlayerTrainInterval = MM.PlayerReenterIndex;
+        ISF.pointID = MM.PlayerReenterIndex;
+        //ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
         MM.points[ISF.CurrentSelectedPt].GetComponent<MapPopUp>().clicked = false; //when player pull lever and confirm, flag is plugged
         MM.UpdateMapPointState();
         MM.ResetFuelNeedDisplay();
@@ -391,10 +392,14 @@ public class SceneManageNDisplay : MonoBehaviour
     IEnumerator ReEnterSequence(){ 
         yield return new WaitForSeconds(0f);
         Open_Map();
+        yield return new WaitForSeconds(3f);
         MM.playerTrain.GetComponent<Animator>().SetTrigger("Reenter");
         yield return new WaitForSeconds(3f);
         CloseMap();
         MM.ReEnterLoop(); //reopen the map pts
+        TrainTowardReenterPt();
+        CutSceneObj.GetComponent<Animator>().SetTrigger("Out");
+        player.GetComponent<Character>().enabled = true;
     }
     
 #region Ending Sequences
