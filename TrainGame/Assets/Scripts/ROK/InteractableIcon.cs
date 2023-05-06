@@ -35,6 +35,7 @@ public class InteractableIcon : MonoBehaviour
         iconAnim = thisIcon.GetComponent<Animator>();
         TrainInfoGuide.SetActive(false);
         SceneMD = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneManageNDisplay>();
+     
     }
 
     void Update()
@@ -78,13 +79,11 @@ public class InteractableIcon : MonoBehaviour
             thisIcon.SetActive(false);
             DisplayFunction_DeActive.Invoke();
             Debug.Log("no");
+            if(this.GetComponent<BoxCollider>().enabled == false)
+            {
+                this.GetComponent<BoxCollider>().enabled = true;
+            }
         }
     }
-    public void IconActive()
-    {
-        thisIcon.SetActive(true);
-    }
-    // private void IconDeactivate(){
-    //     thisIcon.SetActive(false);
-    // }
+   
 }

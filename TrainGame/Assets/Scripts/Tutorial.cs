@@ -31,6 +31,7 @@ public class Tutorial : MonoBehaviour
     public GameObject fuelbutton;
     public GameObject shelfUI;
     public GameObject deskUI;
+    public GameObject craftUI;
     public bool dialoguePlayed = false;
     private float initialDelay = 2.5f;
     private void Awake()
@@ -90,6 +91,10 @@ public class Tutorial : MonoBehaviour
             {
 
                 case -1:
+                    if(dr == null)
+                    {
+                        player.GetComponent<PlayerManager>().MCFrontAnim.Play("Special/FaintWake");
+                    }
                     
                     dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
                     dr.onDialogueComplete.AddListener(DialogueConfig);
@@ -194,6 +199,8 @@ public class Tutorial : MonoBehaviour
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
                             dialoguePlayed = false;
+                            
+                            
                         }
                     
                     }
@@ -207,6 +214,7 @@ public class Tutorial : MonoBehaviour
                         dr.onDialogueComplete.AddListener(DialogueConfig);
                         dr.StartDialogue("test4");
                         player.GetComponent<Character>().enabled = false;
+
 
 
                     }
@@ -279,6 +287,7 @@ public class Tutorial : MonoBehaviour
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
                             dialoguePlayed = false;
+                            text.text = "Once the train stops, head out for some scavenging!";
                         }
 
                     }
@@ -311,10 +320,34 @@ public class Tutorial : MonoBehaviour
                         }
                         text.text = "Scavenge for resources";
                     }
+                    break;
+                case 7:
+                    if (dr == null)
+                    {
+                        dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
+                        craftUI = ItemHolder.instance.craft;
+
+                    }
+
+                    if (dialoguePlayed == false)
+                    {
+                        dr.onDialogueComplete.AddListener(DialogueConfig);
+                        dr.StartDialogue("test3");
+                        player.GetComponent<Character>().enabled = false;
 
 
+                    }
+                    if (text == null)
+                    {
+                        text = GameObject.Find("Quest").transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+                    }
+                    text.text = "Use the crafting recipe to make useful items";
 
                     break;
+
+
+
+                    
 
             }
         }
@@ -327,6 +360,10 @@ public class Tutorial : MonoBehaviour
         if(gameStarted == false)
         {
             gameStarted = true;
+        }
+        if(stepIndex == 3)
+        {
+            
         }
     }
     public void config()

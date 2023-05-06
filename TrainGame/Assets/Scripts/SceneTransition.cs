@@ -67,6 +67,10 @@ public class SceneTransition : MonoBehaviour
         {
             Tutorial.instance.stepIndex++;
         }
+        if(Tutorial.instance.stepIndex == 6 && SceneManager.GetActiveScene().name == "MapPoint")
+        {
+            Tutorial.instance.stepIndex++;
+        }
         if (other.GetComponent<PlayerManager>() != null) {
             if(InfoSC.ConfirmedSelectedPt == 3 && InfoSC.EnemyAppearState < 1){
                 InfoSC.EnemyAppearState = 1;

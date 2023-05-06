@@ -8,6 +8,7 @@ public class ItemHolder : MonoBehaviour
     public GameObject fuel;
     public GameObject desk;
     public static ItemHolder instance;
+    public GameObject craft;
 
     private void Awake()
     {
