@@ -39,11 +39,15 @@ public class InteractableIcon : MonoBehaviour
 
     void Update()
     {
+
         if(SceneMD.PanelOn||Info.Instance.IsViewingInventory){
             TrainInfoGuide.SetActive(false);
         }
         guideDescriptTextObj.text = SceneMD.currentAccess.ToString();
     }
+
+  
+
     private void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "Player"){
             SceneMD.currentAccess = this.guideDescript;
@@ -75,6 +79,10 @@ public class InteractableIcon : MonoBehaviour
             DisplayFunction_DeActive.Invoke();
             Debug.Log("no");
         }
+    }
+    public void IconActive()
+    {
+        thisIcon.SetActive(true);
     }
     // private void IconDeactivate(){
     //     thisIcon.SetActive(false);

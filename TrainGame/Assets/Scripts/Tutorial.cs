@@ -62,6 +62,10 @@ public class Tutorial : MonoBehaviour
         if (player == null)
         {
             player = GameObject.Find("PlayerMC");
+            if(stepIndex == -1)
+            {
+                player.GetComponent<PlayerManager>().MCFrontAnim.Play("Special/Faint");
+            }
 
         }
         if(gameStarted == false)
@@ -86,6 +90,7 @@ public class Tutorial : MonoBehaviour
             {
 
                 case -1:
+                    
                     dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
                     dr.onDialogueComplete.AddListener(DialogueConfig);
                     if (dialoguePlayed == false)
@@ -234,7 +239,7 @@ public class Tutorial : MonoBehaviour
 
 
                     }
-                    text.text = "You must continue moving..";
+                    text.text = "Choose your next destination on the map.";
                     arrow.gameObject.SetActive(true);
                     if(arrow.target == null)
                     {
