@@ -255,11 +255,6 @@ public class SceneManageNDisplay : MonoBehaviour
     public void PullLever(){  //put this in actionCall
         CheckIfEnoughFuel();
         player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("InsertFlip");
-        // if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&CheckFinalRequiredItem()){  //player can exit
-        //     TriggerExitEnding();
-        // }else if(ISF.CurrentSelectedPt==MM.ExitPtIndex&&!CheckFinalRequiredItem()){ //nt fulfilling requirment, reenter loop
-        //     TriggerPreReEnter();
-        // }
 
         if(hasEnoughFuel){
             if(ISF.CurrentSelectedPt != ISF.ConfirmedSelectedPt){ //if player isnt already arrived  && ISF.CurrentSelectedPt!=MM.ExitPtIndex

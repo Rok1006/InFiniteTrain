@@ -43,7 +43,9 @@ public class MapManager : MonoBehaviour
     [BoxGroup("Stuff")] public int BossTrainAppearTriggerIndex;
 
     private int sum;
-
+    void Awake() {
+        UpdateTrainLocation();
+    }
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -56,15 +58,15 @@ public class MapManager : MonoBehaviour
 //Check and initializtion------
         UpdatePlayerIcon();
         UpdatePlayer();
-        UpdateTrainLocation(); //player and enemy
+        // UpdateTrainLocation(); //update player and enemy location on map
         if(Info.Instance.ConfirmedSelectedPt!=0){
             requireText.text = "Select a new location.";
         }else{
             requireText.text = "Select a location.";
         }
-        if(Info.Instance.ConfirmedSelectedPt!=TurnPtIndex){  //now in turn pt
-            UpdateMapPointState();
-        }
+        // if(Info.Instance.ConfirmedSelectedPt!=TurnPtIndex){  //now in turn pt
+        //     UpdateMapPointState();
+        // }
         if(Info.Instance.EnemyAppearState==1&& Info.Instance.ConfirmedSelectedPt>=BossTrainAppearTriggerIndex){  //now in turn pt
             enemyTrain.SetActive(true);
         }else{
@@ -253,6 +255,8 @@ public class MapManager : MonoBehaviour
         float eY = Intervals[Info.Instance.CurrentEnemyTrainInterval].transform.localPosition.y;
         playerTrain.transform.localPosition = new Vector3(pX,pY,0);  //set theit location
         enemyTrain.transform.localPosition = new Vector3(eX, eY, 0);
+        Debug.Log("update train loc");
+        UpdateMapPointState();
     }
     void EnemyMove(int ToPoint){ Info.Instance.CurrentEnemyTrainInterval = ToPoint;} //put the num of destination pt
     public void PlayerMove(int ToPoint){ Info.Instance.CurrentPlayerTrainInterval = ToPoint;} //insert the currentSetected Pt
