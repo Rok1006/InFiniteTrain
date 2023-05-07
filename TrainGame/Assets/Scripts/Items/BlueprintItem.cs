@@ -8,5 +8,11 @@ using System;
 [Serializable]
 public class BlueprintItem : InventoryItemPlus
 {
-    
+    public override bool Use(string playerID)
+    {
+        base.Use(playerID);
+
+        FindObjectOfType<PlayerManager>().CanCombineEnemyDetector = true;
+        return true;
+    }
 }

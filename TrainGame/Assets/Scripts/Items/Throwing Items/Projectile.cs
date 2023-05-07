@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     [ReadOnly, BoxGroup("Info")] public GameObject destination;
     [ReadOnly, BoxGroup("Info")] public float timeToTake = 1.5f;
     private float currentTime = 0.0f;
+    [SerializeField, BoxGroup("Setting")] private string VFXObjName;
     [SerializeField, BoxGroup("Setting")] private float waitTime;
     private bool isReachedDestination = false;
     public Vector3 start;
@@ -22,7 +23,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         start = this.transform.position;
-        VFXObject = GameObject.Find("StunBlast#Electrify");
+        VFXObject = GameObject.Find(VFXObjName);
         if (VFXObject == null)
             Debug.Log("cant find VFXObject for " + name);
         else {
