@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4405122699964661917}
   - component: {fileID: 3442126634349036270}
   m_Layer: 0
-  m_Name: StunnerBomb
+  m_Name: EnemyDetectorProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 946810071
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3611713342509363224, guid: ad24a335ca1274e3ca2d8b068af804af,
+  m_Sprite: {fileID: 4981071466254497140, guid: ad24a335ca1274e3ca2d8b068af804af,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
   timeToTake: 0
-  VFXObjName: StunBlast#Electrify
-  waitTime: 0.5
+  VFXObjName: EnemyDetector
+  waitTime: 0.25
   start: {x: 0, y: 0, z: 0}
 --- !u!95 &3442126634349036270
 Animator:
