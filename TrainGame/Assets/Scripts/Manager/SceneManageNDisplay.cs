@@ -64,10 +64,17 @@ public class SceneManageNDisplay : MonoBehaviour
     [BoxGroup("UI/Others")]public GameObject CutSceneObj;
     [BoxGroup("UI/Others")]public Animator TrainWindowLight;
     [BoxGroup("UI/Others")]public CanvasGroup BackpackInventoryCanvasGroup;
-
+    [BoxGroup("Exit")] public List<string> inventoryNameToCheck;
+    [BoxGroup("Exit")] public List<RequiredExitItems> requirements;
     public DialogueRunner dr;
   
-//[HideInInspector]
+    [System.Serializable]
+    public class RequiredExitItems {
+        public string itemRequiredName;
+        public int quantity;
+        [ReadOnly] public int currentValue = 0;
+    }
+
 
     void Start()
     {
@@ -353,13 +360,18 @@ public class SceneManageNDisplay : MonoBehaviour
     }
 //Check Re Entering --------
     public bool CheckFinalRequiredItem(){ //if player have these items , constantly checking
-        List<InventoryItem> backpackItems = Inventory.FindInventory("BackpackInventory", "Player1").Content.ToList();
-        for (int i = 0; i < backpackItems.Count; i++) {
-            if (backpackItems[i].ItemID.Equals("")) {
-                //level design
+        foreach (string inventoryName in inventoryNameToCheck) {
+            foreach (RequiredExitItems requiredExitItem in requirements) {
+                requiredExitItem.currentValue += Inventory.FindInventory(inventoryName, "Player1").InventoryContains(requiredExitItem.itemRequiredName).Count;
             }
         }
-        return false;
+        
+        foreach (RequiredExitItems requiredExitItem in requirements) {
+            if (requiredExitItem.currentValue < requiredExitItem.quantity) {
+                return false;
+            }
+        }
+        return true;
     }
     void TrainTowardReenterPt(){ //not calling
         doorAnim.SetTrigger("Close"); 
