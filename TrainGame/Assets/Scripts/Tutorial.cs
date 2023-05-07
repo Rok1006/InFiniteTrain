@@ -69,7 +69,9 @@ public class Tutorial : MonoBehaviour
             if(stepIndex == -1)
             {
                 player.GetComponent<PlayerManager>().MCFrontAnim.Play("Special/Faint");
+                player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(carrot, 1, 0);
             }
+           
 
         }
         if(gameStarted == false)
@@ -132,11 +134,11 @@ public class Tutorial : MonoBehaviour
                         if (FindObjectOfType<BackpackInventoryUI>().InventoryDisplay != null)
                         {
                            rb.backpackInventoryDisplay = FindObjectOfType<BackpackInventoryUI>().InventoryDisplay;
-
+                           
                         }
-                        player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(carrot, 2, 0);
+                        
 
-                        if (Input.GetKeyDown(KeyCode.Alpha1))
+                        if (player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Carrot").Count == 0)
                         {
                             informationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Return to the train";
                             pointAtInventory.SetActive(false);
@@ -188,10 +190,14 @@ public class Tutorial : MonoBehaviour
                         text = GameObject.Find("Quest").transform.GetChild(2).GetComponent<TextMeshProUGUI>();
                     }
                     text.text = "Check the storage.";
-                    arrow.gameObject.SetActive(true);
-                    arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
-                    arrow.player = this.player;
-                    arrow.target = GameObject.Find("ShelfParent").transform;
+                    if(arrow.gameObject != null)    
+                    {
+                        arrow.gameObject.SetActive(true);
+                        arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
+                        arrow.player = this.player;
+                        arrow.target = GameObject.Find("ShelfParent").transform;
+                    }
+                  
 
                     if(shelfUI.activeSelf == true)
                     {
