@@ -9,6 +9,10 @@ public class ItemHolder : MonoBehaviour
     public GameObject desk;
     public static ItemHolder instance;
     public GameObject craft;
+    public GameObject desk2;
+    public GameObject shelf2;
+    public GameObject mealButton;
+    public GameObject[] tutorialArrow;
 
     private void Awake()
     {

@@ -5,6 +5,7 @@ using TMPro;
 using MoreMountains.TopDownEngine;
 using Yarn.Unity;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 //This script is for handling tutorial, attached on scene obj, calling frm GAme manager INFO
 public class Tutorial : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Tutorial : MonoBehaviour
     public GameState currentState;
     public GameObject informationUI;
     public int stepIndex;
-    private GameObject player;
+    public GameObject player;
     public TextMeshProUGUI text;
     public static Tutorial instance;
     public TargetIndicator arrow;
@@ -34,6 +35,8 @@ public class Tutorial : MonoBehaviour
     public GameObject craftUI;
     public bool dialoguePlayed = false;
     private float initialDelay = 2.5f;
+    public GameObject mealButton;
+    public GameObject[] tutorialArrow;
     private void Awake()
     {
         if(instance == null)
@@ -252,7 +255,7 @@ public class Tutorial : MonoBehaviour
                     if(arrow.target == null)
                     {
 
-                    arrow.target = GameObject.Find("Desk_low (1)").transform;
+                     arrow.target = GameObject.Find("Desk_low (1)").transform;
                     }
                     if (deskUI.activeSelf == true)
                     {
@@ -314,7 +317,7 @@ public class Tutorial : MonoBehaviour
                         {
                             dr.onDialogueComplete.AddListener(DialogueConfig);
                             dr.StartDialogue("test7");
-
+                            player.GetComponent<Character>().enabled = false;
 
 
                         }
@@ -326,13 +329,16 @@ public class Tutorial : MonoBehaviour
                     {
                         dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
                         craftUI = ItemHolder.instance.craft;
+                        mealButton = ItemHolder.instance.mealButton;
+                        tutorialArrow = ItemHolder.instance.tutorialArrow;
+                        mealButton.GetComponent<Button>().onClick.AddListener(ChangeGuideArrow);
 
                     }
 
                     if (dialoguePlayed == false)
                     {
                         dr.onDialogueComplete.AddListener(DialogueConfig);
-                        dr.StartDialogue("test3");
+                        dr.StartDialogue("test8");
                         player.GetComponent<Character>().enabled = false;
 
 
@@ -342,8 +348,71 @@ public class Tutorial : MonoBehaviour
                         text = GameObject.Find("Quest").transform.GetChild(2).GetComponent<TextMeshProUGUI>();
                     }
                     text.text = "Use the crafting recipe to make useful items";
+                    arrow.gameObject.SetActive(true);
+                    
+                    if (arrow.target == null)
+                    {
+
+                        arrow.target = ItemHolder.instance.desk2.transform;
+                        arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
+                        arrow.player = player;
+                    }
+                    if(craftUI == null)
+                    {
+                        craftUI = ItemHolder.instance.craft;
+                    }
+                    if (craftUI.activeSelf == true)
+                    {
+                       
+                            arrow.target = null;
+                            arrow.gameObject.SetActive(false);
+                            tutorialArrow[0].SetActive(true);
+
+
+                    }
 
                     break;
+                case 8:
+                    tutorialArrow[0].SetActive(false);
+                    //tutorialArrow[1].SetActive(false);
+                    //tutorialArrow[1].SetActive(false);
+                    text.text = "Grab ingredients for the meal";
+                    arrow.gameObject.SetActive(true);
+                    if (arrow.target == null)
+                    {
+
+                        arrow.target = ItemHolder.instance.shelf2.transform;
+                        arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
+                        arrow.player = player;
+                    }
+
+                    if( player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Onion").Count != 0){
+
+                        if(player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Carrot").Count != 0)
+                        {
+                            stepIndex++;
+                        }
+
+                    }
+
+
+                    break;
+                case 9:
+                    text.text = "Craft a delicious meal";
+                    arrow.gameObject.SetActive(false);
+                    tutorialArrow[2].SetActive(true);
+                    tutorialArrow[3].SetActive(true);
+
+                    if(player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Soup").Count != 0)
+                    {
+                        text.text = "Now let's continue our journey";
+                        tutorialArrow[2].SetActive(false);
+                        tutorialArrow[3].SetActive(false);
+                    }
+                    Destroy(this.gameObject);
+
+                    break;
+
 
 
 
@@ -352,6 +421,17 @@ public class Tutorial : MonoBehaviour
             }
         }
 
+    }
+    public void ChangeGuideArrow()
+    {
+        Debug.Log("rawr");
+        tutorialArrow[0].SetActive(false);
+        tutorialArrow[1].SetActive(true);
+        if(stepIndex == 7)
+        {
+            stepIndex++;
+        }
+        
     }
     public void DialogueConfig()
     {

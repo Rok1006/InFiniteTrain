@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using MoreMountains.TopDownEngine;
 
 
 public class MapPopUp : MonoBehaviour
@@ -103,6 +104,7 @@ public class MapPopUp : MonoBehaviour
                     Tutorial.instance.dialoguePlayed = false;
                     Tutorial.instance.arrow.gameObject.SetActive(true);
                     Tutorial.instance.arrow.target = GameObject.Find("lever_bot").transform;
+                    Tutorial.instance.player.GetComponent<Character>().enabled = false;
                 }
             }
             mm.UpdatePlayer(); //new
