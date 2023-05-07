@@ -16,11 +16,18 @@ namespace Combine
         private Inventory _inventory;
         private string _playerID;
         public Combine Combine;
+        private PlayerManager _player;
         
         private void Awake()
         {
             _raycaster = GetComponent<GraphicRaycaster>();
             _canvas = GetComponent<Canvas>();
+        }
+
+        void Start() {
+            _player = FindObjectOfType<PlayerManager>();
+            if (_player == null)
+                Debug.Log("cant find PlayerManager in " + name);
         }
 
         private void Raycast(PointerEventData eventData)
@@ -74,8 +81,11 @@ namespace Combine
                 var destinationItem = destinationInventory.Content[destinationSlot.Index];
                 var isDestinationEmpty = InventoryItem.IsNull(destinationItem);
                 if (!isDestinationEmpty &&
-                    Combine.TryCombineItems(_inventory, _slot.Index, destinationInventory, destinationSlot.Index))
+                    Combine.TryCombineItems(_inventory, _slot.Index, destinationInventory, destinationSlot.Index)) {
+                    _player.CombineFeedback.PlayFeedbacks();
+                    Debug.Log("Played Combine Feedback");
                     return;
+                }
                 if (_inventory == destinationInventory && (_item.CanMoveObject && isDestinationEmpty || _item.CanSwapObject && !isDestinationEmpty && destinationItem.CanSwapObject)) {
                     _inventory.MoveItem(_slot.Index, destinationSlot.Index);
                 }

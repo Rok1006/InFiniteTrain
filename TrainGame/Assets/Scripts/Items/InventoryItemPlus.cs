@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.InventoryEngine;
+using MoreMountains.Feedbacks;
 
 public class InventoryItemPlus : InventoryItem
 {

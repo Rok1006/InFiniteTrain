@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using NaughtyAttributes;
 using UnityEngine.UI;
+using MoreMountains.Feedbacks;
 
 //This script handle wtever related to Player that is not related to topdown engine
 public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
@@ -31,6 +32,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     [HideInInspector]public float oldPositionX = 0.0f;
     [HideInInspector]public float oldPositionZ = 0.0f;
     public bool down = true;
+    [SerializeField] private MMF_Player combineFeedback;
 
 //item using
     [ReadOnly, SerializeField, BoxGroup("Item Using")] private float currentActionTime = 0.0f, totalActionTime = 0.0f;
@@ -66,6 +68,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     public float CurrentActionTime {get=>currentActionTime;private set=> currentActionTime=value;}
     public bool CanCombineEnemyDetector {get=>canCombineEnemyDetector;}
     public bool CanCombineStunner {get=>canCombineStunner;}
+    public MMF_Player CombineFeedback {get=>combineFeedback;}
 
     #region OnEnable,disable, Start & Updates
     void OnEnable()

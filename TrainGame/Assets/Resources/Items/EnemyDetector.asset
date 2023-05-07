@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aca1fc51914d24e49808c897f729a3e8, type: 3}
-  m_Name: Stunner
+  m_Name: EnemyDetector
   m_EditorClassIdentifier: 
-  ItemID: Stunner
+  ItemID: EnemyDetector
   TargetInventoryName: BackpackInventory
   ForceSlotIndex: 0
   TargetIndex: 0
@@ -34,10 +34,10 @@ MonoBehaviour:
     DisplayUnequipButton: 1
     DisplayCombineButton: 1
   Quantity: 1
-  ItemName: Stunner
-  ShortDescription: When triggered, it will stun the enemy in a certain range.
-  Description: A powerful machine that can buy you some time.
-  Icon: {fileID: 7937413066873182871, guid: ad24a335ca1274e3ca2d8b068af804af, type: 3}
+  ItemName: Enemy Detector
+  ShortDescription: It detects enemies
+  Description: 
+  Icon: {fileID: 4981071466254497140, guid: ad24a335ca1274e3ca2d8b068af804af, type: 3}
   Prefab: {fileID: 0}
   DropProperties:
     Shape: 0
@@ -88,10 +88,10 @@ MonoBehaviour:
   MovedSound: {fileID: 0}
   DroppedSound: {fileID: 0}
   UseDefaultSoundsIfNull: 1
-  actionTime: 0.3
+  actionTime: 0
   hasMovementRestriction: 1
-  isPlantable: 0
-  isThrowable: 1
-  projectile: {fileID: 4405122699964661917, guid: e3340c1d9e8f5eb449ac20174bd75adf,
+  isPlantable: 1
+  isThrowable: 0
+  projectile: {fileID: 0}
+  indicator: {fileID: 5297827314507015585, guid: 34f67c20f691042cea3a11d9e2c348b9,
     type: 3}
-  indicator: {fileID: 0}

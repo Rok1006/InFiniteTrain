@@ -130,7 +130,6 @@ public class InventoryInputActionPlus : InventoryInputActions
 
         //finish action animation
         _playerAnimator.SetTrigger("ActionFinished");
-        Debug.Log("action finished");
 
         ExecuteAction(binding);
         isPerformingAction = false;
@@ -151,7 +150,6 @@ public class InventoryInputActionPlus : InventoryInputActions
 
         //finish action animation
         _playerAnimator.SetTrigger("ActionFinished");
-        Debug.Log("action finished");
 
         MMInventoryEvent.Trigger(MMInventoryEventType.UseRequest, null, _targetInventory.name,
                                             _targetInventory.Content[_inventoryDisplay.CurrentlySelectedInventorySlot().Index], 0,
@@ -170,7 +168,6 @@ public class InventoryInputActionPlus : InventoryInputActions
             ThrowItem throwItem = item as ThrowItem;
             if (throwItem != null) {
                 throwItem.PlantIndicator();
-                Debug.Log("Planting");
 
                 //ready throw animation
                 _playerAnimator.SetTrigger("ReadyThrow");
