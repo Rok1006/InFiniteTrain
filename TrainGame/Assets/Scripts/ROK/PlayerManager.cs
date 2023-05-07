@@ -66,7 +66,7 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
     public bool IsUsingItem {get=>isUsingItem;set=>isUsingItem=value;}
     public float TotalActionTime {get=>totalActionTime;set=>totalActionTime=value;}
     public float CurrentActionTime {get=>currentActionTime;private set=> currentActionTime=value;}
-    public bool CanCombineEnemyDetector {get=>canCombineEnemyDetector;}
+    public bool CanCombineEnemyDetector {get=>canCombineEnemyDetector; set => canCombineEnemyDetector = value;}
     public bool CanCombineStunner {get=>canCombineStunner;}
     public MMF_Player CombineFeedback {get=>combineFeedback;}
 
@@ -344,7 +344,6 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, TargetLayerMask))
         {   
             GameObject Des = Instantiate(throwDestination, Vector3.zero, Quaternion.identity);
-            Debug.Log("des " + Des.name);
             Des.transform.position = hitInfo.point;
             return Des;
         }
