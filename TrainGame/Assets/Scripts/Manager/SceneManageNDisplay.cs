@@ -8,6 +8,8 @@ using NaughtyAttributes;
 using Cinemachine;
 using Yarn.Unity;
 using MoreMountains.TopDownEngine;
+using System.Linq;
+
 //THis script is for function of pannels and triggering events
 public class SceneManageNDisplay : MonoBehaviour
 {
@@ -351,13 +353,12 @@ public class SceneManageNDisplay : MonoBehaviour
     }
 //Check Re Entering --------
     public bool CheckFinalRequiredItem(){ //if player have these items , constantly checking
-        // player.GetComponent<CharacterInventory>().MainInventory.FindInventory();
-        // List<InventoryItem> backpackItems = Inventory.Find("BackpackInventory", "Player1").Content;
-        // for (int i = 0; i < bakcpackItems.Count; i++) {
-        //     if (backpackItems[i].ItemID.Equals("")) {
-        //         //level design
-        //     }
-        // }
+        List<InventoryItem> backpackItems = Inventory.FindInventory("BackpackInventory", "Player1").Content.ToList();
+        for (int i = 0; i < backpackItems.Count; i++) {
+            if (backpackItems[i].ItemID.Equals("")) {
+                //level design
+            }
+        }
         return false;
     }
     void TrainTowardReenterPt(){ //not calling
