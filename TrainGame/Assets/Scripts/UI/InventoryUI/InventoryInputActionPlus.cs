@@ -37,9 +37,10 @@ public class InventoryInputActionPlus : InventoryInputActions
                 if (_inventoryDisplay.CurrentlySelectedInventorySlot() != null) {
                     if (!_inventoryDisplay.CurrentlySelectedInventorySlot().Equals( _inventoryDisplay.SlotContainer[binding.SlotIndex])) {
                         ExecuteAction(binding);
-                    } else {
-                        StartUsingItem(binding);
-                    }
+                    } 
+                    // else {
+                    //     StartUsingItem(binding);
+                    // }
                 }
             }
 
