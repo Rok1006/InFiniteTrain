@@ -41,13 +41,20 @@ public class SceneTransition : MonoBehaviour
          //this shd trigger when player die once
         FindObjectOfType<RadiationManager>().DeathOfRadiation();
         MMSceneLoadingManager.LoadScene("LeoPlayAround");
-        if(InfoSC.EnemyAppearState >=2){ //ever after boss appear, every go out enemy move forward
+        if(InfoSC.EnemyAppearState >=2&&!InfoSC.DeadCountDownStart){ //ever after boss appear, every go out enemy move forward
+                InfoSC.CurrentEnemyTrainInterval += 1;
+        }
+        Debug.Log("hey boss move cus dead");
+
+    }
+    public void SimpleComeBack(){
+        if(InfoSC.EnemyAppearState >=2&&!InfoSC.DeadCountDownStart){ //ever after boss appear, every go out enemy move forward
                 InfoSC.CurrentEnemyTrainInterval += 1;
         }
     }
-    public void SimpleGetKicked(){
-        if(InfoSC.EnemyAppearState >= 1){InfoSC.CurrentEnemyTrainInterval += 1;};
-    }
+    // public void SimpleGetKicked(){
+    //     if(InfoSC.EnemyAppearState >= 1){InfoSC.CurrentEnemyTrainInterval += 1;};
+    // }
 
     public void saveAndToOtherScene(string otherScene) {
         if (otherScene != "LeoPlayAround")
@@ -72,7 +79,7 @@ public class SceneTransition : MonoBehaviour
             Tutorial.instance.stepIndex++;
         }
         if (other.GetComponent<PlayerManager>() != null) {
-            if(InfoSC.ConfirmedSelectedPt == 3 && InfoSC.EnemyAppearState < 1){
+            if(InfoSC.ConfirmedSelectedPt == 2 && InfoSC.EnemyAppearState < 1){
                 InfoSC.EnemyAppearState = 1;
             }
             saveAndToOtherScene(otherSceneName);

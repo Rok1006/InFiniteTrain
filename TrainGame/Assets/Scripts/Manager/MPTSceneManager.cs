@@ -27,11 +27,12 @@ public class MPTSceneManager : MonoBehaviour
         if (playerInfo == null){Debug.Log("player info is null");}
         // SEAnim = ScreenEffect.GetComponent<Animator>();
         ScreenEffect.SetActive(true);
-        if(Info.Instance.DeadCountDownStart){
-            MP_deadlyTimer.SetActive(true);  
-        }else{
-            MP_deadlyTimer.SetActive(false);  
-        }
+        Invoke("DeadlyTimerOnOFF",.5f);
+        // if(Info.Instance.DeadCountDownStart){
+        //     MP_deadlyTimer.SetActive(true);  
+        // }else{
+        //     MP_deadlyTimer.SetActive(false);  
+        // }
         LocationInfoDisplay.SetActive(false);
 
         DisplayLocationInfo(PCM.PointScene[Info.Instance.pointID].GetComponent<PointContent>().LandTitle);
@@ -83,6 +84,13 @@ public class MPTSceneManager : MonoBehaviour
     public void DisplayLocationInfo(string location){
         LocationInfoDisplay_Text.text = location.ToString();
         LocationInfoDisplay.SetActive(true);
+    }
+    void DeadlyTimerOnOFF(){
+        if(Info.Instance.DeadCountDownStart){
+            MP_deadlyTimer.SetActive(true);  
+        }else{
+            MP_deadlyTimer.SetActive(false);  
+        }
     }
     
 }

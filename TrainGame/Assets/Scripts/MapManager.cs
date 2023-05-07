@@ -44,7 +44,7 @@ public class MapManager : MonoBehaviour
 
     private int sum;
     void Awake() {
-        UpdateTrainLocation();
+        //UpdateTrainLocation();
     }
     void Start()
     {
@@ -58,7 +58,8 @@ public class MapManager : MonoBehaviour
 //Check and initializtion------
         UpdatePlayerIcon();
         UpdatePlayer();
-        // UpdateTrainLocation(); //update player and enemy location on map
+        Invoke("UpdateTrainLocation", 1f);
+        //UpdateTrainLocation(); //update player and enemy location on map
         if(Info.Instance.ConfirmedSelectedPt!=0){
             requireText.text = "Select a new location.";
         }else{
@@ -77,6 +78,7 @@ public class MapManager : MonoBehaviour
 
     void Update()
     {
+        //UpdateTrainLocation();
         Info.Instance.pointID = Info.Instance.ConfirmedSelectedPt;
         if(gameState == 0)
         {
@@ -352,7 +354,7 @@ public class MapManager : MonoBehaviour
         //trigger some snimation to let player know he is here some pop up box when he come back
     }
     IEnumerator EnemyAppear(){
-        yield return new WaitForSeconds(.7f);
+        yield return new WaitForSeconds(1f);
         enemyTrainAnim.SetTrigger("Appear");
         yield return new WaitForSeconds(.3f);
         MapFrame.SetTrigger("Shake");
