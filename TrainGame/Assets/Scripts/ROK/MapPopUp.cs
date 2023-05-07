@@ -105,6 +105,7 @@ public class MapPopUp : MonoBehaviour
                     Tutorial.instance.arrow.gameObject.SetActive(true);
                     Tutorial.instance.arrow.target = GameObject.Find("lever_bot").transform;
                     Tutorial.instance.player.GetComponent<Character>().enabled = false;
+                    Tutorial.instance.player.transform.Translate(new Vector3(0, 0, -5), Space.World);
                 }
             }
             mm.UpdatePlayer(); //new

@@ -385,8 +385,10 @@ public class Tutorial : MonoBehaviour
                         arrow.uiObject = arrow.gameObject.GetComponent<RectTransform>();
                         arrow.player = player;
                     }
+                    tutorialArrow[2].SetActive(true);
+                    tutorialArrow[3].SetActive(true);
 
-                    if( player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Onion").Count != 0){
+                    if ( player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Onion").Count != 0){
 
                         if(player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Carrot").Count != 0)
                         {
@@ -399,17 +401,21 @@ public class Tutorial : MonoBehaviour
                     break;
                 case 9:
                     text.text = "Craft a delicious meal";
+                    
                     arrow.gameObject.SetActive(false);
-                    tutorialArrow[2].SetActive(true);
-                    tutorialArrow[3].SetActive(true);
-
-                    if(player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Soup").Count != 0)
+                   // tutorialArrow[4].SetActive(true);
+                   // tutorialArrow[5].SetActive(true);
+                    tutorialArrow[2].SetActive(false);
+                    tutorialArrow[3].SetActive(false);
+                    if (player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Soup").Count != 0)
                     {
                         text.text = "Now let's continue our journey";
-                        tutorialArrow[2].SetActive(false);
-                        tutorialArrow[3].SetActive(false);
+                        
+                        tutorialArrow[4].SetActive(false);
+                        tutorialArrow[5].SetActive(false);
+                        Destroy(this.gameObject);
                     }
-                    Destroy(this.gameObject);
+                    
 
                     break;
 
@@ -424,7 +430,7 @@ public class Tutorial : MonoBehaviour
     }
     public void ChangeGuideArrow()
     {
-        Debug.Log("rawr");
+      
         tutorialArrow[0].SetActive(false);
         tutorialArrow[1].SetActive(true);
         if(stepIndex == 7)
