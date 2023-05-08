@@ -413,13 +413,15 @@ public class Tutorial : MonoBehaviour
                    // tutorialArrow[5].SetActive(true);
                     tutorialArrow[2].SetActive(false);
                     tutorialArrow[3].SetActive(false);
+                    
                     if (player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Soup").Count != 0)
                     {
-                        text.text = "Now let's continue our journey";
-                        
+                        ItemHolder.instance.final.SetActive(true);
+
+                        Destroy(this.gameObject);
                         tutorialArrow[4].SetActive(false);
                         tutorialArrow[5].SetActive(false);
-                        Destroy(this.gameObject);
+                        
                     }
                     
 

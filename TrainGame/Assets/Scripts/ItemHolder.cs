@@ -13,6 +13,7 @@ public class ItemHolder : MonoBehaviour
     public GameObject shelf2;
     public GameObject mealButton;
     public GameObject[] tutorialArrow;
+    public GameObject final;
 
     private void Awake()
     {
