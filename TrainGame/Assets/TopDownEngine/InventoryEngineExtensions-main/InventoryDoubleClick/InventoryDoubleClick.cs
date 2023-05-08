@@ -42,9 +42,9 @@ namespace InventoryDoubleClick
                 }
 
 
-                if (_slot.Unequippable()) _slot.UnEquip();
-                else if (_slot.Equippable()) _slot.Equip();
-                if (_slot.Usable()) _slot.Use();
+                // if (_slot.Unequippable()) _slot.UnEquip();
+                // else if (_slot.Equippable()) _slot.Equip();
+                // if (_slot.Usable()) _slot.Use();
             }
         }
 
