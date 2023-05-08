@@ -372,7 +372,7 @@ public class MapManager : MonoBehaviour
     }
     void AfterFirstAppear(){
         SMD.CutSceneObj.GetComponent<Animator>().SetTrigger("Out");
-        player.GetComponent<Character>().enabled = true; 
+        SMD.player.GetComponent<Character>().enabled = true;
         Info.Instance.EnemyAppearState = 2 ;
     }
     public void EnemyDeadlyCountDownDisplay(float displayTime){//If enemy is one unit away frm player

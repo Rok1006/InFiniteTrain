@@ -409,7 +409,7 @@ public class SceneManageNDisplay : MonoBehaviour
         yield return new WaitForSeconds(0f);
         Open_Map();
         yield return new WaitForSeconds(3f);
-        MM.playerTrain.GetComponent<Animator>().SetTrigger("Reenter");
+        MM.playerTrain.GetComponent<Animator>().SetTrigger("Reenter");//this not playing
         yield return new WaitForSeconds(3f);
         CloseMap();
         MM.ReEnterLoop(); //reopen the map pts
