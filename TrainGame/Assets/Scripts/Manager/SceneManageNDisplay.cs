@@ -15,7 +15,7 @@ public class SceneManageNDisplay : MonoBehaviour
 {
     private MapManager MM;
     private WarningGuide WG;
-    public Scene_Sound SM;
+    [ReadOnly]public Scene_Sound SM;
     [SerializeField, BoxGroup("REF")]private Info ISF;
     [BoxGroup("REF"), ReadOnly]public GameObject player;
     [SerializeField, BoxGroup("General")] private GameObject TrainInfoGuide;
@@ -83,7 +83,7 @@ public class SceneManageNDisplay : MonoBehaviour
         MM = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
         WG = this.GetComponent<WarningGuide>();
         ISF = GameObject.Find("GameManager").GetComponent<Info>();
-        SM = GameObject.Find("SoundManager").GetComponent<Scene_Sound>();
+        SM = GameObject.Find("SceneSoundManager").GetComponent<Scene_Sound>();
         player = GameObject.FindGameObjectWithTag("Player");
         dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
 

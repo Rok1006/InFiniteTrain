@@ -7,7 +7,7 @@ using TMPro;
 
 public class MPTSceneManager : MonoBehaviour
 {
-
+    [ReadOnly]public Scene_Sound SM;
     public static int state = 0;
     public PlayerInformation playerInfo;
     private PointContentManager PCM;
@@ -24,6 +24,7 @@ public class MPTSceneManager : MonoBehaviour
     {
         playerInfo = FindObjectOfType<PlayerInformation>();
         PCM = FindObjectOfType<PointContentManager>();
+        SM = GameObject.Find("MPTSceneSoundManager").GetComponent<Scene_Sound>();
         if (playerInfo == null){Debug.Log("player info is null");}
         // SEAnim = ScreenEffect.GetComponent<Animator>();
         ScreenEffect.SetActive(true);

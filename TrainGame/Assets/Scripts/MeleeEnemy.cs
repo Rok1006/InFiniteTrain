@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MeleeEnemy : GeneralEnemy
 {
+    private MPTSceneManager MSM;
     public Transform[] wayPoints;
     public ForceUpdate stun;
     public GameObject player;
     public GameObject enemyChild;
     public GameObject DetectObj;
+    public GameObject HitBox;
    
     public LayerMask layermask;
     public int destPoint = 0;
@@ -32,9 +34,11 @@ public class MeleeEnemy : GeneralEnemy
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        MSM = GameObject.Find("MPTSceneManager").GetComponent<MPTSceneManager>();
         rb = this.gameObject.GetComponent<Rigidbody>();
         DetectSign.SetActive(false);
         eletricObj.SetActive(false);
+        HitBox.SetActive(false);
     }
 
     // Update is called once per frame
@@ -161,6 +165,8 @@ public class MeleeEnemy : GeneralEnemy
 
             thisAnim.SetBool("Walking", false);
             thisAnim.SetTrigger("Attack");
+            MSM.SM.PlaySound("Slash_Light_4");
+            HitBox.SetActive(true);
             //attack here and disable canAttack
         }
         if (Vector3.Distance(this.transform.position, player.transform.position) > 20)
