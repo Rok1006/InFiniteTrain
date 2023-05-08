@@ -4,6 +4,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.UI;
 using TMPro;
+using MoreMountains.TopDownEngine;
 
 public class MapManager : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class MapManager : MonoBehaviour
     Animator playerTrainAnim;
     [SerializeField,BoxGroup("REF")]private GameObject triggerDoorToOutside;
 
-    [SerializeField,BoxGroup("Enemy")]private GameObject enemyTrain;
+    [BoxGroup("Enemy")]public GameObject enemyTrain;
     Animator enemyTrainAnim;
     [SerializeField,BoxGroup("Enemy")]private GameObject DeadlyTimer;
     [SerializeField,BoxGroup("Enemy")]private TextMeshProUGUI timeCountDown;
@@ -110,12 +111,12 @@ public class MapManager : MonoBehaviour
         if(Info.Instance.EnemyAppearState == 1 && Info.Instance.ConfirmedSelectedPt==BossTrainAppearTriggerIndex){  //& after player come back
             enemyTrain.SetActive(true); //it appeared
         }
-//FirstAppear
-        if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&Info.Instance.EnemyAppearState == 1){ //FirstAppear
-            Debug.Log("apear");
-            StartCoroutine(EnemyAppear()); 
-            Info.Instance.EnemyAppearState = 2;
-        }
+// //FirstAppear
+//         if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&Info.Instance.EnemyAppearState == 1){ //FirstAppear
+//             Debug.Log("apear");
+//             StartCoroutine(EnemyAppear()); 
+
+//         }
 //Everytime after appear
         if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&Info.Instance.EnemyAppearState > 1){ //FirstAppear
             //Enemy train bounce
@@ -353,13 +354,26 @@ public class MapManager : MonoBehaviour
         }
         //trigger some snimation to let player know he is here some pop up box when he come back
     }
-    IEnumerator EnemyAppear(){
+    public void EnemyAppear(){
+        StartCoroutine(EnemyFirstAppear()); 
+    }
+    IEnumerator EnemyFirstAppear(){
+        SMD.CutSceneObj.SetActive(true);
+        //player.GetComponent<Character>().enabled = false;
         yield return new WaitForSeconds(1f);
         enemyTrainAnim.SetTrigger("Appear");
         yield return new WaitForSeconds(.3f);
         MapFrame.SetTrigger("Shake");
         MapCam.SetTrigger("Shake");
         MapCore.SetTrigger("Shake");
+        yield return new WaitForSeconds(.3f);
+        SMD.dr.onDialogueComplete.AddListener(AfterFirstAppear);
+        SMD.dr.StartDialogue("BossAppear");
+    }
+    void AfterFirstAppear(){
+        SMD.CutSceneObj.GetComponent<Animator>().SetTrigger("Out");
+        player.GetComponent<Character>().enabled = true; 
+        Info.Instance.EnemyAppearState = 2 ;
     }
     public void EnemyDeadlyCountDownDisplay(float displayTime){//If enemy is one unit away frm player
         if(displayTime<0){

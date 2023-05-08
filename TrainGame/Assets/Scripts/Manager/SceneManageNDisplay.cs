@@ -129,7 +129,7 @@ public class SceneManageNDisplay : MonoBehaviour
         roomName.text = '"' + " " + currentCartName.ToString() + " " + '"';
 
         if(theMap.activeSelf&&PanelOn){
-            if(Input.GetKeyUp(KeyCode.Space)){
+            if(Input.GetKeyUp(KeyCode.Space)&&!dr.IsDialogueRunning){
                 CloseMap();
                 PanelOn = false;
             }
@@ -170,6 +170,7 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainInfoGuide.SetActive(false);
         BackpackInventoryCanvasGroup.alpha = 0;
         BackpackInventoryCanvasGroup.interactable = false;
+
     }
     void ChangePos(){
         Invoke("CoreAppear",1f);
@@ -180,6 +181,12 @@ public class SceneManageNDisplay : MonoBehaviour
         mapCore.SetActive(true);
         MM.FFC();
         MM.Reappear();
+        //Boss FirstAppear
+        if(Info.Instance.EnemyAppearState == 1){ //FirstAppear MM.enemyTrain.activeSelf&&
+            Debug.Log("apear");
+            MM.EnemyAppear();
+            player.GetComponent<Character>().enabled = false;
+        }
     }
     void MapCamSwitch(){
         PanelOn = true;
@@ -389,6 +396,7 @@ public class SceneManageNDisplay : MonoBehaviour
     }
     IEnumerator PreReEnter(){ 
         yield return new WaitForSeconds(0f);
+        CutSceneObj.SetActive(false);
         CutSceneObj.SetActive(true);
         yield return new WaitForSeconds(2f);
         dr.onDialogueComplete.AddListener(ReEnter);
@@ -417,6 +425,7 @@ public class SceneManageNDisplay : MonoBehaviour
     }
     IEnumerator GameOverFlow(){ //This will be called in Map manager when dead counter elapsed
         yield return new WaitForSeconds(0f);
+        CutSceneObj.SetActive(false);
         CutSceneObj.SetActive(true);
         yield return new WaitForSeconds(2f);
         EngineRoomCam.SetTrigger("BossArrive");

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using Yarn.Unity;
 //This script is for handling the display of icons and openign of relevant pannels when player approach an object/itel
 public class InteractableIcon : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class InteractableIcon : MonoBehaviour
             if(!thisIcon.activeSelf){thisIcon.SetActive(true);}
             if(!TrainInfoGuide.activeSelf&&!SceneMD.PanelOn){TrainInfoGuide.SetActive(true);}
             //TrainInfoGuideCall.Invoke();  //need more edit
-            if(Input.GetKeyUp(input_interact)&&!SceneMD.PanelOn){   
+            if(Input.GetKeyUp(input_interact)&&!SceneMD.PanelOn&&!SceneMD.dr.IsDialogueRunning){   //&&!SceneMD.dr.isDialogueRunning
                 // Player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("Think");
                 DisplayFunction_Active.Invoke();
                 ActionCall.Invoke();
