@@ -24,8 +24,11 @@ public class MeleeEnemy : GeneralEnemy
     public bool popUp = false;
     
     private bool goingBack = false;
+
+    [SerializeField] private GameObject dustPrefab; //the particle system: prefab
+    [SerializeField] private GameObject emitPt; //the particle system: prefab
+    [HideInInspector] public List<GameObject> dust = new List<GameObject>();
     
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -120,7 +123,7 @@ public class MeleeEnemy : GeneralEnemy
         eletricObj.SetActive(false);
         this.state = State.PATROL;
     }
-    void MoveTowards() //Move towards enemy
+    void MoveTowards() //Move towards player
     {
         //thisAnim.SetBool("Walking", true);
         if (rb.velocity.x > 0)
@@ -150,6 +153,7 @@ public class MeleeEnemy : GeneralEnemy
         {
             rb.velocity = dir * approachSpeed;
             thisAnim.SetBool("Walking", true);
+            DustEmit();
         }
         popUp = true;
         if (canAttack == true)
@@ -206,6 +210,7 @@ public class MeleeEnemy : GeneralEnemy
             thisAnim.SetBool("Walking", false);
         }else{
             thisAnim.SetBool("Walking", true);
+            SmallDustEmit();
             rb.velocity = direction * speed;
         }
 
@@ -260,7 +265,29 @@ public class MeleeEnemy : GeneralEnemy
             }
         }
     }
-
+    public void DustEmit(){
+        if(Time.frameCount%10 == 0 && emitPt!=null){
+            GameObject d = Instantiate(dustPrefab, emitPt.transform.position, Quaternion.identity) as GameObject;
+            dust.Add(d);
+            Invoke("DestroyDust", .9f);
+        }
+    }
+    public void SmallDustEmit(){
+        if(Time.frameCount%30 == 0 && emitPt!=null){
+            GameObject d = Instantiate(dustPrefab, emitPt.transform.position, Quaternion.identity) as GameObject;
+            dust.Add(d);
+            Invoke("DestroyDust", .9f);
+        }
+    }
+    private void DestroyDust(){
+        Destroy(dust[0]);
+        dust.RemoveAt(0);
+    }
+    // private void DustLayerSort(int order){
+    //     for(int i = 0; i < dust.Count; i++){
+    //         dust[i].GetComponent<ParticleSystemRenderer>().sortingOrder = order;
+    //     }
+    // }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "ThrowItem")

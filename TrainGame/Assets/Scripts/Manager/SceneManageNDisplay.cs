@@ -15,6 +15,7 @@ public class SceneManageNDisplay : MonoBehaviour
 {
     private MapManager MM;
     private WarningGuide WG;
+    public Scene_Sound SM;
     [SerializeField, BoxGroup("REF")]private Info ISF;
     [BoxGroup("REF"), ReadOnly]public GameObject player;
     [SerializeField, BoxGroup("General")] private GameObject TrainInfoGuide;
@@ -64,6 +65,7 @@ public class SceneManageNDisplay : MonoBehaviour
     [BoxGroup("UI/Others")]public GameObject CutSceneObj;
     [BoxGroup("UI/Others")]public Animator TrainWindowLight;
     [BoxGroup("UI/Others")]public CanvasGroup BackpackInventoryCanvasGroup;
+
     [BoxGroup("Exit")] public List<string> inventoryNameToCheck;
     [BoxGroup("Exit")] public List<RequiredExitItems> requirements;
     public DialogueRunner dr;
@@ -81,6 +83,7 @@ public class SceneManageNDisplay : MonoBehaviour
         MM = GameObject.FindGameObjectWithTag("Mehnager").GetComponent<MapManager>();
         WG = this.GetComponent<WarningGuide>();
         ISF = GameObject.Find("GameManager").GetComponent<Info>();
+        SM = GameObject.Find("SoundManager").GetComponent<Scene_Sound>();
         player = GameObject.FindGameObjectWithTag("Player");
         dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
 
@@ -178,6 +181,7 @@ public class SceneManageNDisplay : MonoBehaviour
         TrainFuelBar.SetActive(true);
     }
     void CoreAppear(){
+        SM.PlaySound("MapOpen");
         mapCore.SetActive(true);
         MM.FFC();
         MM.Reappear();
@@ -306,12 +310,14 @@ public class SceneManageNDisplay : MonoBehaviour
        //targetValue = 0f;
         //IsMoving = false;
         TrainStopMotion();
+        trainAudio.Stop();
+        SM.PlaySound("TrainStop");
         WarningGuideCall(0);
         doorAnim.SetBool("Close", false);
         doorAnim.SetTrigger("Open");
         doorIsOpen = 1;
         doorAudio.Play();
-        trainAudio.Stop();
+        
         BGScroll.SetActive(false);
     }
     void TrainStopMotion(){  //When train arrive at the location, do this after player click pt and on train

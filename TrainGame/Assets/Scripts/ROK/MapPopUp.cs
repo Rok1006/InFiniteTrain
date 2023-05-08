@@ -49,6 +49,7 @@ public class MapPopUp : MonoBehaviour
         if(this.clicked&&this.GetComponent<Point>().id==InfoSC.CurrentSelectedPt){
             Debug.Log("bruh");
             this.PUAnim.SetTrigger("SetLocation"); //this one not going why?
+            SceneManageNDisplay.SM.PlaySound("PlugFlag");
             //SceneManageNDisplay.PopUpPoint.Add(this.gameObject);
             ResetAnim(0);
         }
@@ -68,6 +69,7 @@ public class MapPopUp : MonoBehaviour
         //clicked = true; //disabled this so that it wont automatically true
         if(clicked&&this.GetComponent<Point>().id==InfoSC.CurrentSelectedPt){
             this.PUAnim.SetTrigger("SetLocation");
+            SceneManageNDisplay.SM.PlaySound("PlugFlag");
             //mm.PopUpPoint.Add(this.gameObject);
             ResetAnim(0);
         }
@@ -83,6 +85,7 @@ public class MapPopUp : MonoBehaviour
                 this.GetComponent<Point>().SendInfo(); //send selcted pt
                 clicked = true;
                 PUAnim.SetTrigger("SetLocation");
+                SceneManageNDisplay.SM.PlaySound("PlugFlag");
                 mm.PopUpPoint.Add(this.gameObject);
                 ResetAnim(0);
                 MapManager.gameState = 1;
@@ -127,6 +130,7 @@ public class MapPopUp : MonoBehaviour
         //if(SceneManageNDisplay.PopUpPoint.Count==1)
             mm.PopUpPoint[0].GetComponent<MapPopUp>().clicked = false;
             mm.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetTrigger("PlugFlag");
+            SceneManageNDisplay.SM.PlaySound("PlugFlag");
             if(mm.PopUpPoint.Count==1){  //if added a new second pt, remove the first 1 to return 0
                 //ResetAnim(0);
                 // SceneManageNDisplay.PopUpPoint[0].transform.GetChild(0).GetComponent<Animator>().SetBool("Reset", false);

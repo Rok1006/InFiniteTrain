@@ -362,7 +362,9 @@ public class MapManager : MonoBehaviour
         //player.GetComponent<Character>().enabled = false;
         yield return new WaitForSeconds(1f);
         enemyTrainAnim.SetTrigger("Appear");
+        SMD.SM.PlaySound("Ba_JumpHit");
         yield return new WaitForSeconds(.3f);
+        SMD.SM.PlaySound("Ba_GrdSmash");
         MapFrame.SetTrigger("Shake");
         MapCam.SetTrigger("Shake");
         MapCore.SetTrigger("Shake");

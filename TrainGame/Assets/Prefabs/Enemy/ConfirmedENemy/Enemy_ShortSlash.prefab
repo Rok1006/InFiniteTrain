@@ -178,6 +178,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  thisAnim: {fileID: 4130051969368848282}
+  eletricObj: {fileID: 7076179869814467172}
+  rb: {fileID: 0}
+  state: 0
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -185,19 +189,20 @@ MonoBehaviour:
   player: {fileID: 6894699376349878751, guid: 22a35bf57902eff4db7304f66222a5f6, type: 3}
   enemyChild: {fileID: 6447627416379920952}
   DetectObj: {fileID: 4018066829113406917}
-  thisAnim: {fileID: 4130051969368848282}
   layermask:
     serializedVersion: 2
     m_Bits: 1024
   destPoint: 0
   approachSpeed: 15
-  state: 0
   range: 18
   fovAngle: 120
   canAttack: 0
   DetectSign: {fileID: 5582811176495618859}
   popUp: 0
-  eletricObj: {fileID: 7076179869814467172}
+  dustPrefab: {fileID: 5685760529391821944, guid: b12e481aa2f93446eb0354b953cd57c1,
+    type: 3}
+  emitPt: {fileID: 6092477851136150424}
+  dust: []
 --- !u!65 &4281818918424238626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -309,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6092477851136150424}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4281818918424238636}
