@@ -21,6 +21,8 @@ public class MapManager : MonoBehaviour
     [SerializeField,BoxGroup("Enemy")]private GameObject DeadlyTimer;
     [SerializeField,BoxGroup("Enemy")]private TextMeshProUGUI timeCountDown;
     [SerializeField,BoxGroup("Enemy")]private int DeadCounterTime;
+    [SerializeField, BoxGroup("Others")] private GameObject Corner_deadlyTimer;
+    [SerializeField, BoxGroup("Others")] private TextMeshProUGUI Corner_timeCountDown;
 
     [SerializeField,BoxGroup("MAP")]private Animator MapFrame;
     [SerializeField,BoxGroup("MAP")]private Animator MapCam;
@@ -75,6 +77,7 @@ public class MapManager : MonoBehaviour
             enemyTrain.SetActive(false);
         }
         DeadlyTimer.SetActive(false);
+        Corner_deadlyTimer.SetActive(false);
     }
 
     void Update()
@@ -153,9 +156,11 @@ public class MapManager : MonoBehaviour
             DeadlyTimer.SetActive(false);
         }
         // timeCountDown.text = Info.Instance.DeadTime.ToString();
-        EnemyDeadlyCountDownDisplay(Info.Instance.DeadTime);
+        EnemyDeadlyCountDownDisplay(timeCountDown, Info.Instance.DeadTime);
+        EnemyDeadlyCountDownDisplay(Corner_timeCountDown, Info.Instance.DeadTime);
         if(Info.Instance.DeadCountDownStart){
             Debug.Log("Start dead count");
+            Corner_deadlyTimer.SetActive(true);
             if(Info.Instance.DeadTime>0){
                 Info.Instance.DeadTime-=Time.deltaTime;
             }else{
@@ -163,6 +168,8 @@ public class MapManager : MonoBehaviour
                 SMD.TriggerGameOver();
                 Info.Instance.DeadCountDownStart = false;
             }
+        }else{
+            Corner_deadlyTimer.SetActive(false);
         }
     }
     private void FixedUpdate() {
@@ -377,13 +384,13 @@ public class MapManager : MonoBehaviour
         SMD.player.GetComponent<Character>().enabled = true;
         Info.Instance.EnemyAppearState = 2 ;
     }
-    public void EnemyDeadlyCountDownDisplay(float displayTime){//If enemy is one unit away frm player
+    public void EnemyDeadlyCountDownDisplay(TextMeshProUGUI txt, float displayTime){//If enemy is one unit away frm player
         if(displayTime<0){
             displayTime = 0;
         }
         float minutes = Mathf.FloorToInt(displayTime/60);
         float seconds = Mathf.FloorToInt(displayTime%60);
-        timeCountDown.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        txt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
 //order:

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5197372765209955181}
   - component: {fileID: 6187711780525091679}
   - component: {fileID: 7904451148461363954}
+  - component: {fileID: 5036016303616171565}
   m_Layer: 24
   m_Name: Grass
   m_TagString: Untagged
@@ -28,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759478874082944103}
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2617667, y: 1.5412, z: 1.5412}
   m_Children: []
   m_Father: {fileID: 1823610795536324108}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5780967557217861281
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -82,7 +83,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 961700441
   m_SortingLayer: 5
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &5197372765209955181
 Animator:
@@ -156,6 +157,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theObj: {fileID: 0}
   collisionFeedback: {fileID: 1903387929478587023}
+--- !u!114 &5036016303616171565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759478874082944103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e9b0613a9f9544580c1644719392dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrabMainCameraOnStart: 1
+  NestObject: 0
+  OffsetDirection: {x: 0, y: 0, z: 1}
+  Up: {x: 0, y: 1, z: 0}
 --- !u!1 &1823610795536324115
 GameObject:
   m_ObjectHideFlags: 0
