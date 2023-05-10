@@ -18,7 +18,7 @@ public class Tutorial : MonoBehaviour
     public static Tutorial instance;
     public TargetIndicator arrow;
     public GameObject UIShit;
-    public InventoryItemPlus carrot;
+    public InventoryItemPlus herb;
     public GameObject wasdUI;
     public GameObject inventoryUI;
     public GameObject inventoryUI2;
@@ -52,6 +52,10 @@ public class Tutorial : MonoBehaviour
         
         arrow.player = player;
         arrow.gameObject.SetActive(false);
+        if (text == null)
+        {
+            ItemHolder.instance.text.GetComponent<TextMeshProUGUI>();
+        }
 
         radioAnim.Play("ScreenEffect_Bad");
 
@@ -69,7 +73,7 @@ public class Tutorial : MonoBehaviour
             if(stepIndex == -1)
             {
                 player.GetComponent<PlayerManager>().MCFrontAnim.Play("Special/Faint");
-                player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(carrot, 1, 0);
+                player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(herb, 1, 0);
             }
            
 
@@ -138,7 +142,7 @@ public class Tutorial : MonoBehaviour
                         }
                         
 
-                        if (player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Carrot").Count == 0)
+                        if (player.GetComponent<CharacterInventory>().MainInventory.InventoryContains("Herb").Count == 0)
                         {
                             informationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Return to the train";
                             pointAtInventory.SetActive(false);
@@ -261,7 +265,7 @@ public class Tutorial : MonoBehaviour
                     if(arrow.target == null)
                     {
 
-                     arrow.target = GameObject.Find("Desk_low (1)").transform;
+                     arrow.target = GameObject.Find("Controls_Low").transform;
                     }
                     if (deskUI.activeSelf == true)
                     {
@@ -307,7 +311,13 @@ public class Tutorial : MonoBehaviour
 
                     break;
                 case 6:
-                    if(SceneManager.GetActiveScene().name == "MapPoint")
+                    if(SceneManager.GetActiveScene().name == "LeoPlayAround")
+                    {
+                        arrow.gameObject.SetActive(false);
+                        text.text = "Once the train stops, head out for some scavenging!";
+                    }
+                   
+                    if (SceneManager.GetActiveScene().name == "MapPoint")
                     {
                         if(dr == null)
                         {
@@ -331,6 +341,7 @@ public class Tutorial : MonoBehaviour
                     }
                     break;
                 case 7:
+                   
                     if (dr == null)
                     {
                         dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();

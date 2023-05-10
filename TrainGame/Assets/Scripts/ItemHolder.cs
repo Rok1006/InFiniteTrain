@@ -14,6 +14,7 @@ public class ItemHolder : MonoBehaviour
     public GameObject mealButton;
     public GameObject[] tutorialArrow;
     public GameObject final;
+    public GameObject text;
 
     private void Awake()
     {
