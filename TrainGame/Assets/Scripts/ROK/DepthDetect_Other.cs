@@ -20,13 +20,14 @@ public class DepthDetect_Other : MonoBehaviour
     
     void Start()
     {
-        RayDetect();
+        
     }
 
     void Update()
     {
         thisObjIndex = ObjWithSortingLayer.GetComponent<MeshRenderer>().sortingOrder;
         ObjWithSortingLayer.GetComponent<MeshRenderer>().sortingOrder = OrderIndex;
+        RayDetect();
     }
     void RayDetect(){
         //back
@@ -37,7 +38,7 @@ public class DepthDetect_Other : MonoBehaviour
             //Debug.Log(hitB.transform.gameObject.name);
             CheckLayer(hitB.transform.gameObject);
         }
-        Debug.DrawRay(rayStartPos, new Vector3(0,0,rayLength), Color.red);
+        Debug.DrawRay(rayStartPos, this.transform.forward*15, Color.yellow);
 
         //Front
         //Vector3 rayStartPos1 = new Vector3(transform.position.x, transform.position.y+0.99f,transform.position.z+0.5f);
