@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GeneralEnemy : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class GeneralEnemy : MonoBehaviour
     public Animator thisAnim;
     public GameObject eletricObj;
     public Rigidbody rb;
+    public NavMeshAgent agent;
+
+    private void Awake()
+    {
+        agent = this.GetComponent<NavMeshAgent>();
+    }
     public enum State
     {
         PATROL,
