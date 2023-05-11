@@ -60,7 +60,6 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
 
 //weapons----
     [SerializeField] private WeaponCollection weaponCollection;
-    private Weapon secondaryWeapon;
 
 //getters & setters
     public bool IsUsingItem {get=>isUsingItem;set=>isUsingItem=value;}
@@ -136,9 +135,6 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
         RadiationUIGroup.alpha = 0;
 
     //weapons
-        secondaryWeapon = GetComponent<CharacterHandleSecondaryWeapon>().CurrentWeapon;
-        if (secondaryWeapon == null)
-            Debug.Log("cant find secondary weapon in " + gameObject.name);
 
         handleWeapon = GetComponent<CharacterHandleWeapon>();
         secondaryHandleWeapon = GetComponent<CharacterHandleSecondaryWeapon>();
@@ -333,20 +329,29 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
 
     public virtual GameObject CreateThrowDestination()
     {
+        Debug.Log("create throw destination 0");
         if (EventSystem.current.IsPointerOverGameObject())
             return null;
 
+        Debug.Log("create throw destination 1");
+
         if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButton(0)) return null;
+        Debug.Log("create throw destination 2");
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     #if UNITY_EDITOR
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
     #endif
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, TargetLayerMask))
-        {   
+        {
+            Debug.Log("create throw destination 3");
             GameObject Des = Instantiate(throwDestination, Vector3.zero, Quaternion.identity);
             Des.transform.position = hitInfo.point;
             return Des;
+        } else {
+            Physics.Raycast(ray, out var hitInfo1, Mathf.Infinity, Physics.AllLayers);
+            Debug.Log("hitted " + hitInfo1.transform.gameObject.name);
         }
+        Debug.Log("create throw destination 4");
         return null;
     }
 

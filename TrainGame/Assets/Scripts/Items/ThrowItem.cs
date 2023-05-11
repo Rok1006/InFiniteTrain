@@ -40,12 +40,7 @@ public class ThrowItem : InventoryItemPlus
     }
 
     public bool PlantIndicator() {
-        //decreases radiation
-        _playerInfo = FindObjectOfType<PlayerInformation>();
-        if (_playerInfo == null)
-            Debug.LogWarning("cant find playerInfomation");
-
-        //increase movement speed
+        //get reference
         _playerManager = FindObjectOfType<PlayerManager>();
         if (_playerManager == null)
             Debug.LogWarning("cant find playerManager");

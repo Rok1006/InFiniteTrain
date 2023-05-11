@@ -51,8 +51,6 @@ namespace Combine
             if (!_combinationResult.TryGetValue((item1ID, item2ID), out var result) &&
                 !_combinationResult.TryGetValue((item2ID, item1ID), out result)) return false;
 
-            Debug.Log(result.ItemID + " is the result");
-
             //see if the result requires blueprint
             if (result.ItemID.Equals("Stunner")) {
                 if (!FindObjectOfType<PlayerManager>().CanCombineStunner)

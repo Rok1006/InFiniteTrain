@@ -83,7 +83,6 @@ namespace Combine
                 if (!isDestinationEmpty &&
                     Combine.TryCombineItems(_inventory, _slot.Index, destinationInventory, destinationSlot.Index)) {
                     _player.CombineFeedback.PlayFeedbacks();
-                    Debug.Log("Played Combine Feedback");
                     return;
                 }
                 if (_inventory == destinationInventory && (_item.CanMoveObject && isDestinationEmpty || _item.CanSwapObject && !isDestinationEmpty && destinationItem.CanSwapObject)) {
