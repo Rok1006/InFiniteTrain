@@ -57,8 +57,8 @@ public class DepthDetect_Other : MonoBehaviour
 
     public void CheckLayer(GameObject obj){
         if(obj.tag == "Environment"){
-            var so_obj = obj.transform.GetChild(1);
-            int obj_currentIndex = so_obj.GetComponent<DepthDetect_Other>().thisObjIndex;
+            //var so_obj = obj.transform.GetChild(1);
+            int obj_currentIndex = obj.GetComponent<DepthDetect_Other>().thisObjIndex;
             Debug.Log(obj_currentIndex);
             if(obj.transform.position.z>this.transform.position.z){ //behind
                 OrderIndex = obj_currentIndex+1;
