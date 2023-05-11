@@ -28,7 +28,7 @@ public class ThrowItem : InventoryItemPlus
             if (indicator != null) {
                 project.destination = indicator;
                 project.timeToTake = 1.5f;
-                Debug.Log("Using mechanism item");
+                Debug.Log("Using throwing item");
             } else
                 Debug.Log("cant find indicator");
             
