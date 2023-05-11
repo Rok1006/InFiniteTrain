@@ -93,6 +93,36 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &2438826171497545591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1910136113133228145}
+  m_Layer: 13
+  m_Name: DetectObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1910136113133228145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438826171497545591}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4281818918424238636}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4281818918424238803
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +163,7 @@ Transform:
   - {fileID: 5582811176495618856}
   - {fileID: 7076179869814467171}
   - {fileID: 4009733648618071572}
+  - {fileID: 1910136113133228145}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -159,7 +190,7 @@ MonoBehaviour:
   stun: {fileID: 2807450091263560621}
   player: {fileID: 6894699376349878751, guid: 22a35bf57902eff4db7304f66222a5f6, type: 3}
   enemyChild: {fileID: 6447627416379920952}
-  DetectObj: {fileID: 0}
+  DetectObj: {fileID: 2438826171497545591}
   HitBox: {fileID: 8437682772955756220}
   layermask:
     serializedVersion: 2
@@ -499,6 +530,7 @@ MonoBehaviour:
   ObjWithSortingLayer: {fileID: 6447627416379920952}
   thisObjIndex: 0
   OrderIndex: 0
+  CheckCast: 1
 --- !u!65 &4011928747712557864
 BoxCollider:
   m_ObjectHideFlags: 0
