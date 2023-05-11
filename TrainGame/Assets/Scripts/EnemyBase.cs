@@ -5,11 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyBase : MonoBehaviour
 {
-    private MPTSceneManager MSM;
+    public MPTSceneManager MSM;
     public NavMeshAgent agent;
     public GameObject player;
     public Rigidbody rb;
     public Animator anim;
+    public GameObject eletricObj;
+    public GameObject DetectSign;
+    public GameObject HitBox;
 
     [SerializeField] private GameObject dustPrefab; //the particle system: prefab
     [SerializeField] private GameObject emitPt; //the particle system: prefab
@@ -30,9 +33,13 @@ public class EnemyBase : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        MSM = GameObject.Find("MPTSceneManager").GetComponent<MPTSceneManager>();
         agent = this.GetComponent<NavMeshAgent>();
         rb = this.GetComponent<Rigidbody>();
         anim = this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>();
+        DetectSign.SetActive(false);
+        eletricObj.SetActive(false);
+        HitBox.SetActive(false);
     }
     void Start()
     {
