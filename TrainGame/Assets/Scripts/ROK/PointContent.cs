@@ -112,13 +112,13 @@ public class PointContent : MonoBehaviour
     void AssignDepthLayer(GameObject j){ //put this in a for loop check the spawned obj with the created list evertime if the Z is more front assign a higher number
         //j is the newly instanciated obj
         //j.GetComponent<SpriteRenderer>().sortingOrder = 0;
-        for(int i = 0; i<DepthDetectStuff.Count; i++){
-            if(j.transform.position.z > DepthDetectStuff[i].transform.position.z){ //is at the back
-                j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order-1;
-            }else if(j.transform.position.z < DepthDetectStuff[i].transform.position.z){ //is in front
-                j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order+1;
-            }
-        }
+        // for(int i = 0; i<DepthDetectStuff.Count; i++){
+        //     if(j.transform.position.z > DepthDetectStuff[i].transform.position.z){ //is at the back
+        //         j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order-1;
+        //     }else if(j.transform.position.z < DepthDetectStuff[i].transform.position.z){ //is in front
+        //         j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order+1;
+        //     }
+        // }
     }
     void CheckIfOverlap(List<GameObject> ListChecking, List<GameObject> BA){ //For traps
         int overLapCount = 0;
