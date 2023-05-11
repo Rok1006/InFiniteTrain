@@ -114,12 +114,7 @@ public class MapManager : MonoBehaviour
         if(Info.Instance.EnemyAppearState == 1 && Info.Instance.ConfirmedSelectedPt==BossTrainAppearTriggerIndex){  //& after player come back
             enemyTrain.SetActive(true); //it appeared
         }
-// //FirstAppear
-//         if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&Info.Instance.EnemyAppearState == 1){ //FirstAppear
-//             Debug.Log("apear");
-//             StartCoroutine(EnemyAppear()); 
 
-//         }
 //Everytime after appear
         if(SMD.mapCore.activeSelf&&enemyTrain.activeSelf&&Info.Instance.EnemyAppearState > 1){ //FirstAppear
             //Enemy train bounce
@@ -137,12 +132,6 @@ public class MapManager : MonoBehaviour
         }else{
             enemyTrain.SetActive(false);
         }
-
-// //GAME OVER
-//         if(Info.Instance.ConfirmedEnemyTrainLocal!= 0 && Info.Instance.ConfirmedEnemyTrainLocal == Info.Instance.ConfirmedPlayerTrainLocal){ //IF boss train in the same position as player
-            
-//             SMD.GameOverScreen.SetActive(true);
-//         }
         
 //If Enmy is one unit away frm player
         if(Info.Instance.EnemyAppearState == 2 && Info.Instance.ConfirmedEnemyTrainLocal!= 0 && Info.Instance.ConfirmedEnemyTrainLocal == Info.Instance.ConfirmedPlayerTrainLocal-1){
@@ -228,7 +217,6 @@ public class MapManager : MonoBehaviour
     }
     public void UpdatePlayerIcon()
     {
-        
         for(int i = 0; i < points.Length; i++)
         {
             points[i].GetComponent<Point>().isPlayer = false;
@@ -240,11 +228,6 @@ public class MapManager : MonoBehaviour
                 //PopUpPoint.Add(points[i]);
             }
         }
-        // if (this.player != null && this.player.GetComponent<Point>().id != 0) 
-        // {
-        //     Debug.Log("ddf");
-        //     player.gameObject.GetComponent<MapPopUp>().ForceChange();
-        // }
     }
     public void FFC(){
         if (this.player != null && this.player.GetComponent<Point>().id != 0) 

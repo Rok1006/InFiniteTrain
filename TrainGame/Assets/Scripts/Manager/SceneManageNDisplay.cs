@@ -131,7 +131,7 @@ public class SceneManageNDisplay : MonoBehaviour
     {
         roomName.text = '"' + " " + currentCartName.ToString() + " " + '"';
 
-        if(theMap.activeSelf&&PanelOn){
+        if(theMap.activeSelf&&PanelOn){ //Turn off map
             if(Input.GetKeyUp(KeyCode.Space)&&!dr.IsDialogueRunning){
                 CloseMap();
                 PanelOn = false;
@@ -189,7 +189,7 @@ public class SceneManageNDisplay : MonoBehaviour
         if(Info.Instance.EnemyAppearState == 1){ //FirstAppear MM.enemyTrain.activeSelf&&
             Debug.Log("apear");
             MM.EnemyAppear();
-            player.GetComponent<Character>().enabled = false;
+            player.GetComponent<Character>().enabled = false; //turn back true in AfterFirstAppear in MM cs
         }
     }
     void MapCamSwitch(){
@@ -266,7 +266,10 @@ public class SceneManageNDisplay : MonoBehaviour
     public void PullLever(){  //put this in actionCall
         CheckIfEnoughFuel();
         player.GetComponent<PlayerManager>().MCFrontAnim.SetTrigger("InsertFlip");
-
+        if(!PickedLocation){
+            WarningGuideCall(4); //picked location
+        }else{//picked location
+        }
         if(hasEnoughFuel){
             if(ISF.CurrentSelectedPt != ISF.ConfirmedSelectedPt){ //if player isnt already arrived  && ISF.CurrentSelectedPt!=MM.ExitPtIndex
             doorAnim.SetTrigger("Close"); 
@@ -274,21 +277,18 @@ public class SceneManageNDisplay : MonoBehaviour
             doorIsOpen = 0;
             TrainInfoGuide.SetActive(false);
         
-            if(!PickedLocation){
-                WarningGuideCall(3); //picked location
-            }
             Invoke("Pull", .25f);
             ISF.ConfirmedPlayerTrainLocal = ISF.CurrentPlayerTrainInterval;
             ISF.ConfirmedSelectedPt = ISF.CurrentSelectedPt;
             MM.points[ISF.CurrentSelectedPt].GetComponent<MapPopUp>().clicked = false; //when player pull lever and confirm, flag is plugged
             MM.UpdateMapPointState();
             MM.ResetFuelNeedDisplay();
-            
             //play pull lever audio
             leverAudio.Play();
 
             }else{
-                WarningGuideCall(5);
+                int ran = Random.Range(4,5);
+                WarningGuideCall(ran);
             }
         }else{
             WarningGuideCall(2); //nt enough fuel

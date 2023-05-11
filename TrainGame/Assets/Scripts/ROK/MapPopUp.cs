@@ -92,7 +92,7 @@ public class MapPopUp : MonoBehaviour
                 SceneManageNDisplay.PickedLocation = true; //this shd turn false when train arrive at location
                 mm.PlayerMove(this.GetComponent<Point>().id);  //sent desitination inteval
                 //SceneManageNDisplay.fuelCost = this.gameObject.GetComponent<Point>().fuelAmtNeeded;
-                SceneManageNDisplay.WarningGuideCall(4);
+                SceneManageNDisplay.WarningGuideCall(3);
                 mm.GetTotalFuelNeeded(this.GetComponent<Point>().id);
                 GetComponent<Point>().MovePlayer(); //new
                 GetComponent<Point>().isPlayer = true; //new

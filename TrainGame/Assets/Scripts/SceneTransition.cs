@@ -79,7 +79,7 @@ public class SceneTransition : MonoBehaviour
             Tutorial.instance.stepIndex++;
         }
         if (other.GetComponent<PlayerManager>() != null) {
-            if(InfoSC.ConfirmedSelectedPt == 2 && InfoSC.EnemyAppearState < 1){
+            if(InfoSC.ConfirmedSelectedPt >= 2 && InfoSC.EnemyAppearState < 1){
                 InfoSC.EnemyAppearState = 1;
             }
             saveAndToOtherScene(otherSceneName);

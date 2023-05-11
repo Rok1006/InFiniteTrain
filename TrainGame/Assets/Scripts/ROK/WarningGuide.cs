@@ -50,10 +50,10 @@ public class WarningGuide : MonoBehaviour
                 message = "    Not enough Fuel";
             break;
             case 3:
-                message = "    Destination Not Set";
+                message = "    Destination Set";
             break;
             case 4:
-                message = "    Destination Set";
+                message = "    Destination Not Set";
             break;
             case 5:
                 message = "    You have already arrived.";
