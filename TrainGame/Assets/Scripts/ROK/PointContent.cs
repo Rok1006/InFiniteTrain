@@ -112,13 +112,13 @@ public class PointContent : MonoBehaviour
     void AssignDepthLayer(GameObject j){ //put this in a for loop check the spawned obj with the created list evertime if the Z is more front assign a higher number
         //j is the newly instanciated obj
         //j.GetComponent<SpriteRenderer>().sortingOrder = 0;
-        for(int i = 0; i<DepthDetectStuff.Count; i++){
-            if(j.transform.position.z > DepthDetectStuff[i].transform.position.z){ //is at the back
-                j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order-1;
-            }else if(j.transform.position.z < DepthDetectStuff[i].transform.position.z){ //is in front
-                j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order+1;
-            }
-        }
+        // for(int i = 0; i<DepthDetectStuff.Count; i++){
+        //     if(j.transform.position.z > DepthDetectStuff[i].transform.position.z){ //is at the back
+        //         j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order-1;
+        //     }else if(j.transform.position.z < DepthDetectStuff[i].transform.position.z){ //is in front
+        //         j.GetComponent<SpawnedStuff>().order = DepthDetectStuff[i].GetComponent<SpawnedStuff>().order+1;
+        //     }
+        // }
     }
     void CheckIfOverlap(List<GameObject> ListChecking, List<GameObject> BA){ //For traps
         int overLapCount = 0;
@@ -154,7 +154,7 @@ public class PointContent : MonoBehaviour
         if(Physics.BoxCast(rayStartPos,t.transform.localScale / 2.0f, Vector3.down, out hit, Quaternion.identity,  raycastLength, layerMask)){   //not detecting the tile but the ground
             Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.green);
             //Debug.Log("yep");
-            Debug.Log("Object detected underneath: " + hit.collider.gameObject.name);
+            //Debug.Log("Object detected underneath: " + hit.collider.gameObject.name);
             
             return true;
         }else{
@@ -168,7 +168,7 @@ public class PointContent : MonoBehaviour
         Vector3 rayStartPos = new Vector3(t.transform.position.x, t.transform.position.y,t.transform.position.z);
         if(Physics.BoxCast(rayStartPos,t.transform.localScale / 2f, Vector3.down, out hit, Quaternion.identity,  raycastLength, layerMask)){   //not detecting the tile but the ground
             Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.green);
-            Debug.Log("There is no no ground below " + hit.collider.gameObject.name);
+            //Debug.Log("There is no no ground below " + hit.collider.gameObject.name);
             return true; //true
         }else{
             Debug.DrawRay(rayStartPos, new Vector3(0,-10,0), Color.red);
@@ -197,7 +197,7 @@ public class PointContent : MonoBehaviour
             GameObject g;
             Vector3 currentPt;
             while(true){
-                Debug.Log(i);
+                //Debug.Log(i);
                 currentPt = GetRandomPt(BA);
                 currentPt = new Vector3(currentPt.x, currentPt.y+15, currentPt.z);
                 g = Instantiate (GrassType[Random.Range(0, GrassType.Length)], currentPt, Quaternion.identity);

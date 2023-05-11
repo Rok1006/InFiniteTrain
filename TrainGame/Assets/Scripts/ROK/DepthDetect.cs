@@ -32,7 +32,7 @@ public class DepthDetect : MonoBehaviour
         RaycastHit hitB;
         if(Physics.Raycast(rayStartPos, Vector3.forward, out hitB, rayLength)){
             Debug.DrawRay(rayStartPos, new Vector3(0,0,rayLength), Color.green);
-            Debug.Log(hitB.transform.gameObject.name);
+            //Debug.Log(hitB.transform.gameObject.name);
             CheckLayer(hitB.transform.gameObject);
         }
         Debug.DrawRay(rayStartPos, new Vector3(0,0,rayLength), Color.red);
@@ -42,7 +42,7 @@ public class DepthDetect : MonoBehaviour
         RaycastHit hitF;
         if(Physics.Raycast(rayStartPos, -Vector3.forward, out hitF, rayLength)){
             Debug.DrawRay(rayStartPos, new Vector3(0,0,-rayLength), Color.green);
-            Debug.Log(hitF.transform.gameObject.name);
+            //Debug.Log(hitF.transform.gameObject.name);
             CheckLayer(hitF.transform.gameObject);
         }
         Debug.DrawRay(rayStartPos, new Vector3(0,0,-rayLength), Color.red);
@@ -61,7 +61,7 @@ public class DepthDetect : MonoBehaviour
     }
     public void CheckLayer(GameObject obj){
         if(obj.tag == "Environment"){
-            var so_obj = obj.transform.GetChild(0);
+            var so_obj = obj.transform.GetChild(1);
             int obj_currentIndex = so_obj.GetComponent<DepthDetect_Other>().thisObjIndex;
             Debug.Log(obj_currentIndex);
             if(obj.transform.position.z>Main.transform.position.z){ //behind

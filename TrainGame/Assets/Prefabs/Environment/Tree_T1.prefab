@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7828418119131690155}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
 --- !u!33 &2305881296922290197
 MeshFilter:
@@ -186,8 +186,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -1.94, z: 0.17}
   m_LocalScale: {x: 0.41604, y: 0.41604, z: 0.41604}
   m_Children:
-  - {fileID: 5273210481504150961}
   - {fileID: 8478501248060370529}
+  - {fileID: 5273210481504150961}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 1660659305801645083}
   - component: {fileID: 5256204938823640314}
   m_Layer: 14
-  m_Name: TreeDetect(Top)
+  m_Name: DepthDetect_Tree
   m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,11 +230,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8874524947007932339}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -0.022512052, y: 4.0632677, z: -0}
+  m_LocalPosition: {x: -0.022512052, y: 0.25, z: 0}
   m_LocalScale: {x: 2.4036148, y: 2.4036148, z: 2.4036148}
   m_Children: []
   m_Father: {fileID: 7828418119131690155}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1660659305801645083
 BoxCollider:
@@ -247,8 +247,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.3329797, y: 0, z: 2.960909}
-  m_Center: {x: -0.043451574, y: -0.000000012986564, z: 0.21787846}
+  m_Size: {x: 2.3329797, y: 0, z: 3.3944893}
+  m_Center: {x: -0.04345155, y: 0.000000095805014, z: -1.6073403}
 --- !u!114 &5256204938823640314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,3 +266,4 @@ MonoBehaviour:
   ObjWithSortingLayer: {fileID: 3272001311466974753}
   thisObjIndex: 0
   OrderIndex: 0
+  CheckCast: 1
