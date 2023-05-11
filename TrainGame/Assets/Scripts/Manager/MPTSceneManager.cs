@@ -28,7 +28,7 @@ public class MPTSceneManager : MonoBehaviour
         if (playerInfo == null){Debug.Log("player info is null");}
         // SEAnim = ScreenEffect.GetComponent<Animator>();
         ScreenEffect.SetActive(true);
-        Invoke("DeadlyTimerOnOFF",.5f);
+        //Invoke("DeadlyTimerOnOFF",.5f);
         // if(Info.Instance.DeadCountDownStart){
         //     MP_deadlyTimer.SetActive(true);  
         // }else{
@@ -37,6 +37,7 @@ public class MPTSceneManager : MonoBehaviour
         LocationInfoDisplay.SetActive(false);
 
         DisplayLocationInfo(PCM.PointScene[Info.Instance.pointID].GetComponent<PointContent>().LandTitle);
+        MP_deadlyTimer.SetActive(false); 
     }
 
     void FixedUpdate()
