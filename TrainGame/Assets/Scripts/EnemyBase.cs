@@ -137,4 +137,9 @@ public class EnemyBase : MonoBehaviour
             Invoke("DestroyDust", .9f);
         }
     }
+    private void DestroyDust()
+    {
+        Destroy(dust[0]);
+        dust.RemoveAt(0);
+    }
 }

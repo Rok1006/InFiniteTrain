@@ -102,6 +102,14 @@ public class MeleeEnemyPlus : EnemyBase
     }
     public override void Attack()
     {
+        if (agent.destination.x < this.transform.position.x)
+        {
+            detect.GetComponent<MMBillboard>().OffsetDirection = new Vector3(0, 0, -1);
+        }
+        else if (agent.destination.x > this.transform.position.x)
+        {
+            detect.GetComponent<MMBillboard>().OffsetDirection = new Vector3(0, 0, 1);
+        }
         attackduration -= Time.deltaTime;
         agent.SetDestination(player.transform.position);
         anim.SetBool("Walking", false);
@@ -110,16 +118,20 @@ public class MeleeEnemyPlus : EnemyBase
         HitBox.SetActive(true);
         if(attackduration < 0 && Vector3.Distance(player.transform.position , this.transform.position ) < 20f)
         {
+            anim.SetBool("Walking", true);
             attackduration = 1;
             state = State.PREPARE;
         }else if(attackduration < 0 && Vector3.Distance(player.transform.position, this.transform.position) >= 20f)
         {
+            anim.SetBool("Walking", true);
             attackduration = 1;
             state = State.PATROL;
+            agent.speed = 5;
         }
     }
     public override void MoveTowards()
     {
+        agent.speed = 12;
         if (agent.destination.x < this.transform.position.x)
         {
             detect.GetComponent<MMBillboard>().OffsetDirection = new Vector3(0, 0, -1);
@@ -141,8 +153,8 @@ public class MeleeEnemyPlus : EnemyBase
         else
         {
             agent.SetDestination(player.transform.position);
-            //anim.SetBool("Walking", true);
-            //DustEmit();
+            anim.SetBool("Walking", true);
+            DustEmit();
         }
     }
 }
