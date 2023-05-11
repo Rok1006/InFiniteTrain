@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2409359529036100383}
-  - component: {fileID: 6743184041336407679}
   - component: {fileID: 6781751647508116861}
+  - component: {fileID: 8931737463744817975}
+  - component: {fileID: 5113578246498762012}
   m_Layer: 24
   m_Name: MushRoomV1
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,23 +30,11 @@ Transform:
   m_LocalPosition: {x: 12.7, y: 0.01, z: -14.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8281452155857781141}
   - {fileID: 974149000493787966}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6743184041336407679
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6276835593191020488}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.82117796
-  m_Center: {x: 0.06295347, y: 0.86175513, z: -0.2889228}
 --- !u!114 &6781751647508116861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6276835593191020488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1181cf918032e448fa00e15b41cf777e, type: 3}
   m_Name: 
@@ -65,6 +54,98 @@ MonoBehaviour:
   Component:
   - {fileID: 8723797731025992877}
   order: 0
+--- !u!65 &8931737463744817975
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276835593191020488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5891323, y: 1.7184538, z: 1.0001335}
+  m_Center: {x: 0.035923004, y: 0.91962105, z: -0.31618595}
+--- !u!114 &5113578246498762012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6276835593191020488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb5adbc3705a442fbdf4cfc9b12435d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentObjType: 2
+  rayLength: 15
+  ObjWithSortingLayer: {fileID: 8723797731025992877}
+  thisObjIndex: 0
+  OrderIndex: 0
+--- !u!1 &7414681270414543901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8281452155857781141}
+  - component: {fileID: 3722174295583145045}
+  - component: {fileID: 936635718392420071}
+  m_Layer: 14
+  m_Name: MushDetect(Top)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8281452155857781141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414681270414543901}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2409359529036100383}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3722174295583145045
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414681270414543901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.73, y: 1.7877231, z: 0.19109344}
+  m_Center: {x: 0, y: 0.954736, z: -0.66630363}
+--- !u!114 &936635718392420071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414681270414543901}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb5adbc3705a442fbdf4cfc9b12435d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentObjType: 2
+  rayLength: 15
+  ObjWithSortingLayer: {fileID: 8723797731025992877}
+  thisObjIndex: 0
+  OrderIndex: 0
 --- !u!1 &8723797731025992877
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,9 +156,9 @@ GameObject:
   m_Component:
   - component: {fileID: 974149000493787966}
   - component: {fileID: 4387767031466259771}
-  m_Layer: 24
+  m_Layer: 14
   m_Name: MushRoomV1
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +175,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2409359529036100383}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!212 &4387767031466259771
 SpriteRenderer:
