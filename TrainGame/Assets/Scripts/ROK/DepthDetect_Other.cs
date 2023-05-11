@@ -16,6 +16,7 @@ public class DepthDetect_Other : MonoBehaviour
     [SerializeField] private GameObject ObjWithSortingLayer;
     public int thisObjIndex;
     [ReadOnly] public int OrderIndex = 0;
+    public bool CheckCast = true;
 
     
     void Start()
@@ -27,7 +28,10 @@ public class DepthDetect_Other : MonoBehaviour
     {
         thisObjIndex = ObjWithSortingLayer.GetComponent<MeshRenderer>().sortingOrder;
         ObjWithSortingLayer.GetComponent<MeshRenderer>().sortingOrder = OrderIndex;
-        RayDetect();
+        if(CheckCast){
+            RayDetect();   
+        }
+        
     }
     void RayDetect(){
         //back
@@ -53,7 +57,7 @@ public class DepthDetect_Other : MonoBehaviour
 
     public void CheckLayer(GameObject obj){
         if(obj.tag == "Environment"){
-            var so_obj = obj.transform.GetChild(0);
+            var so_obj = obj.transform.GetChild(1);
             int obj_currentIndex = so_obj.GetComponent<DepthDetect_Other>().thisObjIndex;
             Debug.Log(obj_currentIndex);
             if(obj.transform.position.z>this.transform.position.z){ //behind

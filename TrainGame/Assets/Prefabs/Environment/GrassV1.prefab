@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7244021030683621814}
   - component: {fileID: 3096622976872546132}
   m_Layer: 14
-  m_Name: GrassDetect(top)
+  m_Name: DepthDetect_Grass
   m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1823610795536324108}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7244021030683621814
 BoxCollider:
@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.0010843, y: 7.8412676, z: 1}
-  m_Center: {x: 0.073040485, y: 3.8760371, z: 0}
+  m_Size: {x: 6.307293, y: 7.8412676, z: 0}
+  m_Center: {x: 0.35299253, y: 3.8760371, z: 0}
 --- !u!114 &3096622976872546132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +61,8 @@ MonoBehaviour:
   rayLength: 15
   ObjWithSortingLayer: {fileID: 1759478874082944103}
   thisObjIndex: 0
+  OrderIndex: 0
+  CheckCast: 1
 --- !u!1 &1759478874082944103
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +97,7 @@ Transform:
   m_LocalScale: {x: 1.2617667, y: 1.5412, z: 1.5412}
   m_Children: []
   m_Father: {fileID: 1823610795536324108}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5780967557217861281
 MeshFilter:
@@ -144,7 +146,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 47421343
   m_SortingLayer: 8
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &5197372765209955181
 Animator:
@@ -264,8 +266,8 @@ Transform:
   m_LocalPosition: {x: -1.75, y: 1.674, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1535164538475223294}
   - {fileID: 4417544623782252360}
+  - {fileID: 1535164538475223294}
   - {fileID: 3922755300026367439}
   m_Father: {fileID: 0}
   m_RootOrder: 0
