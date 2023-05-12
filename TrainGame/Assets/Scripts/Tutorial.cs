@@ -457,6 +457,8 @@ public class Tutorial : MonoBehaviour
         }
         
     }
+
+    [YarnCommand("DialogueConfig")]
     public void DialogueConfig()
     {
         dialoguePlayed = true;
