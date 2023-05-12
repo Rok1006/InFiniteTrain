@@ -316,6 +316,13 @@ public class PointContent : MonoBehaviour
 
         //distribute items into different boxes
         for (int i = 0; i < TotalItemList.Count; i++) {
+            //first make sure all resource boxes have at least one item
+            if (i <= boxes.Count-1) {
+                boxes[i].AddItem(TotalItemList[i].Item, TotalItemList[i].Quantity);
+                continue;
+            }
+
+            //then randomly distrubute them
             for (int tryTime = 0; tryTime < 99; tryTime++) {
                 int randomIndex = Random.Range(0, boxes.Count);
                 if (boxes[randomIndex].NumberOfFreeSlots > 0) {
