@@ -9,6 +9,7 @@ public class BackpackInventoryUI : MonoBehaviour, MMEventListener<MMInventoryEve
 {
     [SerializeField] InventoryInputManager inventoryInput;
     [SerializeField] InventoryDisplay inventoryDisplay;
+    [SerializeField] int firstSlotIndex = 0;
 
     //getters & setters
     public InventoryDisplay InventoryDisplay {get=>inventoryDisplay;}
@@ -22,7 +23,7 @@ public class BackpackInventoryUI : MonoBehaviour, MMEventListener<MMInventoryEve
     }
 
     void Start() {
-        
+        Invoke("SelectFirstSlot", 0.1f);
     }
 
     void Update() {
@@ -32,5 +33,9 @@ public class BackpackInventoryUI : MonoBehaviour, MMEventListener<MMInventoryEve
     }
 
     public virtual void OnMMEvent(MMInventoryEvent inventoryEvent) {
+    }
+
+    public void SelectFirstSlot() {
+        inventoryDisplay.SlotContainer[firstSlotIndex].Select();
     }
 }
