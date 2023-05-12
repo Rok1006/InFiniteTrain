@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StunnerObj : MonoBehaviour
 {
-    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private int enemyLayer;
     void Start()
     {
         
@@ -17,7 +17,9 @@ public class StunnerObj : MonoBehaviour
     }
 
     void OnTriggerEnter (Collider collider) {
+        Debug.Log("triggered entered " + collider.gameObject.name + "\nlayer + " + collider.gameObject.layer + " compare " + enemyLayer);
         if (collider.gameObject.layer.Equals(enemyLayer)) {
+            Debug.Log("Enemy entered");
             EnemyBase enemyBase;
             collider.TryGetComponent<EnemyBase>(out enemyBase);
             if (enemyBase != null) {

@@ -329,21 +329,17 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
 
     public virtual GameObject CreateThrowDestination()
     {
-        Debug.Log("create throw destination 0");
         if (EventSystem.current.IsPointerOverGameObject())
             return null;
 
-        Debug.Log("create throw destination 1");
 
         if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButton(0)) return null;
-        Debug.Log("create throw destination 2");
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     #if UNITY_EDITOR
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
     #endif
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, TargetLayerMask))
         {
-            Debug.Log("create throw destination 3");
             GameObject Des = Instantiate(throwDestination, Vector3.zero, Quaternion.identity);
             Des.transform.position = hitInfo.point;
             return Des;
@@ -351,7 +347,6 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             Physics.Raycast(ray, out var hitInfo1, Mathf.Infinity, Physics.AllLayers);
             Debug.Log("hitted " + hitInfo1.transform.gameObject.name);
         }
-        Debug.Log("create throw destination 4");
         return null;
     }
 
