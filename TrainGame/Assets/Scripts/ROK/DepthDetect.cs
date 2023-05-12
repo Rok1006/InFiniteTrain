@@ -16,6 +16,7 @@ public class DepthDetect : MonoBehaviour
 
     [ReadOnly] public int OrderIndex = 0;
     [ReadOnly] public int TargetIndex;
+    public GameObject targetObj;
     
 
     void Start()
@@ -60,10 +61,13 @@ public class DepthDetect : MonoBehaviour
         }
     
     }
-    public void CheckLayer(GameObject obj){
+    public void CheckLayer(GameObject obj){// obj is the parent
+
         if(obj.tag == "Environment"){
             //var so_obj = obj.transform.GetChild(1);
+            Debug.Log(obj.name);
             GameObject g = obj.GetComponent<DepthDetect_Other>().ZObj;
+            targetObj = g;
             int obj_currentIndex = obj.GetComponent<DepthDetect_Other>().thisObjIndex;
             TargetIndex = obj_currentIndex;
             Debug.Log(obj_currentIndex);
