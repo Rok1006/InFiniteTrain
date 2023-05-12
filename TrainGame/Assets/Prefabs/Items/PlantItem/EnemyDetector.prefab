@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2540272481640834493}
   - component: {fileID: 2540272481640834494}
-  - component: {fileID: 2540272481640834495}
+  - component: {fileID: 7129197160000542572}
+  - component: {fileID: 8610866301547906660}
   m_Layer: 0
   m_Name: EnemyDetector
   m_TagString: Untagged
@@ -53,7 +54,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2540272481640834495
+--- !u!114 &7129197160000542572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,11 +63,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 2540272481640834488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e806cc0592a343e48e67f7639c30006, type: 3}
+  m_Script: {fileID: 11500000, guid: 30c5b936b2437ba46942d9909efb9ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  currentItem: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  enemyPositions: []
+  enemyDetectorArrow: {fileID: 8993179674880460815, guid: af691bc6e8bb4f14880971ffc6cc77e2,
+    type: 3}
+  worldUICanvas: {fileID: 0}
+--- !u!135 &8610866301547906660
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540272481640834488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 50
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3671344130750884174
 GameObject:
   m_ObjectHideFlags: 0

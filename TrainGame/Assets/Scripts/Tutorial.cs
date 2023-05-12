@@ -127,7 +127,6 @@ public class Tutorial : MonoBehaviour
                     if (player == null)
                     {
                         player = GameObject.Find("PlayerMC");
-
                     }
                     else
                     {
