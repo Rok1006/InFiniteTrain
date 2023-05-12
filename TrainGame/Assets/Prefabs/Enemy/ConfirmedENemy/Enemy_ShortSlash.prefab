@@ -138,9 +138,10 @@ GameObject:
   - component: {fileID: 7592367713576537573}
   - component: {fileID: 2807450091263560621}
   - component: {fileID: 2128565603542203155}
+  - component: {fileID: 1214250104}
   m_Layer: 13
   m_Name: Enemy_ShortSlash
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,8 +199,8 @@ MonoBehaviour:
     m_Bits: 1024
   destPoint: 0
   approachSpeed: 15
-  range: 18
-  fovAngle: 120
+  range: 17
+  fovAngle: 360
   canAttack: 0
   DetectSign: {fileID: 5582811176495618859}
   popUp: 0
@@ -287,15 +288,39 @@ MonoBehaviour:
   emitPt: {fileID: 6092477851136150424}
   dust: []
   state: 0
-  wayPoints: []
+  wayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   detect: {fileID: 0}
   fovAngle: 120
   layermask:
     serializedVersion: 2
     m_Bits: 1024
-  range: 18
+  range: 20
   canAttack: 0
   attackduration: 1
+--- !u!195 &1214250104
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918424238803}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1
+  m_Speed: 5
+  m_Acceleration: 50
+  avoidancePriority: 50
+  m_AngularSpeed: 300
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &6333979575818230689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,6 +600,7 @@ GameObject:
   - component: {fileID: 4009733648618071572}
   - component: {fileID: 5666869548437243291}
   - component: {fileID: 7543186464759767719}
+  - component: {fileID: 812203258}
   m_Layer: 13
   m_Name: HitBox
   m_TagString: Untagged
@@ -623,6 +649,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 3
   Player: {fileID: 0}
+--- !u!114 &812203258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8437682772955756220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76891b3b532f84acaaeed44c357bd00c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  Owner: {fileID: 0}
+  TriggerFilter: 195
+  MinDamageCaused: 1
+  MaxDamageCaused: 1
+  TypedDamages: []
+  DamageCausedKnockbackType: 1
+  DamageCausedKnockbackDirection: 0
+  DamageCausedKnockbackForce: {x: 100, y: 30, z: 0}
+  InvincibilityDuration: 0.5
+  RepeatDamageOverTime: 0
+  AmountOfRepeats: 3
+  DurationBetweenRepeats: 1
+  DamageOverTimeInterruptible: 1
+  RepeatedDamageType: {fileID: 0}
+  DamageTakenEveryTime: 0
+  DamageTakenDamageable: 0
+  DamageTakenNonDamageable: 0
+  DamageTakenKnockbackType: 0
+  DamageTakenKnockbackForce: {x: 0, y: 0, z: 0}
+  DamageTakenInvincibilityDuration: 0.5
+  HitDamageableFeedback: {fileID: 0}
+  HitNonDamageableFeedback: {fileID: 0}
+  HitAnythingFeedback: {fileID: 0}
+  HitDamageableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  HitNonDamageableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  HitAnythingEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &3191085865494118662
 PrefabInstance:
   m_ObjectHideFlags: 0
