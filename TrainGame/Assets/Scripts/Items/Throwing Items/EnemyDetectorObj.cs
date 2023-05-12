@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDetectorObj : MonoBehaviour
 {
-    public LayerMask enemyLayer;
+    public int enemyLayer;
     public List<Transform> enemyPositions;
     [SerializeField] private GameObject enemyDetectorArrow;
     private List<GameObject> arrows = new List<GameObject>();

@@ -71,7 +71,7 @@ public class EnemyBase : MonoBehaviour
                 Detect();
                 break;
             case State.STUN:
-               // StartCoroutine(Stun());
+               StartCoroutine(Stun());
                 break;
             case State.GOBACK:
                 //WalkBack();
@@ -114,6 +114,27 @@ public class EnemyBase : MonoBehaviour
         this.state = State.PATROL;
         
         anim.SetBool("Walking", false);
+    }
+
+    public virtual IEnumerator Stun()
+    {
+        agent.isStopped = true;
+        float duration = 6f; // 6 seconds you can change this to
+                             //to whatever you want
+        float totalTime = 0;
+        anim.SetBool("Walking", false);
+        while (totalTime <= duration)
+        {
+            //rb.velocity = Vector3.zero;
+            totalTime += Time.deltaTime;
+            var integer = (int)totalTime; /* no need for now */
+            yield return null;
+        }
+
+        agent.isStopped = false;
+        this.state = State.PATROL;
+        
+        anim.SetBool("Walking", true);
     }
 
     public void DustEmit()
