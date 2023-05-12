@@ -14,7 +14,9 @@ public class SideInventoryDisplay : MonoBehaviour
 
     public void TakeAll() {
         Inventory inventory = inventoryDisplay.TargetInventory;
+        Inventory playerInventory = Inventory.FindInventory("BackpackInventory", "Player1");
         for (int i = 0; i < inventory.Content.Length; i++)
-            inventory.MoveItemToInventory(startIndex : i, Inventory.FindInventory("BackpackInventory", "Player1"));
+            if (playerInventory.NumberOfFreeSlots > 0)
+                inventory.MoveItemToInventory(startIndex : i, Inventory.FindInventory("BackpackInventory", "Player1"));
     }
 }
