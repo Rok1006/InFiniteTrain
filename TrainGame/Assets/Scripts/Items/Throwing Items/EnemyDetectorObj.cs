@@ -31,9 +31,11 @@ public class EnemyDetectorObj : MonoBehaviour
         }
     }
 
-    private IEnumerator DetectEnemies(float duration) {
+    public IEnumerator DetectEnemies(float duration) {
         yield return new WaitForSeconds(duration);
         enemyPositions.Clear();
+        Destroy(arrows[arrows.Count-1]);
+        arrows.RemoveAt(arrows.Count-1);
         gameObject.SetActive(false);
     }
 }

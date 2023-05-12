@@ -47,7 +47,6 @@ public class Projectile : MonoBehaviour
         {
             VFXObject.transform.position = transform.position;
             VFXObject.SetActive(true);
-            Debug.Log("reached position " + "\nused " + timeToTake + " time");
             StartCoroutine(WaitToDestroySelf());
         }
     }

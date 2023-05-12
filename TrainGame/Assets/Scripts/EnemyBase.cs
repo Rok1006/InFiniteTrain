@@ -25,9 +25,6 @@ public class EnemyBase : MonoBehaviour
         STOP,
         STUN,
         GOBACK
-
-
-
     }
     public State state;
     // Start is called before the first frame update
