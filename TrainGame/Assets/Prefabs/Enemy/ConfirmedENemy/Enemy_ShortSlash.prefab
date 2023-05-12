@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 1322657880}
   - component: {fileID: 4281818918424238626}
   - component: {fileID: 4281818918424238633}
+  - component: {fileID: 1318036483419672674}
   - component: {fileID: 7592367713576537573}
   - component: {fileID: 2807450091263560621}
-  - component: {fileID: 2128565603542203155}
   m_Layer: 13
   m_Name: Enemy_ShortSlash
   m_TagString: Enemy
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4281818918424238803}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4245c5bacb65de241af50c954a093ff9, type: 3}
   m_Name: 
@@ -183,7 +183,6 @@ MonoBehaviour:
   thisAnim: {fileID: 4130051969368848282}
   eletricObj: {fileID: 7076179869814467172}
   rb: {fileID: 0}
-  agent: {fileID: 0}
   state: 0
   wayPoints:
   - {fileID: 0}
@@ -236,6 +235,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1318036483419672674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281818918424238803}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e9b0613a9f9544580c1644719392dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrabMainCameraOnStart: 1
+  NestObject: 0
+  OffsetDirection: {x: 0, y: 0, z: 1}
+  Up: {x: 0, y: 1, z: 0}
 --- !u!114 &7592367713576537573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,40 +277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stun: 0
---- !u!114 &2128565603542203155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4281818918424238803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2461dd058f7aaf84682a9e24fd38855b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MSM: {fileID: 0}
-  agent: {fileID: 0}
-  player: {fileID: 0}
-  rb: {fileID: 0}
-  anim: {fileID: 0}
-  eletricObj: {fileID: 7076179869814467172}
-  DetectSign: {fileID: 5582811176495618859}
-  HitBox: {fileID: 8437682772955756220}
-  dustPrefab: {fileID: 5685760529391821944, guid: b12e481aa2f93446eb0354b953cd57c1,
-    type: 3}
-  emitPt: {fileID: 6092477851136150424}
-  dust: []
-  state: 0
-  wayPoints: []
-  detect: {fileID: 0}
-  fovAngle: 120
-  layermask:
-    serializedVersion: 2
-    m_Bits: 1024
-  range: 18
-  canAttack: 0
-  attackduration: 1
 --- !u!114 &6333979575818230689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,15 +778,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9037156d5cf54f5b8cb74e8fed607fc, type: 3}
---- !u!4 &5582811176495618856 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 40311621797268572, guid: a9037156d5cf54f5b8cb74e8fed607fc,
-    type: 3}
-  m_PrefabInstance: {fileID: 5617420416618452852}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5582811176495618859 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 40311621797268575, guid: a9037156d5cf54f5b8cb74e8fed607fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5617420416618452852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5582811176495618856 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 40311621797268572, guid: a9037156d5cf54f5b8cb74e8fed607fc,
     type: 3}
   m_PrefabInstance: {fileID: 5617420416618452852}
   m_PrefabAsset: {fileID: 0}

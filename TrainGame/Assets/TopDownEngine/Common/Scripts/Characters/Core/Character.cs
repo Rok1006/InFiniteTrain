@@ -757,8 +757,7 @@ namespace MoreMountains.TopDownEngine
 			if (MovementState.CurrentState != CharacterStates.MovementStates.FallingDownHole)
 			{
 				MovementState.ChangeState(CharacterStates.MovementStates.Idle);
-			}  
-			
+			}            
 		}
 
 		protected virtual void OnHit()

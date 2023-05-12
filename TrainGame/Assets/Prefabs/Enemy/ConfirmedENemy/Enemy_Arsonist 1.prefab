@@ -182,8 +182,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2365720452413374208}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0199999, y: 3.79, z: -1.6399997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.02, y: 3.79, z: -1.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2365720453574605972}
@@ -387,7 +387,6 @@ GameObject:
   - component: {fileID: 3927911555707367705}
   - component: {fileID: 3927911555707367706}
   - component: {fileID: 6908401017270855732}
-  - component: {fileID: 7581943970435444007}
   m_Layer: 13
   m_Name: Enemy_Arsonist 1
   m_TagString: Enemy
@@ -450,17 +449,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2365720453574605975}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c202d0cb3963cc743aa769fac6d5ddc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  thisAnim: {fileID: 0}
-  eletricObj: {fileID: 0}
-  rb: {fileID: 0}
-  agent: {fileID: 0}
-  state: 0
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -469,8 +462,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   destPoint: 0
+  speed: 3
   speedWhenAttacking: 1
   attackDuration: 2
+  state: 0
   player: {fileID: 0}
   range: 20
   fovAngle: 60
@@ -488,24 +483,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stun: 0
---- !u!114 &7581943970435444007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2365720453574605975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f33141e72e9c9a46a6078237569a440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  player: {fileID: 0}
-  rb: {fileID: 0}
-  state: 0
-  wayPoints: []
-  detect: {fileID: 0}
 --- !u!1 &3722620937815702821
 GameObject:
   m_ObjectHideFlags: 0

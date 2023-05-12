@@ -1723,7 +1723,6 @@ GameObject:
   - component: {fileID: 5788186036348056180}
   - component: {fileID: 2709395350736304979}
   - component: {fileID: 1312581173041126995}
-  - component: {fileID: -246791624505943554}
   m_Layer: 10
   m_Name: PlayerMC
   m_TagString: Player
@@ -2331,53 +2330,6 @@ MonoBehaviour:
   AutoPickItems: []
   AutoEquipWeaponOnStart: {fileID: 0}
   CharacterHandleWeapon: {fileID: 0}
---- !u!114 &-246791624505943554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6894699376349878751}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76891b3b532f84acaaeed44c357bd00c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  Owner: {fileID: 0}
-  TriggerFilter: 195
-  MinDamageCaused: 10
-  MaxDamageCaused: 10
-  TypedDamages: []
-  DamageCausedKnockbackType: 1
-  DamageCausedKnockbackDirection: 0
-  DamageCausedKnockbackForce: {x: 10, y: 0, z: 0}
-  InvincibilityDuration: 0.5
-  RepeatDamageOverTime: 0
-  AmountOfRepeats: 3
-  DurationBetweenRepeats: 1
-  DamageOverTimeInterruptible: 1
-  RepeatedDamageType: {fileID: 0}
-  DamageTakenEveryTime: 0
-  DamageTakenDamageable: 0
-  DamageTakenNonDamageable: 0
-  DamageTakenKnockbackType: 0
-  DamageTakenKnockbackForce: {x: 0, y: 0, z: 0}
-  DamageTakenInvincibilityDuration: 0.5
-  HitDamageableFeedback: {fileID: 0}
-  HitNonDamageableFeedback: {fileID: 0}
-  HitAnythingFeedback: {fileID: 0}
-  HitDamageableEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  HitNonDamageableEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  HitAnythingEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7025528308905339740
 GameObject:
   m_ObjectHideFlags: 0
