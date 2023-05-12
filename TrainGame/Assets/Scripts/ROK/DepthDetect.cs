@@ -15,6 +15,7 @@ public class DepthDetect : MonoBehaviour
     public float rayLength = 15f;
 
     [ReadOnly] public int OrderIndex = 0;
+    [ReadOnly] public int TargetIndex;
     
 
     void Start()
@@ -32,7 +33,7 @@ public class DepthDetect : MonoBehaviour
         RaycastHit hitB;
         if(Physics.Raycast(rayStartPos, Vector3.forward, out hitB, rayLength)){
             Debug.DrawRay(rayStartPos, new Vector3(0,0,rayLength), Color.green);
-            //Debug.Log(hitB.transform.gameObject.name);
+            Debug.Log(hitB.transform.gameObject.name);
             CheckLayer(hitB.transform.gameObject);
         }
         Debug.DrawRay(rayStartPos, new Vector3(0,0,rayLength), Color.red);
@@ -42,31 +43,33 @@ public class DepthDetect : MonoBehaviour
         RaycastHit hitF;
         if(Physics.Raycast(rayStartPos, -Vector3.forward, out hitF, rayLength)){
             Debug.DrawRay(rayStartPos, new Vector3(0,0,-rayLength), Color.green);
-            //Debug.Log(hitF.transform.gameObject.name);
+            Debug.Log(hitF.transform.gameObject.name);
             CheckLayer(hitF.transform.gameObject);
         }
         Debug.DrawRay(rayStartPos, new Vector3(0,0,-rayLength), Color.red);
 
-        // RaycastHit hitL;
-        // if(Physics.Raycast(rayStartPos, Vector3.left, out hitL, rayLength)){
-        //     CheckLayer(hitL.transform.gameObject);
-        //     //Debug.Log(hitL.transform.gameObject.name);
-        // }
-        // RaycastHit hitR;
-        // if(Physics.Raycast(rayStartPos, -Vector3.left, out hitR, rayLength)){
-        //     CheckLayer(hitR.transform.gameObject);
-        //     //Debug.Log(hitL.transform.gameObject.name);
-        // }
+        RaycastHit hitL;
+        if(Physics.Raycast(rayStartPos, Vector3.left, out hitL, rayLength)){
+            CheckLayer(hitL.transform.gameObject);
+            //Debug.Log(hitL.transform.gameObject.name);
+        }
+        RaycastHit hitR;
+        if(Physics.Raycast(rayStartPos, -Vector3.left, out hitR, rayLength)){
+            CheckLayer(hitR.transform.gameObject);
+            //Debug.Log(hitL.transform.gameObject.name);
+        }
     
     }
     public void CheckLayer(GameObject obj){
         if(obj.tag == "Environment"){
             //var so_obj = obj.transform.GetChild(1);
+            GameObject g = obj.GetComponent<DepthDetect_Other>().ZObj;
             int obj_currentIndex = obj.GetComponent<DepthDetect_Other>().thisObjIndex;
+            TargetIndex = obj_currentIndex;
             Debug.Log(obj_currentIndex);
-            if(obj.transform.position.z>Main.transform.position.z){ //behind
+            if(g.transform.position.z>Main.transform.position.z){ //behind
                 OrderIndex = obj_currentIndex+1;
-            }else if(obj.transform.position.z<Main.transform.position.z){ //infront
+            }else if(g.transform.position.z<Main.transform.position.z){ //infront
                 OrderIndex = obj_currentIndex-1;
             }
         }

@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3272001311466974753}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7828418119131690155}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -180}
 --- !u!33 &2305881296922290197
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7828418119131690152}
-  m_LocalRotation: {x: 0, y: -0.70710677, z: 0.70710677, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.94, z: 0.17}
   m_LocalScale: {x: 0.41604, y: 0.41604, z: 0.41604}
   m_Children:
@@ -190,7 +190,7 @@ Transform:
   - {fileID: 5273210481504150961}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &711248819125489295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -202,8 +202,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.4872773, y: 8.330026, z: 0.0000009930166}
-  m_Center: {x: 0.011599905, y: 4.0632677, z: -0.0000004843793}
+  m_Size: {x: 1.8710594, y: 0, z: 8.174025}
+  m_Center: {x: 0.015114055, y: 0, z: -4.0990796}
 --- !u!1 &8874524947007932339
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,8 +247,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.3329797, y: 0, z: 3.3944893}
-  m_Center: {x: -0.04345155, y: 0.000000095805014, z: -1.6073403}
+  m_Size: {x: 2.4934855, y: 3.3990297, z: 0}
+  m_Center: {x: 0, y: 1.6986928, z: 0}
 --- !u!114 &5256204938823640314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,8 +262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentObjType: 2
+  ZObj: {fileID: 7828418119131690152}
   rayLength: 15
   ObjWithSortingLayer: {fileID: 3272001311466974753}
   thisObjIndex: 0
   OrderIndex: 0
-  CheckCast: 1
+  CheckCast: 0

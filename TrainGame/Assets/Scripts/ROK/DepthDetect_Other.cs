@@ -12,6 +12,7 @@ public class DepthDetect_Other : MonoBehaviour
 {
     public enum ObjType { NONE, ENEMY, ENVIRO }
     public ObjType CurrentObjType = ObjType.NONE;
+    public GameObject ZObj;
     [SerializeField] private float rayLength = 15f;
     [SerializeField] private GameObject ObjWithSortingLayer;
     public int thisObjIndex;
@@ -21,19 +22,21 @@ public class DepthDetect_Other : MonoBehaviour
     
     void Start()
     {
-        
+        //Do again when obj spawn
     }
 
     void Update()
     {
         thisObjIndex = ObjWithSortingLayer.GetComponent<MeshRenderer>().sortingOrder;
-        ObjWithSortingLayer.GetComponent<MeshRenderer>().sortingOrder = OrderIndex;
         if(CheckCast){
+            ObjWithSortingLayer.GetComponent<MeshRenderer>().sortingOrder = OrderIndex; 
             RayDetect();   
         }
         
     }
     void RayDetect(){
+        thisObjIndex = ObjWithSortingLayer.GetComponent<MeshRenderer>().sortingOrder;
+        ObjWithSortingLayer.GetComponent<MeshRenderer>().sortingOrder = OrderIndex; 
         //back
         Vector3 rayStartPos = new Vector3(transform.position.x, transform.position.y,transform.position.z);
         RaycastHit hitB;
@@ -58,11 +61,12 @@ public class DepthDetect_Other : MonoBehaviour
     public void CheckLayer(GameObject obj){
         if(obj.tag == "Environment"){
             //var so_obj = obj.transform.GetChild(1);
+            GameObject g = obj.GetComponent<DepthDetect_Other>().ZObj;
             int obj_currentIndex = obj.GetComponent<DepthDetect_Other>().thisObjIndex;
-            Debug.Log(obj_currentIndex);
-            if(obj.transform.position.z>this.transform.position.z){ //behind
+            //Debug.Log(obj_currentIndex);
+            if(g.transform.position.z>ZObj.transform.position.z){ //behind
                 OrderIndex = obj_currentIndex+1;
-            }else if(obj.transform.position.z<this.transform.position.z){ //infront
+            }else if(g.transform.position.z<ZObj.transform.position.z){ //infront
                 OrderIndex = obj_currentIndex-1;
             }
         }
