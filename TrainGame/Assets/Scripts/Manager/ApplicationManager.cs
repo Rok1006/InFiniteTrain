@@ -26,6 +26,9 @@ public class ApplicationManager : MMSingleton<ApplicationManager>
         GameManager gameManager = FindObjectOfType<GameManager>();
         if (gameManager != null)
             Destroy(gameManager.gameObject);
+        Tutorial tutorial = FindObjectOfType<Tutorial>();
+        if (tutorial != null)
+            Destroy(tutorial.gameObject);
         MMSceneLoadingManager.LoadScene ("Tutorial");
     }
 
