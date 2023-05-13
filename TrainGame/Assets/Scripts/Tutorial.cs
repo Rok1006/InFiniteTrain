@@ -45,6 +45,7 @@ public class Tutorial : MonoBehaviour
             
         }
         DontDestroyOnLoad(this.gameObject);
+        
     }
 
     void Start()
@@ -58,22 +59,29 @@ public class Tutorial : MonoBehaviour
         }
 
         radioAnim.Play("ScreenEffect_Bad");
+        Invoke("StartAnim", 0.1f);
+   
 
         if (MPTSceneManager.state == 1)
         {
             this.gameObject.SetActive(false);
         }
+        
+    }
+    private void StartAnim()
+    {
+        player.GetComponent<PlayerManager>().MCFrontAnim.Play("Special/Faint");
     }
 
     void Update()
     {
         if (player == null)
         {
+            Debug.Log("finding player");
             player = GameObject.Find("PlayerMC");
-            if(stepIndex == -1)
+            if (stepIndex == -1)
             {
                 player.GetComponent<PlayerManager>().MCFrontAnim.Play("Special/Faint");
-                player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(herb, 1, 0);
             }
            
 
@@ -81,6 +89,7 @@ public class Tutorial : MonoBehaviour
         if(gameStarted == false)
         {
             player.GetComponent<Character>().enabled = false;
+            
         }
         
         if (MPTSceneManager.state == 1)
@@ -103,6 +112,7 @@ public class Tutorial : MonoBehaviour
                     if(dr == null)
                     {
                         player.GetComponent<PlayerManager>().MCFrontAnim.Play("Special/FaintWake");
+                        player.GetComponent<CharacterInventory>().MainInventory.AddItemAt(herb, 1, 0);
                     }
                     
                     dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
