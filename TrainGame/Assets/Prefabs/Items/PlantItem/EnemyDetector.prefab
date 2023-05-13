@@ -67,10 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLayer: 13
-  enemyPositions: []
-  enemyDetectorArrow: {fileID: 8993179674880460815, guid: af691bc6e8bb4f14880971ffc6cc77e2,
-    type: 3}
-  worldUICanvas: {fileID: 0}
+  enemies: []
+  duration: 15
 --- !u!135 &8610866301547906660
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -99,7 +97,7 @@ GameObject:
   - component: {fileID: 7882587596490112771}
   - component: {fileID: 7068197400329584222}
   m_Layer: 24
-  m_Name: EnemyDetector
+  m_Name: EnemyDetectorEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

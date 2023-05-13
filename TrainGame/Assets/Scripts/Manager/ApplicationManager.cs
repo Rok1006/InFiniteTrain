@@ -15,6 +15,10 @@ public class ApplicationManager : MMSingleton<ApplicationManager>
         if (Input.GetKeyDown(KeyCode.O)) {
             MMSaveLoadManager.DeleteSaveFolder (_saveFolderName);
         }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.R)) {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void NewGame() {

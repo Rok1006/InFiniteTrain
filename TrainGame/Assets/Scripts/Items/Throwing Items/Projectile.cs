@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     private float currentTime = 0.0f;
     [SerializeField, BoxGroup("Setting")] private string VFXObjName;
     [SerializeField, BoxGroup("Setting")] private float waitTime;
+    [SerializeField, BoxGroup("Setting")] private float indicatorWaitTime;
     private bool isReachedDestination = false;
     public Vector3 start;
     private GameObject VFXObject;
@@ -34,20 +35,22 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        center = (destination.transform.position + start) * 0.5f + new Vector3(0, -1, 0);
-        c1 = start - center;
-        c2 = destination.transform.position - center;
-        if (currentTime < timeToTake)
-        {
-            currentTime += Time.deltaTime;
-            transform.position = Vector3.Slerp(c1, c2, currentTime / timeToTake);
-            transform.position += center;
-        }
-        else //reached position
-        {
-            VFXObject.transform.position = transform.position;
-            VFXObject.SetActive(true);
-            StartCoroutine(WaitToDestroySelf());
+        if (destination != null) {
+            center = (destination.transform.position + start) * 0.5f + new Vector3(0, -1, 0);
+            c1 = start - center;
+            c2 = destination.transform.position - center;
+            if (currentTime < timeToTake)
+            {
+                currentTime += Time.deltaTime;
+                transform.position = Vector3.Slerp(c1, c2, currentTime / timeToTake);
+                transform.position += center;
+            }
+            else //reached position
+            {
+                VFXObject.transform.position = transform.position;
+                VFXObject.SetActive(true);
+                StartCoroutine(WaitToDestroySelf());
+            }
         }
     }
 
@@ -65,7 +68,7 @@ public class Projectile : MonoBehaviour
     /*wait until projectile reached the destination,
       then destroy the indacator*/
     IEnumerator WaitToDestroyIndicator(GameObject objToDestroy) {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(indicatorWaitTime);
         Destroy(objToDestroy);
     }
 

@@ -14,6 +14,7 @@ public class SceneTransition : MonoBehaviour
     public MapManager mapManager;
     private GameObject door;
     [SerializeField] private string otherSceneName;
+    [SerializeField] private bool changeNewGame = false;
 
     private GoToLevelEntryPoint gotoLevelEntryPoint;
 
@@ -83,7 +84,8 @@ public class SceneTransition : MonoBehaviour
                 InfoSC.EnemyAppearState = 1;
             }
             saveAndToOtherScene(otherSceneName);
-            Info.Instance.isNewGame = false;
+            if (changeNewGame)
+                Info.Instance.isNewGame = false;
         }
     }
 }

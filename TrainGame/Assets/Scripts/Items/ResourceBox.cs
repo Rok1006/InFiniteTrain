@@ -25,6 +25,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField, BoxGroup("UI")] private GameObject metalIcon, materialIcon;
     [SerializeField, BoxGroup("Logic")] private bool isLocked = true;
     [SerializeField, BoxGroup("Logic"), ShowIf("isLocked")] private float openBoxSpeed = 0.35f;
+    [SerializeField, BoxGroup("Logic")] private bool generateItemOnlyOnce = false;
     [SerializeField, BoxGroup("Invetory")] private List<InventoryItem> itemsToGenerate;
     [SerializeField, BoxGroup("Inventory")] private Info info;
     [SerializeField, BoxGroup("Box")] private Animator boxAnim;
@@ -75,11 +76,10 @@ public class ResourceBox : MonoBehaviour
         }
 
         //generate inventory items into inventory if there's any in the list
-        info = FindObjectOfType<Info>();
-        if (info.isNewGame) {
-            foreach(InventoryItem item in itemsToGenerate) {
-                GetComponentInChildren<Inventory>().AddItem(item, 1);
-            }
+        if (generateItemOnlyOnce) {
+            Invoke("FirstTimeGenerateItemsIntoBox", 0.1f);
+        } else {
+            GenerateItemsIntoBox();
         }
 
 
@@ -95,6 +95,20 @@ public class ResourceBox : MonoBehaviour
         if (boxOpenEffect != null){boxOpenEffect.SetActive(false);};
 
     }
+
+    public void FirstTimeGenerateItemsIntoBox() {
+        if (Info.Instance.isNewGame) {
+            foreach(InventoryItem item in itemsToGenerate) {
+                GetComponentInChildren<Inventory>().AddItem(item, 1);
+            }
+        }
+    }
+
+    public void GenerateItemsIntoBox() {
+        foreach(InventoryItem item in itemsToGenerate) {
+                GetComponentInChildren<Inventory>().AddItem(item, 1);
+            }
+    }
     
     public virtual void Update()
     {
@@ -109,9 +123,8 @@ public class ResourceBox : MonoBehaviour
 
                     if(sideInventoryDisplay.DisplayCanvasGroup != null)
                     {
-
-                    inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
-                    inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
+                        inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
+                        inventoryDisplay = sideInventoryDisplay.InventoryDisplay;
                     }
                 }
                

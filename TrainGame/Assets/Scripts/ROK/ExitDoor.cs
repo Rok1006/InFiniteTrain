@@ -21,6 +21,7 @@ public class ExitDoor : MonoBehaviour
             //doorAnim.SetTrigger("Open");
             //if (!audioSource.isPlaying)
                 //audioSource.Play();
+            
         }
     }
     private void OnTriggerExit(Collider col) {
