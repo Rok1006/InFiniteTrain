@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Animations;
 using Spine.Unity;
 using Spine.Unity.AttachmentTools;
+using Yarn.Unity;
 
 //script for box, timer, minigame
 public class ResourceBox : MonoBehaviour
@@ -38,6 +39,7 @@ public class ResourceBox : MonoBehaviour
     [SerializeField] private bool useSkeletonMecanim = true;
     [SerializeField] private SkeletonMecanim B_Skin;
     [SpineSkin] public string[] boxLook = { "Normal", "Wood"};
+    public DialogueRunner dr;
 
     public InventoryDisplay backpackInventoryDisplay;
 
@@ -93,7 +95,7 @@ public class ResourceBox : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         if (boxStun != null){boxStun.SetActive(false);}
         if (boxOpenEffect != null){boxOpenEffect.SetActive(false);};
-
+        dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
     }
 
     public void FirstTimeGenerateItemsIntoBox() {
@@ -250,6 +252,7 @@ public class ResourceBox : MonoBehaviour
     }
 
     public void HideInventoryUI() {
+        if(!dr.IsDialogueRunning){
         if (isLocked)
             timer.SetActive(false);
         isOpening = false;
@@ -262,6 +265,7 @@ public class ResourceBox : MonoBehaviour
 
         //let backpack's "target inventory" to be null
         backpackInventoryDisplay.NextInventory = null;
+        }
     }
 
     public void ShowInventoryUI() {

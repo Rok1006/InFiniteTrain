@@ -21,14 +21,46 @@ public class NPC_Interact : MonoBehaviour
     public string guideDescript;
     Animator iconAnim;
 
+    public int state = 1;
+
     void Start()
     {
-        
+        Player = GameObject.FindGameObjectWithTag("Player");
+        InteractIcon.SetActive(false);
+        TrainInfoGuide.SetActive(false);
+        guideDescriptTextObj.text = "Talk";
     }
 
 
     void Update()
     {
         
+    }
+    
+    private void OnTriggerEnter(Collider col) {
+        if(col.gameObject.tag == "Player"){
+            if(!InteractIcon.activeSelf){InteractIcon.SetActive(true);}
+            if(!TrainInfoGuide.activeSelf){TrainInfoGuide.SetActive(true);}
+            if(Input.GetKeyUp(input_interact)&&state==1){
+                Debug.Log("merchang");
+                //Player.GetComponent<Character>().enabled = false;
+                dr.onDialogueComplete.AddListener(FirstTalkEnd);
+                dr.StartDialogue("Merchant First");
+                iconAnim.SetTrigger("disappear");
+            }
+            
+        }
+    }
+    public void FirstTalkEnd(){
+        state = 2;
+        Player.GetComponent<Character>().enabled = true;
+    }
+
+    private void OnTriggerExit(Collider col) {
+        if(col.gameObject.tag == "Player"){
+            TrainInfoGuide.SetActive(false);
+            iconAnim.SetTrigger("disappear");
+            InteractIcon.SetActive(false);
+        }
     }
 }

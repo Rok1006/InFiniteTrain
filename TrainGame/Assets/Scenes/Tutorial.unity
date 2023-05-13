@@ -6608,6 +6608,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7072d49b26aa84910a1bf72d2d2b7ede, type: 3}
+--- !u!1 &245072588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2581161468251579218, guid: 7dc879665407b46318fefff314fec708,
+    type: 3}
+  m_PrefabInstance: {fileID: 338833137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &245072589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245072588}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7ce7305663b4d2f9523993dad25561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 16777216
+  enviroObject: []
+  currentObj: {fileID: 0}
+  previousObj: {fileID: 0}
 --- !u!1 &246315202
 GameObject:
   m_ObjectHideFlags: 0
@@ -17455,7 +17480,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7784431, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -66413,7 +66438,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 47421343
   m_SortingLayer: 8
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &3867448952429732723
 MeshRenderer:

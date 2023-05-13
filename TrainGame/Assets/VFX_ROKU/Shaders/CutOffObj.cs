@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 public class CutOffObj : MonoBehaviour
-{
+{//Need Refine
     [SerializeField]
     private Transform targetObject;
 

@@ -66,7 +66,7 @@ public class MapManager : MonoBehaviour
         if(Info.Instance.ConfirmedSelectedPt!=0){
             requireText.text = "Select a new location.";
         }else{
-            requireText.text = "Select a location.";
+            requireText.text = "Select a location. Click on the icons";
         }
         // if(Info.Instance.ConfirmedSelectedPt!=TurnPtIndex){  //now in turn pt
         //     UpdateMapPointState();

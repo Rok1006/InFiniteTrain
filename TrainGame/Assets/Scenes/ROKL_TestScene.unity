@@ -5955,7 +5955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &325437609
 Transform:
   m_ObjectHideFlags: 0
@@ -21377,6 +21377,9 @@ MonoBehaviour:
   wallMask:
     serializedVersion: 2
     m_Bits: 16777216
+  enviroObject: []
+  currentObj: {fileID: 0}
+  previousObj: {fileID: 0}
 --- !u!1 &567850872
 GameObject:
   m_ObjectHideFlags: 0
@@ -21422,7 +21425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &613496131
 Transform:
   m_ObjectHideFlags: 0
@@ -34022,7 +34025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1057596225
 Transform:
   m_ObjectHideFlags: 0
@@ -40723,7 +40726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1546818596
 Transform:
   m_ObjectHideFlags: 0
@@ -67050,6 +67053,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_ShortSlash
       objectReference: {fileID: 0}
+    - target: {fileID: 4281818918424238803, guid: 6c109d056d919f040b70aa0f99c01a76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4924600268257477073, guid: 6c109d056d919f040b70aa0f99c01a76,
         type: 3}
       propertyPath: m_Intensity
@@ -73312,7 +73320,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7607012245916330923}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90e9b0613a9f9544580c1644719392dd, type: 3}
   m_Name: 
@@ -73851,7 +73859,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6849658187833692906}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d8c507dd6d7245ad92e8e8afb66f7ac, type: 3}
   m_Name: 
@@ -105514,7 +105522,7 @@ GameObject:
   m_Icon: {fileID: 2800000, guid: 94bc010a784ad433bba197af11a30e59, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8682565290863424465
 Transform:
   m_ObjectHideFlags: 0
