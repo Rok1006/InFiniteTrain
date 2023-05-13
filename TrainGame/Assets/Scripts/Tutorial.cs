@@ -207,6 +207,8 @@ public class Tutorial : MonoBehaviour
                     
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
+                            //informationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Double Click to take a fuel.";
+                            //text.text = "Double Click to take a fuel";
                             arrow.target = null;
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
@@ -270,6 +272,7 @@ public class Tutorial : MonoBehaviour
                     {
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
+                           // informationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Select a location on the map.";
                             arrow.target = null;
                             arrow.gameObject.SetActive(false);
                             stepIndex++;
