@@ -53,8 +53,10 @@ public class InventoryInputActionPlus : InventoryInputActions
                     _playerManager.IsUsingItem = false;
 
                     ThrowItem throwItem = _targetInventory.Content[binding.SlotIndex] as ThrowItem;
-                    if (throwItem != null)
+                    if (throwItem != null) {
+                        Destroy(throwItem.indicator);
                         throwItem.indicator = null;
+                    }
                     
                     //cancel animation
                     _playerAnimator.SetTrigger("ActionCancelled");

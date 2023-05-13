@@ -437,7 +437,6 @@ public class PlayerManager : MonoBehaviour, MMEventListener<MMInventoryEvent>
             if (!box.IsLocked)
                 continue;
             foreach (InventoryItem item in Inventory.FindInventory(box.InventoryName, "Player1").Content) {
-                Debug.Log(item.ItemName + " is checking");
                 if (item as MechanismItem != null) {
                     box.MetalIcon.SetActive(true);
                 }

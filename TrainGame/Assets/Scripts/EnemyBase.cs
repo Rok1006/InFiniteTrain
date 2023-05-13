@@ -13,6 +13,7 @@ public class EnemyBase : MonoBehaviour
     public GameObject eletricObj;
     public GameObject DetectSign;
     public GameObject HitBox;
+    public GameObject Indicator;
 
     [SerializeField] private GameObject dustPrefab; //the particle system: prefab
     [SerializeField] private GameObject emitPt; //the particle system: prefab
@@ -26,6 +27,7 @@ public class EnemyBase : MonoBehaviour
         STUN,
         GOBACK
     }
+
     public State state;
     // Start is called before the first frame update
     private void Awake()

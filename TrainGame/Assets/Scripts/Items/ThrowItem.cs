@@ -38,7 +38,7 @@ public class ThrowItem : InventoryItemPlus
         return true;
     }
 
-    public bool PlantIndicator() {
+    public GameObject PlantIndicator() {
         //get reference
         _playerManager = FindObjectOfType<PlayerManager>();
         if (_playerManager == null)
@@ -50,9 +50,8 @@ public class ThrowItem : InventoryItemPlus
             } else if (isPlantable) {
                 indicator = _playerManager.CreatePlantDestination();
             }
-            return true;
         }
 
-        return false;
+        return indicator;
     }
 }
