@@ -65,6 +65,12 @@ public class ResourceBox : MonoBehaviour
             B_Skin = this.transform.GetChild(0).gameObject.GetComponent<SkeletonMecanim>();     
             B_Skin.skeleton.SetSkin(boxLook[Random.Range(0,boxLook.Length)]);
         }
+
+        if (sideInventoryDisplay == null)
+            sideInventoryDisplay = FindObjectOfType<SideInventoryDisplay>();
+        if (inventoryCanvas == null)
+            inventoryCanvas = sideInventoryDisplay.DisplayCanvasGroup;
+            
         //-----------------------
         //auto select side inventory display
         if (autoSelectInventoryDisplay) {
