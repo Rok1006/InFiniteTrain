@@ -36463,7 +36463,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784431, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -37741,11 +37741,12 @@ MonoBehaviour:
   materialIcon: {fileID: 0}
   isLocked: 0
   openBoxSpeed: 0.35
+  generateItemOnlyOnce: 1
   itemsToGenerate:
-  - {fileID: 11400000, guid: fefbbb28547770b46a3b474a5a41a218, type: 2}
-  - {fileID: 11400000, guid: fc7c48ab87d805340a1875b2d7d3a9a2, type: 2}
-  - {fileID: 11400000, guid: 1153669435f538a41a010f887f06b671, type: 2}
-  - {fileID: 11400000, guid: bd768e1c04a8c934d987cf4e9a0e887b, type: 2}
+  - {fileID: 11400000, guid: 26696cbe9e4a5684f872b14168feeea1, type: 2}
+  - {fileID: 11400000, guid: e82553ecf57fb5042985c2b0cd91b3cd, type: 2}
+  - {fileID: 11400000, guid: ffdb14aa22263984f9ce1c90e2c1da9b, type: 2}
+  - {fileID: 11400000, guid: 9b9d0d52a7fa5f64aa139e7d6be27815, type: 2}
   info: {fileID: 0}
   boxAnim: {fileID: 0}
   miniGame: {fileID: 0}
@@ -63012,11 +63013,13 @@ MonoBehaviour:
   materialIcon: {fileID: 0}
   isLocked: 0
   openBoxSpeed: 0.35
+  generateItemOnlyOnce: 1
   itemsToGenerate:
   - {fileID: 11400000, guid: 652d3f9742dc7b6469ed2a2937dbcc4d, type: 2}
-  - {fileID: 11400000, guid: 1153669435f538a41a010f887f06b671, type: 2}
-  - {fileID: 11400000, guid: 0980524702dcec14c82cc6c8260db1cf, type: 2}
-  - {fileID: 11400000, guid: 2126b2d85b52b044c8f318878083f3be, type: 2}
+  - {fileID: 11400000, guid: 3ece105fb80e712498bd62f4543317e6, type: 2}
+  - {fileID: 11400000, guid: fc7c48ab87d805340a1875b2d7d3a9a2, type: 2}
+  - {fileID: 11400000, guid: 435c9baafb58548f7bf312b442e6eba1, type: 2}
+  - {fileID: 11400000, guid: 21d08512b76a31c4c9869ce6c8b90d58, type: 2}
   info: {fileID: 0}
   boxAnim: {fileID: 0}
   miniGame: {fileID: 0}
@@ -63899,7 +63902,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784431, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -67440,6 +67443,7 @@ MonoBehaviour:
   InfoSC: {fileID: 0}
   mapManager: {fileID: 0}
   otherSceneName: 
+  changeNewGame: 0
 --- !u!1 &1765049022
 GameObject:
   m_ObjectHideFlags: 0
@@ -78625,13 +78629,14 @@ MonoBehaviour:
   materialIcon: {fileID: 0}
   isLocked: 0
   openBoxSpeed: 0.35
+  generateItemOnlyOnce: 1
   itemsToGenerate:
   - {fileID: 11400000, guid: bab938ffbd4b844458edaad47ef5a053, type: 2}
   - {fileID: 11400000, guid: a2a31ff5864bd9b42b93fb00c08106b1, type: 2}
   - {fileID: 11400000, guid: f7be2c842950b6549bac443bc63dfa81, type: 2}
   - {fileID: 11400000, guid: c3fee839c24d344b78ba88b63218f6cb, type: 2}
-  - {fileID: 11400000, guid: fc7c48ab87d805340a1875b2d7d3a9a2, type: 2}
-  - {fileID: 11400000, guid: 9baa0d5989607cd44a5555a2b2dcc572, type: 2}
+  - {fileID: 11400000, guid: c3fee839c24d344b78ba88b63218f6cb, type: 2}
+  - {fileID: 11400000, guid: 9278c13c8eb4d7540a5398565a608513, type: 2}
   info: {fileID: 0}
   boxAnim: {fileID: 0}
   miniGame: {fileID: 0}
@@ -85517,6 +85522,11 @@ PrefabInstance:
       objectReference: {fileID: 1359651297}
     - target: {fileID: 5012803582101684254, guid: c3a9fa4bfa2306c478de67f26c08ab62,
         type: 3}
+      propertyPath: changeNewGame
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012803582101684254, guid: c3a9fa4bfa2306c478de67f26c08ab62,
+        type: 3}
       propertyPath: otherSceneName
       value: MapPoint
       objectReference: {fileID: 0}
@@ -86461,10 +86471,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1196768501, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
       propertyPath: HideContainerOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1196768503, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
-      propertyPath: m_Alpha
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1228403695, guid: 43ea37a9a945448cd947ee3df4ae8142, type: 3}
@@ -94418,7 +94424,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784431, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
