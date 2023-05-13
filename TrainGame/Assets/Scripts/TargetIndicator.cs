@@ -13,6 +13,7 @@ public class TargetIndicator : MonoBehaviour
     private Vector2 screenBounds;
     private float width;
     private float height;
+    public bool tutorial;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,10 @@ public class TargetIndicator : MonoBehaviour
 
     void Update()
     {
+        if(Tutorial.instance == null && tutorial == true)
+        {
+            this.gameObject.SetActive(false);
+        }
         if(Tutorial.instance.arrow == null)
         {
             Tutorial.instance.arrow = this;

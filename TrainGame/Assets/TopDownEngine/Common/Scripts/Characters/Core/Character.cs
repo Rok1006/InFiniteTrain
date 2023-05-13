@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using Random = UnityEngine.Random;
 
+
 namespace MoreMountains.TopDownEngine
 {
 	/// <summary>
@@ -758,6 +759,7 @@ namespace MoreMountains.TopDownEngine
 			{
 				MovementState.ChangeState(CharacterStates.MovementStates.Idle);
 			}  
+			
 			
 		}
 
