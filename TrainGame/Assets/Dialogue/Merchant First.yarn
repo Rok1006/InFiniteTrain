@@ -13,8 +13,8 @@ position: -348,-40
 title: Choice1_1
 position: -76,-42
 ---
-Merchant: You can call me Mr. Merchant.
-Merchant: As my name, I'm a merchant. Trying to survive here.
+Merchant: You dont have to know my name for now.
+Merchant: I'm merely a merchant. Trying to survive here.
 -> Where are the things you sell?
     <<jump Choice2_1>>
 ===
@@ -43,10 +43,10 @@ title: Choice4_1
 position: 94,137
 ---
 <<set $choice4_1 to 1>>
-M: Well, I need your help.
-M: As you can see, for some reasons, I'm not able to leave here.
-M: So, from time to time, I will ask you to bring me something.
-M: And that's it. That's all I need.
+Merchant: Well, I need your help.
+Merchant: I can't leave here yet.
+Merchant: So, from time to time, I will ask you to bring me something.
+Merchant: And that's it. That's all I need.
 <<if $choice4_2 == 0>>
 -> Why are you doing this?
     <<jump Choice4_2>>
