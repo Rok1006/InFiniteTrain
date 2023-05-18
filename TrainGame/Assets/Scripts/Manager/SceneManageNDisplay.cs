@@ -69,6 +69,11 @@ public class SceneManageNDisplay : MonoBehaviour
     [BoxGroup("Exit")] public List<string> inventoryNameToCheck;
     [BoxGroup("Exit")] public List<RequiredExitItems> requirements;
     public DialogueRunner dr;
+
+    public GameObject TutorialObject;
+    public GameObject ArrowObj;
+    public GameObject SkipButton;
+    public GameObject QuestDisplay;
   
     [System.Serializable]
     public class RequiredExitItems {
@@ -86,6 +91,7 @@ public class SceneManageNDisplay : MonoBehaviour
         SM = GameObject.Find("SceneSoundManager").GetComponent<Scene_Sound>();
         player = GameObject.FindGameObjectWithTag("Player");
         dr = GameObject.Find("Train Dialogue System").GetComponent<DialogueRunner>();
+        TutorialObject = GameObject.Find("TUTORIAL");
 
         InfoDisplay.SetActive(false);
         mapIcon.SetActive(false);
@@ -107,6 +113,17 @@ public class SceneManageNDisplay : MonoBehaviour
         GameOverScreen_ExitMap.SetActive(false);
         DeskViewPanel.SetActive(false);
         LocationInfoDisplay.SetActive(false);
+        if(TutorialObject.activeSelf){
+            SkipButton.SetActive(true);  
+        }else{
+            SkipButton.SetActive(false);
+        }
+        if(TutorialObject==null){
+            ArrowObj.SetActive(false); 
+            QuestDisplay.SetActive(false); 
+        }
+        //QuestDisplay.SetActive(true);
+        
       
 //---------
         UpdateCamNoise(currentValue);
@@ -147,6 +164,16 @@ public class SceneManageNDisplay : MonoBehaviour
             currentValue+=0.01f;
             UpdateCamNoise(currentValue);
         }
+    }
+    public void SkipTutorial(){
+        if(TutorialObject!=null){
+            TutorialObject.SetActive(false);
+            ArrowObj.SetActive(false); 
+            SkipButton.SetActive(false);
+            QuestDisplay.SetActive(false);
+            player.GetComponent<Character>().enabled = true;
+        }
+        
     }
     public void TrainInforGuide(){
         TrainInfoGuide.SetActive(true);

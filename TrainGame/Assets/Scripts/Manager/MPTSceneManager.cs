@@ -19,6 +19,8 @@ public class MPTSceneManager : MonoBehaviour
 
     [SerializeField, BoxGroup("General")] private GameObject LocationInfoDisplay;
     [SerializeField, BoxGroup("General")] private TextMeshProUGUI LocationInfoDisplay_Text;
+    public GameObject TutorialObject;
+    public GameObject QuestDisplay;
 
     void Start()
     {
@@ -38,6 +40,12 @@ public class MPTSceneManager : MonoBehaviour
 
         DisplayLocationInfo(PCM.PointScene[Info.Instance.pointID].GetComponent<PointContent>().LandTitle);
         MP_deadlyTimer.SetActive(false); 
+        TutorialObject = GameObject.Find("TUTORIAL");
+
+        if(TutorialObject==null){
+            //ArrowObj.SetActive(false); 
+            QuestDisplay.SetActive(false); 
+        }
     }
 
     void FixedUpdate()
