@@ -29,6 +29,7 @@ public class NPC_Interact : MonoBehaviour
         InteractIcon.SetActive(false);
         TrainInfoGuide.SetActive(false);
         guideDescriptTextObj.text = "Talk";
+        iconAnim = InteractIcon.GetComponent<Animator>();
     }
 
 
@@ -39,8 +40,8 @@ public class NPC_Interact : MonoBehaviour
     
     private void OnTriggerStay(Collider col) {
         if(col.gameObject.tag == "Player"){
-            if(!InteractIcon.activeSelf&&state>0){InteractIcon.SetActive(true);}
-            if(!TrainInfoGuide.activeSelf&&state>0){TrainInfoGuide.SetActive(true);}
+            if(!InteractIcon.activeSelf){InteractIcon.SetActive(true);}
+            if(!TrainInfoGuide.activeSelf){TrainInfoGuide.SetActive(true);}
             //Debug.Log("premerchant");
             if(Input.GetKeyUp(input_interact)&&state==1){
                 //Debug.Log("merchang");
@@ -48,7 +49,7 @@ public class NPC_Interact : MonoBehaviour
                 dr.onDialogueComplete.AddListener(FirstTalkEnd);
                 dr.StartDialogue("Merchant_First");
                 iconAnim.SetTrigger("disappear");
-                InteractIcon.SetActive(false);
+                //InteractIcon.SetActive(false);
             }
             if(Input.GetKeyUp(input_interact)&&state==2){
                 //Debug.Log("merchang");
@@ -56,6 +57,7 @@ public class NPC_Interact : MonoBehaviour
                 dr.onDialogueComplete.AddListener(SecondTalkEnd);
                 dr.StartDialogue("Merchant_Second");
                 iconAnim.SetTrigger("disappear");
+                //InteractIcon.SetActive(false);
             }
             
         }
@@ -65,7 +67,7 @@ public class NPC_Interact : MonoBehaviour
         //Player.GetComponent<Character>().enabled = true;
     }
     public void SecondTalkEnd(){
-        state = 1;
+        state = 2;
     }
 
     private void OnTriggerExit(Collider col) {
